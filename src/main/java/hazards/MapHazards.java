@@ -10,6 +10,7 @@ public class MapHazards {
     /** An object which manages the obstacles for the map. */
     private final MapObstacles obstacles;
 
+    /** Create an empty map hazards object. */
     public MapHazards() {
         enemies = new MapEnemies();
         obstacles = new MapObstacles();
