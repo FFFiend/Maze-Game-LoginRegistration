@@ -14,9 +14,9 @@ public class MapObstacles {
     }
 
     /** Check whether the player is blocked by any obstacle. */
-    public boolean isPlayerBlocked(PlayerInfo player) {
+    public boolean isPlayerBlocked(IHazardRequestModel request) {
         for (Obstacle obstacle: obstacles) {
-            if (obstacle.blocksPlayer(player))
+            if (obstacle.blocksPlayer(request))
                 return true;
         }
         return false;

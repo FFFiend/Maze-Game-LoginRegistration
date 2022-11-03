@@ -6,6 +6,12 @@ public abstract class Enemy {
     /** The starting y position for the enemy. */
     private int startY;
 
+    /** create a new enemy with the given starting position */
+    public Enemy(int startX, int startY) {
+        setStartX(startX);
+        setStartY(startY);
+    }
+
     /** Reset the enemy to its initial state. */
     public abstract void reset();
 
@@ -31,8 +37,8 @@ public abstract class Enemy {
     protected void setStartY(int y) { startY = y; }
 
     /** Check whether this enemy kills the player. */
-    public boolean killsPlayer(PlayerInfo player) {
-        return player.getX() == getX() && player.getY() == getY();
+    public boolean killsPlayer(IHazardRequestModel request) {
+        return request.getPlayerX() == getX() && request.getPlayerY() == getY();
     }
 
 

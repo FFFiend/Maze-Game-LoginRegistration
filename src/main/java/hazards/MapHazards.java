@@ -27,12 +27,12 @@ public class MapHazards {
     }
 
     /** Check whether the player is blocked by a hazard. */
-    public boolean isPlayerBlocked(PlayerInfo player) {
-        return obstacles.isPlayerBlocked(player);
+    public boolean isPlayerBlocked(IHazardRequestModel request) {
+        return obstacles.isPlayerBlocked(request);
     }
 
     /** Check whether the player is blocked by a hazard. */
-    public boolean isPlayerKilled(PlayerInfo player) {
-        return enemies.isPlayerKilled(player);
+    public boolean isPlayerKilled(IHazardRequestModel request) {
+        return enemies.isPlayerKilled(request);
     }
 }

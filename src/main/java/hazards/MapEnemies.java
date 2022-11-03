@@ -14,9 +14,9 @@ public class MapEnemies {
     }
 
     /** Check whether the player is killed by any enemy. */
-    public boolean isPlayerKilled(PlayerInfo player) {
+    public boolean isPlayerKilled(IHazardRequestModel request) {
         for (Enemy enemy: enemies) {
-            if (enemy.killsPlayer(player))
+            if (enemy.killsPlayer(request))
                 return true;
         }
         return false;

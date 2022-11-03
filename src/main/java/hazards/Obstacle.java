@@ -96,9 +96,9 @@ public class Obstacle {
     }
 
     /** Check whether the obstacle blocks the player. */
-    public boolean blocksPlayer(PlayerInfo player) {
-        int playerX = player.getX();
-        int playerY = player.getY();
+    public boolean blocksPlayer(IHazardRequestModel request) {
+        int playerX = request.getPlayerX();
+        int playerY = request.getPlayerY();
         return playerX >= x && playerY >= y && playerX < x + width && playerY < y + height;
     }
 }
