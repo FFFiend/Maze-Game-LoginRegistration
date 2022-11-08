@@ -3,6 +3,7 @@ package hazards;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/** Test the MapObstacles class */
 public class MapObstaclesTest {
     /** Test isPlayerBlocked without any obstacles. */
     @Test

@@ -3,6 +3,7 @@ package hazards;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/** Test the MapHazards class */
 public class MapHazardsTest {
     /** test isPlayerBlocked with no hazards */
     @Test

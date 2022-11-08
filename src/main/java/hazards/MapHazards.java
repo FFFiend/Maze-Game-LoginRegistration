@@ -2,7 +2,7 @@ package hazards;
 
 /**
  * A collection of hazards for a map.
- * A hazard is currently an obstacle or an enemy, but more types of hazards coulds be added in the future.
+ * A hazard is currently an obstacle or an enemy, but more types of hazards could be added in the future.
  * */
 public class MapHazards {
     /** An object which manages the enemies for the map. */
@@ -34,5 +34,18 @@ public class MapHazards {
     /** Check whether the player is blocked by a hazard. */
     public boolean isPlayerKilled(IHazardRequestModel request) {
         return enemies.isPlayerKilled(request);
+    }
+
+    /** Update the map hazards.
+     * This should be called at a fixed interval (e.g. every 0.5 seconds).
+     * The game can be made more difficult by calling this more often, since enemies will move faster. */
+    public void update() {
+        enemies.update();
+    }
+
+    /** Reset the map hazards to their initial state.
+     * This can be called when the player is killed, and the user has to restart the level. */
+    public void reset() {
+        enemies.reset();
     }
 }

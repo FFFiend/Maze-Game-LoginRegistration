@@ -26,11 +26,12 @@ public class Obstacle {
             super(getMessage(isWidth, value));
         }
 
+        /** Create an appropriate error message, to be passed to the superclass constructor. */
         private static String getMessage(boolean isWidth, int value) {
-            if (isWidth)
-                return "Bad obstacle width: " + value;
-            else
-                return "Bad obstacle height: " + value;
+                if (isWidth)
+                    return "Bad obstacle width: " + value;
+                else
+                    return "Bad obstacle height: " + value;
         }
     }
 
@@ -83,13 +84,13 @@ public class Obstacle {
     /** Get the height of the obstacle. */
     public int getHeight() { return height; }
 
-    /** Set the width of the obstacle. width must be positive, otherwise a BadSizeException will be thrown. */
+    /** Set the width of the obstacle. w must be positive, otherwise a BadSizeException will be thrown. */
     public void setWidth(int w) {
         checkWidth(w);
         width = w;
     }
 
-    /** Set the height of the obstacle. height must be positive, otherwise a BadSizeException will be thrown. */
+    /** Set the height of the obstacle. h must be positive, otherwise a BadSizeException will be thrown. */
     public void setHeight(int h) {
         checkHeight(h);
         height = h;

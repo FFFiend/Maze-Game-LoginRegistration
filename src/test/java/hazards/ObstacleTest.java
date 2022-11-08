@@ -4,6 +4,7 @@ package hazards;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/** Test the Obstacle class */
 public class ObstacleTest {
     /** Try constructing a normal obstacle. */
     @Test

@@ -3,6 +3,7 @@ package hazards;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/** Test the default method implementations in the Enemy class */
 public class EnemyTest {
     /** Test the default implementation of killsPlayer */
     @Test

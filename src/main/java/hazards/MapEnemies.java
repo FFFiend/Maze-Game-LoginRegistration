@@ -26,4 +26,18 @@ public class MapEnemies {
     public void add(Enemy enemy) {
         enemies.add(enemy);
     }
+
+    /** Update all enemies */
+    public void update() {
+        for (Enemy enemy: enemies) {
+            enemy.update();
+        }
+    }
+
+    /** Reset all enemies to their starting positions. */
+    public void reset() {
+        for (Enemy enemy: enemies) {
+            enemy.reset();
+        }
+    }
 }

@@ -1,12 +1,13 @@
 package hazards;
 
+/** The abstract class which all enemies inherit from. */
 public abstract class Enemy {
     /** The starting x position for the enemy. */
     private int startX;
     /** The starting y position for the enemy. */
     private int startY;
 
-    /** create a new enemy with the given starting position */
+    /** Create a new enemy with the given starting position. */
     public Enemy(int startX, int startY) {
         setStartX(startX);
         setStartY(startY);
@@ -15,7 +16,7 @@ public abstract class Enemy {
     /** Reset the enemy to its initial state. */
     public abstract void reset();
 
-    /** Update the enemy. This should be called at a fixed interval (e.g. every 0.5 seconds). */
+    /** Update the enemy. Called at a fixed interval (e.g. every 0.5 seconds).*/
     public abstract void update();
 
     /** Get the current x position of the enemy. */
