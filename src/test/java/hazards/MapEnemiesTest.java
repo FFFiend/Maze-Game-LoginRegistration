@@ -1,7 +1,10 @@
 package hazards;
 
+import adapters.hazards.IHazardRequestModel;
+import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import use_cases.hazards.MapEnemies;
 
 /** Test the MapEnemies class. */
 public class MapEnemiesTest {

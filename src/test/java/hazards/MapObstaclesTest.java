@@ -1,7 +1,10 @@
 package hazards;
 
+import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Obstacle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import use_cases.hazards.MapObstacles;
 
 /** Test the MapObstacles class */
 public class MapObstaclesTest {

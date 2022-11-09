@@ -1,5 +1,7 @@
 package hazards;
 
+import entities.hazards.Enemy;
+import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

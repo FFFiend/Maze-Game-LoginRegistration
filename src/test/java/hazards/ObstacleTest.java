@@ -1,6 +1,8 @@
 package hazards;
 
 
+import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Obstacle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

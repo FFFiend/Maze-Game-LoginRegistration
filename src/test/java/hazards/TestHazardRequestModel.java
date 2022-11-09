@@ -1,5 +1,7 @@
 package hazards;
 
+import adapters.hazards.IHazardRequestModel;
+
 /** an IHazardRequestModel implementation for testing only */
 public class TestHazardRequestModel implements IHazardRequestModel {
     /** simulated player x position */

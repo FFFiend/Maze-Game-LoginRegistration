@@ -1,4 +1,7 @@
-package hazards;
+package use_cases.hazards;
+
+import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Enemy;
 
 import java.util.ArrayList;
 import java.util.List;

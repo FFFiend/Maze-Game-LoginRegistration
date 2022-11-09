@@ -1,4 +1,8 @@
-package hazards;
+package use_cases.hazards;
+
+import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Enemy;
+import entities.hazards.Obstacle;
 
 /**
  * A collection of hazards for a map.

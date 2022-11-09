@@ -1,4 +1,6 @@
-package hazards;
+package entities.hazards;
+
+import entities.hazards.Enemy;
 
 /** An enemy which does not move from its starting position */
 public class StationaryEnemy extends Enemy {

@@ -1,4 +1,6 @@
-package hazards;
+package entities.hazards;
+
+import adapters.hazards.IHazardRequestModel;
 
 /** The abstract class which all enemies inherit from. */
 public abstract class Enemy {
@@ -31,11 +33,11 @@ public abstract class Enemy {
     /** Get the starting y position of the enemy. */
     public int getStartY() { return startY; }
 
-    /** Set the starting x position of the enemy. */
-    protected void setStartX(int x) { startX = x; }
+    /** Set the starting x position o the enemy. */
+    public void setStartX(int x) { startX = x; }
 
     /** Set the starting y position of the enemy. */
-    protected void setStartY(int y) { startY = y; }
+    public void setStartY(int y) { startY = y; }
 
     /** Check whether this enemy kills the player. */
     public boolean killsPlayer(IHazardRequestModel request) {

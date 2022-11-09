@@ -1,4 +1,4 @@
-package hazards;
+package adapters.hazards;
 
 /** Interface for communicating relevant information for hazard checking. */
 public interface IHazardRequestModel {

@@ -1,4 +1,6 @@
-package hazards;
+package entities.hazards;
+
+import adapters.hazards.IHazardRequestModel;
 
 /** An obstacle in a map */
 public class Obstacle {
