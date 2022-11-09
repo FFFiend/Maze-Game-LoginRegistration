@@ -1,6 +1,7 @@
 package hazards;
 
 import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Enemy;
 import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,5 +42,36 @@ public class MapEnemiesTest {
         Assertions.assertFalse(enemies.isPlayerKilled(player3));
     }
 
+    /** Test get with no enemies. */
+    @Test
+    void GetNoEnemies() {
+        MapEnemies enemies = new MapEnemies();
+        Assertions.assertNull(enemies.get(1, 2));
+        Assertions.assertNull(enemies.get(17, -4));
+    }
+
+    /** Test get with some enemies. */
+    @Test
+    void GetMultipleEnemies() {
+        MapEnemies enemies = new MapEnemies();
+        Enemy enemy1 = new StationaryEnemy(3, 17);
+        Enemy enemy2 = new StationaryEnemy(10, 20);
+
+        enemies.add(enemy1);
+        enemies.add(enemy2);
+        Assertions.assertNull(enemies.get(20, 10));
+        Assertions.assertEquals(enemies.get(3, 17), enemy1);
+        Assertions.assertEquals(enemies.get(10, 20), enemy2);
+    }
+
+    /** Test remove */
+    @Test
+    void Remove() {
+        MapEnemies enemies = new MapEnemies();
+        Enemy enemy = new StationaryEnemy(0, 0);
+        enemies.add(enemy);
+        enemies.delete(0, 0);
+        Assertions.assertNull(enemies.get(0, 0));
+    }
 
 }

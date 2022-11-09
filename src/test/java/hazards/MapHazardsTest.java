@@ -1,6 +1,7 @@
 package hazards;
 
 import adapters.hazards.IHazardRequestModel;
+import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
@@ -9,6 +10,7 @@ import use_cases.hazards.MapHazards;
 
 /** Test the MapHazards class */
 public class MapHazardsTest {
+
     /** test isPlayerBlocked with no hazards */
     @Test
     public void IsPlayerBlockedEmpty() {
@@ -48,5 +50,17 @@ public class MapHazardsTest {
         Assertions.assertTrue(hazards.isPlayerKilled(player1));
         IHazardRequestModel player2 = new TestHazardRequestModel(2, 1);
         Assertions.assertFalse(hazards.isPlayerKilled(player2));
+    }
+
+    /** Test getting and removing enemies. */
+    @Test
+    public void EnemyManipulation() {
+        MapHazards hazards = new MapHazards();
+        Enemy enemy = new StationaryEnemy(10, 3);
+        hazards.addEnemy(enemy);
+        Assertions.assertEquals(hazards.getEnemy(10, 3), enemy);
+        Assertions.assertNull(hazards.getEnemy(3, 10));
+        hazards.deleteEnemy(10, 3);
+        Assertions.assertNull(hazards.getEnemy(10, 3));
     }
 }

@@ -52,4 +52,16 @@ public class MapHazards {
     public void reset() {
         enemies.reset();
     }
+
+    /** Get the enemy at the given position.
+     * @return The enemy, or null if there is no enemy at this position.
+     */
+    public Enemy getEnemy(int x, int y) {
+        return enemies.get(x, y);
+    }
+
+    /** Delete the enemy at the given position if there is one. */
+    public void deleteEnemy(int x, int y) {
+        enemies.delete(x, y);
+    }
 }

@@ -43,4 +43,22 @@ public class MapEnemies {
             enemy.reset();
         }
     }
+
+    /** Get the enemy at the given position.
+     * @return The enemy, or null if there is no enemy at that position.
+     */
+    public Enemy get(int x, int y) {
+        for (Enemy enemy: enemies) {
+            if (enemy.getX() == x && enemy.getY() == y) {
+                return enemy;
+            }
+        }
+        return null;
+    }
+
+    /** Delete the enemy at the given position if there is one. */
+    public void delete(int x, int y) {
+        Enemy enemy = get(x, y);
+        enemies.remove(enemy);
+    }
 }
