@@ -1,6 +1,6 @@
 package use_cases;
 
-public class RegisterUser implements DataAccessInterface {
+public class RegisterUser implements IDataAccessInterface {
     // Register the user by creating a user object of the user.
     // If the user password is invalid (PasswordStrengthChecker), allow user to re-enter
     // a password.
