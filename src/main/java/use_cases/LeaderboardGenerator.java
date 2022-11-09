@@ -1,4 +1,4 @@
 package use_cases;
 
-abstract class LeaderboardGenerator {
+abstract class LeaderboardGenerator implements DataAccessInterface {
 }

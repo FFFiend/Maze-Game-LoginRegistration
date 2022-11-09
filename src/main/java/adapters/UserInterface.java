@@ -1,4 +1,0 @@
-package adapters;
-
-interface UserInterface {
-}

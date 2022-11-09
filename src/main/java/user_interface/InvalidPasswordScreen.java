@@ -1,4 +1,4 @@
-package adapters;
+package user_interface;
 
 public class InvalidPasswordScreen extends Screens {
     // Tells the user they have entered an invalid password, allows user to reset password
