@@ -7,9 +7,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.hazards.MazeEnemies;
 
-/** Test the MazeEnemies class. */
+/**
+ * Test the MazeEnemies class.
+ */
 public class MazeEnemiesTest {
-    /** Test isPlayerKilled with no enemies. */
+    /**
+     * Test isPlayerKilled with no enemies.
+     */
     @Test
     void IsPlayerKilledNoEnemies() {
         MazeEnemies enemies = new MazeEnemies();
@@ -17,7 +21,9 @@ public class MazeEnemiesTest {
         Assertions.assertFalse(enemies.isPlayerKilled(request));
     }
 
-    /** Test isPlayerKilled with one enemy. */
+    /**
+     * Test isPlayerKilled with one enemy.
+     */
     @Test
     void IsPlayerKilledOneEnemy() {
         MazeEnemies enemies = new MazeEnemies();
@@ -28,7 +34,9 @@ public class MazeEnemiesTest {
         Assertions.assertFalse(enemies.isPlayerKilled(player2));
     }
 
-    /** Test isPlayerKilled with multiple enemies. */
+    /**
+     * Test isPlayerKilled with multiple enemies.
+     */
     @Test
     void IsPlayerKilledMultipleEnemies() {
         MazeEnemies enemies = new MazeEnemies();
@@ -42,7 +50,9 @@ public class MazeEnemiesTest {
         Assertions.assertFalse(enemies.isPlayerKilled(player3));
     }
 
-    /** Test get with no enemies. */
+    /**
+     * Test get with no enemies.
+     */
     @Test
     void GetNoEnemies() {
         MazeEnemies enemies = new MazeEnemies();
@@ -50,7 +60,9 @@ public class MazeEnemiesTest {
         Assertions.assertNull(enemies.get(17, -4));
     }
 
-    /** Test get with some enemies. */
+    /**
+     * Test get with some enemies.
+     */
     @Test
     void GetMultipleEnemies() {
         MazeEnemies enemies = new MazeEnemies();
@@ -64,7 +76,9 @@ public class MazeEnemiesTest {
         Assertions.assertEquals(enemies.get(10, 20), enemy2);
     }
 
-    /** Test remove */
+    /**
+     * Test remove
+     */
     @Test
     void Remove() {
         MazeEnemies enemies = new MazeEnemies();

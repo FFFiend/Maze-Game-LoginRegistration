@@ -5,9 +5,13 @@ import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/** Test the StationaryEnemy class */
+/**
+ * Test the StationaryEnemy class
+ */
 public class StationaryEnemyTest {
-    /** Test getX and getY */
+    /**
+     * Test getX and getY
+     */
     @Test
     public void GetXY() {
         Enemy enemy = new StationaryEnemy(-2, -5);
@@ -15,7 +19,9 @@ public class StationaryEnemyTest {
         Assertions.assertEquals(enemy.getY(), -5);
     }
 
-    /** Test that update doesn't affect x, y, startX, startY. */
+    /**
+     * Test that update doesn't affect x, y, startX, startY.
+     */
     @Test
     public void Update() {
         Enemy enemy = new StationaryEnemy(1, 2);
@@ -26,7 +32,9 @@ public class StationaryEnemyTest {
         Assertions.assertEquals(enemy.getStartY(), 2);
     }
 
-    /** Test that reset doesn't affect x, y, startX, startY */
+    /**
+     * Test that reset doesn't affect x, y, startX, startY
+     */
     @Test
     public void Reset() {
         Enemy enemy = new StationaryEnemy(33, 44);

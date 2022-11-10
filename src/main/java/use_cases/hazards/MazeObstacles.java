@@ -6,7 +6,9 @@ import entities.hazards.Obstacle;
 import java.util.ArrayList;
 import java.util.List;
 
-/** A collection of obstacles for a maze. */
+/**
+ * A collection of obstacles for a maze.
+ */
 public class MazeObstacles {
     /**
      * The internal list of obstacles.

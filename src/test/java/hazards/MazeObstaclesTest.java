@@ -6,9 +6,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.hazards.MazeObstacles;
 
-/** Test the MazeObstacles class */
+/**
+ * Test the MazeObstacles class
+ */
 public class MazeObstaclesTest {
-    /** Test isPlayerBlocked without any obstacles. */
+    /**
+     * Test isPlayerBlocked without any obstacles.
+     */
     @Test
     public void IsPlayerBlockedNoObstacles() {
         MazeObstacles o = new MazeObstacles();
@@ -16,7 +20,9 @@ public class MazeObstaclesTest {
         Assertions.assertFalse(o.isPlayerBlocked(player));
     }
 
-    /** Test isPlayerBlocked with a bunch of obstacles. */
+    /**
+     * Test isPlayerBlocked with a bunch of obstacles.
+     */
     @Test
     public void IsPlayerBlockedMultipleObstacles() {
         MazeObstacles o = new MazeObstacles();
@@ -33,14 +39,18 @@ public class MazeObstaclesTest {
         Assertions.assertTrue(o.isPlayerBlocked(player4)); // blocked by 3rd obstacle
     }
 
-    /** Test get without any obstacles. */
+    /**
+     * Test get without any obstacles.
+     */
     @Test
     public void GetNoObstacles() {
         MazeObstacles o = new MazeObstacles();
         Assertions.assertNull(o.get(3, 5));
     }
 
-    /** Test get with several obstacles. */
+    /**
+     * Test get with several obstacles.
+     */
     @Test
     public void GetMultipleObstacles() {
         MazeObstacles o = new MazeObstacles();
@@ -53,7 +63,9 @@ public class MazeObstaclesTest {
         Assertions.assertEquals(o.get(89, 5), o2);
     }
 
-    /** Test removing obstacles. */
+    /**
+     * Test removing obstacles.
+     */
     @Test
     public void Remove() {
         MazeObstacles o = new MazeObstacles();

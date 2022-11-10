@@ -8,10 +8,14 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.hazards.MazeHazards;
 
-/** Test the MazeHazards class */
+/**
+ * Test the MazeHazards class
+ */
 public class MazeHazardsTest {
 
-    /** test isPlayerBlocked with no hazards */
+    /**
+     * test isPlayerBlocked with no hazards
+     */
     @Test
     public void IsPlayerBlockedEmpty() {
         MazeHazards hazards = new MazeHazards();
@@ -19,7 +23,9 @@ public class MazeHazardsTest {
         Assertions.assertFalse(hazards.isPlayerBlocked(player));
     }
 
-    /** test isPlayerBlocked with some obstacles */
+    /**
+     * test isPlayerBlocked with some obstacles
+     */
     @Test
     public void IsPlayerBlockedObstacles() {
         MazeHazards hazards = new MazeHazards();
@@ -32,7 +38,9 @@ public class MazeHazardsTest {
     }
 
 
-    /** test isPlayerKilled with no hazards */
+    /**
+     * test isPlayerKilled with no hazards
+     */
     @Test
     public void IsPlayerKilledEmpty() {
         MazeHazards hazards = new MazeHazards();
@@ -40,7 +48,9 @@ public class MazeHazardsTest {
         Assertions.assertFalse(hazards.isPlayerKilled(player));
     }
 
-    /** test isPlayerKilled with some enemies */
+    /**
+     * test isPlayerKilled with some enemies
+     */
     @Test
     public void IsPlayerKilledEnemies() {
         MazeHazards hazards = new MazeHazards();
@@ -52,7 +62,9 @@ public class MazeHazardsTest {
         Assertions.assertFalse(hazards.isPlayerKilled(player2));
     }
 
-    /** Test getting and removing enemies. */
+    /**
+     * Test getting and removing enemies.
+     */
     @Test
     public void EnemyManipulation() {
         MazeHazards hazards = new MazeHazards();
@@ -65,7 +77,9 @@ public class MazeHazardsTest {
         Assertions.assertNull(hazards.getEnemy(10, 3));
     }
 
-    /** Test getting and removing obstacles. */
+    /**
+     * Test getting and removing obstacles.
+     */
     @Test
     public void ObstacleManipulation() {
         MazeHazards hazards = new MazeHazards();
