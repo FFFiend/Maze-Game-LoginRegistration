@@ -7,12 +7,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** A collection of items within a maze with "collision checking" functionality. */
-public class ItemCollisionChecker {
+public class MazeItems {
     /** The internal list of items. */
     private final List<Item> items;
 
-    /** Construct a new ItemCollisionChecker class with no items. */
-    public ItemCollisionChecker() {
+    /** Construct a new MazeItems class with no items. */
+    public MazeItems() {
         items = new ArrayList<>();
     }
 
