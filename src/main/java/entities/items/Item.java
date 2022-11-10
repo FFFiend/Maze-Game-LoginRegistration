@@ -11,15 +11,13 @@ public class Item {
     private BufferedImage image;
     /** The name of the item */
     private String name;
-    /** The blocking boolean of the item */
+    /** The locked boolean of the item */
     private boolean locked = false;
 
     /** The x position of the item. */
     private int x;
     /** The y position of the item. */
     private int y;
-    /** The solid area (width & height) of the item. */
-    private Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 
 
     // METHODS
@@ -27,7 +25,6 @@ public class Item {
     public Item(int x, int y) {
         setX(x);
         setY(y);
-        setSolidArea(x, y);
     }
 
     /** Set the x position of the item */
@@ -43,14 +40,6 @@ public class Item {
     }
     /** Get the y position of the item */
     public int getY() {return this.y;}
-
-    /** Set the solid area of the item */
-    public void setSolidArea(int x, int y) {
-        this.solidArea.x = x;
-        this.solidArea.y = y;
-    }
-    /** Get the solid area of the item */
-    public Rectangle getSolidArea() {return this.solidArea;}
 
 
     /** Set the image of the item */
@@ -78,8 +67,9 @@ public class Item {
 
     /** Check whether the item collides with the player. */
     public boolean itemCollision(ICollisionRequestModel request) {
-        Rectangle playerArea = request.getPlayerArea();
-        return playerArea.intersects(this.getSolidArea());
+        int playerX = request.getPlayerX();
+        int playerY = request.getPlayerY();
+        return playerX == x && playerY == y;
     }
 
 }

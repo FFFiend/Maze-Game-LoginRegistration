@@ -2,19 +2,27 @@ package items;
 
 import entities.items.ICollisionRequestModel;
 
-import java.awt.*;
 
-/** an IHazardRequestModel implementation for testing only */
+/** an ICollisionRequestModel implementation for testing only */
 public class TestCollisionRequestModel implements ICollisionRequestModel {
-    /** simulated player solid area */
-    private final Rectangle playerArea;
+    /** simulated player x position */
+    private final int playerX;
+    /** simulated player y position */
+    private final int playerY;
 
     /** Create a new test collision request model with the given player position. */
     public TestCollisionRequestModel(int playerX, int playerY) {
-        this.playerArea = new Rectangle(playerX, playerY, 48, 48);
+        this.playerX = playerX;
+        this.playerY = playerY;
     }
+
     @Override
-    public Rectangle getPlayerArea() {
-        return this.playerArea;
+    public int getPlayerX() {
+        return playerX;
+    }
+
+    @Override
+    public int getPlayerY() {
+        return playerY;
     }
 }
