@@ -98,10 +98,16 @@ public class Obstacle {
         height = h;
     }
 
+    /** Check whether the obstacle blocks the given point. */
+    public boolean blocksPoint(int pointX, int pointY) {
+        return pointX >= x && pointY >= y && pointX < x + width && pointY < y + height;
+
+    }
+
     /** Check whether the obstacle blocks the player. */
     public boolean blocksPlayer(IHazardRequestModel request) {
         int playerX = request.getPlayerX();
         int playerY = request.getPlayerY();
-        return playerX >= x && playerY >= y && playerX < x + width && playerY < y + height;
+        return blocksPoint(playerX, playerY);
     }
 }

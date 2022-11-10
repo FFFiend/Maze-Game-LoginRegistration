@@ -59,6 +59,7 @@ public class MazeEnemies {
     /** Delete the enemy at the given position if there is one. */
     public void delete(int x, int y) {
         Enemy enemy = get(x, y);
-        enemies.remove(enemy);
+        if (enemy != null)
+            enemies.remove(enemy);
     }
 }

@@ -56,11 +56,25 @@ public class MazeHazardsTest {
     @Test
     public void EnemyManipulation() {
         MazeHazards hazards = new MazeHazards();
+        hazards.deleteObstacle(5, 3);
         Enemy enemy = new StationaryEnemy(10, 3);
         hazards.addEnemy(enemy);
         Assertions.assertEquals(hazards.getEnemy(10, 3), enemy);
         Assertions.assertNull(hazards.getEnemy(3, 10));
         hazards.deleteEnemy(10, 3);
         Assertions.assertNull(hazards.getEnemy(10, 3));
+    }
+
+    /** Test getting and removing obstacles. */
+    @Test
+    public void ObstacleManipulation() {
+        MazeHazards hazards = new MazeHazards();
+        Assertions.assertNull(hazards.getObstacle(3, 5));
+        hazards.deleteObstacle(5, 3);
+        Obstacle o1 = new Obstacle(3, 5);
+        hazards.addObstacle(o1);
+        Assertions.assertEquals(hazards.getObstacle(3, 5), o1);
+        hazards.deleteObstacle(3, 5);
+        Assertions.assertNull(hazards.getObstacle(3, 5));
     }
 }

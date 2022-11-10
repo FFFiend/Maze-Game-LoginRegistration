@@ -64,4 +64,16 @@ public class MazeHazards {
     public void deleteEnemy(int x, int y) {
         enemies.delete(x, y);
     }
+
+    /** Get the obstacle at the given position.
+     * @return The obstacle, or null if there is no obstacle at this position.
+     */
+    public Obstacle getObstacle(int x, int y) {
+        return obstacles.get(x, y);
+    }
+
+    /** Delete the obstacle at the given position if there is one. */
+    public void deleteObstacle(int x, int y) {
+        obstacles.delete(x, y);
+    }
 }
