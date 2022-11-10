@@ -11,7 +11,7 @@ public class Item {
     private BufferedImage image;
     /** The name of the item */
     private String name;
-    /** The blocking boolean of the item */
+    /** The locked boolean of the item */
     private boolean locked = false;
 
     /** The x position of the item. */
