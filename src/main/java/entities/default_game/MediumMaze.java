@@ -3,6 +3,6 @@ package entities.default_game;
 /**
  * Medium level maze.
  */
-public class MediumMaze extends Maze{
+public class MediumMaze extends Maze {
 
 }
