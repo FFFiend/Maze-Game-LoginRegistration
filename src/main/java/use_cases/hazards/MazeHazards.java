@@ -5,27 +5,27 @@ import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
 
 /**
- * A collection of hazards for a map.
+ * A collection of hazards for a maze.
  * A hazard is currently an obstacle or an enemy, but more types of hazards could be added in the future.
  * */
-public class MapHazards {
-    /** An object which manages the enemies for the map. */
-    private final MapEnemies enemies;
-    /** An object which manages the obstacles for the map. */
-    private final MapObstacles obstacles;
+public class MazeHazards {
+    /** An object which manages the enemies for the maze. */
+    private final MazeEnemies enemies;
+    /** An object which manages the obstacles for the maze. */
+    private final MazeObstacles obstacles;
 
-    /** Create an empty map hazards object. */
-    public MapHazards() {
-        enemies = new MapEnemies();
-        obstacles = new MapObstacles();
+    /** Create an empty maze hazards object. */
+    public MazeHazards() {
+        enemies = new MazeEnemies();
+        obstacles = new MazeObstacles();
     }
 
-    /** Add an enemy to the map hazards. */
+    /** Add an enemy to the maze hazards. */
     public void addEnemy(Enemy enemy) {
         enemies.add(enemy);
     }
 
-    /** Add an obstacle to the map hazards. */
+    /** Add an obstacle to the maze hazards. */
     public void addObstacle(Obstacle obstacle) {
         obstacles.add(obstacle);
     }
@@ -40,14 +40,14 @@ public class MapHazards {
         return enemies.isPlayerKilled(request);
     }
 
-    /** Update the map hazards.
+    /** Update the maze hazards.
      * This should be called at a fixed interval (e.g. every 0.5 seconds).
      * The game can be made more difficult by calling this more often, since enemies will move faster. */
     public void update() {
         enemies.update();
     }
 
-    /** Reset the map hazards to their initial state.
+    /** Reset the maze hazards to their initial state.
      * This can be called when the player is killed, and the user has to restart the level. */
     public void reset() {
         enemies.reset();

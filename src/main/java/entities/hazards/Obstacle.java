@@ -2,7 +2,7 @@ package entities.hazards;
 
 import adapters.hazards.IHazardRequestModel;
 
-/** An obstacle in a map */
+/** An obstacle in a maze */
 public class Obstacle {
     /** The x position of the obstacle. */
     private int x;

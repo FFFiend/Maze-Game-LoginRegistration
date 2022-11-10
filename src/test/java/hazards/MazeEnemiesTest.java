@@ -5,14 +5,14 @@ import entities.hazards.Enemy;
 import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import use_cases.hazards.MapEnemies;
+import use_cases.hazards.MazeEnemies;
 
-/** Test the MapEnemies class. */
-public class MapEnemiesTest {
+/** Test the MazeEnemies class. */
+public class MazeEnemiesTest {
     /** Test isPlayerKilled with no enemies. */
     @Test
     void IsPlayerKilledNoEnemies() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         IHazardRequestModel request = new TestHazardRequestModel(3, 5);
         Assertions.assertFalse(enemies.isPlayerKilled(request));
     }
@@ -20,7 +20,7 @@ public class MapEnemiesTest {
     /** Test isPlayerKilled with one enemy. */
     @Test
     void IsPlayerKilledOneEnemy() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         enemies.add(new StationaryEnemy(3, 5));
         IHazardRequestModel player1 = new TestHazardRequestModel(3, 5);
         Assertions.assertTrue(enemies.isPlayerKilled(player1));
@@ -31,7 +31,7 @@ public class MapEnemiesTest {
     /** Test isPlayerKilled with multiple enemies. */
     @Test
     void IsPlayerKilledMultipleEnemies() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         enemies.add(new StationaryEnemy(1, 3));
         enemies.add(new StationaryEnemy(2, 6));
         IHazardRequestModel player1 = new TestHazardRequestModel(1, 3);
@@ -45,7 +45,7 @@ public class MapEnemiesTest {
     /** Test get with no enemies. */
     @Test
     void GetNoEnemies() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         Assertions.assertNull(enemies.get(1, 2));
         Assertions.assertNull(enemies.get(17, -4));
     }
@@ -53,7 +53,7 @@ public class MapEnemiesTest {
     /** Test get with some enemies. */
     @Test
     void GetMultipleEnemies() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         Enemy enemy1 = new StationaryEnemy(3, 17);
         Enemy enemy2 = new StationaryEnemy(10, 20);
 
@@ -67,7 +67,7 @@ public class MapEnemiesTest {
     /** Test remove */
     @Test
     void Remove() {
-        MapEnemies enemies = new MapEnemies();
+        MazeEnemies enemies = new MazeEnemies();
         Enemy enemy = new StationaryEnemy(0, 0);
         enemies.add(enemy);
         enemies.delete(0, 0);

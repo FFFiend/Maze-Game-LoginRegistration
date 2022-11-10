@@ -6,13 +6,13 @@ import entities.hazards.Obstacle;
 import java.util.ArrayList;
 import java.util.List;
 
-/** A collection of obstacles for a map. */
-public class MapObstacles {
+/** A collection of obstacles for a maze. */
+public class MazeObstacles {
     /** The internal list of obstacles. */
     private final List<Obstacle> obstacles;
 
-    /** Construct a MapObstacles object with no obstacles. */
-    public MapObstacles() {
+    /** Construct a MazeObstacles object with no obstacles. */
+    public MazeObstacles() {
         obstacles = new ArrayList<>();
     }
 

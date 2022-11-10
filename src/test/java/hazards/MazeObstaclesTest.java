@@ -4,14 +4,14 @@ import adapters.hazards.IHazardRequestModel;
 import entities.hazards.Obstacle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import use_cases.hazards.MapObstacles;
+import use_cases.hazards.MazeObstacles;
 
-/** Test the MapObstacles class */
-public class MapObstaclesTest {
+/** Test the MazeObstacles class */
+public class MazeObstaclesTest {
     /** Test isPlayerBlocked without any obstacles. */
     @Test
     public void IsPlayerBlockedNoObstacles() {
-        MapObstacles o = new MapObstacles();
+        MazeObstacles o = new MazeObstacles();
         IHazardRequestModel player = new TestHazardRequestModel(0, 0);
         Assertions.assertFalse(o.isPlayerBlocked(player));
     }
@@ -19,7 +19,7 @@ public class MapObstaclesTest {
     /** Test isPlayerBlocked with a bunch of obstacles. */
     @Test
     public void IsPlayerBlockedMultipleObstacles() {
-        MapObstacles o = new MapObstacles();
+        MazeObstacles o = new MazeObstacles();
         o.add(new Obstacle(5, 5, 10, 20));
         o.add(new Obstacle(-12, 5));
         o.add(new Obstacle(18, -33, 9, 9));

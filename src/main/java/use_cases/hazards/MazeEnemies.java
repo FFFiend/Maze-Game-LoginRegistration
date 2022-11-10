@@ -6,13 +6,13 @@ import entities.hazards.Enemy;
 import java.util.ArrayList;
 import java.util.List;
 
-/** A collection of enemies for a map. */
-public class MapEnemies {
+/** A collection of enemies for a maze. */
+public class MazeEnemies {
     /** The internal list of enemies. */
     private final List<Enemy> enemies;
 
-    /** Construct a new MapEnemies object with no enemies. */
-    public MapEnemies() {
+    /** Construct a new MazeEnemies object with no enemies. */
+    public MazeEnemies() {
         enemies = new ArrayList<>();
     }
 
