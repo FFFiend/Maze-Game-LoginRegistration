@@ -1,4 +1,4 @@
-package entities;
+package entities.default_game;
 
 /**
  * Easy level maze. No enemies, obstacles, or items.

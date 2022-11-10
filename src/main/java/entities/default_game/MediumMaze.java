@@ -1,4 +1,4 @@
-package entities;
+package entities.default_game;
 
 /**
  * Medium level maze.

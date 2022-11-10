@@ -1,4 +1,4 @@
-package entities;
+package entities.default_game;
 
 /**
  * An abstract class for mazes.
