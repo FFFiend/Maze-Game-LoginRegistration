@@ -6,9 +6,13 @@ import entities.hazards.StationaryEnemy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/** Test the default method implementations in the Enemy class */
+/**
+ * Test the default method implementations in the Enemy class
+ */
 public class EnemyTest {
-    /** Test the default implementation of killsPlayer */
+    /**
+     * Test the default implementation of killsPlayer
+     */
     @Test
     public void KillsPlayer() {
         Enemy enemy1 = new StationaryEnemy(3, 5);
@@ -18,7 +22,9 @@ public class EnemyTest {
         Assertions.assertFalse(enemy2.killsPlayer(request));
     }
 
-    /** Test the default implementations of getStartX and getStartY */
+    /**
+     * Test the default implementations of getStartX and getStartY
+     */
     @Test
     public void GetStartXY() {
         Enemy enemy = new StationaryEnemy(13, 55);
@@ -26,7 +32,9 @@ public class EnemyTest {
         Assertions.assertEquals(enemy.getStartY(), 55);
     }
 
-    /** Test the default implementations of setStartX and setStartY */
+    /**
+     * Test the default implementations of setStartX and setStartY
+     */
     @Test
     public void SetStartXY() {
         Enemy enemy = new StationaryEnemy(13, 55);

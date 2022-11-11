@@ -6,9 +6,13 @@ import entities.hazards.Obstacle;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-/** Test the Obstacle class */
+/**
+ * Test the Obstacle class
+ */
 public class ObstacleTest {
-    /** Try constructing a normal obstacle. */
+    /**
+     * Try constructing a normal obstacle.
+     */
     @Test
     public void ConstructObstacle() {
         Obstacle o = new Obstacle(1, 3, 5, 8);
@@ -18,7 +22,9 @@ public class ObstacleTest {
         Assertions.assertEquals(o.getHeight(), 8);
     }
 
-    /** Try constructing an obstacle with a width of 0. */
+    /**
+     * Try constructing an obstacle with a width of 0.
+     */
     @Test
     public void ConstructObstacleZeroWidth() {
         try {
@@ -29,7 +35,9 @@ public class ObstacleTest {
         }
     }
 
-    /** Try constructing an obstacle with a negative height. */
+    /**
+     * Try constructing an obstacle with a negative height.
+     */
     @Test
     public void ConstructObstacleNegativeHeight() {
         try {
@@ -40,7 +48,9 @@ public class ObstacleTest {
         }
     }
 
-    /** Test setX, setY */
+    /**
+     * Test setX, setY
+     */
     @Test
     public void SetPos() {
         Obstacle o = new Obstacle(1, 1, 2, 3);
@@ -50,7 +60,9 @@ public class ObstacleTest {
         Assertions.assertEquals(o.getY(), 192);
     }
 
-    /** Test setWidth, setHeight */
+    /**
+     * Test setWidth, setHeight
+     */
     @Test
     public void SetSize() {
         Obstacle o = new Obstacle(1, 1, 2, 3);
@@ -60,7 +72,9 @@ public class ObstacleTest {
         Assertions.assertEquals(o.getHeight(), 456);
     }
 
-    /** Test blocksPlayer with a 1x1 obstacle. */
+    /**
+     * Test blocksPlayer with a 1x1 obstacle.
+     */
     @Test
     public void OneByOneBlocksPlayer() {
         Obstacle o = new Obstacle(486, 333);
@@ -72,7 +86,9 @@ public class ObstacleTest {
         Assertions.assertFalse(o.blocksPlayer(player3));
     }
 
-    /** Test blocksPlayer with a larger obstacle. */
+    /**
+     * Test blocksPlayer with a larger obstacle.
+     */
     @Test
     public void BlocksPlayer() {
         Obstacle o = new Obstacle(100, 200, 32, 12);
