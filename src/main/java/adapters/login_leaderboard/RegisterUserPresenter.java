@@ -1,4 +1,4 @@
-package adapters;
+package adapters.login_leaderboard;
 
 public class RegisterUserPresenter {
     // Calls on the registered_user and valid_password methods in RegisterUser to let the

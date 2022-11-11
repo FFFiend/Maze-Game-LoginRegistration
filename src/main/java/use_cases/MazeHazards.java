@@ -8,12 +8,12 @@ import entities.items.ItemPhotons;
 import use_cases.hazards.MapHazards;
 
 /** UseCase class for placing all the Assets (Items & Hazards) on the maze */
-public class AssetSetter {
+public class MazeHazards {
     private final MazeItems mazeItems;
     private final MapHazards mapHazards;
 
     /** Construct a new AssetSetter class with lists of Assets (Items & Hazards). */
-    public AssetSetter(MazeItems mazeItems, MapHazards mapHazards) {
+    public MazeHazards(MazeItems mazeItems, MapHazards mapHazards) {
         this.mazeItems = mazeItems;
         this.mapHazards = mapHazards;
     }

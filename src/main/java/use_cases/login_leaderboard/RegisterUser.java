@@ -1,4 +1,6 @@
-package use_cases;
+package use_cases.login_leaderboard;
+
+import use_cases.login_leaderboard.IDataAccessInterface;
 
 public class RegisterUser implements IDataAccessInterface {
     // Register the user by creating a user object of the user.
