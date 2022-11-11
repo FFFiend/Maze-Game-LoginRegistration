@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * A class responsible for what the GamePanelUI presents
+ * A class responsible for what the GamePanelUI presents 
  **/
 public class GamePanelPresenter extends JPanel implements IGamePanelPresenterUpdater {
     final int SPRITE_TILE_SIZE = 16;
