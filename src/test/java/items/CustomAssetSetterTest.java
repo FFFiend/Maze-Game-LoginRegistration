@@ -45,7 +45,7 @@ public class CustomAssetSetterTest {
     public void LoadMazeMultiple() {
         MazeItems mazeItems = new MazeItems();
         MazeHazards mapHazards = new MazeHazards();
-        CustomAssetSetter caSetter = new CustomAssetSetter("maze02.txt", mazeItems, mapHazards);
+        CustomAssetSetter caSetter = new CustomAssetSetter("maze03.txt", mazeItems, mapHazards);
 
         Assertions.assertEquals(5, caSetter.getMazeAssetNum()[0][5]);
         Assertions.assertEquals(5, caSetter.getMazeAssetNum()[1][5]);

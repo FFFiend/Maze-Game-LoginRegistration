@@ -75,26 +75,26 @@ public class CustomAssetSetter {
         while(col < MAX_PANEL_COL && row < MAX_PANEL_ROW){
             int assetNum = mazeAssetNum[col][row];  // go through each element in matrix
             switch (assetNum) {
-                case 0 -> {
+                case 0: {
                     // 0
                 }
-                case 1 -> mazeHazards.addObstacle(new Obstacle(row, col));
-                case 2 -> mazeHazards.addEnemy(new StationaryEnemy(row, col));
-                case 3 -> {
+                case 1: mazeHazards.addObstacle(new Obstacle(row, col));
+                case 2: mazeHazards.addEnemy(new StationaryEnemy(row, col));
+                case 3: {
                     // add moving enemy
                 }
-                case 4 -> mazeItems.add(new ItemKey(row, col));
-                case 5 -> mazeItems.add(new ItemPhotons(row, col));
-                case 6 -> {
+                case 4: mazeItems.add(new ItemKey(row, col));
+                case 5: mazeItems.add(new ItemPhotons(row, col));
+                case 6: {
                     // 6
                 }
-                case 7 -> {
+                case 7: {
                     // 7
                 }
-                case 8 -> {
+                case 8: {
                     // 8
                 }
-                case 9 -> mazeItems.add(new ItemBlackhole(row, col));
+                case 9: mazeItems.add(new ItemBlackhole(row, col));
             }
             col++;
             if(col == MAX_PANEL_COL){
