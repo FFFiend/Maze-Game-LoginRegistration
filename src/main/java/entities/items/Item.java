@@ -65,11 +65,18 @@ public class Item {
         return this.locked;
     }
 
+    /**
+     * Check whether the item exists at the given point.
+     */
+    public boolean itemExists(int pointX, int pointY) {
+        return pointX == x && pointY == y;
+    }
+
     /** Check whether the item collides with the player. */
     public boolean itemCollision(ICollisionRequestModel request) {
         int playerX = request.getPlayerX();
         int playerY = request.getPlayerY();
-        return playerX == x && playerY == y;
+        return itemExists(playerX, playerY);
     }
 
 }

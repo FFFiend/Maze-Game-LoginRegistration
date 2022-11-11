@@ -29,4 +29,25 @@ public class MazeItems {
     public void add(Item item) {
         items.add(item);
     }
+
+    /**
+     * Get the item at the specified position.
+     */
+    public Item get(int x, int y) {
+        for (Item item : items) {
+            if (item.itemExists(x, y)) {
+                return item;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Delete the item at the specified position.
+     */
+    public void delete(int x, int y) {
+        Item item = get(x, y);
+        if (item != null)
+            items.remove(item);
+    }
 }

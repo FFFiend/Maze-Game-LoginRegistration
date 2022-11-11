@@ -5,17 +5,17 @@ import entities.hazards.StationaryEnemy;
 import entities.items.ItemBlackhole;
 import entities.items.ItemKey;
 import entities.items.ItemPhotons;
-import use_cases.hazards.MapHazards;
+import use_cases.hazards.MazeHazards;
 
 /** UseCase class for placing all the Assets (Items & Hazards) on the maze */
 public class AssetSetter {
     private final MazeItems mazeItems;
-    private final MapHazards mapHazards;
+    private final MazeHazards mazeHazards;
 
     /** Construct a new AssetSetter class with lists of Assets (Items & Hazards). */
-    public AssetSetter(MazeItems mazeItems, MapHazards mapHazards) {
+    public AssetSetter(MazeItems mazeItems, MazeHazards mazeHazards) {
         this.mazeItems = mazeItems;
-        this.mapHazards = mapHazards;
+        this.mazeHazards = mazeHazards;
     }
 
     /** Place all the Assets on EASY maze */
@@ -24,8 +24,8 @@ public class AssetSetter {
         mazeItems.add(new ItemKey(5, 5));
         mazeItems.add(new ItemPhotons(4, 8));
 
-        mapHazards.addEnemy(new StationaryEnemy(10, 10));
-        mapHazards.addObstacle(new Obstacle(2, 2));
+        mazeHazards.addEnemy(new StationaryEnemy(10, 10));
+        mazeHazards.addObstacle(new Obstacle(2, 2));
     }
 
     /** Place all the Assets on MEDIUM maze */
