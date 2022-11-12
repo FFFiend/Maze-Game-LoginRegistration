@@ -7,10 +7,14 @@ import use_cases.MazeItems;
 import use_cases.hazards.MazeHazards;
 
 
-/** Test the CustomAssetSetter class */
+/**
+ * Test the CustomAssetSetter class
+ */
 public class CustomAssetSetterTest {
 
-    /** Test CustomAssetSetter with a maze matrix with only 0's. */
+    /**
+     * Test CustomAssetSetter with a maze matrix with only 0's.
+     */
     @Test
     public void LoadMazeOnlyZeroes() {
         MazeItems mazeItems = new MazeItems();
@@ -24,7 +28,9 @@ public class CustomAssetSetterTest {
         Assertions.assertNull(caSetter.getMazeItems().get(3, 3));
     }
 
-    /** Test CustomAssetSetter with at least one of each integer. */
+    /**
+     * Test CustomAssetSetter with at least one of each integer.
+     */
     @Test
     public void LoadMazeOneOfEach() {
         MazeItems mazeItems = new MazeItems();
@@ -40,7 +46,9 @@ public class CustomAssetSetterTest {
         Assertions.assertNotNull(caSetter.getMazeItems().get(0, 4));
     }
 
-    /** Test CustomAssetSetter with each integer occurring multiple times. */
+    /**
+     * Test CustomAssetSetter with each integer occurring multiple times.
+     */
     @Test
     public void LoadMazeMultiple() {
         MazeItems mazeItems = new MazeItems();
