@@ -1,4 +1,4 @@
-package user_interface.custom_game_screens;
+package user_interface.custom_game.custom_game_screens;
 
 class CustomGameEditorScreen implements ICustomGameScreen {
     //extends Screens

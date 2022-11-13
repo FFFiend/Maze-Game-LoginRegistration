@@ -1,6 +1,6 @@
-package user_interface.custom_game_screens;
+package user_interface.custom_game.custom_game_screens;
 
-import adapters.custom_game_UI_adapters.ICustomGamePresenter;
+import adapters.custom_game.custom_game_UI_adapters.ICustomGamePresenter;
 
 import java.util.Objects;
 

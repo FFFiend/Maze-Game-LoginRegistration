@@ -1,4 +1,4 @@
-package adapters.custom_game_UI_adapters;
+package adapters.custom_game.custom_game_UI_adapters;
 
 public interface ICustomGamePresenter {
 
