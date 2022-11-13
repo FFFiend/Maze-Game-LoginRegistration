@@ -1,10 +1,10 @@
 package user_interface.custom_game_screens;
 
-import adapters.custom_game_UI_adapters.CustomGamePresenterInterface;
+import adapters.custom_game_UI_adapters.ICustomGamePresenter;
 
 import java.util.Objects;
 
-public class CustomGamePresenter implements CustomGamePresenterInterface, CustomGameScreenInterface{
+public class CustomGamePresenter implements ICustomGamePresenter, ICustomGameScreen {
 
     /**
      * Call the constructors of one of the custom game screens

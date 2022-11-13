@@ -1,6 +1,6 @@
 package user_interface.custom_game_screens;
 
-class CustomGameInitializerScreen implements CustomGameScreenInterface{
+class CustomGameInitializerScreen implements ICustomGameScreen {
     //extends Screens
 
     protected CustomGameInitializerScreen(){

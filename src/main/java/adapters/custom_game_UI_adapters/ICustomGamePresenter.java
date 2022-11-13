@@ -1,6 +1,6 @@
 package adapters.custom_game_UI_adapters;
 
-public interface CustomGamePresenterInterface {
+public interface ICustomGamePresenter {
 
     //display method(s), awaiting HomeScreen implementation
 
