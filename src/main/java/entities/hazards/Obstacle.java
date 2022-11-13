@@ -1,7 +1,5 @@
 package entities.hazards;
 
-import adapters.hazards.IHazardRequestModel;
-
 /**
  * An obstacle in a maze
  */
@@ -149,17 +147,8 @@ public class Obstacle {
     /**
      * Check whether the obstacle blocks the given point.
      */
-    public boolean blocksPoint(int pointX, int pointY) {
+    public boolean blocksTile(int pointX, int pointY) {
         return pointX >= x && pointY >= y && pointX < x + width && pointY < y + height;
 
-    }
-
-    /**
-     * Check whether the obstacle blocks the player.
-     */
-    public boolean blocksPlayer(IHazardRequestModel request) {
-        int playerX = request.getPlayerX();
-        int playerY = request.getPlayerY();
-        return blocksPoint(playerX, playerY);
     }
 }

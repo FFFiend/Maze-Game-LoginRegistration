@@ -1,5 +1,6 @@
 package use_cases.hazards;
 
+import adapters.hazards.IEnemyRequestModel;
 import adapters.hazards.IHazardRequestModel;
 import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
@@ -8,7 +9,7 @@ import entities.hazards.Obstacle;
  * A collection of hazards for a maze.
  * A hazard is currently an obstacle or an enemy, but more types of hazards could be added in the future.
  */
-public class MazeHazards {
+public class MazeHazards implements IEnemyRequestModel {
     /**
      * An object which manages the enemies for the maze.
      */
@@ -44,7 +45,16 @@ public class MazeHazards {
      * Check whether the player is blocked by a hazard.
      */
     public boolean isPlayerBlocked(IHazardRequestModel request) {
-        return obstacles.isPlayerBlocked(request);
+        return obstacles.isTileBlocked(request.getPlayerX(), request.getPlayerY());
+    }
+
+    /**
+     * Can an enemy go to the tile (x, y)?
+     * This method allows for the possibility that some obstacles can
+     * block the player, but not the enemies or vice versa.
+     */
+    public boolean isTileBlockedForEnemies(int x, int y) {
+        return obstacles.isTileBlocked(x, y);
     }
 
     /**
