@@ -4,42 +4,47 @@ package entities.login_leaderboard;
  * The user stores a user's name, password, email, and the quickest
  * easy, medium, hard scores.
  */
-public class User{
-    private final String username;
-    private final String password;
+public class User {
+    private final String USERNAME;
+    private final String PASSWORD;
     private int easyScore;
     private int mediumScore;
     private int hardScore;
 
-    public User(String username, String password){
-        this.username = username;
-        this.password = password;
-    }
-    public String getUsername(){
-        return this.username;
-    }
-    public String getPassword(){
-        return this.password;
+    public User(String username, String password) {
+        this.USERNAME = username;
+        this.PASSWORD = password;
     }
 
-    public int getEasyScore(){
+    public String getUsername() {
+        return this.USERNAME;
+    }
+
+    public String getPassword() {
+        return this.PASSWORD;
+    }
+
+    public int getEasyScore() {
         return this.easyScore;
     }
-    public void setEasyScore(int score){
+
+    public void setEasyScore(int score) {
         this.easyScore = score;
     }
 
-    public int getMediumScore(){
+    public int getMediumScore() {
         return this.mediumScore;
     }
-    public void setMediumScore(int score){
+
+    public void setMediumScore(int score) {
         this.mediumScore = score;
     }
-    public int getHardScore(){
+
+    public int getHardScore() {
         return this.hardScore;
     }
 
-    public void setHardScore(int score){
+    public void setHardScore(int score) {
         this.hardScore = score;
     }
 
