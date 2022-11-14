@@ -10,4 +10,9 @@ public interface IEnemyRequestModel {
      * This is important information for moving enemies, since they should never move onto obstacles.
      */
     boolean isTileBlockedForEnemies(int x, int y);
+    /** Player X position */
+    int getPlayerX();
+    /** Player Y position */
+    int getPlayerY();
+
 }

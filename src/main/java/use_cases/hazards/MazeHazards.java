@@ -9,7 +9,7 @@ import entities.hazards.Obstacle;
  * A collection of hazards for a maze.
  * A hazard is currently an obstacle or an enemy, but more types of hazards could be added in the future.
  */
-public class MazeHazards implements IEnemyRequestModel {
+public class MazeHazards {
     /**
      * An object which manages the enemies for the maze.
      */
@@ -49,15 +49,6 @@ public class MazeHazards implements IEnemyRequestModel {
     }
 
     /**
-     * Can an enemy go to the tile (x, y)?
-     * This method allows for the possibility that some obstacles can
-     * block the player, but not the enemies or vice versa.
-     */
-    public boolean isTileBlockedForEnemies(int x, int y) {
-        return obstacles.isTileBlocked(x, y);
-    }
-
-    /**
      * Check whether the player is blocked by a hazard.
      */
     public boolean isPlayerKilled(IHazardRequestModel request) {
@@ -69,8 +60,23 @@ public class MazeHazards implements IEnemyRequestModel {
      * This should be called at a fixed interval (e.g. every 0.5 seconds).
      * The game can be made more difficult by calling this more often, since enemies will move faster.
      */
-    public void update() {
-        enemies.update();
+    public void update(IHazardRequestModel request) {
+        enemies.update(new IEnemyRequestModel() {
+            @Override
+            public boolean isTileBlockedForEnemies(int x, int y) {
+                return obstacles.isTileBlocked(x, y);
+            }
+
+            @Override
+            public int getPlayerX() {
+                return request.getPlayerX();
+            }
+
+            @Override
+            public int getPlayerY() {
+                return request.getPlayerY();
+            }
+        });
     }
 
     /**

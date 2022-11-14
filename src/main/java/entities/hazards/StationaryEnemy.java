@@ -1,5 +1,7 @@
 package entities.hazards;
 
+import adapters.hazards.IEnemyRequestModel;
+
 /**
  * An enemy which does not move from its starting position
  */
@@ -18,7 +20,7 @@ public class StationaryEnemy extends Enemy {
     }
 
     @Override
-    public void update() {
+    public void update(IEnemyRequestModel request) {
         // we don't need to do anything here
     }
 

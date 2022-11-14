@@ -1,5 +1,6 @@
 package use_cases.hazards;
 
+import adapters.hazards.IEnemyRequestModel;
 import adapters.hazards.IHazardRequestModel;
 import entities.hazards.Enemy;
 
@@ -43,9 +44,9 @@ public class MazeEnemies {
     /**
      * Update all enemies
      */
-    public void update() {
+    public void update(IEnemyRequestModel request) {
         for (Enemy enemy : enemies) {
-            enemy.update();
+            enemy.update(request);
         }
     }
 

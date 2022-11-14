@@ -1,5 +1,6 @@
 package entities.hazards;
 
+import adapters.hazards.IEnemyRequestModel;
 import adapters.hazards.IHazardRequestModel;
 
 /**
@@ -31,7 +32,7 @@ public abstract class Enemy {
     /**
      * Update the enemy. Called at a fixed interval (e.g. every 0.5 seconds).
      */
-    public abstract void update();
+    public abstract void update(IEnemyRequestModel request);
 
     /**
      * Get the current x position of the enemy.
