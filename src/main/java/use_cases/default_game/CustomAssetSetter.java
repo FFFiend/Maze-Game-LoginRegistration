@@ -1,4 +1,4 @@
-package use_cases;
+package use_cases.default_game;
 
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
@@ -6,6 +6,7 @@ import entities.items.ItemBlackhole;
 import entities.items.ItemKey;
 import entities.items.ItemPhotons;
 import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
