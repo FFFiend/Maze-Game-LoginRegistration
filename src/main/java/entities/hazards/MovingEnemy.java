@@ -16,6 +16,8 @@ public abstract class MovingEnemy extends Enemy {
      */
     public MovingEnemy(int startX, int startY) {
         super(startX, startY);
+        currX = startX;
+        currY = startY;
     }
 
     @Override

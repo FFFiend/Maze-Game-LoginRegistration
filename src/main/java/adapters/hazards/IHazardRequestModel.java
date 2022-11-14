@@ -13,4 +13,10 @@ public interface IHazardRequestModel {
      * Get the y position of the player.
      */
     int getPlayerY();
+
+    /** The width of the maze in tiles. */
+    int mazeWidth();
+
+    /** The height of the maze in tiles. */
+    int mazeHeight();
 }

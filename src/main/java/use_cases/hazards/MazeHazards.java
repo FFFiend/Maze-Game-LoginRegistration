@@ -76,6 +76,12 @@ public class MazeHazards {
             public int getPlayerY() {
                 return request.getPlayerY();
             }
+
+            @Override
+            public int mazeWidth() { return request.mazeWidth(); }
+
+            @Override
+            public int mazeHeight() { return request.mazeHeight(); }
         });
     }
 
