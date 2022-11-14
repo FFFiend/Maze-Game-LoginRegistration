@@ -1,3 +1,4 @@
+import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
 import user_interface.default_game.GamePanelUI;
 
 /**
@@ -11,6 +12,7 @@ public class Main {
      */
     public static void main(String[] args) {
         setupGamePanel();
+        tempEditorRunner();
     }
 
     /**
@@ -19,5 +21,10 @@ public class Main {
     private static void setupGamePanel() {
         GamePanelUI gamePanelUI = new GamePanelUI();
         gamePanelUI.createGamePanelUI();
+    }
+
+    private static void tempEditorRunner() {
+        CustomGamePresenter tempPresenter = new CustomGamePresenter();
+        tempPresenter.callCustomGameScreen("CustomGameEditorScreen");
     }
 }
