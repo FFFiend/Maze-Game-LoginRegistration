@@ -1,6 +1,7 @@
 package adapters.custom_game.custom_game_file_adapters;
 
 import entities.items.Item;
+import entities.items.ItemBlackhole;
 import use_cases.MazeItems;
 import use_cases.hazards.MazeHazards;
 
@@ -14,7 +15,7 @@ public class tempMaze {
 
     public void addAsset(String assetName, int x, int y){
         if(Objects.equals(assetName, "blackhole")){
-            mazeItems.add(new Item(x, y));
+            //don't create an instance of the entity, just the image
         }
         // else if ...
         updateDisplay();
