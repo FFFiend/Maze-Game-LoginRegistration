@@ -1,11 +1,6 @@
 package user_interface.custom_game.custom_game_screens;
 
-import adapters.custom_game.custom_game_file_adapters.tempMaze;
-import adapters.default_game.GamePanelPresenter;
-
 import javax.swing.*;
-import java.awt.GridLayout;
-import javax.swing.JButton;
 import java.awt.*;
 
 class CustomGameEditorScreen implements ICustomGameScreen {
@@ -14,34 +9,38 @@ class CustomGameEditorScreen implements ICustomGameScreen {
     protected CustomGameEditorScreen(){
         //will use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game
         //screens once those are implemented
-
         //for now, this is Rene's GamePanel code reused temporarily for visualization of the editor
-        JFrame editorWindow = new JFrame();
-        editorWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        editorWindow.setResizable(false);
-        editorWindow.setTitle("Maze Editor");
-        GamePanelPresenter editorPresenter = new GamePanelPresenter();
-        editorWindow.add(editorPresenter);
-        editorWindow.pack();
-        editorWindow.setLocationRelativeTo(null);
-        editorWindow.setVisible(true);
+        int rowNum = 12;
+        int colNum = 12;
+        final int SPRITE_TILE_SIZE = 16;
+        final int SCALE = 3; // may be changed to an unfixed variable later
+        final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
+        final int MAX_PANEL_COL= 16;
+        final int MAX_PANEL_ROW = 12;
+        final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
+        final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
 
+        EditorGrid editorGrid = new EditorGrid(rowNum, colNum, TILE_SIZE);
+        //EditorSidebar editorSidebar = new EditorSidebar(MAX_PANEL_COL, MAX_PANEL_ROW);
 
-        //make a grid
-        //CustomGameEditorGrid editorGrid = new CustomGameEditorGrid(12, 12);
-        editorWindow.setLayout(new GridLayout(2, 2));
-        for (int i = -1; i < 144; i++) {
-            JButton button = new JButton(Integer.toString(i + 1));
-            editorWindow.add(button);
-        }
+        JFrame editorFrame = new JFrame("Maze Editor");
+        editorFrame.setLayout(new FlowLayout());
+        editorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        editorFrame.setResizable(false);
+        editorFrame.setLocationRelativeTo(null);
+        editorFrame.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
+        editorFrame.setBackground(Color.black);
 
+        editorFrame.add(editorGrid);
+        //JTextField staminaField = new JTextField("stamina");
+        //editorFrame.add(staminaField);
+        //editorFrame.add(editorSidebar);
 
-        //create an item and display it
+        //editorSidebar.setMinimumSize(new Dimension(MAX_PANEL_COL - MAX_PANEL_ROW, MAX_PANEL_ROW));
 
-
-        //tempMaze tempMaze = new tempMaze();
-
-
+        editorFrame.pack();
+        editorFrame.setLocationByPlatform(true);
+        editorFrame.setVisible(true);
 
     }
 
