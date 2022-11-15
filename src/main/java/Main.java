@@ -1,4 +1,5 @@
 import user_interface.default_game.GamePanelUI;
+import user_interface.default_game.GlobalFrame;
 
 /**
  * Run the game
@@ -10,14 +11,14 @@ public class Main {
      * @param args for when we need some input
      */
     public static void main(String[] args) {
-        setupGamePanel();
+        setupGame();
     }
 
     /**
      * Build the Game Panel
      **/
-    private static void setupGamePanel() {
-        GamePanelUI gamePanelUI = new GamePanelUI();
-        gamePanelUI.createGamePanelUI();
+    private static void setupGame() {
+        GlobalFrame globalFrame = new GlobalFrame();
+        globalFrame.setWelcomePanel();
     }
 }

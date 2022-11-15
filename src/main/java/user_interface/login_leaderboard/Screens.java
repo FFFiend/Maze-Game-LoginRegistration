@@ -1,4 +1,6 @@
 package user_interface.login_leaderboard;
 
-abstract class Screens {
+import javax.swing.*;
+
+abstract class Screens extends JPanel {
 }
