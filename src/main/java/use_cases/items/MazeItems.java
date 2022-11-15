@@ -1,4 +1,4 @@
-package use_cases;
+package use_cases.items;
 
 import entities.items.ICollisionRequestModel;
 import entities.items.Item;
