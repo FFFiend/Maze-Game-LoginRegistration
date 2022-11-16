@@ -9,15 +9,15 @@ import java.util.Objects;
 /**
  * A tile of an EditorGrid that stores the asset it contains
  */
-public class EditorGrid extends JLabel {
+public class EditorTile extends JLabel {
     private final int X;
     private final int Y;
     private String name;
 
     private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
-    public static final int secondaryMenuItemsLen = EditorGrid.secondaryMenuItems.length;
+    public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
 
-    public EditorGrid (int x, int y){
+    public EditorTile (int x, int y){
         this.X = x;
         this.Y = y;
         this.name = "empty";
@@ -77,6 +77,6 @@ public class EditorGrid extends JLabel {
     }
 
     public void tileRightClick(int index){
-        changeState(EditorGrid.secondaryMenuItems[index]);
+        changeState(EditorTile.secondaryMenuItems[index]);
     }
 }
