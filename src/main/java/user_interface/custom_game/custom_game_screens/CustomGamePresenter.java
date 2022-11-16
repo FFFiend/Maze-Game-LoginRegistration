@@ -1,10 +1,9 @@
 package user_interface.custom_game.custom_game_screens;
 
 import adapters.custom_game.custom_game_UI_adapters.ICustomGamePresenter;
-
 import java.util.Objects;
 
-public class CustomGamePresenter implements ICustomGamePresenter, ICustomGameScreen {
+public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePanel {
 
     /**
      * Call the constructors of one of the custom game screens
@@ -15,13 +14,13 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGameScr
     @Override
     public void callCustomGameScreen(String screenName) {
         if (Objects.equals(screenName, "CustomGameMainScreen")){
-            new CustomGameMainScreen();
+            new CustomGameMainPanel();
         }
         else if (Objects.equals(screenName, "CustomGameInitializerScreen")){
-            new CustomGameInitializerScreen();
+            new CustomGameInitializerPanel();
         }
         else if (Objects.equals(screenName, "CustomGameEditorScreen")){
-            new CustomGameEditorScreen();
+            new CustomGameEditorPanel();
         }
         else if (Objects.equals(screenName, "customGameInvalidWarnScreen")){
             System.out.println("To do!");
@@ -39,7 +38,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGameScr
      */
     @Override
     public void callCustomGameScreen() {
-        new CustomGameMainScreen();
+        new CustomGameMainPanel();
     }
 
 

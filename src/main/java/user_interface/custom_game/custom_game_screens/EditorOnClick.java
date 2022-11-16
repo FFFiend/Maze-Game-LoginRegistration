@@ -8,7 +8,7 @@ import java.awt.event.MouseEvent;
  * Reacts to clicks on CustomGameEditorScreen
  */
 class EditorOnClick extends MouseAdapter {
-    private final EditorTile tile;
+    private final EditorTile TILE;
     private int rightClickCount = 0;
 
     /**
@@ -16,7 +16,7 @@ class EditorOnClick extends MouseAdapter {
      * @param tile the EditorTile this mouse listener will be assigned to
      */
     public EditorOnClick (EditorTile tile){
-        this.tile = tile;
+        this.TILE = tile;
     }
 
     /**
@@ -26,14 +26,13 @@ class EditorOnClick extends MouseAdapter {
     @Override
     public void mousePressed(MouseEvent click){
         if (click.getButton() == MouseEvent.BUTTON1){
-            this.tile.tileLeftClick();
+            this.TILE.tileLeftClick();
         } else if (click.getButton() == MouseEvent.BUTTON3) {
-            this.tile.tileRightClick(rightClickCount);
+            this.TILE.tileRightClick(rightClickCount);
             this.rightClickCount++;
             if (rightClickCount == EditorTile.secondaryMenuItemsLen){
                 rightClickCount = 0;
             }
         }
     }
-
 }

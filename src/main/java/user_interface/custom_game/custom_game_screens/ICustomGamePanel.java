@@ -3,7 +3,7 @@ package user_interface.custom_game.custom_game_screens;
 /**
  * Common UI methods for the custom game section
  */
-interface ICustomGameScreen {
+interface ICustomGamePanel {
 
     /**
      * draws a button on the screen that cancels all current tasks and returns the user to the custom game main menu

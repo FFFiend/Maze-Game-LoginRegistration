@@ -17,6 +17,11 @@ public class EditorTile extends JLabel {
     private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
 
+    /**
+     * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
+     * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
+     * @param y the y position of the Tile on the EditorGrid and position in the array TempMaze
+     */
     public EditorTile (int x, int y){
         this.X = x;
         this.Y = y;
@@ -27,11 +32,13 @@ public class EditorTile extends JLabel {
         setOpaque(true);
         setBackground(Color.BLACK);
 
-        //setComponentPopupMenu();
-
         setTileImage("emptyTile.png");
     }
 
+    /**
+     * Helper method to replace the image of a tile with a new one
+     * @param name The name of the image
+     */
     private void setTileImage(String name){
         {
             try {
@@ -41,13 +48,20 @@ public class EditorTile extends JLabel {
                 e.printStackTrace();
             }
         }
-
     }
 
+    /**
+     * Make an EditorTile's string representation its name (empty, wall, enemy etc.)
+     * @return the name (state) of an EditorTile
+     */
     public String toString(){
         return this.name;
     }
 
+    /**
+     * Change the name of an EditorTile and calls setTileImage to change its image to reflect that
+     * @param name the new state an EditorTile is in
+     */
     public void changeState(String name) {
         if (Objects.equals(name, "photons")) {
             setTileImage("photons.png");
@@ -65,6 +79,11 @@ public class EditorTile extends JLabel {
         }
         this.name = name;
     }
+
+    /**
+     * Reaction to a left click on an EditorTile. If the tile was a wall or represented any secondary asset (enemy,
+     * photons, start location etc.) it will now represent an empty tile
+     */
     public void tileLeftClick(){
         //use !equals so that other tile states can be converted to a wall or become empty
         if (!Objects.equals(this.name, "empty")) {
@@ -76,6 +95,11 @@ public class EditorTile extends JLabel {
         }
     }
 
+    /**
+     * Reaction to a right click on an EditorTile. Each tile cycles through secondaryMenuItems on right clicks by using
+     * index
+     * @param index the index of secondaryMenuItems, should be incremented by one on each call
+     */
     public void tileRightClick(int index){
         changeState(EditorTile.secondaryMenuItems[index]);
     }
