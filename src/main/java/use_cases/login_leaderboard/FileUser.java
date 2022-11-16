@@ -1,6 +1,7 @@
 package use_cases.login_leaderboard;
 
 import entities.login_leaderboard.User;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -13,11 +14,19 @@ import java.util.Map;
  * Creates a hashmap of User objects of the all users in the csv file.
  */
 public class FileUser {
+    /**
+     * Hashmap of pre-exsisting users, maps User to the username
+     */
     private final Map<String, User> USERDATA = new HashMap<>();
+    /**
+     * Access of to the csv file path.
+     */
     private IFileInput file;
 
-
-    public void prevUsers() throws IOException {
+    /**
+     * Return USERDATA after creating the map.
+     */
+    public Map<String, User> prevUsers() throws IOException {
         String csvPath = file.filePath();
         File csvFile = new File(csvPath);
 
@@ -55,12 +64,9 @@ public class FileUser {
             user.setHardScore(hard);
 
             USERDATA.put(username, user);
-            }
-
-            reader.close();
         }
 
-    public Map<String, User> getuserData() {
+        reader.close();
         return USERDATA;
     }
 }

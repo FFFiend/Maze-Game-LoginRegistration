@@ -14,5 +14,4 @@ public class MediumLeaderboard extends LeaderboardGenerator {
     public int compareTo(User b) {
         return this.a.getMediumScore() - b.getMediumScore();
     }
-
 }

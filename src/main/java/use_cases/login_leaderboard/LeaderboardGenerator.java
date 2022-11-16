@@ -7,5 +7,4 @@ abstract class LeaderboardGenerator implements Comparable<User> {
     public LeaderboardGenerator(User a){
         this.a = a;
     }
-
 }
