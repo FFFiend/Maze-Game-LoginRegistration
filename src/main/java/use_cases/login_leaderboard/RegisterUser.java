@@ -1,7 +1,5 @@
 package use_cases.login_leaderboard;
 
-import entities.login_leaderboard.User;
-
 /**
  * Register the user by creating a user object of the user.
  * If the user password is invalid (PasswordStrengthChecker), allow user to re-enter a password.
