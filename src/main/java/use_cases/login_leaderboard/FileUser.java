@@ -48,7 +48,8 @@ public class FileUser {
             int hard = Integer.parseInt(hardScore);
 
 
-            User user = new User(username, password, email);
+            User user = new User(username, password);
+            user.setEmail(email);
             user.setEasyScore(easy);
             user.setMediumScore(med);
             user.setHardScore(hard);

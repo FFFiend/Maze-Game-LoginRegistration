@@ -7,16 +7,14 @@ package entities.login_leaderboard;
 public class User {
     private final String USERNAME;
     private final String PASSWORD;
-    private final String EMAIL;
-
+    private String EMAIL;
     private int easyScore;
     private int mediumScore;
     private int hardScore;
 
-    public User(String username, String password, String email) {
+    public User(String username, String password) {
         this.USERNAME = username;
         this.PASSWORD = password;
-        this.EMAIL = email;
     }
 
     public String getUsername() {
@@ -30,6 +28,8 @@ public class User {
     public String getEmail() {
         return this.EMAIL;
     }
+
+    public void setEmail(String email) {this.EMAIL = email;}
 
     public int getEasyScore() {
         return this.easyScore;
