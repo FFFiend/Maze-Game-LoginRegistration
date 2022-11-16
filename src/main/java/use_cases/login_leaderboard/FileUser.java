@@ -63,7 +63,5 @@ public class FileUser {
     public Map<String, User> getuserData() {
         return USERDATA;
     }
-
 }
-
 
