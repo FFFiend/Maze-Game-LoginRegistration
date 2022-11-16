@@ -6,10 +6,14 @@ import java.awt.*;
 class CustomGameEditorScreen implements ICustomGameScreen {
     //extends Screens
 
+    /**
+     * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
+     * and returning to previous menus
+     */
     protected CustomGameEditorScreen(){
         //will use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game
         //screens once those are implemented
-        //for now, this is Rene's GamePanel code reused temporarily for visualization of the editor
+        //for now, this is  temporarily based on Rene's GamePanel code for visualization of the editor
         int rowNum = 12;
         int colNum = 12;
         final int SPRITE_TILE_SIZE = 16;

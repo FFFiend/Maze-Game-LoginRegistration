@@ -3,6 +3,10 @@ package user_interface.custom_game.custom_game_screens;
 class CustomGameMainScreen implements ICustomGameScreen {
     //extends Screens
 
+    /**
+     * The first screen to be displayed on entering the custom maze section. Shows a list of custom mazes and a button
+     * to take the user to the maze editor
+     */
     protected CustomGameMainScreen(){
         //use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game screens
     }

@@ -6,15 +6,18 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Tile extends JLabel {
+/**
+ * A tile of an EditorGrid that stores the asset it contains
+ */
+public class EditorGrid extends JLabel {
     private final int X;
     private final int Y;
     private String name;
 
     private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
-    public static final int secondaryMenuItemsLen = Tile.secondaryMenuItems.length;
+    public static final int secondaryMenuItemsLen = EditorGrid.secondaryMenuItems.length;
 
-    public Tile(int x, int y){
+    public EditorGrid (int x, int y){
         this.X = x;
         this.Y = y;
         this.name = "empty";
@@ -74,6 +77,6 @@ public class Tile extends JLabel {
     }
 
     public void tileRightClick(int index){
-        changeState(Tile.secondaryMenuItems[index]);
+        changeState(EditorGrid.secondaryMenuItems[index]);
     }
 }

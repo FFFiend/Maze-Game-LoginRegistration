@@ -1,5 +1,8 @@
 package user_interface.custom_game.custom_game_screens;
 
+/**
+ * Common UI methods for the custom game section
+ */
 interface ICustomGameScreen {
 
     /**
