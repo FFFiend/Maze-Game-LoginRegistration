@@ -1,7 +1,14 @@
 package entities.hazards;
 
+import adapters.default_game.IDraw;
 import use_cases.hazards.IEnemyRequestModel;
 import use_cases.hazards.IHazardRequestModel;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * The abstract class which all enemies inherit from.
@@ -15,16 +22,62 @@ public abstract class Enemy {
      * The starting y position for the enemy.
      */
     private int startY;
+    /**
+     * The image which the enemy should be drawn with.
+     */
+    private BufferedImage image;
 
     /**
      * Create a new enemy.
+     *
      * @param startX The starting X position
      * @param startY The starting Y position
      */
     public Enemy(int startX, int startY) {
         setStartX(startX);
         setStartY(startY);
+        setImageByName("spikes");
     }
+
+    /**
+     * Set te image used to draw the enemy.
+     *
+     * @param name The file name of the image not including the .png extension.
+     *             Currently, this should be either "spikes" or "moving-enemy".
+     */
+    public void setImageByName(String name) {
+        InputStream imageStream = getClass().getClassLoader().getResourceAsStream("hazards/" + name + ".png");
+        if (imageStream != null) {
+            try {
+                setImage(ImageIO.read(imageStream));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Set the image used to draw the enemy.
+     */
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+
+    /**
+     * Draw an enemy.
+     */
+    public void draw(IDraw d) {
+        int tileSize = d.getTileSize();
+        int xPixels = getX() * tileSize;
+        int yPixels = getY() * tileSize;
+        if (image != null) {
+            d.drawImage(image, xPixels, yPixels, tileSize, tileSize);
+        } else {
+            // Failed to load image. Use a rectangle as a fallback.
+            d.drawRect(xPixels, yPixels, tileSize, tileSize, Color.RED);
+        }
+    }
+
 
     /**
      * Reset the enemy to its initial state.
