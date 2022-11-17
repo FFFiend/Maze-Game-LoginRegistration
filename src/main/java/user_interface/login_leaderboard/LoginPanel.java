@@ -57,4 +57,17 @@ public class LoginPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
     }
+
+    public void LogIn() {
+
+    }
+
+    public void IsValidUserID() {
+
+    }
+
+    public void IncorrectPassword() {
+
+    }
+
 }

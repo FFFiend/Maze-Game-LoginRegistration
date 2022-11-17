@@ -68,4 +68,12 @@ public class RegisterPanel extends Panel implements ActionListener {
         String passedPassword = String.valueOf(password.getPassword());
         System.out.println(passedPassword);
     }
+
+    public void SignUp() {
+
+    }
+
+    public void IsValidUser() {
+
+    }
 }
