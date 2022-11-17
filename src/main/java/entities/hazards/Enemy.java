@@ -17,7 +17,9 @@ public abstract class Enemy {
     private int startY;
 
     /**
-     * Create a new enemy with the given starting position.
+     * Create a new enemy.
+     * @param startX The starting X position
+     * @param startY The starting Y position
      */
     public Enemy(int startX, int startY) {
         setStartX(startX);

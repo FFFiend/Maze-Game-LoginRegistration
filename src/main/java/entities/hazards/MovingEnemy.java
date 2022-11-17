@@ -12,7 +12,9 @@ public abstract class MovingEnemy extends Enemy {
     private int currY;
 
     /**
-     * Create a new moving enemy with the given starting position.
+     * Create a new moving enemy.
+     * @param startX The starting X position
+     * @param startY The starting Y position
      */
     public MovingEnemy(int startX, int startY) {
         super(startX, startY);

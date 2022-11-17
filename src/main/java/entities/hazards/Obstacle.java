@@ -67,8 +67,11 @@ public class Obstacle {
 
 
     /**
-     * Construct a new obstacle at (x, y) with the given width and height.
-     * width and height must be positive, otherwise a BadSizeException will be thrown.
+     * Construct a new obstacle.
+     * @param x The X position of the obstacle.
+     * @param y The Y position of the obstacle.
+     * @param width The width of the obstacle. This must be positive, or a BadSizeException will be thrown.
+     * @param height The height of the obstacle. This must be positive, or a BadSizeException will be thrown.
      */
     public Obstacle(int x, int y, int width, int height) {
         this.x = x;
