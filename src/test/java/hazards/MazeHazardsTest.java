@@ -1,5 +1,6 @@
 package hazards;
 
+import entities.hazards.ChasingEnemy;
 import use_cases.hazards.IHazardRequestModel;
 import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
@@ -90,5 +91,19 @@ public class MazeHazardsTest {
         Assertions.assertEquals(hazards.getObstacle(3, 5), o1);
         hazards.deleteObstacle(3, 5);
         Assertions.assertNull(hazards.getObstacle(3, 5));
+    }
+
+    /** Test reset method. */
+    @Test
+    public void Reset() {
+        MazeHazards hazards = new MazeHazards();
+        Enemy enemy = new ChasingEnemy(5, 5);
+        hazards.addEnemy(enemy);
+        hazards.update(new TestHazardRequestModel(1, 1));
+        // enemy should have moved towards the player.
+        Assertions.assertFalse(enemy.getX() == enemy.getStartX() && enemy.getY() == enemy.getStartY());
+        hazards.reset();
+        // enemy should now be back at starting position.
+        Assertions.assertTrue(enemy.getX() == enemy.getStartX() && enemy.getY() == enemy.getStartY());
     }
 }
