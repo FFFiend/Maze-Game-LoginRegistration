@@ -1,5 +1,6 @@
 package use_cases.hazards;
 
+import adapters.default_game.IDraw;
 import entities.hazards.Enemy;
 
 import java.util.ArrayList;
@@ -78,5 +79,12 @@ public class MazeEnemies {
         Enemy enemy = get(x, y);
         if (enemy != null)
             enemies.remove(enemy);
+    }
+
+    /** Draw all enemies in the maze. */
+    public void draw(IDraw d) {
+        for (Enemy enemy: enemies) {
+            enemy.draw(d);
+        }
     }
 }

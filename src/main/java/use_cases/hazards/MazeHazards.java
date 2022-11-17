@@ -1,5 +1,6 @@
 package use_cases.hazards;
 
+import adapters.default_game.IDraw;
 import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
 
@@ -121,5 +122,13 @@ public class MazeHazards {
      */
     public void deleteObstacle(int x, int y) {
         obstacles.delete(x, y);
+    }
+
+    /**
+     * Draw all hazards in the maze.
+     */
+    public void draw(IDraw d) {
+        obstacles.draw(d);
+        enemies.draw(d);
     }
 }
