@@ -57,10 +57,11 @@ public class WelcomePanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         if (Objects.equals(e.getActionCommand(), "Sign up")) {
-            this.state = 1;
-        } else if (Objects.equals(e.getActionCommand(), "Log in")) {
             this.state = 0;
+        } else if (Objects.equals(e.getActionCommand(), "Log in")) {
+            this.state = 1;
         }
         System.out.println(this.state);
     }
+
 }

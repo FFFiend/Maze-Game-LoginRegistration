@@ -1,11 +1,14 @@
 package user_interface.default_game;
 
+import use_cases.login_leaderboard.RegisterUser;
 import user_interface.login_leaderboard.LoginPanel;
 import user_interface.login_leaderboard.RegisterPanel;
 import user_interface.login_leaderboard.WelcomePanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class GlobalFrame {
     public JFrame window = new JFrame();
@@ -29,39 +32,16 @@ public class GlobalFrame {
      * Sets the initial panel of the frame to the welcome screen.
      */
     public void setWelcomePanel() {
-        WelcomePanel welcomePanel = new WelcomePanel();
-        window.add(welcomePanel);
+        WelcomePanel welcome = new WelcomePanel();
+        window.add(welcome);
 
         // add extra methods in welcomepanel to ensure this works
         // properly when needed. For now, testing whether panel
         // changing actually works.
-        if (welcomePanel.state == 1) {
-            RegisterPanel registerWindow = new RegisterPanel();
-            changePanel(registerWindow);
-        } else if (welcomePanel.state == 0) {
-            LoginPanel loginWindow = new LoginPanel();
-            changePanel(loginWindow);
-        }
-
-
         window.setLocationRelativeTo(null);
         // centers the window..got it..
         window.setVisible(true);
-
     }
 
-    /**
-     * Remove the current panel on the frame and switch to another panel.
-     *
-     * @param nextPanel the next panel that will be displayed
-     */
-    public void changePanel(JPanel nextPanel) {
-        window.removeAll();
-        window.add(nextPanel);
-        window.revalidate();
-        window.repaint();
-        window.setVisible(true);
 
-        // does not remember state of frame before
-    }
 }
