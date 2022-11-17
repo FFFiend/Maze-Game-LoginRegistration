@@ -1,4 +1,4 @@
-import user_interface.default_game.GamePanelUI;
+import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 
 /**
@@ -12,6 +12,7 @@ public class Main {
      */
     public static void main(String[] args) {
         setupGame();
+        tempEditorRunner();
     }
 
     /**
@@ -20,5 +21,13 @@ public class Main {
     private static void setupGame() {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setWelcomePanel();
+    }
+
+    /**
+     * Temporary access to the custom maze editor
+     **/
+    private static void tempEditorRunner() {
+        CustomGamePresenter tempPresenter = new CustomGamePresenter();
+        tempPresenter.callCustomGameScreen("CustomGameEditorScreen");
     }
 }
