@@ -1,4 +1,4 @@
-package adapters.hazards;
+package use_cases.hazards;
 
 /**
  * Interface for communicating relevant information about the maze to the enemies.

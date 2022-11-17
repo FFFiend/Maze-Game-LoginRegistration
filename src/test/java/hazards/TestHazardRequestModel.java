@@ -1,6 +1,6 @@
 package hazards;
 
-import adapters.hazards.IHazardRequestModel;
+import use_cases.hazards.IHazardRequestModel;
 
 /**
  * an IHazardRequestModel implementation for testing only

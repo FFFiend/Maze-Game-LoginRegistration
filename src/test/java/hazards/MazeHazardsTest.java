@@ -1,6 +1,6 @@
 package hazards;
 
-import adapters.hazards.IHazardRequestModel;
+import use_cases.hazards.IHazardRequestModel;
 import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;

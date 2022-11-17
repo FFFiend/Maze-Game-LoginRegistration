@@ -1,6 +1,6 @@
 package entities.hazards;
 
-import adapters.hazards.IEnemyRequestModel;
+import use_cases.hazards.IEnemyRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;

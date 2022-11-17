@@ -1,6 +1,6 @@
 package entities.hazards;
 
-import adapters.hazards.IEnemyRequestModel;
+import use_cases.hazards.IEnemyRequestModel;
 
 /**
  * An enemy which does not move from its starting position
