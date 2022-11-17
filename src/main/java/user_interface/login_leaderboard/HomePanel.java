@@ -1,7 +1,13 @@
 package user_interface.login_leaderboard;
 
+import javax.swing.*;
+
 /**
  * Allows user to play, customize maze, or view leaderboard.
  */
-public class HomeScreen extends Screens {
+public class HomePanel extends Panel {
+
+    public HomePanel() {
+
+    }
 }
