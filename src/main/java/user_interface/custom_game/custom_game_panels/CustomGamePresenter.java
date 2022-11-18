@@ -8,7 +8,6 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
     /**
      * Call the constructors of one of the custom game panels
      */
-    @Override
     public void callCustomGamePanel(String panelName) {
         if (Objects.equals(panelName, "CustomGameMainPanel")){
             new CustomGameMainPanel();
@@ -34,7 +33,6 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      * Overloaded version of the above method allowing the main custom game panel to be the default should no parameter
      * be provided
      */
-    @Override
     public void callCustomGamePanel () {
         new CustomGameMainPanel();
     }
@@ -43,7 +41,6 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
     /**
      * Create a TempMaze object to store a custom maze while it is being made
      */
-    @Override
     public void createTempMaze(){
         //void until the initializer is done
     }
