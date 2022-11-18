@@ -23,28 +23,25 @@ class CustomGameEditorPanel implements ICustomGamePanel {
         final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
 
         EditorGrid editorGrid = new EditorGrid(MAX_PANEL_ROW, MAX_PANEL_COL, TILE_SIZE);
-        //EditorSidebar editorSidebar = new EditorSidebar(MAX_PANEL_COL, MAX_PANEL_ROW);
 
         JFrame editorFrame = new JFrame("Maze Editor");
-        editorFrame.setLayout(new FlowLayout());
+        editorFrame.setLayout(new BorderLayout());
         editorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         editorFrame.setResizable(false);
         editorFrame.setLocationRelativeTo(null);
         editorFrame.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         editorFrame.setBackground(Color.black);
 
-        editorFrame.add(editorGrid);
-        //JTextField staminaField = new JTextField("stamina");
-        //editorFrame.add(staminaField);
-        //editorFrame.add(editorSidebar);
+        editorFrame.add(editorGrid, BorderLayout.CENTER);
 
-        //editorSidebar.setMinimumSize(new Dimension(MAX_PANEL_COL - MAX_PANEL_ROW, MAX_PANEL_ROW));
+//        JTextField staminaField = new JTextField("stamina");
+//        editorFrame.add(staminaField, BorderLayout.LINE_END);
+
+        JButton submissionButton = new JButton("submit");
+        editorFrame.add(submissionButton, BorderLayout.PAGE_END);
 
         editorFrame.pack();
         editorFrame.setLocationByPlatform(true);
         editorFrame.setVisible(true);
-
     }
-
-
 }

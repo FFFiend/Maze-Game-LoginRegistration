@@ -22,13 +22,12 @@ public class CustomGameFileManager implements ICustomGameFileManager{
             mazeWriter.write("*Maze Name*");
             //mazeWriter.write(TempMaze.getMazeTitle());
             //the line above will be implemented once the initializer is done
-
+            mazeWriter.write(System.getProperty("line.separator"));  //starts a new line
 
             mazeWriter.write("*Maze Creator*");
             //mazeWriter.write(TempMaze.getMazeCreator());
             //the line above will be implemented once the initializer is done
-
-            mazeWriter.write(System.getProperty("line.separator")); //starts a new line
+            mazeWriter.write(System.getProperty("line.separator"));
 
             for (int x = 0; x < TempMaze.getRowTotal(); x++) {
                 for (int y = 0; y < TempMaze.getColumnTotal(); y++) {
