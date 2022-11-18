@@ -11,9 +11,6 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      * Store a custom maze in customMazes.txt
      * (assumes the maze has already been verified to be both writable and solvable)
      */
-    //TODO this should be called from the validator
-    // check in validator if TempMaze contains a maze that can be written (ex. exists, all rows/cols same len etc)
-    // also that it has a unique name
     @Override
     public void storeNewCustomMaze(){
         try {

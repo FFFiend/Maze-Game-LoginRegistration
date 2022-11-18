@@ -60,6 +60,13 @@ public class TempMaze {
     }
 
     /**
+     * Gets the TempMaze object
+     */
+    public static EditorTile[][] getMaze(){
+        return TempMaze.tileGrid;
+    }
+
+    /**
      * @param x the x position of the Tile to be retrieved
      * @param y the y position of the Tile to be retrieved
      * @return the EditorTile at position (x, y)

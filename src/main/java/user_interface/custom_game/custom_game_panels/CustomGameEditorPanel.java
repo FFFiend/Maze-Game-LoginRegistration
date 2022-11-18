@@ -1,5 +1,7 @@
 package user_interface.custom_game.custom_game_panels;
 
+import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -39,6 +41,7 @@ class CustomGameEditorPanel implements ICustomGamePanel {
 //        or combine with the submission button to use PAGE_END for both
 
         JButton submissionButton = new JButton("submit");
+        submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameEditorPanel"));
         editorFrame.add(submissionButton, BorderLayout.PAGE_END);
 
         editorFrame.pack();

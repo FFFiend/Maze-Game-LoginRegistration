@@ -21,7 +21,8 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
         }
         else if (Objects.equals(panelName, "customGameInvalidWarnPanel")){
             System.out.println("To do!");
-            //TODO display a popup with back buttons
+            //TODO display a popup with back buttons and add overloaded method so you can add error message too
+            // and handle choices
         }
         else {
             System.out.println("To do!");
