@@ -1,4 +1,4 @@
-import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
+import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 
 /**
@@ -24,10 +24,10 @@ public class Main {
     }
 
     /**
-     * Temporary access to the custom maze editor
+     * Temporary access to the custom maze editor and the file manager's storage functionality
      **/
     private static void tempEditorRunner() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
-        tempPresenter.callCustomGameScreen("CustomGameEditorScreen");
+        tempPresenter.callCustomGamePanel("CustomGameEditorPanel");
     }
 }

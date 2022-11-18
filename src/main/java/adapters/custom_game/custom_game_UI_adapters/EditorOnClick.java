@@ -1,13 +1,13 @@
-package user_interface.custom_game.custom_game_screens;
+package adapters.custom_game.custom_game_UI_adapters;
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Reacts to clicks on CustomGameEditorScreen
+ * Reacts to clicks on CustomGameEditorPanel
  */
-class EditorOnClick extends MouseAdapter {
+public class EditorOnClick extends MouseAdapter {
     private final EditorTile TILE;
     private int rightClickCount = 0;
 

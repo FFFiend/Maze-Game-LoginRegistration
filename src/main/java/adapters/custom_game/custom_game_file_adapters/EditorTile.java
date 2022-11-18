@@ -13,6 +13,7 @@ public class EditorTile extends JLabel {
     private final int X;
     private final int Y;
     private String name;
+    private int numCode;
 
     private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
@@ -26,12 +27,12 @@ public class EditorTile extends JLabel {
         this.X = x;
         this.Y = y;
         this.name = "empty";
+        this.numCode = 0;
 
         setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
         setOpaque(true);
         setBackground(Color.BLACK);
-
         setTileImage("emptyTile.png");
     }
 
@@ -59,20 +60,34 @@ public class EditorTile extends JLabel {
     }
 
     /**
-     * Change the name of an EditorTile and calls setTileImage to change its image to reflect that
+     * Returns a number representing the state a tile is in (empty, wall, start location etc.) for use when storing
+     * mazes in txt files
+     * @return the number representing a tile state
+     */
+    public int getNumCode(){
+        return this.numCode;
+    }
+
+    /**
+     * Change the name and numeric code of an EditorTile and calls setTileImage to change its image to reflect that
      * @param name the new state an EditorTile is in
      */
     public void changeState(String name) {
         if (Objects.equals(name, "photons")) {
             setTileImage("photons.png");
+            this.numCode = 4;
         } else if (Objects.equals(name, "enemy")) {
             setTileImage("enemy.png");
+            this.numCode = 2;
         } else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
+            this.numCode = 3;
         } else if (Objects.equals(name, "start")) {
             setTileImage("start.png");
+            this.numCode = 6;
         } else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");
+            this.numCode = 5;
         }
         else {
             //TODO raise an error
@@ -89,9 +104,11 @@ public class EditorTile extends JLabel {
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
+            this.numCode = 0;
         } else if (!Objects.equals(this.name, "wall")){
             setTileImage("wall.png");
             this.name = "wall";
+            this.numCode = 1;
         }
     }
 
