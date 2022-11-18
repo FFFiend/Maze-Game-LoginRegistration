@@ -20,7 +20,12 @@ public class CustomGameFileManager implements ICustomGameFileManager{
             FileWriter mazeWriter = new FileWriter("customMazes/customMazes.txt", true);
 
             mazeWriter.write("*Maze Name*");
-            //mazeWriter.write(TempMaze.getTitle());
+            //mazeWriter.write(TempMaze.getMazeTitle());
+            //the line above will be implemented once the initializer is done
+
+
+            mazeWriter.write("*Maze Creator*");
+            //mazeWriter.write(TempMaze.getMazeCreator());
             //the line above will be implemented once the initializer is done
 
             mazeWriter.write(System.getProperty("line.separator")); //starts a new line

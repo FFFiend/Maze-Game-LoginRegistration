@@ -6,6 +6,7 @@ package adapters.custom_game.custom_game_file_adapters;
 public class TempMaze {
     private static EditorTile[][] tileGrid;
     private static String mazeTitle;
+    private static String mazeCreator;
 
 
     /**
@@ -41,6 +42,21 @@ public class TempMaze {
      */
     public static String getMazeTitle(){
         return TempMaze.mazeTitle;
+    }
+
+    /**
+     * Sets the title of this TempMaze to be stored later in the custom maze text files
+     * @param creator the username of the user creating this TempMaze
+     */
+    public static void setMazeCreator(String creator){
+        TempMaze.mazeCreator= creator;
+    }
+
+    /**
+     * Gets the username of the creator of this TempMaze for storage in the custom maze text files
+     */
+    public static String getMazeCreator(){
+        return TempMaze.mazeCreator;
     }
 
     /**
