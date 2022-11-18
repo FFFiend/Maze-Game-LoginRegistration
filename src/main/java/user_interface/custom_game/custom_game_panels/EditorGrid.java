@@ -1,5 +1,6 @@
 package user_interface.custom_game.custom_game_panels;
 
+import adapters.custom_game.custom_game_UI_adapters.EditorOnClick;
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 import adapters.custom_game.custom_game_file_adapters.TempMaze;
 
