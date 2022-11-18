@@ -1,8 +1,11 @@
 package user_interface.login_leaderboard;
 
+import user_interface.default_game.GlobalFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 import javax.swing.*;
 
 /**
@@ -10,30 +13,54 @@ import javax.swing.*;
  */
 public class WelcomePanel extends Panel implements ActionListener {
 
+    public int state = 2;
 
     /**
      * Construct a new WelcomeScreen panel with fixed settings
      **/
     public WelcomePanel() {
-        this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        JLabel welcomeMessage = new JLabel("Welcome to our Game!");
-        JButton userSignUp = new JButton("Sign Up");
-        JButton userLogIn = new JButton("Log In");
-        welcomeMessage.setForeground(Color.red);
-        welcomeMessage.setFont(new Font("Arial", Font.PLAIN, 17));
 
+        this.build();
+        JLabel welcomeMessage = new JLabel("Welcome to Astromaze!");
+        welcomeMessage.setBounds(300, 150, 350, 70);
+
+
+        JButton userSignUp = new JButton("Sign Up");
+        userSignUp.setBounds(270, 270, 70, 70);
+        userSignUp.setSize(245, 30);
+
+
+        JButton userLogIn = new JButton("Log In");
+        userLogIn.setBounds(270, 360, 50, 50);
+        userLogIn.setSize(245, 30);
+
+
+        userSignUp.setActionCommand("Sign up");
+        userLogIn.setActionCommand("Log in");
+
+        labelSet.add(welcomeMessage);
+        labelFormat(labelSet);
         this.add(welcomeMessage);
+
         this.add(userSignUp);
         this.add(userLogIn);
 
         userSignUp.addActionListener(this);
         userLogIn.addActionListener(this);
-
-
-        this.setBackground(Color.darkGray);
     }
 
+
+    /**
+     * Notifies the welcome window on whether to switch to
+     * login or register screen.
+     **/
     @Override
     public void actionPerformed(ActionEvent e) {
+        //this.setVisible(false);
+        if (Objects.equals(e.getActionCommand(), "Sign up")) {
+            state = 0;
+        } else if (Objects.equals(e.getActionCommand(), "Log in")) {
+            state = 1;
+        }
     }
 }
