@@ -1,7 +1,7 @@
 package hazards;
 
 import entities.hazards.ChasingEnemy;
-import use_cases.hazards.IHazardRequestModel;
+import entities.hazards.IHazardRequestModel;
 import entities.hazards.Enemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;

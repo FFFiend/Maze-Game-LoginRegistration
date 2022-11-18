@@ -1,6 +1,6 @@
 package hazards;
 
-import use_cases.hazards.IHazardRequestModel;
+import entities.hazards.IHazardRequestModel;
 import entities.hazards.ChasingEnemy;
 import entities.hazards.MovingEnemy;
 import org.junit.jupiter.api.Assertions;

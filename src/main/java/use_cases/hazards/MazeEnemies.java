@@ -2,6 +2,8 @@ package use_cases.hazards;
 
 import adapters.default_game.IDraw;
 import entities.hazards.Enemy;
+import entities.hazards.IEnemyRequestModel;
+import entities.hazards.IHazardRequestModel;
 
 import java.util.ArrayList;
 import java.util.List;

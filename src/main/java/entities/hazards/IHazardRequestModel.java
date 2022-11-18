@@ -1,4 +1,4 @@
-package use_cases.hazards;
+package entities.hazards;
 
 /**
  * Interface for communicating relevant information for hazard checking.

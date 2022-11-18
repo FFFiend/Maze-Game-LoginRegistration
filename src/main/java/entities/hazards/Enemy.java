@@ -1,12 +1,9 @@
 package entities.hazards;
 
 import adapters.default_game.IDraw;
-import use_cases.hazards.IEnemyRequestModel;
-import use_cases.hazards.IHazardRequestModel;
-
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 
