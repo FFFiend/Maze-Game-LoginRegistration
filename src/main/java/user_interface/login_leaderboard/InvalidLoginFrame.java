@@ -1,8 +1,8 @@
 package user_interface.login_leaderboard;
 
-public class InvalidLoginPanel extends Panel {
+import javax.swing.*;
 
+public class InvalidLoginFrame {
     public void invalidLogin() {
-
     }
 }

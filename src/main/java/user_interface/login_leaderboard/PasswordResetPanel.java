@@ -9,8 +9,5 @@ import javax.swing.*;
 public class PasswordResetPanel extends Panel {
 
     public PasswordResetPanel() {
-
     }
-
-
 }

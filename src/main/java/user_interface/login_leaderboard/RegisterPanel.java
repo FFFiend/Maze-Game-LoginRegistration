@@ -10,39 +10,36 @@ import java.awt.event.ActionListener;
  * Passes the username, password, and email to the register user controller.
  */
 public class RegisterPanel extends Panel implements ActionListener {
-    public JTextField username;
-    public JPasswordField password;
-    public JTextField email;
+    private final JTextField username;
+    private final JPasswordField password;
+    private final JTextField email;
 
     public RegisterPanel() {
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
         // check if user already exists, if not continue
         askUserName.setBounds(270, 30, 450, 70);
-        askUserName.setForeground(this.TEXT_COLOR);
-        askUserName.setFont(this.TEXT_FONT);
+
 
         this.username = new JTextField(50);
         username.setBounds(160, 110, 450, 30);
 
         JLabel askEmail = new JLabel("Please enter your email");
         askEmail.setBounds(270, 160, 450, 70);
-        askEmail.setForeground(this.TEXT_COLOR);
-        askEmail.setFont(this.TEXT_FONT);
 
 
         this.email = new JTextField(50);
         email.setBounds(160, 240, 450, 30);
 
         JLabel askPassword = new JLabel("Please enter your password.");
-        askPassword.setBounds(270, 300, 450, 30);
-        askPassword.setForeground(this.TEXT_COLOR);
-        askPassword.setFont(this.TEXT_FONT);
 
 
         this.password = new JPasswordField(50);
         password.setBounds(160, 350, 450, 30);
 
+        labelSet.add(askUserName);
+        labelSet.add(askPassword);
+        labelFormat(labelSet);
 
         this.add(askUserName);
         this.add(username);
@@ -57,8 +54,6 @@ public class RegisterPanel extends Panel implements ActionListener {
         makeUser.addActionListener(this);
 
         this.add(makeUser);
-
-
     }
 
     @Override

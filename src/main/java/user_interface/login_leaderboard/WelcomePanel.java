@@ -1,5 +1,7 @@
 package user_interface.login_leaderboard;
 
+import user_interface.default_game.GlobalFrame;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,11 +21,9 @@ public class WelcomePanel extends Panel implements ActionListener {
     public WelcomePanel() {
 
         this.build();
-
         JLabel welcomeMessage = new JLabel("Welcome to Astromaze!");
         welcomeMessage.setBounds(300, 150, 350, 70);
-        welcomeMessage.setForeground(this.TEXT_COLOR);
-        welcomeMessage.setFont(this.TEXT_FONT);
+
 
         JButton userSignUp = new JButton("Sign Up");
         userSignUp.setBounds(270, 270, 70, 70);
@@ -38,6 +38,8 @@ public class WelcomePanel extends Panel implements ActionListener {
         userSignUp.setActionCommand("Sign up");
         userLogIn.setActionCommand("Log in");
 
+        labelSet.add(welcomeMessage);
+        labelFormat(labelSet);
         this.add(welcomeMessage);
 
         this.add(userSignUp);
@@ -45,7 +47,6 @@ public class WelcomePanel extends Panel implements ActionListener {
 
         userSignUp.addActionListener(this);
         userLogIn.addActionListener(this);
-
     }
 
 
@@ -55,13 +56,11 @@ public class WelcomePanel extends Panel implements ActionListener {
      **/
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        //this.setVisible(false);
         if (Objects.equals(e.getActionCommand(), "Sign up")) {
-            this.state = 0;
+            state = 0;
         } else if (Objects.equals(e.getActionCommand(), "Log in")) {
-            this.state = 1;
+            state = 1;
         }
-        System.out.println(this.state);
     }
-
 }
