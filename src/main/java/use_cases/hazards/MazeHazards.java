@@ -1,6 +1,6 @@
 package use_cases.hazards;
 
-import adapters.default_game.IDraw;
+import entities.default_game.IDrawOutputBoundary;
 import entities.hazards.Enemy;
 import entities.hazards.IEnemyRequestModel;
 import entities.hazards.IHazardRequestModel;
@@ -129,7 +129,7 @@ public class MazeHazards {
     /**
      * Draw all hazards in the maze.
      */
-    public void draw(IDraw d) {
+    public void draw(IDrawOutputBoundary d) {
         obstacles.draw(d);
         enemies.draw(d);
     }

@@ -1,4 +1,4 @@
-package adapters.default_game;
+package entities.default_game;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
  * The presenter can implement this interface, and any entities
  * which need drawing can have a draw method which takes this.
  */
-public interface IDraw {
+public interface IDrawOutputBoundary {
     /** Get the size of a tile in pixels */
     int getTileSize();
 

@@ -1,6 +1,8 @@
 package entities.hazards;
 
-import adapters.default_game.IDraw;
+import entities.default_game.Entity;
+import entities.default_game.IDrawOutputBoundary;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.awt.Color;
@@ -10,7 +12,7 @@ import java.io.InputStream;
 /**
  * The abstract class which all enemies inherit from.
  */
-public abstract class Enemy {
+public abstract class Enemy extends Entity {
     /**
      * The starting x position for the enemy.
      */
@@ -63,7 +65,7 @@ public abstract class Enemy {
     /**
      * Draw an enemy.
      */
-    public void draw(IDraw d) {
+    public void draw(IDrawOutputBoundary d) {
         int tileSize = d.getTileSize();
         int xPixels = getX() * tileSize;
         int yPixels = getY() * tileSize;

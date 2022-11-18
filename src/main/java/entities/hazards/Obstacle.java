@@ -1,6 +1,7 @@
 package entities.hazards;
 
-import adapters.default_game.IDraw;
+import entities.default_game.Entity;
+import entities.default_game.IDrawOutputBoundary;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.io.InputStream;
 /**
  * An obstacle in a maze
  */
-public class Obstacle {
+public class Obstacle extends Entity {
     /**
      * The x position of the obstacle.
      */
@@ -195,7 +196,7 @@ public class Obstacle {
     }
 
     /** Draw the obstacle. */
-    public void draw(IDraw d) {
+    public void draw(IDrawOutputBoundary d) {
         int tileSize = d.getTileSize();
         int xPixels = getX() * tileSize;
         int yPixels = getY() * tileSize;
