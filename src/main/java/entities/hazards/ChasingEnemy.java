@@ -64,14 +64,15 @@ public class ChasingEnemy extends MovingEnemy {
         int x = getX();
         int y = getY();
         ArrayList<int[]> neighbours = new ArrayList<>();
-        if (x > 0)
+        if (x > 0 && !request.isTileBlockedForEnemies(x - 1, y))
             neighbours.add(new int[] {x - 1, y});
-        if (y > 0)
+        if (y > 0 && !request.isTileBlockedForEnemies(x, y - 1))
             neighbours.add(new int[] {x, y - 1});
-        if (x < request.mazeWidth() - 1)
+        if (x < request.mazeWidth() - 1 && !request.isTileBlockedForEnemies(x + 1, y))
             neighbours.add(new int[] {x + 1, y});
-        if (y < request.mazeHeight() - 1)
+        if (y < request.mazeHeight() - 1 && !request.isTileBlockedForEnemies(x, y + 1))
             neighbours.add(new int[] {x, y + 1});
+
         return neighbours;
     }
 }

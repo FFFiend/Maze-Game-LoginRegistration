@@ -46,7 +46,7 @@ public class ChasingEnemyTest {
         hazards.addEnemy(enemy);
         hazards.addObstacle(obstacle);
         hazards.update(request);
-        Assertions.assertTrue(obstacle.blocksTile(enemy.getX(), enemy.getY()));
+        Assertions.assertFalse(obstacle.blocksTile(enemy.getX(), enemy.getY()));
     }
 
     /** Check that the enemy eventually reaches the player. */
