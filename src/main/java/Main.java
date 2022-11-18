@@ -1,4 +1,5 @@
 import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
+import user_interface.default_game.GamePanelUI;
 import user_interface.default_game.GlobalFrame;
 
 /**
@@ -21,6 +22,7 @@ public class Main {
     private static void setupGame() {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setWelcomePanel();
+        tempDefaultGameRunner();
     }
 
     /**
@@ -29,5 +31,12 @@ public class Main {
     private static void tempEditorRunner() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
         tempPresenter.callCustomGameScreen("CustomGameEditorScreen");
+    }
+    /**
+     * Temporary access to the default game
+     **/
+    private static void tempDefaultGameRunner(){
+        GamePanelUI gamePanelUI = new GamePanelUI();
+        gamePanelUI.createGamePanelUI();
     }
 }
