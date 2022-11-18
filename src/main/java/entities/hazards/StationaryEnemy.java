@@ -1,7 +1,5 @@
 package entities.hazards;
 
-import use_cases.hazards.IEnemyRequestModel;
-
 /**
  * An enemy which does not move from its starting position
  */

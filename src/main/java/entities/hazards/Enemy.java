@@ -1,8 +1,5 @@
 package entities.hazards;
 
-import use_cases.hazards.IEnemyRequestModel;
-import use_cases.hazards.IHazardRequestModel;
-
 /**
  * The abstract class which all enemies inherit from.
  */
