@@ -1,19 +1,19 @@
-package user_interface.custom_game.custom_game_screens;
+package user_interface.custom_game.custom_game_panels;
 
 import javax.swing.*;
 import java.awt.*;
 
 class CustomGameEditorPanel implements ICustomGamePanel {
-    //extends Screens
+    //extends Panels
 
     /**
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
      * and returning to previous menus
      */
     protected CustomGameEditorPanel (){
-        //will use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game
-        //screens once those are implemented
-        //for now, this is  temporarily based on Rene's GamePanel code for visualization of the editor
+        //will use Panels' methods to draw and CustomGamePanelInterface for the features specific to custom game
+        //panels once those are implemented
+        //for now, this is temporarily based on Rene's GamePanel code for visualization of the editor
         final int SPRITE_TILE_SIZE = 16;
         final int SCALE = 3; // may be changed to an unfixed variable later
         final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;

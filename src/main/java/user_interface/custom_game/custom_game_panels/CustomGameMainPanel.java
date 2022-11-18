@@ -1,14 +1,14 @@
-package user_interface.custom_game.custom_game_screens;
+package user_interface.custom_game.custom_game_panels;
 
 class CustomGameMainPanel implements ICustomGamePanel {
-    //extends Screens
+    //extends Panels
 
     /**
-     * The first screen to be displayed on entering the custom maze section. Shows a list of custom mazes and a button
+     * The first panel to be displayed on entering the custom maze section. Shows a list of custom mazes and a button
      * to take the user to the maze editor
      */
     protected CustomGameMainPanel (){
-        //use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game screens
+        //use Panel's methods to draw and CustomGamePanelInterface for the features specific to custom game panels
     }
 
     /**

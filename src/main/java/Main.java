@@ -1,4 +1,6 @@
-import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
+import adapters.custom_game.custom_game_file_adapters.TempMaze;
+import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
+import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 
 /**
@@ -24,10 +26,19 @@ public class Main {
     }
 
     /**
-     * Temporary access to the custom maze editor
+     * Temporary access to the custom maze editor and the file manager's storage functionality
      **/
     private static void tempEditorRunner() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
-        tempPresenter.callCustomGameScreen("CustomGameEditorScreen");
+        tempPresenter.callCustomGamePanel("CustomGameEditorPanel");
+
+        TempMaze.getTile(0, 0).changeState("end");
+        TempMaze.getTile(0, 1).changeState("photons");
+        TempMaze.getTile(3, 4).changeState("enemy");
+        TempMaze.getTile(11, 15).changeState("start");
+
+        CustomGameFileManager fileManager = new CustomGameFileManager();
+        fileManager.storeNewCustomMaze();
+
     }
 }
