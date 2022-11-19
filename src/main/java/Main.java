@@ -16,7 +16,6 @@ public class Main {
     }
 
     /**
-     *
      * Build the Game Panel
      **/
     private static void setupGame() {

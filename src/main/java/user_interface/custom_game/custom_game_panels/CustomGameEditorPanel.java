@@ -49,8 +49,14 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
      * add the submission and back buttons to the panel
      */
     private void displayButtons(){
+        JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
+
         JButton submissionButton = new JButton("submit");
         submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameEditorPanel", new CustomGamePresenter()));
-        editorFrame.add(submissionButton, BorderLayout.PAGE_END);
+
+        bottomPanel.add(submissionButton);
+        returnToCustomMainButton(bottomPanel);
+
+        editorFrame.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

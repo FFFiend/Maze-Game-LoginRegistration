@@ -35,6 +35,9 @@ public class CustomGameSubmissionManager implements ActionListener {
         else if (Objects.equals(PANEL, "CustomGameMainPanel")){
             presenter.callCustomGamePanel("CustomGameEditorPanel");
         }
+        else if (Objects.equals(PANEL, "toCustomMain")){
+            presenter.callCustomGamePanel("CustomGameMainPanel");
+        }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")){
             // TODO
         }
