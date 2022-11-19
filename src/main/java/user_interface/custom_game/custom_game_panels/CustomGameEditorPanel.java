@@ -39,6 +39,7 @@ class CustomGameEditorPanel implements ICustomGamePanel {
 //        JTextField staminaField = new JTextField("stamina");
 //        editorFrame.add(staminaField, BorderLayout.LINE_END);
 //        or combine with the submission button to use PAGE_END for both
+//        also a button to return to custom main menu
 
         JButton submissionButton = new JButton("submit");
         submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameEditorPanel", new CustomGamePresenter()));

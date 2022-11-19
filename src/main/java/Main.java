@@ -28,6 +28,6 @@ public class Main {
      **/
     private static void tempEditorRunner() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
-        tempPresenter.callCustomGamePanel("CustomGameEditorPanel");
+        tempPresenter.callCustomGamePanel();
     }
 }

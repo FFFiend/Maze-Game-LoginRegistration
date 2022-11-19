@@ -13,8 +13,8 @@ public class CustomGameSubmissionManager implements ActionListener {
     private final ICustomGamePresenter presenter;
 
     /**
-     * Listens for clicks to the submission button on the custom maze initializer and editor, calls the verifier and
-     * calls the appropriate panels in response.
+     * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
+     * appropriate panels in response.
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
      */
@@ -25,12 +25,15 @@ public class CustomGameSubmissionManager implements ActionListener {
 
     /**
      * Signal that the TempMaze being edited is ready for verification and storage
-     * @param e represents a click on the submit button in the editor
+     * @param e represents a click on a button in one of the custom maze panels
      */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(PANEL, "CustomGameEditorPanel")){
             verifyEditorInput(TempMaze.getMaze());
+        }
+        else if (Objects.equals(PANEL, "CustomGameMainPanel")){
+            presenter.callCustomGamePanel("CustomGameEditorPanel");
         }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")){
             // TODO
@@ -44,12 +47,10 @@ public class CustomGameSubmissionManager implements ActionListener {
      */
     public void verifyEditorInput(EditorTile[][] maze){
         CustomGameValidator validator = new CustomGameValidator(maze);
-        //ICustomGamePresenter presenter = new CustomGamePresenter(); //Check!
 
         if (validator.verify()){
-            //TODO should call main once that's implemented
-            // and a popup to say the maze was written
-            presenter.callCustomGamePanel("CustomGameEditorPanel");
+            //TODO should display a popup to say the maze was written
+            presenter.callCustomGamePanel("CustomGameMainPanel");
         }
         else {
             presenter.callCustomGamePanel("customGameInvalidWarnPanel");

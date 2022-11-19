@@ -26,6 +26,8 @@ public class CustomGameFileManager implements ICustomGameFileManager{
                 }
                 mazeWriter.write(System.getProperty("line.separator"));
             }
+//            mazeWriter.write(System.getProperty("line.separator"));
+//            mazeWriter.write(TempMaze.getMazeCreator());
             mazeWriter.close();
 
         } catch (IOException e) {
