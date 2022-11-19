@@ -1,73 +1,68 @@
 package adapters.login_leaderboard;
 
-import use_cases.login_leaderboard.EasyLeaderboard;
-import use_cases.login_leaderboard.FileUser;
-import use_cases.login_leaderboard.HardLeaderboard;
-import use_cases.login_leaderboard.MediumLeaderboard;
+import use_cases.login_leaderboard.*;
 
-import java.io.IOException;
-import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Transforms the information from all three leaderboards into a viewable format.
+ * Note: Add comments for instance variables
+ * Note: Include the case when there are less than 10 users.
  */
 public class LeaderboardPresenter {
-    /**
-     * Create an array of user objects, sorted by their easy scores.
-     */
-    public EasyLeaderboard[] generateEasyScores() throws IOException {
-        FileUser users = new FileUser();
-        users.prevUsers();
-        int len = (users.prevUsers().values().size());
+    private final Map<String, Integer> EASYSCORES = new HashMap<>();
+    private final Map<String, Integer> MEDSCORES = new HashMap<>();
+    private final Map<String, Integer> HARDSCORES = new HashMap<>();
+    private final LeaderboardGenerator Scores = new LeaderboardGenerator();
+    private final IFileInput file;
 
-        EasyLeaderboard[] easyScore = new EasyLeaderboard[len];
-
-        int i = 0;
-        for (String user : users.prevUsers().keySet()) {
-            easyScore[i] = new EasyLeaderboard(users.prevUsers().get(user));
-            i ++;
-            assert (i <= users.prevUsers().values().size());
-        }
-        Arrays.sort(easyScore);
-        return easyScore;
+    public LeaderboardPresenter(IFileInput file) {
+        this.file = file;
     }
 
     /**
-     * Create an array of user objects, sorted by their medium scores.
+     * return the top 10 easy-level user scores.
+     * @return : A hashmap mapping the top 10 users username to easy scores.
      */
-    public MediumLeaderboard[] generateMedScores() throws IOException {
-        FileUser users = new FileUser();
-        users.prevUsers();
-        int len = (users.prevUsers().values()).size();
-
-        MediumLeaderboard[] medScore = new MediumLeaderboard[len];
-
-        int i = 0;
-        for (String user : users.prevUsers().keySet()) {
-            medScore[i] = new MediumLeaderboard(users.prevUsers().get(user));
-            i ++;
-            assert (i <= users.prevUsers().values().size());
+    public Map<String, Integer> getTop10Easy() {
+        for (int i = 0; i < 10; i ++){
+            EASYSCORES.put(Scores.sortEasy().get(i).getUsername(),
+                    Scores.sortEasy().get(i).getEasyScore());
         }
-        Arrays.sort(medScore);
-        return medScore;
+        return EASYSCORES;
     }
+
     /**
-     * Create an array of user objects, sorted by their hard scores.
+     * return the top 10 medium-level user scores.
+     * @return : A hashmap mapping the top 10 users username to medium scores.
      */
-    public HardLeaderboard[] generateHardScores() throws IOException {
-        FileUser users = new FileUser();
-        users.prevUsers();
-        int len = (users.prevUsers().values()).size();
-
-        HardLeaderboard[] hardScore = new HardLeaderboard[len];
-
-        int i = 0;
-        for (String user : users.prevUsers().keySet()) {
-            hardScore[i] = new HardLeaderboard(users.prevUsers().get(user));
-            i ++;
-            assert (i <= users.prevUsers().values().size());
+    public Map<String, Integer> getTop10Med() {
+        for (int i = 0; i < 10; i++){
+            MEDSCORES.put(Scores.sortMedium().get(i).getUsername(),
+                    Scores.sortMedium().get(i).getMediumScore());
         }
-        Arrays.sort(hardScore);
-        return hardScore;
+        return MEDSCORES;
+    }
+
+    /**
+     * return the top 10 hard-level user scores.
+     * @return : A hashmap mapping the top 10 users username to easy scores.
+     */
+    public Map<String, Integer> getTop10Hard() {
+
+        for (int i = 0; i < 10; i++){
+            HARDSCORES.put(Scores.sortHard().get(i).getUsername(),
+                    Scores.sortHard().get(i).getHardScore());
+        }
+        return HARDSCORES;
+    }
+
+    /**
+     * Update the leaderboard generator to include all users.
+     */
+    public void saveUsers(){
+        FileUser users = new FileUser(file);
+        Scores.setUsers(users.prevUsers());
     }
 }

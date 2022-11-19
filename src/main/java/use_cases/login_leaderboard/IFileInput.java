@@ -1,8 +1,10 @@
 package use_cases.login_leaderboard;
 
+import java.util.ArrayList;
+
 /**
- * FileUser can access the items of the CSV file due to dependency inversion.
+ * Note: FileUser can access the items of the CSV file due to dependency inversion.
  */
 public interface IFileInput {
-    String filePath();
+    ArrayList<ArrayList<String>> readFile();
 }
