@@ -6,5 +6,6 @@ package use_cases.login_leaderboard;
  * If the user password is valid, update the CSV with the user info, let the user know
  * they have been registered.
  */
-public class RegisterUser implements IDataAccessInterface {
+public class RegisterUser {
+
 }
