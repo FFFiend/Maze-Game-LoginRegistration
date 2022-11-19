@@ -25,19 +25,28 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         this.FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.FRAME.setLayout(new BorderLayout(10, 10));
 
-        this.FRAME.add(new JLabel("Custom Mazes"), BorderLayout.PAGE_START);
-
+        displayTitle();
         listCustomMazes();
         displayCustomOptions();
+    }
 
+
+    /**
+     * Display the custom maze section title
+     */
+    private void displayTitle(){
+        JLabel header = new JLabel("Custom Mazes", SwingConstants.CENTER);
+        labelSet.add(header);
+        labelFormat(labelSet);
+
+        this.FRAME.add(header, BorderLayout.PAGE_START);
     }
 
     /**
-     * Display a selection of custom mazes and a search bar
+     * Display a selection of custom mazes
      */
-    public void listCustomMazes(){
-        ArrayList<String> mazeList = getMazes();
-        JList<String> mazeListElement = new JList(mazeList.toArray());
+    private void listCustomMazes(){
+        JList<String> mazeListElement = new JList<>(getMazes());
         mazeListElement.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         mazeListElement.setLayoutOrientation(JList.VERTICAL_WRAP);
         mazeListElement.setVisibleRowCount(-1);
@@ -51,7 +60,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
      * Retrieve all stored custom mazes and sort them alphabetically
      * @return an ArrayList of all the stored custom mazes
      */
-    private ArrayList<String> getMazes(){
+    private String[] getMazes(){
         File mazeFolder = new File("customMazes/");
         File[] mazeFileList = mazeFolder.listFiles();
         ArrayList<String> mazeList = new ArrayList<>();
@@ -61,17 +70,18 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
             mazeList.add(file.getName());
         }
         mazeList.sort(String.CASE_INSENSITIVE_ORDER);
-        return mazeList;
+        String[] mazeArray = new String[mazeList.size()];
+        mazeArray = mazeList.toArray(mazeArray);
+        return mazeArray;
     }
 
     /**
      * Display all the actions a user can take involving custom mazes
      * Currently, this is only creating them
      */
-    public void displayCustomOptions(){
+    private void displayCustomOptions(){
         JButton editMazeButton = new JButton("create a new maze");
         editMazeButton.addActionListener(new CustomGameSubmissionManager("CustomGameMainPanel", new CustomGamePresenter()));
         this.FRAME.add(editMazeButton, BorderLayout.PAGE_END);
-
     }
 }

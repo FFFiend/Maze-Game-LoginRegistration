@@ -12,10 +12,11 @@ public class Main {
      */
     public static void main(String[] args) {
         setupGame();
-        tempEditorRunner();
+        setupCustomMazeMenu();
     }
 
     /**
+     *
      * Build the Game Panel
      **/
     private static void setupGame() {
@@ -24,9 +25,9 @@ public class Main {
     }
 
     /**
-     * Temporary access to the custom maze editor and the file manager's storage functionality
+     * Temporary access to the custom maze main menu
      **/
-    private static void tempEditorRunner() {
+    private static void setupCustomMazeMenu () {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
         tempPresenter.callCustomGamePanel();
     }
