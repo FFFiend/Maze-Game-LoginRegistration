@@ -1,5 +1,6 @@
-package user_interface.custom_game.custom_game_screens;
+package user_interface.custom_game.custom_game_panels;
 
+import adapters.custom_game.custom_game_UI_adapters.EditorOnClick;
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 import adapters.custom_game.custom_game_file_adapters.TempMaze;
 
@@ -10,13 +11,13 @@ import java.awt.GridLayout;
 class EditorGrid extends JPanel{
 
     /**
-     * A grid for building a custom maze and one of the components to display on CustomGameEditorScreen
+     * A grid for building a custom maze and one of the components to display on CustomGameEditorPanel
      * @param rows the number of rows there will be in this new maze
      * @param cols the number of columns there will be in this new maze
      * @param tileSize the height and width of a tile's display
      */
     public EditorGrid (int rows, int cols, int tileSize){
-        TempMaze.setGridSize(rows, cols); //to be handled by input boundary later maybe
+        TempMaze.setGridSize(rows, cols);
 
         setLayout(new GridLayout(rows, cols, 0, 0));
         Dimension tileDimensions = new Dimension(tileSize, tileSize);
