@@ -1,12 +1,15 @@
 package entities.items;
 
+import entities.default_game.Entity;
+import entities.default_game.IDrawOutputBoundary;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
  * Parent class which all items inherit from
  */
-public class Item {
+public class Item extends Entity {
 
     // VARIABLES
     /**
@@ -124,6 +127,23 @@ public class Item {
         int playerX = request.getPlayerX();
         int playerY = request.getPlayerY();
         return itemExists(playerX, playerY);
+    }
+
+    /**
+     * Draw the item.
+     */
+    public void draw(IDrawOutputBoundary d) {
+        Graphics2D g2 = d.graphics();
+        int tileSize = d.getTileSize();
+        int xPixels = getX() * tileSize;
+        int yPixels = getY() * tileSize;
+        if (image != null) {
+            g2.drawImage(image, xPixels, yPixels, tileSize, tileSize, null);
+        } else {
+            // default rectangle in case Image loading fails
+            g2.setColor(Color.BLUE);
+            g2.drawRect(xPixels, yPixels, tileSize, tileSize);
+        }
     }
 
 }

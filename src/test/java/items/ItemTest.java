@@ -1,11 +1,13 @@
 package items;
 
+import entities.default_game.IDrawOutputBoundary;
 import entities.items.ICollisionRequestModel;
 import entities.items.Item;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -78,5 +80,17 @@ public class ItemTest {
         BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("stars.png"));
         item.setImage(image);
         Assertions.assertNotNull(item.getImage());
+    }
+
+    /**
+     * Test draw
+     */
+    @Test
+    public void DrawItem() {
+        Item item = new Item(100, 200);
+        IDrawOutputBoundary draw48 = new TestDrawRequestModel();
+        Assertions.assertEquals(48, draw48.getTileSize());
+        item.draw(draw48);
+        Assertions.assertEquals(Color.WHITE , draw48.graphics().getColor());
     }
 }
