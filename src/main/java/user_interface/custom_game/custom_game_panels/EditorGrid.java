@@ -8,6 +8,9 @@ import javax.swing.*;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
+/**
+ * Creates the grid used by the editor that allows users to build their own maze
+ */
 class EditorGrid extends JPanel{
 
     /**
@@ -25,12 +28,9 @@ class EditorGrid extends JPanel{
         for (int x = 0; x < rows; x++){
             for (int y = 0; y < cols; y++){
                 EditorTile tile = new EditorTile(x, y);
-
                 TempMaze.addTile(x, y, tile);
-
                 tile.addMouseListener(new EditorOnClick(tile));
                 tile.setPreferredSize(tileDimensions);
-
                 add(tile);
             }
         }

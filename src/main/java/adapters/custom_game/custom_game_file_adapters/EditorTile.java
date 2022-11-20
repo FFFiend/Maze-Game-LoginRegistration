@@ -18,6 +18,14 @@ public class EditorTile extends JLabel {
     private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
 
+    private final static int EMPTY_NUM_CODE = 0;
+    private final static int OBSTACLE_NUM_CODE = 1;
+    private final static int ENEMY_NUM_CODE = 2;
+    private final static int KEY_NUM_CODE = 3;
+    private final static int PHOTONS_NUM_CODE = 4;
+    private final static int END_NUM_CODE = 5;
+    private final static int START_NUM_CODE = 6;
+
     /**
      * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
      * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
@@ -27,7 +35,7 @@ public class EditorTile extends JLabel {
         this.X = x;
         this.Y = y;
         this.name = "empty";
-        this.numCode = 0;
+        this.numCode = EMPTY_NUM_CODE;
 
         setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
@@ -44,7 +52,8 @@ public class EditorTile extends JLabel {
         {
             try {
                 BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("custom/" + name));
-                setIcon(new ImageIcon(image));
+                Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
+                setIcon(new ImageIcon(scaledImage));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -52,7 +61,7 @@ public class EditorTile extends JLabel {
     }
 
     /**
-     * Make an EditorTile's string representation its name (empty, wall, enemy etc.)
+     * Make an EditorTile's string representation its name (empty, obstacle, enemy etc.)
      * @return the name (state) of an EditorTile
      */
     public String toString(){
@@ -60,7 +69,7 @@ public class EditorTile extends JLabel {
     }
 
     /**
-     * Returns a number representing the state a tile is in (empty, wall, start location etc.) for use when storing
+     * Returns a number representing the state a tile is in (empty, obstacle, start location etc.) for use when storing
      * mazes in txt files
      * @return the number representing a tile state
      */
@@ -75,19 +84,23 @@ public class EditorTile extends JLabel {
     public void changeState(String name) {
         if (Objects.equals(name, "photons")) {
             setTileImage("photons.png");
-            this.numCode = 4;
-        } else if (Objects.equals(name, "enemy")) {
+            this.numCode = PHOTONS_NUM_CODE;
+        }
+        else if (Objects.equals(name, "enemy")) {
             setTileImage("enemy.png");
-            this.numCode = 2;
-        } else if (Objects.equals(name, "key")) {
+            this.numCode = ENEMY_NUM_CODE;
+        }
+        else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
-            this.numCode = 3;
-        } else if (Objects.equals(name, "start")) {
+            this.numCode = KEY_NUM_CODE;
+        }
+        else if (Objects.equals(name, "start")) {
             setTileImage("start.png");
-            this.numCode = 6;
-        } else if (Objects.equals(name, "end")) {
+            this.numCode = START_NUM_CODE;
+        }
+        else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");
-            this.numCode = 5;
+            this.numCode = END_NUM_CODE;
         }
         else {
             //TODO raise an error
@@ -96,19 +109,19 @@ public class EditorTile extends JLabel {
     }
 
     /**
-     * Reaction to a left click on an EditorTile. If the tile was a wall or represented any secondary asset (enemy,
+     * Reaction to a left click on an EditorTile. If the tile was a obstacle or represented any secondary asset (enemy,
      * photons, start location etc.) it will now represent an empty tile
      */
     public void tileLeftClick(){
-        //use !equals so that other tile states can be converted to a wall or become empty
+        //use !equals so that other tile states can be converted to a obstacle or become empty
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
-            this.numCode = 0;
-        } else if (!Objects.equals(this.name, "wall")){
-            setTileImage("wall.png");
-            this.name = "wall";
-            this.numCode = 1;
+            this.numCode = EMPTY_NUM_CODE;
+        } else if (!Objects.equals(this.name, "obstacle")){
+            setTileImage("obstacle.png");
+            this.name = "obstacle";
+            this.numCode = OBSTACLE_NUM_CODE;
         }
     }
 
