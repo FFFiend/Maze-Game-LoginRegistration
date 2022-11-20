@@ -5,4 +5,5 @@ package adapters.login_leaderboard;
  * Passes username, password, and email address.
  */
 public class RegisterUserController {
+    //
 }

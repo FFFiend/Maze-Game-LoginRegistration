@@ -7,4 +7,7 @@ package adapters.login_leaderboard;
  * Transforms the output data into a viewable format.
  */
 public class RegisterUserPresenter {
+    // Should call on registerUser.register and setUsers
+    // return if user registered successfully
+    //
 }
