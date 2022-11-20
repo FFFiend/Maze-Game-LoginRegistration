@@ -14,6 +14,7 @@ import java.util.Objects;
 public class CustomGameSubmissionManager implements ActionListener {
     private final String PANEL;
     private final ICustomGamePresenter presenter;
+    private ICustomInitializerInput initializer;
 
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
@@ -24,6 +25,18 @@ public class CustomGameSubmissionManager implements ActionListener {
     public CustomGameSubmissionManager(String panel, ICustomGamePresenter presenter){
         this.PANEL = panel;
         this.presenter = presenter;
+    }
+
+    /**
+     * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
+     * appropriate panels in response.
+     * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
+     * @param presenter an instance of the presenter interface to display a new panel after verification
+     */
+    public CustomGameSubmissionManager(String panel, ICustomGamePresenter presenter, ICustomInitializerInput initializer){
+        this.PANEL = panel;
+        this.presenter = presenter;
+        this.initializer = initializer;
     }
 
     /**
@@ -42,7 +55,7 @@ public class CustomGameSubmissionManager implements ActionListener {
             presenter.callCustomGamePanel("CustomGameMainPanel");
         }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")){
-            // TODO
+            verifyInitializerInput();
         }
     }
 
@@ -64,12 +77,11 @@ public class CustomGameSubmissionManager implements ActionListener {
     /**
      * Calls and sends maze initializer values to the verifier. If it is valid, it calls the presenter to take the
      * User to the editor. If not, it shows the user a panel warning that their input was invalid.
-     * @param input the input recieved from the initializer
      */
-    public void verifyInitInput(String[] input){
-        if (CustomGameValidator.verifyName(input[0])){
+    public void verifyInitializerInput (){
+        if (CustomGameValidator.verifyName(initializer.getMazeName())){
             presenter.callCustomGamePanel("CustomGameEditorPanel");
-            //if more options are added to the initializer, they will be included in input and checks will be added
+            //if more options are included in the initializer, more checks will be added
         }
         else {
             presenter.callCustomGamePanel("customGameInvalidWarnPanel");
