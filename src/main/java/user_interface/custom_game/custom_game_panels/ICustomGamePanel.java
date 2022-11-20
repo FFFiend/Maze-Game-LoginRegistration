@@ -11,7 +11,8 @@ import java.awt.*;
 interface ICustomGamePanel {
 
     /**
-     * draws a button on the panel that cancels all current tasks and returns the user to the custom game main menu
+     * Draws a button on the panel that cancels all current tasks and returns the user to the custom game main menu
+     *
      * @param x the x positioning on the panel
      * @param y the y positioning on the panel
      */
@@ -23,7 +24,7 @@ interface ICustomGamePanel {
     }
 
     /**
-     * default positioning is the bottom right of the panel
+     * Default positioning is the bottom right of the panel
      */
     default void returnToCustomMainButton(JComponent component){
         JButton backButton = new JButton("go back");
@@ -33,7 +34,7 @@ interface ICustomGamePanel {
     }
 
     /**
-     * draws a button on the panel that will return the user to the game's main menu
+     * Draws a button on the panel that will return the user to the game's main menu
      */
     default void returnToMainButton(){
         //TODO - default implementation

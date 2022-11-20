@@ -11,6 +11,7 @@ public class CustomGameValidator {
 
     /**
      * Checks if a new custom maze is valid
+     *
      * @param maze the maze to check
      * @return whether the maze is valid or not
      */
@@ -26,6 +27,7 @@ public class CustomGameValidator {
 
     /**
      * Checks if a maze name is unique
+     *
      * @param name the maze name to check
      * @return whether the name is unique or not
      */

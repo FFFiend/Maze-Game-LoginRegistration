@@ -61,6 +61,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
 
     /**
      * Retrieve all stored custom mazes and sort them alphabetically
+     *
      * @return an ArrayList of all the stored custom mazes
      */
     private String[] getMazes(){
@@ -79,8 +80,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     }
 
     /**
-     * Display all the actions a user can take involving custom mazes
-     * Currently, this is only creating them
+     * Display all the actions a user can take involving custom mazes. Currently, this is only creating them
      */
     private void displayCustomOptions(){
         JButton editMazeButton = new JButton("create a new maze");

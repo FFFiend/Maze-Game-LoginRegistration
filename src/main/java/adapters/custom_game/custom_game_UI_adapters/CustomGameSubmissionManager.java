@@ -19,6 +19,7 @@ public class CustomGameSubmissionManager implements ActionListener {
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
      * appropriate panels in response.
+     *
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
      */
@@ -30,6 +31,7 @@ public class CustomGameSubmissionManager implements ActionListener {
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
      * appropriate panels in response.
+     *
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
      */
@@ -41,6 +43,7 @@ public class CustomGameSubmissionManager implements ActionListener {
 
     /**
      * Signal that the TempMaze being edited is ready for verification and storage
+     *
      * @param e represents a click on a button in one of the custom maze panels
      */
     @Override
@@ -62,6 +65,7 @@ public class CustomGameSubmissionManager implements ActionListener {
     /**
      * Calls and sends a maze to the verifier. If it is valid, it calls the presenter to return the User to the custom
      * game main menu. If not, it shows the user a panel warning that their input was invalid.
+     *
      * @param maze the maze just created in the editor
      */
     public void verifyEditorInput(EditorTile[][] maze){
