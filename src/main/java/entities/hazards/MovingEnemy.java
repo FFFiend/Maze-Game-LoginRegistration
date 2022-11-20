@@ -18,6 +18,8 @@ public abstract class MovingEnemy extends Enemy {
      */
     public MovingEnemy(int startX, int startY) {
         super(startX, startY);
+        // better default image for moving enemies.
+        setImageByName("moving-enemy");
         currX = startX;
         currY = startY;
     }

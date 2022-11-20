@@ -1,9 +1,18 @@
 package entities.hazards;
 
+import entities.default_game.Entity;
+import entities.default_game.IDrawOutputBoundary;
+
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
+
 /**
  * An obstacle in a maze
  */
-public class Obstacle {
+public class Obstacle extends Entity {
     /**
      * The x position of the obstacle.
      */
@@ -20,6 +29,11 @@ public class Obstacle {
      * The height of the obstacle, in tiles.
      */
     private int height;
+    /**
+     * The image which the obstacle should be drawn with.
+     */
+    private BufferedImage image;
+
 
     /**
      * An exception indicating that the obstacle has been set to an invalid (zero or negative) size.
@@ -80,6 +94,7 @@ public class Obstacle {
         checkHeight(height);
         this.width = width;
         this.height = height;
+        setImageByName("rock");
     }
 
     /**
@@ -87,6 +102,31 @@ public class Obstacle {
      */
     public Obstacle(int x, int y) {
         this(x, y, 1, 1);
+    }
+
+
+    /**
+     * Set te image used to draw the obstacle.
+     *
+     * @param name The file name of the image not including the .png extension.
+     *             Currently, this should be "brick-wall", "tree", or "rock".
+     */
+    public void setImageByName(String name) {
+        InputStream imageStream = getClass().getClassLoader().getResourceAsStream("hazards/" + name + ".png");
+        if (imageStream != null) {
+            try {
+                setImage(ImageIO.read(imageStream));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * Set the image used to draw the obstacle.
+     */
+    public void setImage(BufferedImage image) {
+        this.image = image;
     }
 
     /**
@@ -153,5 +193,20 @@ public class Obstacle {
     public boolean blocksTile(int pointX, int pointY) {
         return pointX >= x && pointY >= y && pointX < x + width && pointY < y + height;
 
+    }
+
+    /** Draw the obstacle. */
+    public void draw(IDrawOutputBoundary d) {
+        int tileSize = d.getTileSize();
+        Graphics2D g2 = d.graphics();
+        int xPixels = getX() * tileSize;
+        int yPixels = getY() * tileSize;
+        if (image != null) {
+            g2.drawImage(image, xPixels, yPixels, tileSize, tileSize, null);
+        } else {
+            // Failed to load image. Use a rectangle as a fallback.
+            g2.setColor(Color.BLACK);
+            g2.drawRect(xPixels, yPixels, tileSize, tileSize);
+        }
     }
 }

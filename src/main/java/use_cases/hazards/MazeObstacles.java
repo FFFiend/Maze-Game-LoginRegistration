@@ -1,5 +1,6 @@
 package use_cases.hazards;
 
+import entities.default_game.IDrawOutputBoundary;
 import entities.hazards.Obstacle;
 
 import java.util.ArrayList;
@@ -55,5 +56,12 @@ public class MazeObstacles {
         Obstacle obstacle = get(x, y);
         if (obstacle != null)
             obstacles.remove(obstacle);
+    }
+
+    /** Draw all obstacles in the maze. */
+    public void draw(IDrawOutputBoundary d) {
+        for (Obstacle obstacle: obstacles) {
+            obstacle.draw(d);
+        }
     }
 }
