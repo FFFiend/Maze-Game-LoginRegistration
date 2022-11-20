@@ -2,12 +2,15 @@ package adapters.custom_game.custom_game_UI_adapters;
 
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 import adapters.custom_game.custom_game_file_adapters.TempMaze;
-import use_cases.custom_game.custom_game_inner_file_management.CustomGameValidator;
+import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
 
+/**
+ * Handles clicks to all buttons that should take the user to a new panel to and from the custom maze section
+ */
 public class CustomGameSubmissionManager implements ActionListener {
     private final String PANEL;
     private final ICustomGamePresenter presenter;
@@ -49,9 +52,7 @@ public class CustomGameSubmissionManager implements ActionListener {
      * @param maze the maze just created in the editor
      */
     public void verifyEditorInput(EditorTile[][] maze){
-        CustomGameValidator validator = new CustomGameValidator(maze);
-
-        if (validator.verify()){
+        if (CustomGameValidator.verifyMaze(maze)){
             //TODO should display a popup to say the maze was written
             presenter.callCustomGamePanel("CustomGameMainPanel");
         }
