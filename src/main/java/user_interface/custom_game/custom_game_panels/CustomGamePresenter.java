@@ -1,6 +1,7 @@
 package user_interface.custom_game.custom_game_panels;
 
 import adapters.custom_game.custom_game_UI_adapters.ICustomGamePresenter;
+
 import java.util.Objects;
 
 /**
@@ -39,13 +40,4 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
     public void callCustomGamePanel () {
         new CustomGameMainPanel();
     }
-
-
-    /**
-     * Create a TempMaze object to store a custom maze while it is being made
-     */
-    public void createTempMaze(){
-        //void until the initializer is done
-    }
-
 }

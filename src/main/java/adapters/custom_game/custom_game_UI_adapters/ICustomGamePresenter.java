@@ -8,6 +8,4 @@ public interface ICustomGamePresenter {
     void callCustomGamePanel();
 
     void callCustomGamePanel(String panelName);
-
-    void createTempMaze();
 }

@@ -18,8 +18,8 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      */
     public void storeNewCustomMaze(){
         try {
-            String mazeName = "customMazes/New Maze"; //Temporary line to make this runnable
-            //String mazeName = TempMaze.getMazeTitle(); //will be replaced with this once the initializer is done
+            //String mazeName = "customMazes/New Maze"; //Temporary line to make this runnable
+            String mazeName = "customMazes/" + TempMaze.getMazeTitle();
             File mazeFile = new File(mazeName);
             FileWriter mazeWriter = new FileWriter(mazeFile);
 

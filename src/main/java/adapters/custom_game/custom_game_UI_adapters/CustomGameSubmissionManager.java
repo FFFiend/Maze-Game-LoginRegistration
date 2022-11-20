@@ -82,13 +82,23 @@ public class CustomGameSubmissionManager implements ActionListener {
      * Calls and sends maze initializer values to the verifier. If it is valid, it calls the presenter to take the
      * User to the editor. If not, it shows the user a panel warning that their input was invalid.
      */
-    public void verifyInitializerInput (){
-        if (CustomGameValidator.verifyName(initializer.getMazeName())){
+    public void verifyInitializerInput(){
+        String mazeName = initializer.getMazeName();
+        if (CustomGameValidator.verifyName(mazeName)){
             presenter.callCustomGamePanel("CustomGameEditorPanel");
             //if more options are included in the initializer, more checks will be added
+            prepareTempMaze(mazeName);
         }
         else {
             presenter.callCustomGamePanel("customGameInvalidWarnPanel");
         }
+    }
+
+    /**
+     * Sends information from the initializer to TempMaze
+     */
+    public void prepareTempMaze(String mazeName){
+        TempMaze.setMazeTitle(mazeName);
+        //TempMaze.setMazeCreator();
     }
 }

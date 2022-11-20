@@ -8,7 +8,6 @@ public class TempMaze {
     private static String mazeTitle;
     private static String mazeCreator;
 
-
     /**
      * Redefine tileGrid with dimensions
      *
@@ -68,15 +67,6 @@ public class TempMaze {
      */
     public static EditorTile[][] getMaze(){
         return TempMaze.tileGrid;
-    }
-
-    /**
-     * @param x the x position of the Tile to be retrieved
-     * @param y the y position of the Tile to be retrieved
-     * @return the EditorTile at position (x, y)
-     * */
-    public static EditorTile getTile(int x, int y){
-        return tileGrid[x][y];
     }
 
     /**
