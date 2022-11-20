@@ -1,5 +1,5 @@
 import user_interface.custom_game.custom_game_screens.CustomGamePresenter;
-import user_interface.default_game.GamePanelUI;
+import user_interface.default_game.GamePanel;
 import user_interface.default_game.GlobalFrame;
 
 /**
@@ -36,7 +36,7 @@ public class Main {
      * Temporary access to the default game
      **/
     private static void tempDefaultGameRunner(){
-        GamePanelUI gamePanelUI = new GamePanelUI();
+        GamePanel gamePanelUI = new GamePanel();
         gamePanelUI.createGamePanelUI();
     }
 }

@@ -8,7 +8,7 @@ import javax.swing.*;
 /**
  * Responsible for what the user sees
  **/
-public class GamePanelUI {
+public class GamePanel {
     /**
      * Create a new GamePanelUI
      **/
