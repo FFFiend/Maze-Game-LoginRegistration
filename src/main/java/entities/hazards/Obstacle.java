@@ -198,13 +198,15 @@ public class Obstacle extends Entity {
     /** Draw the obstacle. */
     public void draw(IDrawOutputBoundary d) {
         int tileSize = d.getTileSize();
+        Graphics2D g2 = d.graphics();
         int xPixels = getX() * tileSize;
         int yPixels = getY() * tileSize;
         if (image != null) {
-            d.drawImage(image, xPixels, yPixels, tileSize, tileSize);
+            g2.drawImage(image, xPixels, yPixels, tileSize, tileSize, null);
         } else {
             // Failed to load image. Use a rectangle as a fallback.
-            d.drawRect(xPixels, yPixels, tileSize, tileSize, Color.BLACK);
+            g2.setColor(Color.BLACK);
+            g2.drawRect(xPixels, yPixels, tileSize, tileSize);
         }
     }
 }

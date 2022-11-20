@@ -4,8 +4,8 @@ import entities.default_game.Entity;
 import entities.default_game.IDrawOutputBoundary;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.awt.Color;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -66,14 +66,16 @@ public abstract class Enemy extends Entity {
      * Draw an enemy.
      */
     public void draw(IDrawOutputBoundary d) {
+        Graphics2D g2 = d.graphics();
         int tileSize = d.getTileSize();
         int xPixels = getX() * tileSize;
         int yPixels = getY() * tileSize;
         if (image != null) {
-            d.drawImage(image, xPixels, yPixels, tileSize, tileSize);
+            g2.drawImage(image, xPixels, yPixels, tileSize, tileSize, null);
         } else {
             // Failed to load image. Use a rectangle as a fallback.
-            d.drawRect(xPixels, yPixels, tileSize, tileSize, Color.RED);
+            g2.setColor(Color.RED);
+            g2.drawRect(xPixels, yPixels, tileSize, tileSize);
         }
     }
 
