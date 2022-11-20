@@ -37,6 +37,6 @@ public class Main {
      **/
     private static void tempDefaultGameRunner(){
         GamePanel gamePanelUI = new GamePanel();
-        gamePanelUI.createGamePanelUI();
+        gamePanelUI.createGamePanel();
     }
 }

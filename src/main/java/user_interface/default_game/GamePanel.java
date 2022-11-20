@@ -12,7 +12,7 @@ public class GamePanel {
     /**
      * Create a new GamePanelUI
      **/
-    public void createGamePanelUI() {
+    public void createGamePanel() {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
