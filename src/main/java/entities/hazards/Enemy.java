@@ -1,7 +1,5 @@
 package entities.hazards;
 
-import adapters.hazards.IHazardRequestModel;
-
 /**
  * The abstract class which all enemies inherit from.
  */
@@ -16,7 +14,9 @@ public abstract class Enemy {
     private int startY;
 
     /**
-     * Create a new enemy with the given starting position.
+     * Create a new enemy.
+     * @param startX The starting X position
+     * @param startY The starting Y position
      */
     public Enemy(int startX, int startY) {
         setStartX(startX);
@@ -31,7 +31,7 @@ public abstract class Enemy {
     /**
      * Update the enemy. Called at a fixed interval (e.g. every 0.5 seconds).
      */
-    public abstract void update();
+    public abstract void update(IEnemyRequestModel request);
 
     /**
      * Get the current x position of the enemy.
