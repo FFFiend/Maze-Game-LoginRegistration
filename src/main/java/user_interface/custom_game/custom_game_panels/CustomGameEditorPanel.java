@@ -1,19 +1,21 @@
-package user_interface.custom_game.custom_game_screens;
+package user_interface.custom_game.custom_game_panels;
+
+import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
 
 import javax.swing.*;
 import java.awt.*;
 
 class CustomGameEditorPanel implements ICustomGamePanel {
-    //extends Screens
+    //extends Panels
 
     /**
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
      * and returning to previous menus
      */
     protected CustomGameEditorPanel (){
-        //will use Screens' methods to draw and CustomGameScreenInterface for the features specific to custom game
-        //screens once those are implemented
-        //for now, this is  temporarily based on Rene's GamePanel code for visualization of the editor
+        //will use Panels' methods to draw and CustomGamePanelInterface for the features specific to custom game
+        //panels once those are implemented
+        //for now, this is temporarily based on Rene's GamePanel code for visualization of the editor
         final int SPRITE_TILE_SIZE = 16;
         final int SCALE = 3; // may be changed to an unfixed variable later
         final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
@@ -23,28 +25,27 @@ class CustomGameEditorPanel implements ICustomGamePanel {
         final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
 
         EditorGrid editorGrid = new EditorGrid(MAX_PANEL_ROW, MAX_PANEL_COL, TILE_SIZE);
-        //EditorSidebar editorSidebar = new EditorSidebar(MAX_PANEL_COL, MAX_PANEL_ROW);
 
         JFrame editorFrame = new JFrame("Maze Editor");
-        editorFrame.setLayout(new FlowLayout());
+        editorFrame.setLayout(new BorderLayout());
         editorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         editorFrame.setResizable(false);
         editorFrame.setLocationRelativeTo(null);
         editorFrame.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         editorFrame.setBackground(Color.black);
 
-        editorFrame.add(editorGrid);
-        //JTextField staminaField = new JTextField("stamina");
-        //editorFrame.add(staminaField);
-        //editorFrame.add(editorSidebar);
+        editorFrame.add(editorGrid, BorderLayout.CENTER);
 
-        //editorSidebar.setMinimumSize(new Dimension(MAX_PANEL_COL - MAX_PANEL_ROW, MAX_PANEL_ROW));
+//        JTextField staminaField = new JTextField("stamina");
+//        editorFrame.add(staminaField, BorderLayout.LINE_END);
+//        or combine with the submission button to use PAGE_END for both
+
+        JButton submissionButton = new JButton("submit");
+        submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameEditorPanel", new CustomGamePresenter()));
+        editorFrame.add(submissionButton, BorderLayout.PAGE_END);
 
         editorFrame.pack();
         editorFrame.setLocationByPlatform(true);
         editorFrame.setVisible(true);
-
     }
-
-
 }
