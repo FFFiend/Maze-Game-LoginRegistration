@@ -27,7 +27,8 @@ public class EditorOnClick extends MouseAdapter {
     public void mousePressed(MouseEvent click){
         if (click.getButton() == MouseEvent.BUTTON1){
             this.TILE.tileLeftClick();
-        } else if (click.getButton() == MouseEvent.BUTTON3) {
+        }
+        else if (click.getButton() == MouseEvent.BUTTON3) {
             this.TILE.tileRightClick(rightClickCount);
             this.rightClickCount++;
             if (rightClickCount == EditorTile.secondaryMenuItemsLen){
