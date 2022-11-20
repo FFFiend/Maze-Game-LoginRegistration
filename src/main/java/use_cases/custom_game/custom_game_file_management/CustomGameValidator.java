@@ -3,6 +3,9 @@ package use_cases.custom_game.custom_game_file_management;
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
+import java.io.File;
+import java.util.ArrayList;
+
 /**
  * Responsible for verifying input the user wants to store: maze names from the initializer panel and mazes from the
  * editor panel
@@ -32,7 +35,13 @@ public class CustomGameValidator {
      * @return whether the name is unique or not
      */
     public static boolean verifyName(String name){
-        //TODO - when the initializer is made
-        return true;
+        File[] mazeFileList = new File("customMazes/").listFiles();
+        ArrayList<String> mazeList = new ArrayList<>();
+
+        assert mazeFileList != null;
+        for (File file : mazeFileList) {
+            mazeList.add(file.getName());
+        }
+        return !(mazeList.contains(name));
     }
 }
