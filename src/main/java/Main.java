@@ -1,5 +1,6 @@
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
+import user_interface.default_game.GamePanel;
 
 /**
  * Run the game
