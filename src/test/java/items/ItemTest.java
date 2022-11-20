@@ -91,6 +91,6 @@ public class ItemTest {
         IDrawOutputBoundary draw48 = new TestDrawRequestModel();
         Assertions.assertEquals(48, draw48.getTileSize());
         item.draw(draw48);
-        Assertions.assertEquals(Color.WHITE , draw48.graphics().getColor());
+        Assertions.assertEquals(Color.WHITE, draw48.graphics().getColor());
     }
 }

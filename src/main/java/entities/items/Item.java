@@ -35,6 +35,7 @@ public class Item extends Entity {
 
 
     // METHODS
+
     /**
      * Create a new item with the given position.
      */
@@ -145,5 +146,4 @@ public class Item extends Entity {
             g2.drawRect(xPixels, yPixels, tileSize, tileSize);
         }
     }
-
 }
