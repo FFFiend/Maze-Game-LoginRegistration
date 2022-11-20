@@ -32,6 +32,7 @@ public class Main {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
         tempPresenter.callCustomGamePanel("CustomGameEditorPanel");
     }
+
     /**
      * Temporary access to the default game
      **/
