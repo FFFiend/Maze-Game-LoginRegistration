@@ -5,6 +5,9 @@ import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * UI to allow the user to build their own maze
+ */
 class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     private final JFrame editorFrame = new JFrame("Maze Editor");
     private final int SPRITE_TILE_SIZE = 16;

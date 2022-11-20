@@ -1,5 +1,8 @@
 package user_interface.custom_game.custom_game_panels;
 
+/**
+ * UI to collect necessary information for a user start building a custom maze
+ */
 class CustomGameInitializerPanel implements ICustomGamePanel {
     //extends Panels
 

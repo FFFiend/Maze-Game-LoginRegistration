@@ -7,6 +7,9 @@ import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
 
+/**
+ * Displays the game customization main menu. Allows the user to select a custom maze to play or build a new one
+ */
 class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     private final JFrame FRAME = new JFrame("custom main frame");
 

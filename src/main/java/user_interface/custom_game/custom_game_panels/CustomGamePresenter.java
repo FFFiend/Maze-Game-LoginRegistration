@@ -3,6 +3,9 @@ package user_interface.custom_game.custom_game_panels;
 import adapters.custom_game.custom_game_UI_adapters.ICustomGamePresenter;
 import java.util.Objects;
 
+/**
+ * Handles switching between custom maze UI panels
+ */
 public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePanel {
 
     /**

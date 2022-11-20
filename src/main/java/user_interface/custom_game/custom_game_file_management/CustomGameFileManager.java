@@ -1,12 +1,15 @@
 package user_interface.custom_game.custom_game_file_management;
 
 import adapters.custom_game.custom_game_file_adapters.TempMaze;
-import use_cases.custom_game.custom_game_inner_file_management.ICustomGameFileManager;
+import use_cases.custom_game.custom_game_file_management.ICustomGameFileManager;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/**
+ * Handles all reading and writing to the files used by the customization feature
+ */
 public class CustomGameFileManager implements ICustomGameFileManager{
 
     /**
