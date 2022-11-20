@@ -1,5 +1,6 @@
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
+import user_interface.default_game.GamePanel;
 
 /**
  * Run the game
@@ -12,7 +13,7 @@ public class Main {
      */
     public static void main(String[] args) {
         setupGame();
-        tempEditorRunner();
+        setupCustomMazeMenu();
     }
 
     /**
@@ -21,13 +22,22 @@ public class Main {
     private static void setupGame() {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setWelcomePanel();
+        tempDefaultGameRunner();
     }
 
     /**
-     * Temporary access to the custom maze editor and the file manager's storage functionality
+     * Temporary access to the custom maze main menu
      **/
-    private static void tempEditorRunner() {
+    private static void setupCustomMazeMenu () {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
-        tempPresenter.callCustomGamePanel("CustomGameEditorPanel");
+        tempPresenter.callCustomGamePanel();
+    }
+
+    /**
+     * Temporary access to the default game
+     **/
+    private static void tempDefaultGameRunner(){
+        GamePanel gamePanelUI = new GamePanel();
+        gamePanelUI.createGamePanel();
     }
 }
