@@ -9,5 +9,7 @@ public interface ICustomGamePresenter {
 
     void callCustomGamePanel(String panelName);
 
-    void createTempMaze();
+    void callCustomPopup(String message, String panel);
+
+    void callCustomPopup(String message);
 }
