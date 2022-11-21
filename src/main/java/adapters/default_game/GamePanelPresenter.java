@@ -21,7 +21,7 @@ public class GamePanelPresenter extends JPanel implements Runnable {
     final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
     public Thread gameThread;
-    private final int FPS = 60; // updates the screen 60 times per second
+    private final int FPS = 5; // updates the screen 5 times per second
     private int playerX;
     private int playerY;
     MazeItems items = new MazeItems();
@@ -35,8 +35,8 @@ public class GamePanelPresenter extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        UpdatePlayer.setPlayerX(100);
-        UpdatePlayer.setPlayerY(100);
+        UpdatePlayer.setPlayerX(TILE_SIZE);
+        UpdatePlayer.setPlayerY(TILE_SIZE);
     }
 
     /**
