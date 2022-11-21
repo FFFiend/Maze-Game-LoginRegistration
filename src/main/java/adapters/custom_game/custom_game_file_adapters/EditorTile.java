@@ -8,6 +8,7 @@ import java.util.Objects;
 
 /**
  * A tile of an EditorGrid that stores the asset it contains
+ * EditorTiles are also stored in TempMaze for conversion to a text file (storage)
  */
 public class EditorTile extends JLabel {
     private final int X;
@@ -28,6 +29,7 @@ public class EditorTile extends JLabel {
 
     /**
      * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
+     *
      * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
      * @param y the y position of the Tile on the EditorGrid and position in the array TempMaze
      */
@@ -46,6 +48,7 @@ public class EditorTile extends JLabel {
 
     /**
      * Helper method to replace the image of a tile with a new one
+     *
      * @param name The name of the image
      */
     private void setTileImage(String name){
@@ -62,6 +65,7 @@ public class EditorTile extends JLabel {
 
     /**
      * Make an EditorTile's string representation its name (empty, obstacle, enemy etc.)
+     *
      * @return the name (state) of an EditorTile
      */
     public String toString(){
@@ -71,6 +75,7 @@ public class EditorTile extends JLabel {
     /**
      * Returns a number representing the state a tile is in (empty, obstacle, start location etc.) for use when storing
      * mazes in txt files
+     *
      * @return the number representing a tile state
      */
     public int getNumCode(){
@@ -79,6 +84,7 @@ public class EditorTile extends JLabel {
 
     /**
      * Change the name and numeric code of an EditorTile and calls setTileImage to change its image to reflect that
+     *
      * @param name the new state an EditorTile is in
      */
     public void changeState(String name) {
@@ -128,6 +134,7 @@ public class EditorTile extends JLabel {
     /**
      * Reaction to a right click on an EditorTile. Each tile cycles through secondaryMenuItems on right clicks by using
      * index
+     *
      * @param index the index of secondaryMenuItems, should be incremented by one on each call
      */
     public void tileRightClick(int index){

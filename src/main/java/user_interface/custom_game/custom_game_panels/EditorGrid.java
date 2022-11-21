@@ -15,6 +15,7 @@ class EditorGrid extends JPanel{
 
     /**
      * A grid for building a custom maze and one of the components to display on CustomGameEditorPanel
+     *
      * @param rows the number of rows there will be in this new maze
      * @param cols the number of columns there will be in this new maze
      * @param tileSize the height and width of a tile's display

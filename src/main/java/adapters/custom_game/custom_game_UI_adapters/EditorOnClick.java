@@ -13,6 +13,7 @@ public class EditorOnClick extends MouseAdapter {
 
     /**
      * Creates a new mouse listener and links it to the EditorTile it responds to
+     *
      * @param tile the EditorTile this mouse listener will be assigned to
      */
     public EditorOnClick (EditorTile tile){
@@ -21,6 +22,7 @@ public class EditorOnClick extends MouseAdapter {
 
     /**
      * Reacts to left and right mouse clicks on an EditorTile
+     *
      * @param click the event to be processed
      */
     @Override
