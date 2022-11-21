@@ -20,14 +20,14 @@ class EditorGrid extends JPanel{
      * @param cols the number of columns there will be in this new maze
      * @param tileSize the height and width of a tile's display
      */
-    public EditorGrid (int rows, int cols, int tileSize){
+    public EditorGrid (int rows, int cols, int tileSize) {
         TempMaze.setGridSize(rows, cols);
 
         setLayout(new GridLayout(rows, cols, 0, 0));
         Dimension tileDimensions = new Dimension(tileSize, tileSize);
 
-        for (int x = 0; x < rows; x++){
-            for (int y = 0; y < cols; y++){
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
                 EditorTile tile = new EditorTile(x, y);
                 TempMaze.addTile(x, y, tile);
                 tile.addMouseListener(new EditorOnClick(tile));

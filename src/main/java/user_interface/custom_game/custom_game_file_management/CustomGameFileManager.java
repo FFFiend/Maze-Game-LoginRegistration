@@ -16,7 +16,7 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      * Store a custom maze in customMazes.txt
      * (assumes the maze has already been verified to be both writable and solvable)
      */
-    public void storeNewCustomMaze(){
+    public void storeNewCustomMaze() {
         try {
             //String mazeName = "customMazes/New Maze"; //Temporary line to make this runnable
             String mazeName = "customMazes/" + TempMaze.getMazeTitle();

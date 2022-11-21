@@ -33,7 +33,7 @@ public class EditorTile extends JLabel {
      * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
      * @param y the y position of the Tile on the EditorGrid and position in the array TempMaze
      */
-    public EditorTile (int x, int y){
+    public EditorTile (int x, int y) {
         this.X = x;
         this.Y = y;
         this.name = "empty";
@@ -51,11 +51,12 @@ public class EditorTile extends JLabel {
      *
      * @param name The name of the image
      */
-    private void setTileImage(String name){
+    private void setTileImage(String name) {
         {
             try {
                 BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("custom/" + name));
                 Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
+                // Credit to Seamus for the scaling lines
                 setIcon(new ImageIcon(scaledImage));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,7 +69,7 @@ public class EditorTile extends JLabel {
      *
      * @return the name (state) of an EditorTile
      */
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 
@@ -78,7 +79,7 @@ public class EditorTile extends JLabel {
      *
      * @return the number representing a tile state
      */
-    public int getNumCode(){
+    public int getNumCode() {
         return this.numCode;
     }
 
@@ -118,13 +119,13 @@ public class EditorTile extends JLabel {
      * Reaction to a left click on an EditorTile. If the tile was a obstacle or represented any secondary asset (enemy,
      * photons, start location etc.) it will now represent an empty tile
      */
-    public void tileLeftClick(){
+    public void tileLeftClick() {
         //use !equals so that other tile states can be converted to a obstacle or become empty
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
             this.numCode = EMPTY_NUM_CODE;
-        } else if (!Objects.equals(this.name, "obstacle")){
+        } else if (!Objects.equals(this.name, "obstacle")) {
             setTileImage("obstacle.png");
             this.name = "obstacle";
             this.numCode = OBSTACLE_NUM_CODE;
@@ -137,7 +138,7 @@ public class EditorTile extends JLabel {
      *
      * @param index the index of secondaryMenuItems, should be incremented by one on each call
      */
-    public void tileRightClick(int index){
+    public void tileRightClick(int index) {
         changeState(EditorTile.secondaryMenuItems[index]);
     }
 }

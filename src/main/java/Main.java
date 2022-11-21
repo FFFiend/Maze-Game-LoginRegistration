@@ -28,7 +28,7 @@ public class Main {
     /**
      * Temporary access to the custom maze main menu
      **/
-    private static void setupCustomMazeMenu () {
+    private static void setupCustomMazeMenu() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
         tempPresenter.callCustomGamePanel();
     }

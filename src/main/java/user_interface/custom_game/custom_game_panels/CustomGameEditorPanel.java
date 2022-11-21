@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
+import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
      * and returning to previous menus
      */
-    protected CustomGameEditorPanel (){
+    protected CustomGameEditorPanel() {
         final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
         final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
 
@@ -43,7 +43,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     /**
      * Add the editor to the panel
      */
-    private void displayEditor(){
+    private void displayEditor() {
         EditorGrid editorGrid = new EditorGrid(MAX_PANEL_ROW, MAX_PANEL_COL, TILE_SIZE);
         editorFrame.add(editorGrid, BorderLayout.CENTER);
     }
@@ -51,11 +51,11 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     /**
      * Add the submission and back buttons to the panel
      */
-    private void displayButtons(){
+    private void displayButtons() {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JButton submissionButton = new JButton("submit");
-        submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameEditorPanel", new CustomGamePresenter()));
+        submissionButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameEditorPanel", new CustomGamePresenter()));
 
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);

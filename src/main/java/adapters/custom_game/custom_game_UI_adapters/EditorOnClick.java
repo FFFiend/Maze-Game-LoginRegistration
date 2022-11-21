@@ -16,7 +16,7 @@ public class EditorOnClick extends MouseAdapter {
      *
      * @param tile the EditorTile this mouse listener will be assigned to
      */
-    public EditorOnClick (EditorTile tile){
+    public EditorOnClick (EditorTile tile) {
         this.TILE = tile;
     }
 
@@ -26,14 +26,14 @@ public class EditorOnClick extends MouseAdapter {
      * @param click the event to be processed
      */
     @Override
-    public void mousePressed(MouseEvent click){
-        if (click.getButton() == MouseEvent.BUTTON1){
+    public void mousePressed(MouseEvent click) {
+        if (click.getButton() == MouseEvent.BUTTON1) {
             this.TILE.tileLeftClick();
         }
         else if (click.getButton() == MouseEvent.BUTTON3) {
             this.TILE.tileRightClick(rightClickCount);
             this.rightClickCount++;
-            if (rightClickCount == EditorTile.secondaryMenuItemsLen){
+            if (rightClickCount == EditorTile.secondaryMenuItemsLen) {
                 rightClickCount = 0;
             }
         }

@@ -18,7 +18,7 @@ public class CustomGameValidator {
      * @param maze the maze to check
      * @return whether the maze is valid or not
      */
-    public static boolean verifyMaze(EditorTile[][] maze){
+    public static boolean verifyMaze(EditorTile[][] maze) {
         //run tests and if they pass, call:
         CustomGameFileManager fileManager = new CustomGameFileManager();
         fileManager.storeNewCustomMaze();
@@ -34,7 +34,7 @@ public class CustomGameValidator {
      * @param name the maze name to check
      * @return whether the name is unique or not
      */
-    public static boolean verifyName(String name){
+    public static boolean verifyName(String name) {
         File[] mazeFileList = new File("customMazes/").listFiles();
         ArrayList<String> mazeList = new ArrayList<>();
 

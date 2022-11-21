@@ -13,13 +13,13 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      * Call the constructors of one of the custom game panels
      */
     public void callCustomGamePanel(String panelName) {
-        if (Objects.equals(panelName, "CustomGameMainPanel")){
+        if (Objects.equals(panelName, "CustomGameMainPanel")) {
             new CustomGameMainPanel();
         }
-        else if (Objects.equals(panelName, "CustomGameInitializerPanel")){
+        else if (Objects.equals(panelName, "CustomGameInitializerPanel")) {
             new CustomGameInitializerPanel();
         }
-        else if (Objects.equals(panelName, "CustomGameEditorPanel")){
+        else if (Objects.equals(panelName, "CustomGameEditorPanel")) {
             new CustomGameEditorPanel();
         }
         else {
@@ -42,7 +42,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      * @param message the message to display
      * @param panel the panel to go back to if the user wants to fix the invalid input
      */
-    public void callCustomPopup(String message, String panel){
+    public void callCustomPopup(String message, String panel) {
         new CustomGamePopup(message, panel);
     }
 
@@ -51,7 +51,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      *
      * @param message the message to display
      */
-    public void callCustomPopup(String message){
+    public void callCustomPopup(String message) {
         new CustomGamePopup(message);
     }
 }

@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
+import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
 import adapters.custom_game.custom_game_UI_adapters.ICustomInitializerInput;
 import user_interface.login_leaderboard.Panel;
 
@@ -19,7 +19,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     /**
      * Displays the panel just before the editor to initialize the editing process
      */
-    protected CustomGameInitializerPanel(){
+    protected CustomGameInitializerPanel() {
         // this.build();
 
         // this will change once custom mazes are linked to the main game and GlobalFrame is done
@@ -39,7 +39,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     /**
      * Display the initializer section title
      */
-    private void displayHeader(){
+    private void displayHeader() {
         JLabel header = new JLabel("Initialize your maze", SwingConstants.CENTER);
         labelSet.add(header);
         labelFormat(labelSet);
@@ -51,7 +51,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
      * Display the choices users have to make before they can start building their maze.
      * For now, this is just the maze name
      */
-    private void displayInitializerSelectors (){
+    private void displayInitializerSelectors() {
         JPanel middlePanel = new JPanel(new GridLayout(3, 1));
 
         JLabel sizeField = new JLabel("size: 12 x 16");
@@ -67,11 +67,11 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     /**
      * Add the submission and back buttons to the panel
      */
-    private void displaySubmissionButton(){
+    private void displaySubmissionButton() {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JButton submissionButton = new JButton("submit");
-        submissionButton.addActionListener(new CustomGameSubmissionManager("CustomGameInitializerPanel", new CustomGamePresenter(), this));
+        submissionButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameInitializerPanel", new CustomGamePresenter(), this));
 
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);
@@ -84,7 +84,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
      *
      * @return what the user wants to name their maze
      */
-    public String getMazeName(){
+    public String getMazeName() {
         return nameField.getText();
     }
 }
