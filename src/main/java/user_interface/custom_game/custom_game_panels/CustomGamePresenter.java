@@ -38,6 +38,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
 
     /**
      * Displays a popup informing the user that one of their inputs was invalid
+     *
      * @param message the message to display
      * @param panel the panel to go back to if the user wants to fix the invalid input
      */
@@ -47,6 +48,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
 
     /**
      * Displays a popup informing the user of something other than invalid input
+     *
      * @param message the message to display
      */
     public void callCustomPopup(String message){
