@@ -22,11 +22,6 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
         else if (Objects.equals(panelName, "CustomGameEditorPanel")){
             new CustomGameEditorPanel();
         }
-        else if (Objects.equals(panelName, "customGameInvalidWarnPanel")){
-            System.out.println("To do!");
-            //TODO display a popup with back buttons and add overloaded method so you can add error message too
-            // and handle choices
-        }
         else {
             System.out.println("To do!");
             //TODO throw an error
@@ -37,7 +32,24 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      * Overloaded version of the above method allowing the main custom game panel to be the default should no parameter
      * be provided
      */
-    public void callCustomGamePanel () {
+    public void callCustomGamePanel() {
         new CustomGameMainPanel();
+    }
+
+    /**
+     * Displays a popup informing the user that one of their inputs was invalid
+     * @param message the message to display
+     * @param panel the panel to go back to if the user wants to fix the invalid input
+     */
+    public void callCustomPopup(String message, String panel){
+        new CustomGamePopup(message, panel);
+    }
+
+    /**
+     * Displays a popup informing the user of something other than invalid input
+     * @param message the message to display
+     */
+    public void callCustomPopup(String message){
+        new CustomGamePopup(message);
     }
 }

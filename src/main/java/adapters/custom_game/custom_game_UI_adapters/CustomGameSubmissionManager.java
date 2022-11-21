@@ -15,6 +15,7 @@ public class CustomGameSubmissionManager implements ActionListener {
     private final String PANEL;
     private final ICustomGamePresenter presenter;
     private ICustomInitializerInput initializer;
+    private String NEW_PANEL;
 
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
@@ -29,11 +30,12 @@ public class CustomGameSubmissionManager implements ActionListener {
     }
 
     /**
-     * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
-     * appropriate panels in response.
+     * Listens for clicks to buttons on the initializer panel, calls the verifier if necessary and calls the
+     * appropriate panels in response
      *
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
+     * @param initializer an instance of the initializer interface to allow retrieving of information on its text fields
      */
     public CustomGameSubmissionManager(String panel, ICustomGamePresenter presenter, ICustomInitializerInput initializer){
         this.PANEL = panel;
@@ -42,7 +44,21 @@ public class CustomGameSubmissionManager implements ActionListener {
     }
 
     /**
-     * Signal that the TempMaze being edited is ready for verification and storage
+     * Listens for clicks to return button on popups, requires its own constructor because popups can be called on multiple
+     * panels and can take the user to different places based on where they were called
+     *
+     * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
+     * @param presenter an instance of the presenter interface to display a new panel after verification
+     * @param newPanel the panel to go to
+     */
+    public CustomGameSubmissionManager(String panel, ICustomGamePresenter presenter, String newPanel){
+        this.PANEL = panel;
+        this.presenter = presenter;
+        this.NEW_PANEL = newPanel;
+    }
+
+    /**
+     * Given PANEL, decide where the user should be taken next
      *
      * @param e represents a click on a button in one of the custom maze panels
      */
@@ -57,8 +73,14 @@ public class CustomGameSubmissionManager implements ActionListener {
         else if (Objects.equals(PANEL, "toCustomMain")){
             presenter.callCustomGamePanel("CustomGameMainPanel");
         }
+        else if (Objects.equals(PANEL, "CustomGamePopup")){
+            presenter.callCustomGamePanel(NEW_PANEL);
+        }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")){
             verifyInitializerInput();
+        }
+        else{
+            //TODO raise an error
         }
     }
 
@@ -70,11 +92,11 @@ public class CustomGameSubmissionManager implements ActionListener {
      */
     public void verifyEditorInput(EditorTile[][] maze){
         if (CustomGameValidator.verifyMaze(maze)){
-            //TODO should display a popup to say the maze was written
             presenter.callCustomGamePanel("CustomGameMainPanel");
+            presenter.callCustomPopup("Maze stored successfully!");
         }
         else {
-            presenter.callCustomGamePanel("customGameInvalidWarnPanel");
+            presenter.callCustomPopup("This maze is not valid", "CustomGameInitializerPanel" );
         }
     }
 
@@ -84,13 +106,12 @@ public class CustomGameSubmissionManager implements ActionListener {
      */
     public void verifyInitializerInput(){
         String mazeName = initializer.getMazeName();
-        if (CustomGameValidator.verifyName(mazeName)){
-            presenter.callCustomGamePanel("CustomGameEditorPanel");
-            //if more options are included in the initializer, more checks will be added
-            prepareTempMaze(mazeName);
+        if (!CustomGameValidator.verifyName(mazeName)){
+            presenter.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
         }
-        else {
-            presenter.callCustomGamePanel("customGameInvalidWarnPanel");
+        else { //if more options are included in the initializer, more checks will be added
+            presenter.callCustomGamePanel("CustomGameEditorPanel");
+            prepareTempMaze(mazeName);
         }
     }
 
