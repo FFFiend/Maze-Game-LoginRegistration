@@ -26,7 +26,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
 
         //this will mostly be handled by Panel's methods later
         editorFrame.setLayout(new BorderLayout());
-        editorFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        editorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         editorFrame.setResizable(false);
         editorFrame.setLocationRelativeTo(null);
         editorFrame.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
@@ -41,7 +41,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     }
 
     /**
-     * add the editor to the panel
+     * Add the editor to the panel
      */
     private void displayEditor(){
         EditorGrid editorGrid = new EditorGrid(MAX_PANEL_ROW, MAX_PANEL_COL, TILE_SIZE);
@@ -49,7 +49,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     }
 
     /**
-     * add the submission and back buttons to the panel
+     * Add the submission and back buttons to the panel
      */
     private void displayButtons(){
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
@@ -59,7 +59,6 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
 
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);
-
         editorFrame.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

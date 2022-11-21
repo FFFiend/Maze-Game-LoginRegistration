@@ -3,6 +3,7 @@ import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
 import java.util.ArrayList;
@@ -11,22 +12,24 @@ import java.util.ArrayList;
  * Displays the game customization main menu. Allows the user to select a custom maze to play or build a new one
  */
 class CustomGameMainPanel extends Panel implements ICustomGamePanel {
-    private final JFrame FRAME = new JFrame("custom main frame");
+    private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
     /**
      * The first panel to be displayed on entering the custom maze section. Shows a list of custom mazes and a button
      * to take the user to the maze editor
      */
     protected CustomGameMainPanel (){
-        //        this.build();
+        // this.build();
 
-        //every this.tempMainFrame will be replaced by this once custom mazes are linked to the main game and the
-        // following section will be removed
-        this.FRAME.setSize(768, 576);
-        this.FRAME.setResizable(false);
-        this.FRAME.setVisible(true);
-        this.FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.FRAME.setLayout(new BorderLayout(10, 10));
+        // this will change once custom mazes are linked to the main game and GlobalFrame is done
+        JFrame FRAME = new JFrame("custom game main frame");
+        FRAME.setSize(768, 576);
+        FRAME.setResizable(false);
+        FRAME.setVisible(true);
+        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        this.CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
+        FRAME.setContentPane(this.CONTENT);
 
         displayTitle();
         listCustomMazes();
@@ -42,7 +45,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         labelSet.add(header);
         labelFormat(labelSet);
 
-        this.FRAME.add(header, BorderLayout.PAGE_START);
+        this.CONTENT.add(header, BorderLayout.PAGE_START);
     }
 
     /**
@@ -56,11 +59,12 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
 
         JScrollPane mazeListScroller = new JScrollPane(mazeListElement);
         mazeListScroller.setPreferredSize(new Dimension(250, 80));
-        this.FRAME.add(mazeListElement, BorderLayout.CENTER);
+        this.CONTENT.add(mazeListElement, BorderLayout.CENTER);
     }
 
     /**
      * Retrieve all stored custom mazes and sort them alphabetically
+     *
      * @return an ArrayList of all the stored custom mazes
      */
     private String[] getMazes(){
@@ -79,12 +83,11 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     }
 
     /**
-     * Display all the actions a user can take involving custom mazes
-     * Currently, this is only creating them
+     * Display all the actions a user can take involving custom mazes. Currently, this is only creating them
      */
     private void displayCustomOptions(){
         JButton editMazeButton = new JButton("create a new maze");
         editMazeButton.addActionListener(new CustomGameSubmissionManager("CustomGameMainPanel", new CustomGamePresenter()));
-        this.FRAME.add(editMazeButton, BorderLayout.PAGE_END);
+        this.CONTENT.add(editMazeButton, BorderLayout.PAGE_END);
     }
 }

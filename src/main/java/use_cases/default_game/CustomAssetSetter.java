@@ -1,5 +1,6 @@
 package use_cases.default_game;
 
+import entities.hazards.ChasingEnemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
 import entities.items.ItemBlackhole;
@@ -84,20 +85,32 @@ public class CustomAssetSetter {
         while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
             int assetNum = mazeAssetNum[col][row];  // go through each element in matrix
             switch (assetNum) {
+                case 0:
+                    // empty tile
+                    break;
                 case 1:
+                    // player?
+                case 2:
                     mazeHazards.addObstacle(new Obstacle(row, col));
                     break;
-                case 2:
+                case 3:
                     mazeHazards.addEnemy(new StationaryEnemy(row, col));
                     break;
-                case 3:
+                case 4:
+                    mazeHazards.addEnemy(new ChasingEnemy(row, col));
+                case 5:
+                    // blank
+                case 6:
+                    // blank
+                case 7:
                     mazeItems.add(new ItemKey(row, col));
                     break;
-                case 4:
+                case 8:
                     mazeItems.add(new ItemPhotons(row, col));
                     break;
-                case 5:
+                case 9:
                     mazeItems.add(new ItemBlackhole(row, col));
+                    break;
             }
             col++;
             if (col == MAX_PANEL_COL) {

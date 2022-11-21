@@ -8,9 +8,9 @@ public class TempMaze {
     private static String mazeTitle;
     private static String mazeCreator;
 
-
     /**
      * Redefine tileGrid with dimensions
+     *
      * @param rows the number of rows there will be in this new maze
      * @param cols the number of columns there will be in this new maze
      */
@@ -20,6 +20,7 @@ public class TempMaze {
 
     /**
      * Add a new Tile object to tile Grid
+     *
      * @param x the x position of the Tile to be added
      * @param y the y position of the Tile to be added
      * @param tile the Tile object to be added to tileGrid
@@ -31,6 +32,7 @@ public class TempMaze {
 
     /**
      * Sets the title of this TempMaze to be stored later in the custom maze text files
+     *
      * @param title the unique title of this TempMaze
      */
     public static void setMazeTitle(String title){
@@ -46,6 +48,7 @@ public class TempMaze {
 
     /**
      * Sets the title of this TempMaze to be stored later in the custom maze text files
+     *
      * @param creator the username of the user creating this TempMaze
      */
     public static void setMazeCreator(String creator){
@@ -67,16 +70,8 @@ public class TempMaze {
     }
 
     /**
-     * @param x the x position of the Tile to be retrieved
-     * @param y the y position of the Tile to be retrieved
-     * @return the EditorTile at position (x, y)
-     * */
-    public static EditorTile getTile(int x, int y){
-        return tileGrid[x][y];
-    }
-
-    /**
      * Get the number representing the Tile at (x, y) for storage in text files
+     *
      * @param x the x position of the Tile to be retrieved
      * @param y the y position of the Tile to be retrieved
      * @return the number representing the EditorTile at position (x, y)
