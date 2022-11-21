@@ -1,6 +1,5 @@
 import adapters.login_leaderboard.RegisterUserController;
-import use_cases.login_leaderboard.IFileInput;
-import use_cases.login_leaderboard.IInputBoundary;
+import use_cases.login_leaderboard.RegisterUserInputBoundary;
 import use_cases.login_leaderboard.RegisterUser;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
@@ -48,14 +47,14 @@ public class Main {
 
     private static void createUsecaseEngine(){
         // Usecase + adapters framework
-        IInputBoundary input;
-        input = new RegisterUser();
+        RegisterUserInputBoundary input = new RegisterUser();
         RegisterUserController controller = new RegisterUserController(input);
+
 
         // UI
         RegisterPanel output = new RegisterPanel();
         String[] arr;
-        arr = output.getInfo();
+        arr = output.getUserInfo();
         controller.performUseCase(arr[0], arr[1], arr[2]);
 
         // call register panel

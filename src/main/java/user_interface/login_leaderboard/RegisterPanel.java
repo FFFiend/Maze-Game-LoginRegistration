@@ -16,6 +16,15 @@ public class RegisterPanel extends Panel implements ActionListener {
     private final JPasswordField password;
     private final JTextField email;
 
+    private String passedUsername;
+
+    private String passedEmail;
+
+    private String passedPassword;
+
+    /***
+     * Builds the register panel
+     */
     public RegisterPanel() {
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
@@ -58,29 +67,28 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.add(makeUser);
     }
 
+
+    /***
+     * Upon pressing the sign up button, the temporary username, email and password
+     * are initialized for the current application user.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
-        String passedUserName = username.getText();
-        String passedEmail = email.getText();
-        String passedPassword = String.valueOf(password.getPassword());
-        System.out.println(passedPassword);
+        this.passedUsername = username.getText();
+        this.passedEmail = email.getText();
+        this.passedPassword = String.valueOf(password.getPassword());
     }
 
-    public void SignUp() {
-    }
-
-    public void IsValidUser() {
-
-    }
-
-    // allow main to access the user input
-    public String[] getInfo(){
+    /***
+     * This method allows the Main method to obtain the data inputted from the user on the register screen.
+     * @return String[] an array of the username, email and password in string format.
+     */
+    public String[] getUserInfo(){
         String[] info = new String[3];
-
-        info[0] = username.toString();
-        info[1] = email.toString();
-        info[2] = password.toString();
-
+        info[0] = this.passedUsername;
+        info[1] = this.passedEmail;
+        info[2] = this.passedPassword;
         return info;
     }
 }
