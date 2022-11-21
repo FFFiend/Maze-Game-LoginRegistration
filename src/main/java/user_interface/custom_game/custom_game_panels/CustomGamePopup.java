@@ -3,14 +3,15 @@ package user_interface.custom_game.custom_game_panels;
 import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
  * Displays a popup window with information about the user's input
  */
 public class CustomGamePopup implements ICustomGamePanel{
-    private final JWindow POPUP = new JWindow();
-    private final JPanel PANEL = new JPanel(new BorderLayout(10, 10));
+    private final JFrame FRAME = new JFrame();
+    private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
     private String panel;
     private final String MESSAGE;
 
@@ -36,8 +37,6 @@ public class CustomGamePopup implements ICustomGamePanel{
      */
     public CustomGamePopup(String message){
         this.MESSAGE = message;
-        popupMessage();
-        POPUP.add(PANEL);
 
         drawWindow();
         popupMessage();
@@ -47,13 +46,13 @@ public class CustomGamePopup implements ICustomGamePanel{
      * Draw the popup window
      */
     private void drawWindow(){
-        POPUP.setSize(300, 200);
-        PANEL.setSize(300, 200);
-        //POPUP.setResizable(false);
-        POPUP.setVisible(true);
-        PANEL.setVisible(true);
-        POPUP.add(PANEL);
+        FRAME.setSize(300, 200);
+        FRAME.setVisible(true);
+        FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        FRAME.setLayout(new BorderLayout(10, 10));
 
+        this.CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
+        FRAME.setContentPane(this.CONTENT);
     }
 
     /**
@@ -66,7 +65,7 @@ public class CustomGamePopup implements ICustomGamePanel{
         message.setOpaque(false);
         message.setEditable(false);
         message.setFocusable(false);
-        PANEL.add(message, BorderLayout.CENTER);
+        CONTENT.add(message, BorderLayout.CENTER);
     }
 
     /**
@@ -80,6 +79,6 @@ public class CustomGamePopup implements ICustomGamePanel{
 
         bottomPanel.add(returnButton);
         returnToCustomMainButton(bottomPanel);
-        PANEL.add(bottomPanel, BorderLayout.PAGE_END);
+        CONTENT.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

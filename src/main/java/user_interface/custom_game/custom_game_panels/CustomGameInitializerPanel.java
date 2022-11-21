@@ -5,6 +5,7 @@ import adapters.custom_game.custom_game_UI_adapters.ICustomInitializerInput;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
@@ -13,19 +14,22 @@ import java.awt.*;
 class CustomGameInitializerPanel extends Panel implements ICustomInitializerInput, ICustomGamePanel {
     private final JTextField nameField = new JTextField("pick a unique name for your maze");
     private static final JFrame FRAME = new JFrame("custom game initializer frame");
+    private static final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
     /**
      * Displays the panel just before the editor to initialize the editing process
      */
     protected CustomGameInitializerPanel(){
-        //        this.build();
-        //every FRAME. will be replaced by this. once custom mazes are linked to the main game and the
-        // following section will be removed
+        // this.build();
+
+        // this will change once custom mazes are linked to the main game and GlobalFrame is done
         FRAME.setSize(768, 576);
         FRAME.setResizable(false);
         FRAME.setVisible(true);
-        FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        FRAME.setLayout(new BorderLayout(10, 10));
+        FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+        CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
+        FRAME.setContentPane(CONTENT);
 
         displayHeader();
         displayInitializerSelectors();
@@ -40,7 +44,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
         labelSet.add(header);
         labelFormat(labelSet);
 
-        FRAME.add(header, BorderLayout.PAGE_START);
+        CONTENT.add(header, BorderLayout.PAGE_START);
     }
 
     /**
@@ -57,7 +61,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
         middlePanel.add(styleField);
         middlePanel.add(nameField);
 
-        FRAME.add(middlePanel, BorderLayout.CENTER);
+        CONTENT.add(middlePanel, BorderLayout.CENTER);
     }
 
     /**
@@ -72,7 +76,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);
 
-        FRAME.add(bottomPanel, BorderLayout.PAGE_END);
+        CONTENT.add(bottomPanel, BorderLayout.PAGE_END);
     }
 
     /**
