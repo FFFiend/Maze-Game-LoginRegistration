@@ -1,5 +1,7 @@
 package user_interface.login_leaderboard;
 
+import adapters.login_leaderboard.RegisterUserController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -65,10 +67,20 @@ public class RegisterPanel extends Panel implements ActionListener {
     }
 
     public void SignUp() {
-
     }
 
     public void IsValidUser() {
 
+    }
+
+    // allow main to access the user input
+    public String[] getInfo(){
+        String[] info = new String[3];
+
+        info[0] = username.toString();
+        info[1] = email.toString();
+        info[2] = password.toString();
+
+        return info;
     }
 }
