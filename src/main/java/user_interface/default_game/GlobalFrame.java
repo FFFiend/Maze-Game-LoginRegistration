@@ -1,6 +1,6 @@
 package user_interface.default_game;
 
-import user_interface.login_leaderboard.WelcomePanel;
+import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
 
@@ -11,8 +11,6 @@ public class GlobalFrame {
      * A frame that controls the whole project (not implemented yet).
      **/
     public GlobalFrame() {
-
-
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("AstroMaze");
@@ -26,11 +24,9 @@ public class GlobalFrame {
     /**
      * Sets the initial panel of the frame to the welcome screen.
      */
-    public void setWelcomePanel() {
+    public void setPanel(Panel panel) {
 
-        WelcomePanel welcome = new WelcomePanel();
-
-        window.add(welcome);
+        window.add(panel);
 
         // add extra methods in welcomepanel to ensure this works
         // properly when needed. For now, testing whether panel

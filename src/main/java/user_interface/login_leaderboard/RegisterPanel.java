@@ -2,6 +2,7 @@ package user_interface.login_leaderboard;
 
 import adapters.login_leaderboard.RegisterUserController;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,11 +18,13 @@ public class RegisterPanel extends Panel implements ActionListener {
     private String passedUsername;
     private String passedEmail;
     private String passedPassword;
+
     RegisterUserController registerUserController;
 
     public RegisterPanel(RegisterUserController registerUserController) {
 
         this.registerUserController = registerUserController;
+
 
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
@@ -75,17 +78,6 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedUsername = username.getText();
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
-    }
-
-    /***
-     * This method allows the Main method to obtain the data inputted from the user on the register screen.
-     * @return String[] an array of the username, email and password in string format.
-     */
-    public String[] getUserInfo(){
-        String[] info = new String[3];
-        info[0] = this.passedUsername;
-        info[1] = this.passedEmail;
-        info[2] = this.passedPassword;
-        return info;
+        registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
     }
 }
