@@ -1,6 +1,10 @@
 package adapters.default_game;
 
+import entities.default_game.IDrawOutputBoundary;
+import use_cases.default_game.CustomAssetSetter;
 import use_cases.default_game.UpdatePlayer;
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +21,13 @@ public class GamePanelPresenter extends JPanel implements Runnable {
     final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
     public Thread gameThread;
-    private final int FPS = 60; // updates the screen 60 times per second
+    private final int FPS = 5; // updates the screen 5 times per second
     private int playerX;
     private int playerY;
-
+    MazeItems items = new MazeItems();
+    MazeHazards hazards = new MazeHazards();
+    CustomAssetSetter setter = new CustomAssetSetter("mazes/maze02.txt",
+            items, hazards);
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
@@ -28,8 +35,8 @@ public class GamePanelPresenter extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        UpdatePlayer.setPlayerX(100);
-        UpdatePlayer.setPlayerY(100);
+        UpdatePlayer.setPlayerX(TILE_SIZE);
+        UpdatePlayer.setPlayerY(TILE_SIZE);
     }
 
     /**
@@ -84,6 +91,21 @@ public class GamePanelPresenter extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
         g2.fillRect(playerX, playerY, TILE_SIZE, TILE_SIZE);
+
+        // draw the maze
+        IDrawOutputBoundary b = new IDrawOutputBoundary() {
+            @Override
+            public int getTileSize() {
+                return TILE_SIZE;
+            }
+
+            @Override
+            public Graphics2D graphics() {
+                return g2;
+            }
+        };
+        hazards.draw(b);
+        items.draw(b);
         g2.dispose();
     }
 }
