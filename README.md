@@ -1,3 +1,8 @@
+# Test coverage
+
+![test coverage](images/Test%20coverage.PNG)
+
+
 # Project Template
 
 This is a template repository for CSC 207 projects. 
