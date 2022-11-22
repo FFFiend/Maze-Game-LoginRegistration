@@ -5,7 +5,7 @@ package use_cases.login_leaderboard;
  * The input boundary that takes in the username,
  * email and password and dominoes into the register use case.
  */
-public interface RegisterUserInputBoundary {
+public interface IRegisterUserInputBoundary {
 
     /***
      * Abstract method to pass in the relevant information as per Clean Architecture.

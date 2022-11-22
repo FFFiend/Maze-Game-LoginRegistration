@@ -7,11 +7,16 @@ import entities.login_leaderboard.User;
  * If the user password is valid, update the CSV with the user info, let the user know
  * they have been registered.
  */
-public class RegisterUser implements RegisterUserInputBoundary {
+public class RegisterUser implements IRegisterUserInputBoundary {
 
+    final IRegisterUserOutputBoundary userPresenter;
     private String username;
     private String email;
     private String password;
+
+    public RegisterUser(IRegisterUserOutputBoundary userPresenter) {
+        this.userPresenter = userPresenter;
+    }
 
     /***
      * Checks whether the password passed in from the UserInputBoundary is valid.
@@ -40,11 +45,30 @@ public class RegisterUser implements RegisterUserInputBoundary {
      */
     @Override
     public void createUser(){
-        if (isValid()){
+        if (isValid() && !UserAlreadyExists()){
             User current_user =  new User(this.username, this.email, this.password);
             // write to file
             // TODO
+            userPresenter.PrepareView("You have been registered.");
         }
+        else if(!isValid()){
+            userPresenter.PrepareView("Your password is not valid");
+
+        }
+        else if(UserAlreadyExists()){
+            userPresenter.PrepareView("This user already exists");
+        }
+
     }
 
+    /***
+     * Checks if the user already exists by calling on the hashmap
+     * of users created by the FileUser class.
+     * @return boolean depending on whether user exists or not.
+     */
+    public boolean UserAlreadyExists(){
+        // checks in the database.
+        // still unimplemented.
+        return false;
+    }
 }
