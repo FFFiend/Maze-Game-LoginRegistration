@@ -26,7 +26,7 @@ public class LeaderboardGenerator {
 
     /**
      * Updating the map with the previous users.
-     * @param users : A map of all previous users.
+     * @param users : A map of all precious users.
      */
     public void setUsers(Map<String, User> users){
         this.users = users;
@@ -36,49 +36,29 @@ public class LeaderboardGenerator {
      * Updating and sorting the easy-level scores.
      * @return : A sorted array list of User objects, sorted by Users easy scores
      */
-    public ArrayList<String> sortEasy() {
+    public ArrayList<User> sortEasy() {
         EASY.addAll(users.values());
         EASY.sort(new EasyLeaderboard());
-
-        ArrayList<String> easySorted = new ArrayList<>();
-        for (User user : EASY) {
-            easySorted.add(user.getUsername() + " " + user.getEasyScore());
-        }
-
-        return easySorted;
+        return EASY;
     }
 
     /**
      * Updating and sorting the medium-level scores.
-     *
      * @return : A sorted array list of User objects, sorted by Users medium scores
      */
-    public ArrayList<String> sortMedium() {
+    public ArrayList<User> sortMedium() {
         MEDIUM.addAll(users.values());
         MEDIUM.sort(new MediumLeaderboard());
-
-        ArrayList<String> medSorted = new ArrayList<>();
-        for (User user : MEDIUM) {
-            medSorted.add(user.getUsername() + " " + user.getMediumScore());
-        }
-
-        return medSorted;
+        return MEDIUM;
     }
 
     /**
      * Updating and sorting the hard-level scores.
-     *
      * @return : A sorted array list of User objects, sorted by Users hard scores
      */
-    public ArrayList<String> sortHard() {
+    public ArrayList<User> sortHard() {
         HARD.addAll(users.values());
         HARD.sort(new HardLeaderboard());
-
-        ArrayList<String> hardScore = new ArrayList<>();
-        for (User user : HARD) {
-            hardScore.add(user.getUsername() + " " + user.getHardScore());
-        }
-
-        return hardScore;
+        return HARD;
     }
 }
