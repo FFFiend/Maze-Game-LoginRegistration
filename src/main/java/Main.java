@@ -21,15 +21,16 @@ public class Main {
      */
     public static void main(String[] args) {
         setupGame();
-        //setupCustomMazeMenu();
     }
 
     /**
-     * Build the Game Panel
+     * Build the Game Panel. Comment out the appropriate use case method
+     * to observe functionality.
      **/
     private static void setupGame() {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setPanel(new WelcomePanel());
+        //setupCustomMazeMenu();
         //tempDefaultGameRunner();
         //setupRegisterUseCase();
         //setupLoginUseCase();
