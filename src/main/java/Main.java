@@ -37,7 +37,8 @@ public class Main {
 
 
     /**
-     * Temporary acess to the Register User use case.
+     * Temporary acess to the Register User use case. Please uncomment from setupGame
+     * method to use.
      **/
     private static void setupRegisterUseCase(){
         GlobalFrame globalFrame = new GlobalFrame();
@@ -53,7 +54,8 @@ public class Main {
     }
 
     /**
-     * Access to the Login User use case.
+     * Access to the Login User use case. Please uncomment from setupGame method
+     * to use.
      */
     private static void setupLoginUseCase(){
 
@@ -68,7 +70,8 @@ public class Main {
 
     }
     /**
-     * Temporary access to the custom maze main menu
+     * Temporary access to the custom maze main menu. Please uncomment from setupGame method
+     * to use.
      **/
     private static void setupCustomMazeMenu () {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
@@ -76,7 +79,7 @@ public class Main {
     }
 
     /**
-     * Temporary access to the default game
+     * Temporary access to the default game. Please uncomment from setupGame method to use.
      **/
     private static void tempDefaultGameRunner(){
         GamePanel gamePanelUI = new GamePanel();
