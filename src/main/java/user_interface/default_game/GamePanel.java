@@ -2,6 +2,8 @@ package user_interface.default_game;
 
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 
 import javax.swing.*;
 
@@ -18,7 +20,9 @@ public class GamePanel {
         window.setResizable(false);
         window.setTitle("AstroMaze");
 
-        GamePanelPresenter presenter = new GamePanelPresenter();
+        MazeItems items = new MazeItems();
+        MazeHazards hazards = new MazeHazards();
+        GamePanelPresenter presenter = new GamePanelPresenter(hazards, items);
         window.add(presenter);
 
         window.pack();
@@ -27,7 +31,7 @@ public class GamePanel {
 
         presenter.startGameThread();
 
-        GamePanelController controller = new GamePanelController();
+        GamePanelController controller = new GamePanelController(hazards, items);
         window.addKeyListener(controller);
         window.setFocusable(true);
     }

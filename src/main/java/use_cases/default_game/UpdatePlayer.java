@@ -6,7 +6,7 @@ import entities.default_game.Player;
  * Update the Player's data.
  */
 public class UpdatePlayer {
-    public static int playerSpeed = 48; // might move this to controller
+    public static int playerSpeed = 1; // might move this to controller
 
     /**
      * Move the player's position upwards.

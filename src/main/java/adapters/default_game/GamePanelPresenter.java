@@ -24,19 +24,22 @@ public class GamePanelPresenter extends JPanel implements Runnable {
     private final int FPS = 5; // updates the screen 5 times per second
     private int playerX;
     private int playerY;
-    MazeItems items = new MazeItems();
-    MazeHazards hazards = new MazeHazards();
-    CustomAssetSetter setter = new CustomAssetSetter("mazes/maze02.txt",
-            items, hazards);
+    private final MazeItems items;
+    private final MazeHazards hazards;
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
-    public GamePanelPresenter() {
+    public GamePanelPresenter(MazeHazards hazards, MazeItems items) {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        UpdatePlayer.setPlayerX(TILE_SIZE);
-        UpdatePlayer.setPlayerY(TILE_SIZE);
+        UpdatePlayer.setPlayerX(1);
+        UpdatePlayer.setPlayerY(1);
+
+        this.hazards = hazards;
+        this.items = items;
+        CustomAssetSetter setter = new CustomAssetSetter("mazes/maze02.txt",
+                items, hazards);
     }
 
     /**
@@ -75,8 +78,8 @@ public class GamePanelPresenter extends JPanel implements Runnable {
      * Update the player position for painting.
      */
     public void update() {
-        playerX = UpdatePlayer.getPlayerX();
-        playerY = UpdatePlayer.getPlayerY();
+        playerX = UpdatePlayer.getPlayerX()*TILE_SIZE;
+        playerY = UpdatePlayer.getPlayerY()*TILE_SIZE;
     }
 
     /**

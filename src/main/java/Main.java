@@ -31,7 +31,7 @@ public class Main {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setPanel(new WelcomePanel());
         //setupCustomMazeMenu();
-        //tempDefaultGameRunner();
+        tempDefaultGameRunner();
         //setupRegisterUseCase();
         //setupLoginUseCase();
     }

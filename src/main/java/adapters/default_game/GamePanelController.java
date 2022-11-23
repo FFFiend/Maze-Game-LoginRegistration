@@ -1,6 +1,8 @@
 package adapters.default_game;
 
-import use_cases.default_game.UpdatePlayer;
+import use_cases.default_game.CollisionHandler;
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -9,6 +11,12 @@ import java.awt.event.KeyListener;
  * User controller for the game.
  */
 public class GamePanelController implements KeyListener {
+    private final CollisionHandler iHandler;
+
+    public GamePanelController(MazeHazards hazards, MazeItems items) {
+        this.iHandler = new CollisionHandler(hazards, items);
+    }
+
     /**
      * Invoked when a key has been typed.
      * See the class description for {@link KeyEvent} for a definition of
@@ -32,16 +40,16 @@ public class GamePanelController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            UpdatePlayer.movePlayerUp();
+            this.iHandler.upPressed();
         }
         if (code == KeyEvent.VK_S) {
-            UpdatePlayer.movePlayerDown();
+            this.iHandler.downPressed();
         }
         if (code == KeyEvent.VK_D) {
-            UpdatePlayer.movePlayerRight();
+            this.iHandler.rightPressed();
         }
         if (code == KeyEvent.VK_A) {
-            UpdatePlayer.movePlayerLeft();
+            this.iHandler.leftPressed();
         }
     }
 
