@@ -29,7 +29,7 @@ public class Main {
     private static void setupGame() {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setPanel(new WelcomePanel());
-        tempDefaultGameRunner();
+        //tempDefaultGameRunner();
         setupRegisterUseCase();
     }
 
@@ -49,9 +49,6 @@ public class Main {
         RegisterPanel register = new RegisterPanel(controller);
         globalFrame.setPanel(register);
     }
-
-
-
     /**
      * Temporary access to the custom maze main menu
      **/
@@ -67,6 +64,4 @@ public class Main {
         GamePanel gamePanelUI = new GamePanel();
         gamePanelUI.createGamePanel();
     }
-
-
 }

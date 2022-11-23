@@ -29,27 +29,29 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
         // check if user already exists, if not continue
-        askUserName.setBounds(270, 30, 450, 70);
+        askUserName.setBounds(270, 30, 450, 40);
 
 
         this.username = new JTextField(50);
-        username.setBounds(160, 110, 450, 30);
+        username.setBounds(160, 90, 450, 30);
 
         JLabel askEmail = new JLabel("Please enter your email");
-        askEmail.setBounds(270, 160, 450, 70);
+        askEmail.setBounds(270, 140, 450, 40);
 
 
         this.email = new JTextField(50);
-        email.setBounds(160, 240, 450, 30);
+        email.setBounds(160, 200, 450, 30);
 
         JLabel askPassword = new JLabel("Please enter your password.");
-
+        askPassword.setBounds(270,250,450,40);
 
         this.password = new JPasswordField(50);
-        password.setBounds(160, 350, 450, 30);
+        password.setBounds(160, 310, 450, 30);
 
         labelSet.add(askUserName);
+        labelSet.add(askEmail);
         labelSet.add(askPassword);
+
         labelFormat(labelSet);
 
         this.add(askUserName);
@@ -68,7 +70,7 @@ public class RegisterPanel extends Panel implements ActionListener {
     }
 
 
-    /***
+    /**
      * Upon pressing the sign up button, the temporary username, email and password
      * are initialized for the current application user.
      * @param e the event to be processed

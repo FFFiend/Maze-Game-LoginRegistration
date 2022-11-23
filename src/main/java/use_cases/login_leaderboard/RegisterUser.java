@@ -18,7 +18,7 @@ public class RegisterUser implements IRegisterUserInputBoundary {
         this.userPresenter = userPresenter;
     }
 
-    /***
+    /**
      * Checks whether the password passed in from the UserInputBoundary is valid.
      * @return boolean that states whether the user's registered password is correct or not.
      */
@@ -26,7 +26,7 @@ public class RegisterUser implements IRegisterUserInputBoundary {
         return PasswordStrengthChecker.check(this.password);
     }
 
-    /***
+    /**
      * Initializes and saves the user's details to later initialize a User entity.
      * @param username String user's username
      * @param email String user's email
@@ -39,7 +39,7 @@ public class RegisterUser implements IRegisterUserInputBoundary {
         this.password = password;
     }
 
-    /***
+    /**
      * Actually creates the user, and also initiates the process of writing
      * to the user data csv file.
      */
