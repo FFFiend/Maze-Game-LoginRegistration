@@ -1,11 +1,12 @@
+import adapters.login_leaderboard.LoginUserController;
+import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
 import adapters.login_leaderboard.RegisterUserPresenter;
-import use_cases.login_leaderboard.IRegisterUserInputBoundary;
-import use_cases.login_leaderboard.IRegisterUserOutputBoundary;
-import use_cases.login_leaderboard.RegisterUser;
+import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 import user_interface.default_game.GamePanel;
+import user_interface.login_leaderboard.LoginPanel;
 import user_interface.login_leaderboard.RegisterPanel;
 import user_interface.login_leaderboard.WelcomePanel;
 
@@ -30,7 +31,8 @@ public class Main {
         GlobalFrame globalFrame = new GlobalFrame();
         globalFrame.setPanel(new WelcomePanel());
         //tempDefaultGameRunner();
-        setupRegisterUseCase();
+        //setupRegisterUseCase();
+        //setupLoginUseCase();
     }
 
 
@@ -48,6 +50,22 @@ public class Main {
         RegisterUserController controller = new RegisterUserController(input);
         RegisterPanel register = new RegisterPanel(controller);
         globalFrame.setPanel(register);
+    }
+
+    /**
+     * Access to the Login User use case.
+     */
+    private static void setupLoginUseCase(){
+
+        GlobalFrame globalFrame = new GlobalFrame();
+        ILoginUserOutputBoundary output = new LoginUserPresenter();
+        ILoginUserInputBoundary input = new LoginUser(output);
+
+        LoginUserController controller = new LoginUserController(input);
+        LoginPanel login =  new LoginPanel(controller);
+        globalFrame.setPanel(login);
+
+
     }
     /**
      * Temporary access to the custom maze main menu
