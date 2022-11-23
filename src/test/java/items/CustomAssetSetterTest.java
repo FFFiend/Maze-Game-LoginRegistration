@@ -42,8 +42,8 @@ public class CustomAssetSetterTest {
         Assertions.assertEquals(4, caSetter.getMazeAssetNum()[4][0]);
         Assertions.assertNull(caSetter.getMazeHazards().getEnemy(5, 5));
         Assertions.assertNull(caSetter.getMazeHazards().getObstacle(7, 7));
-        Assertions.assertNotNull(caSetter.getMazeHazards().getObstacle(0, 1));
-        Assertions.assertNotNull(caSetter.getMazeItems().get(0, 4));
+        Assertions.assertNotNull(caSetter.getMazeHazards().getObstacle(1, 0));
+        Assertions.assertNotNull(caSetter.getMazeItems().get(4, 0));
     }
 
     /**
@@ -58,10 +58,10 @@ public class CustomAssetSetterTest {
         Assertions.assertEquals(5, caSetter.getMazeAssetNum()[5][0]);
         Assertions.assertEquals(5, caSetter.getMazeAssetNum()[5][1]);
         Assertions.assertEquals(5, caSetter.getMazeAssetNum()[5][2]);
-        Assertions.assertNull(caSetter.getMazeHazards().getEnemy(0, 5));
-        Assertions.assertNull(caSetter.getMazeHazards().getObstacle(1, 5));
-        Assertions.assertNotNull(caSetter.getMazeItems().get(1, 5));
-        Assertions.assertNotNull(caSetter.getMazeItems().get(2, 5));
+        Assertions.assertNull(caSetter.getMazeHazards().getEnemy(5, 0));
+        Assertions.assertNull(caSetter.getMazeHazards().getObstacle(5, 1));
+        Assertions.assertNotNull(caSetter.getMazeItems().get(5, 1));
+        Assertions.assertNotNull(caSetter.getMazeItems().get(5, 2));
     }
 }
 
