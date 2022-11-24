@@ -1,6 +1,5 @@
 package default_game;
 
-import com.sun.tools.javac.Main;
 import entities.default_game.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -29,7 +28,7 @@ public class PlayerTest {
 
         UpdatePlayer.movePlayerUp();
         Assertions.assertEquals(48, Player.getPlayerX());
-        Assertions.assertEquals(0, Player.getPlayerY());
+        Assertions.assertEquals(47, Player.getPlayerY());
     }
 
     @Test
@@ -39,7 +38,7 @@ public class PlayerTest {
 
         UpdatePlayer.movePlayerDown();
         Assertions.assertEquals(48, Player.getPlayerX());
-        Assertions.assertEquals(96, Player.getPlayerY());
+        Assertions.assertEquals(49, Player.getPlayerY());
     }
 
     @Test
@@ -48,7 +47,7 @@ public class PlayerTest {
         UpdatePlayer.setPlayerY(48);
 
         UpdatePlayer.movePlayerLeft();
-        Assertions.assertEquals(0, Player.getPlayerX());
+        Assertions.assertEquals(47, Player.getPlayerX());
         Assertions.assertEquals(48, Player.getPlayerY());
     }
 
@@ -58,7 +57,7 @@ public class PlayerTest {
         UpdatePlayer.setPlayerY(48);
 
         UpdatePlayer.movePlayerRight();
-        Assertions.assertEquals(96, Player.getPlayerX());
+        Assertions.assertEquals(49, Player.getPlayerX());
         Assertions.assertEquals(48, Player.getPlayerY());
     }
 }

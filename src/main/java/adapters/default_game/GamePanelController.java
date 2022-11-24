@@ -11,10 +11,10 @@ import java.awt.event.KeyListener;
  * User controller for the game.
  */
 public class GamePanelController implements KeyListener {
-    private final CollisionHandler iHandler;
+    private final CollisionHandler cHandler;
 
     public GamePanelController(MazeHazards hazards, MazeItems items) {
-        this.iHandler = new CollisionHandler(hazards, items);
+        this.cHandler = new CollisionHandler(hazards, items);
     }
 
     /**
@@ -40,16 +40,16 @@ public class GamePanelController implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int code = e.getKeyCode();
         if (code == KeyEvent.VK_W) {
-            this.iHandler.upPressed();
+            this.cHandler.upPressed();
         }
         if (code == KeyEvent.VK_S) {
-            this.iHandler.downPressed();
+            this.cHandler.downPressed();
         }
         if (code == KeyEvent.VK_D) {
-            this.iHandler.rightPressed();
+            this.cHandler.rightPressed();
         }
         if (code == KeyEvent.VK_A) {
-            this.iHandler.leftPressed();
+            this.cHandler.leftPressed();
         }
     }
 
@@ -62,6 +62,5 @@ public class GamePanelController implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 }
