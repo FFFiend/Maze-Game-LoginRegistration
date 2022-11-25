@@ -2,7 +2,7 @@ package adapters.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
 import use_cases.default_game.CustomAssetSetter;
-import use_cases.default_game.UpdatePlayer;
+import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
@@ -12,7 +12,7 @@ import java.awt.*;
 /**
  * A class responsible for what the GamePanel presents
  **/
-public class GamePanelPresenter extends JPanel implements Runnable {
+public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary {
     final int SPRITE_TILE_SIZE = 16;
     final int SCALE = 3; // may be changed to an unfixed variable later
     final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
@@ -20,14 +20,9 @@ public class GamePanelPresenter extends JPanel implements Runnable {
     final int MAX_PANEL_ROW = 12;
     final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
-    public Thread gameThread;
-    private final int FPS = 5; // updates the screen 5 times per second
     private int playerX;
     private int playerY;
-    MazeItems items = new MazeItems();
-    MazeHazards hazards = new MazeHazards();
-    CustomAssetSetter setter = new CustomAssetSetter("mazes/maze02.txt",
-            items, hazards);
+
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
@@ -35,48 +30,18 @@ public class GamePanelPresenter extends JPanel implements Runnable {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        UpdatePlayer.setPlayerX(TILE_SIZE);
-        UpdatePlayer.setPlayerY(TILE_SIZE);
     }
 
     /**
-     * Construct a new game thread and runs it.
+     * Update the player position and draw the maze accordingly.
+     *
+     * @param playerX player position X
+     * @param playerY player position Y
      */
-    public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start(); // this calls run()
-    }
-
-    /**
-     * Built-in method that is called if the thread was constructed
-     * using a separate Runnable object.
-     */
-    public void run() {
-        // credit to Seamus
-        double drawInterval = 1_000_000_000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
-
-        while (gameThread != null) {
-            currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            lastTime = currentTime;
-
-            if (delta >= 1) {
-                update();
-                repaint();
-                delta--;
-            }
-        }
-    }
-
-    /**
-     * Update the player position for painting.
-     */
-    public void update() {
-        playerX = UpdatePlayer.getPlayerX();
-        playerY = UpdatePlayer.getPlayerY();
+    public void updateMaze(int playerX, int playerY) {
+        this.playerX = playerX;
+        this.playerY = playerY;
+        repaint();
     }
 
     /**
@@ -104,6 +69,9 @@ public class GamePanelPresenter extends JPanel implements Runnable {
                 return g2;
             }
         };
+        MazeItems items = new MazeItems();
+        MazeHazards hazards = new MazeHazards();
+        new CustomAssetSetter("mazes/maze02.txt", items, hazards);
         hazards.draw(b);
         items.draw(b);
         g2.dispose();
