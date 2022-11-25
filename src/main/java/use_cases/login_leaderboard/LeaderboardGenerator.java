@@ -3,10 +3,8 @@ package use_cases.login_leaderboard;
 import entities.login_leaderboard.User;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
-public class LeaderboardGenerator {
+public class LeaderboardGenerator extends PreviousUsers {
     /**
      * Storing the sorted easy-level scores.
      */
@@ -19,18 +17,6 @@ public class LeaderboardGenerator {
      * Storing the sorted hard-level scores.
      */
     private final ArrayList<User> HARD = new ArrayList<>();
-    /**
-     * A Map of all previous users. Mapping the username to the user.
-     */
-    private Map<String, User> users = new HashMap<>();
-
-    /**
-     * Updating the map with the previous users.
-     * @param users : A map of all previous users.
-     */
-    public void setUsers(Map<String, User> users){
-        this.users = users;
-    }
 
     /**
      * Updating and sorting the easy-level scores.

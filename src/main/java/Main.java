@@ -1,11 +1,8 @@
-import adapters.login_leaderboard.RegisterUserController;
-import use_cases.login_leaderboard.IFileInput;
-import use_cases.login_leaderboard.IInputBoundary;
-import use_cases.login_leaderboard.RegisterUser;
+import adapters.login_leaderboard.UsersCreation;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 import user_interface.default_game.GamePanel;
-import user_interface.login_leaderboard.RegisterPanel;
+import user_interface.login_leaderboard.FileReader;
 
 /**
  * Run the game
@@ -46,19 +43,9 @@ public class Main {
         gamePanelUI.createGamePanel();
     }
 
-    private static void createUsecaseEngine(){
-        // Usecase + adapters framework
-        IInputBoundary input;
-        input = new RegisterUser();
-        RegisterUserController controller = new RegisterUserController(input);
-
-        // UI
-        RegisterPanel output = new RegisterPanel();
-        String[] arr;
-        arr = output.getInfo();
-        controller.performUseCase(arr[0], arr[1], arr[2]);
-
-        // call register panel
-
+    private static void setPrevUsers(){
+        FileReader read = new FileReader();
+        UsersCreation create = new UsersCreation();
+        create.saveUsers(read.readFile());
     }
 }

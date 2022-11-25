@@ -31,7 +31,7 @@ public class FileUser {
      * Map all usernames to users stored.
      * @return : A Hashmap mapping String to user
      */
-    public Map<String, User> prevUsers(){
+    public HashMap<String, User> prevUsers(){
         ArrayList<ArrayList<String>> info = FILE.readFile();
 
         for (ArrayList<String> row : info){
