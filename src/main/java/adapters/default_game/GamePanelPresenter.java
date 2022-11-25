@@ -55,7 +55,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
-        g2.fillRect(playerX, playerY, TILE_SIZE, TILE_SIZE);
+        g2.fillRect(playerX*TILE_SIZE, playerY*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
         // draw the maze
         IDrawOutputBoundary b = new IDrawOutputBoundary() {

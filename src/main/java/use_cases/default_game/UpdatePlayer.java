@@ -12,11 +12,9 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
 
     public Thread gameThread;
     private final Player player;
+    private final int playerSpeed = 1;
     private final IGamePanelOutputBoundary outputBoundary;
-    final int SPRITE_TILE_SIZE = 16;
-    final int SCALE = 3; // may be changed to an unfixed variable later
-    final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
-    private final int FPS = 20; // updates the screen 5 times per second
+    private final int FPS = 20; // updates the screen 20 times per second
 
     /**
      * Constructor for this class.
@@ -37,16 +35,16 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
      */
     public void movePlayer(int keycode) {
         if (keycode == KeyEvent.VK_W) {
-            player.movePlayerY(-TILE_SIZE);
+            player.movePlayerY(-playerSpeed);
         }
         if (keycode == KeyEvent.VK_S) {
-            player.movePlayerY(TILE_SIZE);
+            player.movePlayerY(playerSpeed);
         }
         if (keycode == KeyEvent.VK_D) {
-            player.movePlayerX(TILE_SIZE);
+            player.movePlayerX(playerSpeed);
         }
         if (keycode == KeyEvent.VK_A) {
-            player.movePlayerX(-TILE_SIZE);
+            player.movePlayerX(-playerSpeed);
         }
     }
 

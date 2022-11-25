@@ -1,10 +1,8 @@
 package default_game;
 
-import com.sun.tools.javac.Main;
 import entities.default_game.Player;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import use_cases.default_game.UpdatePlayer;
 
 public class PlayerTest {
     /**
@@ -12,10 +10,10 @@ public class PlayerTest {
      */
     @Test
     public void SetGetPlayerXY() {
-        Player player = new Player(96,48);
+        Player player = new Player(2,1);
 
-        Assertions.assertEquals(96, player.getPlayerX());
-        Assertions.assertEquals(48, player.getPlayerY());
+        Assertions.assertEquals(2, player.getPlayerX());
+        Assertions.assertEquals(1, player.getPlayerY());
     }
 
     /**
@@ -23,37 +21,37 @@ public class PlayerTest {
      */
     @Test
     public void UpdatePlayerMoveUpTest() {
-        Player player = new Player(48,48);
+        Player player = new Player(1,1);
 
-        player.movePlayerY(-48);
-        Assertions.assertEquals(48, player.getPlayerX());
+        player.movePlayerY(-1);
+        Assertions.assertEquals(1, player.getPlayerX());
         Assertions.assertEquals(0, player.getPlayerY());
     }
 
     @Test
     public void UpdatePlayerMoveDownTest() {
-        Player player = new Player(48,48);
+        Player player = new Player(1,1);
 
-        player.movePlayerY(48);
-        Assertions.assertEquals(48, player.getPlayerX());
-        Assertions.assertEquals(96, player.getPlayerY());
+        player.movePlayerY(1);
+        Assertions.assertEquals(1, player.getPlayerX());
+        Assertions.assertEquals(2, player.getPlayerY());
     }
 
     @Test
     public void UpdatePlayerMoveLeftTest() {
-        Player player = new Player(48,48);
+        Player player = new Player(1,1);
 
-        player.movePlayerX(-48);
+        player.movePlayerX(-1);
         Assertions.assertEquals(0, player.getPlayerX());
-        Assertions.assertEquals(48, player.getPlayerY());
+        Assertions.assertEquals(1, player.getPlayerY());
     }
 
     @Test
     public void UpdatePlayerMoveRightTest() {
-        Player player = new Player(48,48);
+        Player player = new Player(1,1);
 
-        player.movePlayerX(48);
-        Assertions.assertEquals(96, player.getPlayerX());
-        Assertions.assertEquals(48, player.getPlayerY());
+        player.movePlayerX(1);
+        Assertions.assertEquals(2, player.getPlayerX());
+        Assertions.assertEquals(1, player.getPlayerY());
     }
 }
