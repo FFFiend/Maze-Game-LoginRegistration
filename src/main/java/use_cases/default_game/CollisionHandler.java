@@ -19,44 +19,28 @@ public class CollisionHandler {
     }
     public boolean upPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, 0, -playerSpeed);
-
-        if (hazards.isPlayerKilled(hazardModel)){
-            // collide with enemy, Player dies or takes damage;
-            enemyContact();
-        }
-        if (items.anyItemCollision(hazardModel)){
-            pickUpItem(hazardModel);
-        }
+        handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
 
     public boolean downPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, 0, playerSpeed);
-
-        if (hazards.isPlayerKilled(hazardModel)) {
-            // collide with enemy, Player dies or takes damage;
-            enemyContact();
-        }
-        if (items.anyItemCollision(hazardModel)){
-            pickUpItem(hazardModel);
-        }
+        handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
     public boolean leftPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, -playerSpeed, 0);
-
-        if (hazards.isPlayerKilled(hazardModel)) {
-            // collide with enemy, Player dies or takes damage;
-            enemyContact();
-        }
-        if (items.anyItemCollision(hazardModel)){
-            pickUpItem(hazardModel);
-        }
+        handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
     public boolean rightPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, playerSpeed, 0);
 
+        handleEvent(hazardModel);
+        return !hazards.isPlayerBlocked(hazardModel);
+    }
+
+    private void handleEvent(IHazardRequestModel hazardModel) {
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
             enemyContact();
@@ -64,7 +48,6 @@ public class CollisionHandler {
         if (items.anyItemCollision(hazardModel)){
             pickUpItem(hazardModel);
         }
-        return !hazards.isPlayerBlocked(hazardModel);
     }
 
     public void pickUpItem(IHazardRequestModel request){
