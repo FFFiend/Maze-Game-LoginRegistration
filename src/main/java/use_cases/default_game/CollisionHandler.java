@@ -1,6 +1,6 @@
 package use_cases.default_game;
 
-import entities.default_game.Player;
+import entities.default_game.Maze;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
@@ -8,136 +8,157 @@ import use_cases.items.MazeItems;
 public class CollisionHandler {
     private final MazeHazards hazards;
     private final MazeItems items;
-    private final EventHandler eHandler;
+    private final Maze maze = new Maze();
+    int MAX_PANEL_COL = maze.getNum("MAX_PANEL_COL");
+    int MAX_PANEL_ROW = maze.getNum("MAX_PANEL_ROW");
+    int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
 
-    public CollisionHandler(MazeHazards hazards, MazeItems items){
+    public CollisionHandler(MazeItems items, MazeHazards hazards){
         this.hazards = hazards;
         this.items = items;
-        this.eHandler = new EventHandler(hazards, items);
     }
-    public void upPressed() {
+    public boolean upPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
             @Override
             public int getPlayerX() {
-                return Player.getPlayerX();
+                return playerX;
             }
             @Override
             public int getPlayerY() {
-                return Player.getPlayerY() - 1;
+                return playerY - playerSpeed;
             }
             @Override
             public int mazeWidth() {
-                return 0;
+                return MAX_PANEL_COL;
             }
             @Override
             public int mazeHeight() {
-                return 0;
+                return MAX_PANEL_ROW;
             }
         };
         if (hazards.isPlayerKilled(hazardModel)){
             // collide with enemy, Player dies or takes damage;
-            eHandler.enemyContact();
+            enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
-            eHandler.pickUpItem(hazardModel);
+            pickUpItem(hazardModel);
         }
-        if (!hazards.isPlayerBlocked(hazardModel)){
-            UpdatePlayer.movePlayerUp();
-        }
-        hazards.update(hazardModel);
+        return !hazards.isPlayerBlocked(hazardModel);
     }
-    public void downPressed() {
+
+    public boolean downPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
             @Override
             public int getPlayerX() {
-                return Player.getPlayerX();
+                return playerX;
             }
             @Override
             public int getPlayerY() {
-                return Player.getPlayerY() + 1;
+                return playerY + playerSpeed;
             }
             @Override
             public int mazeWidth() {
-                return 0;
+                return MAX_PANEL_COL;
             }
             @Override
             public int mazeHeight() {
-                return 0;
+                return MAX_PANEL_ROW;
             }
         };
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
-            eHandler.enemyContact();
+            enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
-            eHandler.pickUpItem(hazardModel);
+            pickUpItem(hazardModel);
         }
-        if (!hazards.isPlayerBlocked(hazardModel)){
-            UpdatePlayer.movePlayerDown();
-        }
-        hazards.update(hazardModel);
+        return !hazards.isPlayerBlocked(hazardModel);
     }
-    public void leftPressed() {
+    public boolean leftPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
             @Override
             public int getPlayerX() {
-                return Player.getPlayerX() - 1;
+                return playerX - playerSpeed;
             }
             @Override
             public int getPlayerY() {
-                return Player.getPlayerY();
+                return playerY;
             }
             @Override
             public int mazeWidth() {
-                return 0;
+                return MAX_PANEL_COL;
             }
             @Override
             public int mazeHeight() {
-                return 0;
+                return MAX_PANEL_ROW;
             }
         };
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
-            eHandler.enemyContact();
+            enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
-            eHandler.pickUpItem(hazardModel);
+            pickUpItem(hazardModel);
         }
-        if (!hazards.isPlayerBlocked(hazardModel)){
-            UpdatePlayer.movePlayerLeft();
-        }
-        hazards.update(hazardModel);
+        return !hazards.isPlayerBlocked(hazardModel);
     }
-    public void rightPressed() {
+    public boolean rightPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
             @Override
             public int getPlayerX() {
-                return Player.getPlayerX() + 1;
+                return playerX + playerSpeed;
             }
             @Override
             public int getPlayerY() {
-                return Player.getPlayerY();
+                return playerY;
             }
             @Override
             public int mazeWidth() {
-                return 0;
+                return MAX_PANEL_COL;
             }
             @Override
             public int mazeHeight() {
-                return 0;
+                return MAX_PANEL_ROW;
             }
         };
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
-            eHandler.enemyContact();
+            enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
-            eHandler.pickUpItem(hazardModel);
+            pickUpItem(hazardModel);
         }
-        if (!hazards.isPlayerBlocked(hazardModel)){
-            UpdatePlayer.movePlayerRight();
+        return !hazards.isPlayerBlocked(hazardModel);
+    }
+
+    public void pickUpItem(IHazardRequestModel request){
+        int x = request.getPlayerX();
+        int y = request.getPlayerY();
+        String itemName = items.get(x, y).getName();
+        switch(itemName) {
+            case "Photons":
+                items.delete(x, y);
+//                UpdatePlayer.playerStamina += 20;
+                break;
+            case "Key":
+                items.delete(x, y);
+//                UpdatePlayer.hasKey = true;
+                break;
+            case "Blackhole":
+//                if (UpdatePlayer.hasKey){
+//                    UpdatePlayer.stageClear = true;
+//                }
+                break;
         }
-        hazards.update(hazardModel);
+    }
+
+    public void enemyContact(){
+//        if (UpdatePlayer.playerStamina > 10){
+//            UpdatePlayer.playerStamina -= 10;
+//        } else {
+//            UpdatePlayer.staminaOut = true;
+//            UpdatePlayer.playerStamina -= 10;
+//        }
     }
 }
 
