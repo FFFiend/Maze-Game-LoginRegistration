@@ -9,12 +9,17 @@ public class Player extends Entity {
 
     private static int playerY;
 
+    public Player(int X, int Y){
+        setPlayerX(X);
+        setPlayerY(Y);
+    }
+
     /**
      * Get the player's current x-coordinate.
      *
      * @return the current x-coordinate
      */
-    public static int getPlayerX() {
+    public int getPlayerX() {
         return playerX;
     }
 
@@ -23,7 +28,7 @@ public class Player extends Entity {
      *
      * @return the current y-coordinate.
      */
-    public static int getPlayerY() {
+    public int getPlayerY() {
         return playerY;
     }
 
@@ -32,7 +37,7 @@ public class Player extends Entity {
      *
      * @param X x-coordinate to set the player to.
      */
-    public static void setPlayerX(int X) {
+    private void setPlayerX(int X) {
         playerX = X;
     }
 
@@ -41,7 +46,7 @@ public class Player extends Entity {
      *
      * @param Y y-coordinate to set the player to.
      */
-    public static void setPlayerY(int Y) {
+    private void setPlayerY(int Y) {
         playerY = Y;
     }
 
@@ -50,7 +55,7 @@ public class Player extends Entity {
      *
      * @param moveByX value to change the x-coordinate by.
      */
-    public static void movePlayerX(int moveByX) {
+    public void movePlayerX(int moveByX) {
         playerX += moveByX;
     }
 
@@ -59,7 +64,7 @@ public class Player extends Entity {
      *
      * @param moveByY value to change the y-coordinate by.
      */
-    public static void movePlayerY(int moveByY) {
+    public void movePlayerY(int moveByY) {
         playerY += moveByY;
     }
 }

@@ -1,8 +1,8 @@
 package adapters.default_game;
 
-import use_cases.default_game.CollisionHandler;
-import use_cases.hazards.MazeHazards;
-import use_cases.items.MazeItems;
+import use_cases.default_game.IGamePanelInputBoundary;
+import use_cases.default_game.IMovePlayerRequest;
+import use_cases.default_game.UpdatePlayer;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,12 +11,10 @@ import java.awt.event.KeyListener;
  * User controller for the game.
  */
 public class GamePanelController implements KeyListener {
-    private final CollisionHandler cHandler;
-
-    public GamePanelController(MazeHazards hazards, MazeItems items) {
-        this.cHandler = new CollisionHandler(hazards, items);
+    private IGamePanelInputBoundary inputBoundary;
+    public GamePanelController(IGamePanelInputBoundary inputBoundary){
+        this.inputBoundary = inputBoundary;
     }
-
     /**
      * Invoked when a key has been typed.
      * See the class description for {@link KeyEvent} for a definition of
@@ -38,18 +36,10 @@ public class GamePanelController implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        if (code == KeyEvent.VK_W) {
-            this.cHandler.upPressed();
-        }
-        if (code == KeyEvent.VK_S) {
-            this.cHandler.downPressed();
-        }
-        if (code == KeyEvent.VK_D) {
-            this.cHandler.rightPressed();
-        }
-        if (code == KeyEvent.VK_A) {
-            this.cHandler.leftPressed();
+        int keycode = e.getKeyCode();
+        if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
+                keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
+            inputBoundary.movePlayer(keycode);
         }
     }
 
@@ -62,5 +52,6 @@ public class GamePanelController implements KeyListener {
      */
     @Override
     public void keyReleased(KeyEvent e) {
+
     }
 }
