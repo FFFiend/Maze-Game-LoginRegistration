@@ -18,24 +18,8 @@ public class CollisionHandler {
         this.items = items;
     }
     public boolean upPressed(int playerX, int playerY) {
-        IHazardRequestModel hazardModel = new IHazardRequestModel() {
-            @Override
-            public int getPlayerX() {
-                return playerX;
-            }
-            @Override
-            public int getPlayerY() {
-                return playerY - playerSpeed;
-            }
-            @Override
-            public int mazeWidth() {
-                return MAX_PANEL_COL;
-            }
-            @Override
-            public int mazeHeight() {
-                return MAX_PANEL_ROW;
-            }
-        };
+        IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, 0, -playerSpeed);
+
         if (hazards.isPlayerKilled(hazardModel)){
             // collide with enemy, Player dies or takes damage;
             enemyContact();
@@ -47,24 +31,8 @@ public class CollisionHandler {
     }
 
     public boolean downPressed(int playerX, int playerY) {
-        IHazardRequestModel hazardModel = new IHazardRequestModel() {
-            @Override
-            public int getPlayerX() {
-                return playerX;
-            }
-            @Override
-            public int getPlayerY() {
-                return playerY + playerSpeed;
-            }
-            @Override
-            public int mazeWidth() {
-                return MAX_PANEL_COL;
-            }
-            @Override
-            public int mazeHeight() {
-                return MAX_PANEL_ROW;
-            }
-        };
+        IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, 0, playerSpeed);
+
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
             enemyContact();
@@ -75,24 +43,8 @@ public class CollisionHandler {
         return !hazards.isPlayerBlocked(hazardModel);
     }
     public boolean leftPressed(int playerX, int playerY) {
-        IHazardRequestModel hazardModel = new IHazardRequestModel() {
-            @Override
-            public int getPlayerX() {
-                return playerX - playerSpeed;
-            }
-            @Override
-            public int getPlayerY() {
-                return playerY;
-            }
-            @Override
-            public int mazeWidth() {
-                return MAX_PANEL_COL;
-            }
-            @Override
-            public int mazeHeight() {
-                return MAX_PANEL_ROW;
-            }
-        };
+        IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, -playerSpeed, 0);
+
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
             enemyContact();
@@ -103,24 +55,8 @@ public class CollisionHandler {
         return !hazards.isPlayerBlocked(hazardModel);
     }
     public boolean rightPressed(int playerX, int playerY) {
-        IHazardRequestModel hazardModel = new IHazardRequestModel() {
-            @Override
-            public int getPlayerX() {
-                return playerX + playerSpeed;
-            }
-            @Override
-            public int getPlayerY() {
-                return playerY;
-            }
-            @Override
-            public int mazeWidth() {
-                return MAX_PANEL_COL;
-            }
-            @Override
-            public int mazeHeight() {
-                return MAX_PANEL_ROW;
-            }
-        };
+        IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, playerSpeed, 0);
+
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
             enemyContact();
@@ -159,6 +95,27 @@ public class CollisionHandler {
 //            UpdatePlayer.staminaOut = true;
 //            UpdatePlayer.playerStamina -= 10;
 //        }
+    }
+
+    IHazardRequestModel getHazardModel(int playerX, int playerY, int moveX, int moveY) {
+        return new IHazardRequestModel() {
+            @Override
+            public int getPlayerX() {
+                return playerX + moveX;
+            }
+            @Override
+            public int getPlayerY() {
+                return playerY + moveY;
+            }
+            @Override
+            public int mazeWidth() {
+                return MAX_PANEL_COL;
+            }
+            @Override
+            public int mazeHeight() {
+                return MAX_PANEL_ROW;
+            }
+        };
     }
 }
 
