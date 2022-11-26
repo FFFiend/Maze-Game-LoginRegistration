@@ -7,6 +7,10 @@ import entities.default_game.Player;
  */
 public class UpdatePlayer {
     public static int playerSpeed = 1; // might move this to controller
+    public static int playerStamina = 50;
+    public static boolean hasKey = false;
+    public static boolean stageClear = false;
+    public static boolean staminaOut = false;
 
     /**
      * Move the player's position upwards.

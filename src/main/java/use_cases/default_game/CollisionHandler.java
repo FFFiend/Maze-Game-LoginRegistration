@@ -36,6 +36,7 @@ public class CollisionHandler {
         };
         if (hazards.isPlayerKilled(hazardModel)){
             // collide with enemy, Player dies or takes damage;
+            eHandler.enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
             eHandler.pickUpItem(hazardModel);
@@ -43,6 +44,7 @@ public class CollisionHandler {
         if (!hazards.isPlayerBlocked(hazardModel)){
             UpdatePlayer.movePlayerUp();
         }
+        hazards.update(hazardModel);
     }
     public void downPressed() {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
@@ -65,6 +67,7 @@ public class CollisionHandler {
         };
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
+            eHandler.enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
             eHandler.pickUpItem(hazardModel);
@@ -72,6 +75,7 @@ public class CollisionHandler {
         if (!hazards.isPlayerBlocked(hazardModel)){
             UpdatePlayer.movePlayerDown();
         }
+        hazards.update(hazardModel);
     }
     public void leftPressed() {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
@@ -94,6 +98,7 @@ public class CollisionHandler {
         };
         if (hazards.isPlayerKilled(hazardModel)) {
             // collide with enemy, Player dies or takes damage;
+            eHandler.enemyContact();
         }
         if (items.anyItemCollision(hazardModel)){
             eHandler.pickUpItem(hazardModel);
@@ -101,6 +106,7 @@ public class CollisionHandler {
         if (!hazards.isPlayerBlocked(hazardModel)){
             UpdatePlayer.movePlayerLeft();
         }
+        hazards.update(hazardModel);
     }
     public void rightPressed() {
         IHazardRequestModel hazardModel = new IHazardRequestModel() {
@@ -131,6 +137,7 @@ public class CollisionHandler {
         if (!hazards.isPlayerBlocked(hazardModel)){
             UpdatePlayer.movePlayerRight();
         }
+        hazards.update(hazardModel);
     }
 }
 

@@ -19,12 +19,30 @@ public class EventHandler {
         switch(itemName) {
             case "Photons":
                 items.delete(x, y);
-                // restore Player stamina
+                UpdatePlayer.playerStamina += 20;
+                System.out.println("picked up stamina!" + UpdatePlayer.playerStamina);
+                break;
             case "Key":
                 items.delete(x, y);
-                // set Player hasKey == True
+                UpdatePlayer.hasKey = true;
+                System.out.println("picked up Key");
+                break;
+            case "Blackhole":
+                if (UpdatePlayer.hasKey){
+                    UpdatePlayer.stageClear = true;
+                    System.out.println("stageClear!");
+                }
+                break;
         }
     }
     public void enemyContact(){
+        if (UpdatePlayer.playerStamina > 10){
+            UpdatePlayer.playerStamina -= 10;
+            System.out.println("damage!" + UpdatePlayer.playerStamina);
+        } else {
+            UpdatePlayer.staminaOut = true;
+            UpdatePlayer.playerStamina -= 10;
+            System.out.println("you died!" + UpdatePlayer.playerStamina);
+        }
     }
 }
