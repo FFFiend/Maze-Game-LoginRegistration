@@ -13,10 +13,11 @@ public class CollisionHandler {
     int MAX_PANEL_ROW = maze.getNum("MAX_PANEL_ROW");
     int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
 
-    public CollisionHandler(MazeItems items, MazeHazards hazards){
+    public CollisionHandler(MazeItems items, MazeHazards hazards) {
         this.hazards = hazards;
         this.items = items;
     }
+
     public boolean upPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, 0, -playerSpeed);
         handleEvent(hazardModel);
@@ -28,14 +29,15 @@ public class CollisionHandler {
         handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
+
     public boolean leftPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, -playerSpeed, 0);
         handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
+
     public boolean rightPressed(int playerX, int playerY) {
         IHazardRequestModel hazardModel = getHazardModel(playerX, playerY, playerSpeed, 0);
-
         handleEvent(hazardModel);
         return !hazards.isPlayerBlocked(hazardModel);
     }
@@ -45,16 +47,16 @@ public class CollisionHandler {
             // collide with enemy, Player dies or takes damage;
             enemyContact();
         }
-        if (items.anyItemCollision(hazardModel)){
+        if (items.anyItemCollision(hazardModel)) {
             pickUpItem(hazardModel);
         }
     }
 
-    public void pickUpItem(IHazardRequestModel request){
+    public void pickUpItem(IHazardRequestModel request) {
         int x = request.getPlayerX();
         int y = request.getPlayerY();
         String itemName = items.get(x, y).getName();
-        switch(itemName) {
+        switch (itemName) {
             case "Photons":
                 items.delete(x, y);
 //                UpdatePlayer.playerStamina += 20;
@@ -71,7 +73,7 @@ public class CollisionHandler {
         }
     }
 
-    public void enemyContact(){
+    public void enemyContact() {
 //        if (UpdatePlayer.playerStamina > 10){
 //            UpdatePlayer.playerStamina -= 10;
 //        } else {
@@ -86,14 +88,17 @@ public class CollisionHandler {
             public int getPlayerX() {
                 return playerX + moveX;
             }
+
             @Override
             public int getPlayerY() {
                 return playerY + moveY;
             }
+
             @Override
             public int mazeWidth() {
                 return MAX_PANEL_COL;
             }
+
             @Override
             public int mazeHeight() {
                 return MAX_PANEL_ROW;
