@@ -11,6 +11,5 @@ public interface IGamePanelOutputBoundary {
      * @param playerX player position X
      * @param playerY player position Y
      */
-    default void updateMaze(int playerX, int playerY) {
-    }
+    void updateMaze(int playerX, int playerY);
 }

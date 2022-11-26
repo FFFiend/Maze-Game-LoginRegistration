@@ -14,12 +14,13 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
     private final Player player;
     private final int playerSpeed = 1;
     private final IGamePanelOutputBoundary outputBoundary;
-    private final int FPS = 20; // updates the screen 20 times per second
+    private final int FPS = 20; // updates the screen 20 times per
+    // second
 
     /**
      * Constructor for this class.
      *
-     * @param player         the player that user controls
+     * @param player         theplayer that user controls
      * @param outputBoundary the output boundary for the game panel
      */
     public UpdatePlayer(Player player, IGamePanelOutputBoundary outputBoundary) {
@@ -69,20 +70,19 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
      */
     @Override
     public void run() {
-        // credit to Seamus
-        double drawInterval = 1_000_000_000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-
+        long lastTime = System.currentTimeMillis();
         while (gameThread != null) {
-            long currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / drawInterval;
-            lastTime = currentTime;
-
-            if (delta >= 1) {
-                update();
-                delta--;
+            long currentTime = System.currentTimeMillis();
+            long sleepTime = lastTime + 1000 / FPS - currentTime;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
             }
+            lastTime = currentTime;
+            update();
         }
     }
 

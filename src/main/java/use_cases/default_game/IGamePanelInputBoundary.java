@@ -11,6 +11,5 @@ public interface IGamePanelInputBoundary {
      *
      * @param keycode the keyboard input
      */
-    default void movePlayer(int keycode) {
-    }
+    void movePlayer(int keycode);
 }
