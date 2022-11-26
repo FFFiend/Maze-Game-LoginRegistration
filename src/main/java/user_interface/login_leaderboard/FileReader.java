@@ -1,5 +1,6 @@
 package user_interface.login_leaderboard;
 
+import adapters.login_leaderboard.UsersCreation;
 import use_cases.login_leaderboard.IFileInput;
 
 import java.io.*;
@@ -45,5 +46,12 @@ public class FileReader implements IFileInput {
             throw new RuntimeException(e);
         }
         return arr;
+    }
+
+    public UsersCreation create(){
+        UsersCreation update = new UsersCreation();
+        update.saveUsers(readFile());
+
+        return update;
     }
 }

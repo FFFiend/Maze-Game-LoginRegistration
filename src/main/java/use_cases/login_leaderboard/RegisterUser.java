@@ -6,8 +6,9 @@ import entities.login_leaderboard.User;
  * If the user password is invalid (PasswordStrengthChecker), allow user to try again with a new password.
  * If the user password is valid, update the CSV with the user info, let the user know
  * they have been registered.
+ * If the username already exists in the data file, tell the user "This user already exists"
  */
-public class RegisterUser implements IRegisterUserInputBoundary {
+public class RegisterUser extends PreviousUsers implements IRegisterUserInputBoundary {
 
     final IRegisterUserOutputBoundary userPresenter;
     private String username;
@@ -58,7 +59,6 @@ public class RegisterUser implements IRegisterUserInputBoundary {
         else if(UserAlreadyExists()){
             userPresenter.PrepareView("This user already exists");
         }
-
     }
 
     /***
@@ -67,8 +67,6 @@ public class RegisterUser implements IRegisterUserInputBoundary {
      * @return boolean depending on whether user exists or not.
      */
     public boolean UserAlreadyExists(){
-        // checks in the database.
-        // still unimplemented.
-        return false;
+        return getUsers().containsKey(username);
     }
 }

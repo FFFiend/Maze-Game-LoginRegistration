@@ -13,8 +13,12 @@ public class LeaderboardPresenter {
     private final ArrayList<String> HARDSCORES = new ArrayList<>();
     private final LeaderboardGenerator SCORES = new LeaderboardGenerator();
 
+    /**
+     * Update the generator to include all previous users.
+     * @param users : Allows access previous users through PREV
+     */
     public void setScores(UsersCreation users){
-        SCORES.users = users.prev.users;
+        SCORES.setUsers(users.PREV.getUsers());
     }
 
     /**

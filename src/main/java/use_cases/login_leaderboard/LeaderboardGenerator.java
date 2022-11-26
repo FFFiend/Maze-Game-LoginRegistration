@@ -23,7 +23,7 @@ public class LeaderboardGenerator extends PreviousUsers {
      * @return : A sorted array list of User objects, sorted by Users easy scores
      */
     public ArrayList<String> sortEasy() {
-        EASY.addAll(users.values());
+        EASY.addAll(getUsers().values());
         EASY.sort(new EasyLeaderboard());
 
         ArrayList<String> easySorted = new ArrayList<>();
@@ -40,7 +40,7 @@ public class LeaderboardGenerator extends PreviousUsers {
      * @return : A sorted array list of User objects, sorted by Users medium scores
      */
     public ArrayList<String> sortMedium() {
-        MEDIUM.addAll(users.values());
+        MEDIUM.addAll(getUsers().values());
         MEDIUM.sort(new MediumLeaderboard());
 
         ArrayList<String> medSorted = new ArrayList<>();
@@ -57,7 +57,7 @@ public class LeaderboardGenerator extends PreviousUsers {
      * @return : A sorted array list of User objects, sorted by Users hard scores
      */
     public ArrayList<String> sortHard() {
-        HARD.addAll(users.values());
+        HARD.addAll(getUsers().values());
         HARD.sort(new HardLeaderboard());
 
         ArrayList<String> hardScore = new ArrayList<>();

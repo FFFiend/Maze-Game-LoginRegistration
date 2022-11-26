@@ -1,9 +1,6 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
-import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
-import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
+import adapters.login_leaderboard.*;
 import entities.default_game.Player;
 import use_cases.default_game.UpdatePlayer;
 import use_cases.login_leaderboard.*;
@@ -40,7 +37,6 @@ public class Main {
         //setupRegisterUseCase();
         //setupLoginUseCase();
     }
-
 
     /**
      * Temporary acess to the Register User use case. Please uncomment from setupGame

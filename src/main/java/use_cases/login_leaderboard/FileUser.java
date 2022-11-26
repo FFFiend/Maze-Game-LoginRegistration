@@ -4,7 +4,6 @@ import entities.login_leaderboard.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Creates a hashmap of all users in the csv file.
@@ -28,8 +27,9 @@ public class FileUser {
     }
 
     /**
-     * Map all usernames to users stored.
-     * @return : A Hashmap mapping String to user
+     * Create a hashmap using the nested array list. Each array stores the User values.
+     * The first value in an array is the username.
+     * @return : A Hashmap mapping username to User
      */
     public HashMap<String, User> prevUsers(){
         ArrayList<ArrayList<String>> info = FILE.readFile();

@@ -6,16 +6,22 @@ import use_cases.login_leaderboard.PreviousUsers;
 
 import java.util.ArrayList;
 
+/**
+ * Update register, login, and leaderboard use cases to include all previous users.
+ */
 public class UsersCreation {
-    public final PreviousUsers prev = new PreviousUsers();
+    public final PreviousUsers PREV = new PreviousUsers();
 
     /**
-     * Update register, login, and leaderboard to include all previous users.
+     * Takes in a nested array list of the data from the CSV file, passes the data to file user to
+     * create a hashmap of the previous users. Updates the setter in the PreviousUsers class, allowing
+     * the use cases to access the users.
+     * @param data : The data stored in the csv file, converted to a nested array list
      */
     public void saveUsers(ArrayList<ArrayList<String>> data){
         IFileInput file = () -> data;
         FileUser user = new FileUser(file);
 
-        prev.setUsers(user.prevUsers());
+        PREV.setUsers(user.prevUsers());
     }
 }
