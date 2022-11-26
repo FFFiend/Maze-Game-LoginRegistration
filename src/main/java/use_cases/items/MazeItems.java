@@ -1,5 +1,6 @@
 package use_cases.items;
 
+import entities.default_game.IDrawOutputBoundary;
 import entities.items.ICollisionRequestModel;
 import entities.items.Item;
 
@@ -59,5 +60,14 @@ public class MazeItems {
         Item item = get(x, y);
         if (item != null)
             items.remove(item);
+    }
+
+    /**
+     * Draw all items in the maze.
+     */
+    public void draw(IDrawOutputBoundary d) {
+        for (Item item: items) {
+            item.draw(d);
+        }
     }
 }

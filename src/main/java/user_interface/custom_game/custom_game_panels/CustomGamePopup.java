@@ -75,7 +75,7 @@ public class CustomGamePopup implements ICustomGamePanel{
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JButton returnButton = new JButton("change it");
-//        returnButton.addActionListener(new CustomGameSubmissionManager("CustomGamePopup", new CustomGamePresenter(), panel));
+        returnButton.addActionListener(new CustomGameSubmissionManager("CustomGamePopup", new CustomGamePresenter(), panel));
 
         bottomPanel.add(returnButton);
         returnToCustomMainButton(bottomPanel);

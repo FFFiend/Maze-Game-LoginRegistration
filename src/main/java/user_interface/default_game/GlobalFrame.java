@@ -1,54 +1,38 @@
 package user_interface.default_game;
 
-import user_interface.login_leaderboard.WelcomePanel;
+import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
-import java.awt.*;
+
 
 public class GlobalFrame {
-    public JFrame window;
-    public final int FRAME_WIDTH = 768;
-    public final int FRAME_HEIGHT = 576;
-
+    public JFrame window = new JFrame();
     /**
      * A frame that controls the whole project (not implemented yet).
      **/
     public GlobalFrame() {
-        this.window = new JFrame();
+
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setTitle("AstroMaze");
+        int FRAME_WIDTH = 768;
+        int FRAME_HEIGHT = 576;
         window.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         window.setResizable(false);
-
+        window.setVisible(true);
     }
 
     /**
      * Sets the initial panel of the frame to the welcome screen.
      */
-    public void setWelcomePanel() {
-        WelcomePanel welcomePanel = new WelcomePanel();
-        window.add(welcomePanel);
+    public void setPanel(Panel panel) {
 
+        window.add(panel);
+
+        // add extra methods in welcomepanel to ensure this works
+        // properly when needed. For now, testing whether panel
+        // changing actually works.
         window.setLocationRelativeTo(null);
         // centers the window..got it..
         window.setVisible(true);
-    }
-
-
-    /**
-     * Remove the current panel on the frame and switch to another panel.
-     *
-     * @param nextPanel the next panel that will be displayed
-     */
-    public void changePanel(JPanel nextPanel) {
-        window.removeAll();
-
-        window.add(nextPanel);
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-
-        window.revalidate();
-        // window.repaint();
-        // does not remember state of frame before
     }
 }
