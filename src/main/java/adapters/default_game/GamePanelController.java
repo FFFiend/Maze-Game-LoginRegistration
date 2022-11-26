@@ -1,5 +1,7 @@
 package adapters.default_game;
 
+import use_cases.default_game.IGamePanelInputBoundary;
+import use_cases.default_game.IMovePlayerRequest;
 import use_cases.default_game.UpdatePlayer;
 
 import java.awt.event.KeyEvent;
@@ -9,6 +11,10 @@ import java.awt.event.KeyListener;
  * User controller for the game.
  */
 public class GamePanelController implements KeyListener {
+    private IGamePanelInputBoundary inputBoundary;
+    public GamePanelController(IGamePanelInputBoundary inputBoundary){
+        this.inputBoundary = inputBoundary;
+    }
     /**
      * Invoked when a key has been typed.
      * See the class description for {@link KeyEvent} for a definition of
@@ -30,18 +36,10 @@ public class GamePanelController implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        int code = e.getKeyCode();
-        if (code == KeyEvent.VK_W) {
-            UpdatePlayer.movePlayerUp();
-        }
-        if (code == KeyEvent.VK_S) {
-            UpdatePlayer.movePlayerDown();
-        }
-        if (code == KeyEvent.VK_D) {
-            UpdatePlayer.movePlayerRight();
-        }
-        if (code == KeyEvent.VK_A) {
-            UpdatePlayer.movePlayerLeft();
+        int keycode = e.getKeyCode();
+        if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
+                keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
+            inputBoundary.movePlayer(keycode);
         }
     }
 
