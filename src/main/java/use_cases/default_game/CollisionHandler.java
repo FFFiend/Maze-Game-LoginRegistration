@@ -1,6 +1,7 @@
 package use_cases.default_game;
 
 import entities.default_game.Maze;
+import entities.default_game.Player;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
@@ -9,13 +10,15 @@ public class CollisionHandler {
     private final MazeHazards hazards;
     private final MazeItems items;
     private final Maze maze = new Maze();
+    private final Player player;
     int MAX_PANEL_COL = maze.getNum("MAX_PANEL_COL");
     int MAX_PANEL_ROW = maze.getNum("MAX_PANEL_ROW");
     int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
 
-    public CollisionHandler(MazeItems items, MazeHazards hazards) {
+    public CollisionHandler(MazeItems items, MazeHazards hazards, Player player) {
         this.hazards = hazards;
         this.items = items;
+        this.player = player;
     }
 
     public boolean upPressed(int playerX, int playerY) {
@@ -59,26 +62,23 @@ public class CollisionHandler {
         switch (itemName) {
             case "Photons":
                 items.delete(x, y);
-//                UpdatePlayer.playerStamina += 20;
+//                player.setStamina(getStamina() + 20);
                 break;
             case "Key":
                 items.delete(x, y);
-//                UpdatePlayer.hasKey = true;
+//                player.setHasKey(true);
                 break;
             case "Blackhole":
-//                if (UpdatePlayer.hasKey){
-//                    UpdatePlayer.stageClear = true;
+//                if (player.getHasKey()){
+//                    player.setStageClear(true);
 //                }
                 break;
         }
     }
 
     public void enemyContact() {
-//        if (UpdatePlayer.playerStamina > 10){
-//            UpdatePlayer.playerStamina -= 10;
-//        } else {
-//            UpdatePlayer.staminaOut = true;
-//            UpdatePlayer.playerStamina -= 10;
+//        if (player.getStamina() > 0){
+//            player.setStamina(getStamina() - 10);
 //        }
     }
 

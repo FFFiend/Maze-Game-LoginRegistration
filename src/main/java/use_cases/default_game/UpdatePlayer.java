@@ -27,7 +27,7 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
     public UpdatePlayer(IGamePanelOutputBoundary outputBoundary, MazeItems items, MazeHazards hazards) {
         this.player = new Player(1, 1);
         this.outputBoundary = outputBoundary;
-        this.cHandler = new CollisionHandler(items, hazards);
+        this.cHandler = new CollisionHandler(items, hazards, player);
     }
 
     /**
