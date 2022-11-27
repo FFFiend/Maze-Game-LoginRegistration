@@ -8,8 +8,14 @@ import use_cases.default_game.CustomAssetSetter;
 import use_cases.items.MazeItems;
 import use_cases.hazards.MazeHazards;
 
+/**
+ * Test the CollisionHandler class
+ */
 public class CollisionHandlerTest {
 
+    /**
+     * Test CollisionHandler with an obstacle in UP direction, and other assets in DOWN/LEFT/RIGHT directions.
+     */
     @Test
     public void TestObstacleCollision() {
         MazeItems items = new MazeItems();
