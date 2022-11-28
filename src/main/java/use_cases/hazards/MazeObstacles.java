@@ -64,4 +64,9 @@ public class MazeObstacles {
             obstacle.draw(d);
         }
     }
+
+    /** Remove all obstacles in the maze. */
+    public void clear() {
+        obstacles.clear();
+    }
 }
