@@ -22,7 +22,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
     private int playerX;
     private int playerY;
-
     private final MazeHazards hazards;
     private final MazeItems items;
 
@@ -33,18 +32,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        new CustomAssetSetter("mazes/maze02.txt", items, hazards);
         this.items = items;
         this.hazards = hazards;
-        loadMaze("mazes/maze02.txt");
     }
 
-    /** Load a maze from a file.
-     *
-     * @param filename The path to the maze description file.
-     */
-    public void loadMaze(String filename) {
-        new CustomAssetSetter(filename, items, hazards);
-    }
 
     /**
      * Update the player position and draw the maze accordingly.
