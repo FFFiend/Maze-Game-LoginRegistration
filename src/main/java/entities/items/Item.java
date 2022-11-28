@@ -2,6 +2,7 @@ package entities.items;
 
 import entities.default_game.Entity;
 import entities.default_game.IDrawOutputBoundary;
+import entities.hazards.IHazardRequestModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -124,7 +125,7 @@ public class Item extends Entity {
     /**
      * Check whether the item collides with the player.
      */
-    public boolean itemCollision(ICollisionRequestModel request) {
+    public boolean itemCollision(IHazardRequestModel request) {
         int playerX = request.getPlayerX();
         int playerY = request.getPlayerY();
         return itemExists(playerX, playerY);

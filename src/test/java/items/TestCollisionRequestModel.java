@@ -1,12 +1,12 @@
 package items;
 
-import entities.items.ICollisionRequestModel;
+import entities.hazards.IHazardRequestModel;
 
 
 /**
- * an ICollisionRequestModel implementation for testing only
+ * an IHazardRequestModel implementation for testing only
  */
-public class TestCollisionRequestModel implements ICollisionRequestModel {
+public class TestCollisionRequestModel implements IHazardRequestModel {
     /**
      * simulated player x position
      */
@@ -32,5 +32,15 @@ public class TestCollisionRequestModel implements ICollisionRequestModel {
     @Override
     public int getPlayerY() {
         return playerY;
+    }
+
+    @Override
+    public int mazeWidth() {
+        return 0;
+    }
+
+    @Override
+    public int mazeHeight() {
+        return 0;
     }
 }

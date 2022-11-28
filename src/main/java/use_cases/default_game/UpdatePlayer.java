@@ -1,6 +1,8 @@
 package use_cases.default_game;
 
 import entities.default_game.Player;
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
@@ -14,18 +16,18 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
     private final Player player;
     private final int playerSpeed = 1;
     private final IGamePanelOutputBoundary outputBoundary;
-    private final int FPS = 20; // updates the screen 20 times per
-    // second
+    private final int FPS = 20; // updates the screen 20 times per second
+    private final CollisionHandler cHandler;
 
     /**
      * Constructor for this class.
      *
-     * @param player         theplayer that user controls
      * @param outputBoundary the output boundary for the game panel
      */
-    public UpdatePlayer(Player player, IGamePanelOutputBoundary outputBoundary) {
-        this.player = player;
+    public UpdatePlayer(IGamePanelOutputBoundary outputBoundary, MazeItems items, MazeHazards hazards) {
+        this.player = new Player(1, 1);
         this.outputBoundary = outputBoundary;
+        this.cHandler = new CollisionHandler(items, hazards, player);
     }
 
     /**
@@ -36,16 +38,20 @@ public class UpdatePlayer extends JPanel implements IGamePanelInputBoundary, Run
      */
     public void movePlayer(int keycode) {
         if (keycode == KeyEvent.VK_W) {
-            player.movePlayerY(-playerSpeed);
+            if (cHandler.upPressed(player.getPlayerX(), player.getPlayerY())) {
+                player.movePlayerY(-playerSpeed);}
         }
         if (keycode == KeyEvent.VK_S) {
-            player.movePlayerY(playerSpeed);
+            if (cHandler.downPressed(player.getPlayerX(), player.getPlayerY())) {
+                player.movePlayerY(playerSpeed);}
         }
         if (keycode == KeyEvent.VK_D) {
-            player.movePlayerX(playerSpeed);
+            if (cHandler.rightPressed(player.getPlayerX(), player.getPlayerY())) {
+                player.movePlayerX(playerSpeed);}
         }
         if (keycode == KeyEvent.VK_A) {
-            player.movePlayerX(-playerSpeed);
+            if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
+                player.movePlayerX(-playerSpeed);}
         }
     }
 
