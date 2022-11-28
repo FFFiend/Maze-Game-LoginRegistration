@@ -1,25 +1,30 @@
 package use_cases.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
+import entities.default_game.Maze;
 import entities.default_game.Player;
+import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
 import java.awt.event.KeyEvent;
 
 /** Use case interactor for mazes */
-public class MazeInteractor implements IGamePanelInputBoundary {
+public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestModel {
     private final MazeHazards hazards;
     private final MazeItems items;
     private final CollisionHandler cHandler;
     private final Player player;
     private final int playerSpeed = 1;
+    private final Maze mazeInfo;
+
 
     public MazeInteractor() {
         hazards = new MazeHazards();
         items = new MazeItems();
         this.player = new Player(1, 1);
         cHandler = new CollisionHandler(items, hazards, player);
+        mazeInfo = new Maze();
     }
 
     /** Load a maze from a file. */
@@ -67,5 +72,21 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     public int getPlayerY() {
         return player.getPlayerY();
     }
+
+    @Override
+    public int mazeWidth() {
+        return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
+    }
+
+    @Override
+    public int mazeHeight() {
+        return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
+    }
+
+    @Override
+    public void update() {
+        hazards.update(this);
+    }
+
 
 }

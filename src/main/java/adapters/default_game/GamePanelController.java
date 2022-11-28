@@ -9,11 +9,17 @@ import java.awt.event.KeyListener;
 /**
  * User controller for the game.
  */
-public class GamePanelController implements KeyListener {
+public class GamePanelController implements KeyListener, Runnable {
     private final IGamePanelInputBoundary inputBoundary;
+
+    /** Number of times per second the inputBoundary update method is called. */
+    private final int updateFrequency = 4;
+    private final Thread updateThread;
 
     public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
+        updateThread = new Thread(this);
+        updateThread.start();
     }
 
     /**
@@ -47,5 +53,24 @@ public class GamePanelController implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
 
+    }
+
+    @Override
+    public void run() {
+        long lastTime = System.currentTimeMillis();
+        while (updateThread != null) {
+            long currentTime = System.currentTimeMillis();
+            long sleepTime = lastTime + 1000 / updateFrequency - currentTime;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            lastTime = System.currentTimeMillis();
+
+            inputBoundary.update();
+        }
     }
 }

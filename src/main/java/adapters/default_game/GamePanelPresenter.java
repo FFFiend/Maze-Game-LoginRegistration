@@ -107,7 +107,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
                     throw new RuntimeException(e);
                 }
             }
-            lastTime = currentTime;
+            lastTime = System.currentTimeMillis();
             updateMaze(maze.getPlayerX(), maze.getPlayerY());
         }
     }
