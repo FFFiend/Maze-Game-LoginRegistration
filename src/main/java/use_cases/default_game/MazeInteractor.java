@@ -20,6 +20,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final Maze mazeInfo;
 
     private boolean playerKilled;
+    /** The file name of the maze which is currently loaded. */
+    private String currentMaze;
 
 
 
@@ -34,7 +36,14 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     /** Load a maze from a file. */
     public void load(String filename) {
-        new CustomAssetSetter(filename, items, hazards);
+        currentMaze = filename;
+        new CustomAssetSetter(currentMaze, items, hazards);
+    }
+
+    @Override
+    public void reset() {
+        load(currentMaze);
+        playerKilled = false;
     }
 
     /** Draw all maze components. */
@@ -57,7 +66,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      */
     public void movePlayer(int keycode) {
         if (gameOver()) {
-            // prevent player from moving after the game is over.
+            // prevent player from moving after game is over.
             return;
         }
 

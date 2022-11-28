@@ -17,4 +17,6 @@ public interface IGamePanelInputBoundary {
      * For example, moving enemies will move when this is called.
      */
     void update();
+    /** Reset the state of the maze. */
+    void reset();
 }

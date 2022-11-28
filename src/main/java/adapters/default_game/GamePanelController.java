@@ -56,6 +56,8 @@ public class GamePanelController implements KeyListener, Runnable {
         if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
                 keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
             inputBoundary.movePlayer(keycode);
+        } else if (keycode == KeyEvent.VK_R) {
+            inputBoundary.reset();
         }
     }
 
