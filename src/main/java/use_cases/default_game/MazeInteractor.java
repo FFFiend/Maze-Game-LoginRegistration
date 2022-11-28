@@ -7,6 +7,7 @@ import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /** Use case interactor for mazes */
@@ -18,6 +19,9 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int playerSpeed = 1;
     private final Maze mazeInfo;
 
+    private boolean playerKilled;
+
+
 
     public MazeInteractor() {
         hazards = new MazeHazards();
@@ -25,6 +29,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         this.player = new Player(1, 1);
         cHandler = new CollisionHandler(items, hazards, player);
         mazeInfo = new Maze();
+        playerKilled = false;
     }
 
     /** Load a maze from a file. */
@@ -34,8 +39,14 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     /** Draw all maze components. */
     public void draw(IDrawOutputBoundary d) {
+        Graphics2D g2 = d.graphics();
         hazards.draw(d);
         items.draw(d);
+        if (isPlayerKilled()) {
+            g2.setColor(Color.RED);
+            g2.setFont(new Font(null, Font.PLAIN, 48));
+            g2.drawString("Game over", 270, 330);
+        }
     }
 
     /**
@@ -45,6 +56,11 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      * @param keycode the keyboard input
      */
     public void movePlayer(int keycode) {
+        if (gameOver()) {
+            // prevent player from moving after the game is over.
+            return;
+        }
+
         if (keycode == KeyEvent.VK_W) {
             if (cHandler.upPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerY(-playerSpeed);}
@@ -61,6 +77,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerX(-playerSpeed);}
         }
+
+        checkPlayerKilled();
     }
 
     /** Get the player's current x position */
@@ -85,8 +103,28 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     @Override
     public void update() {
+        if (gameOver()) {
+            // don't update after the game is over.
+            return;
+        }
         hazards.update(this);
+        checkPlayerKilled();
     }
 
+    /** Check if the player has been killed by an enemy. */
+    private void checkPlayerKilled() {
+        if (hazards.isPlayerKilled(this)) {
+            playerKilled = true;
+        }
+    }
 
+    /** Is the game over? */
+    public boolean gameOver() {
+        return isPlayerKilled();
+    }
+
+    /** Has the player been killed? */
+    public boolean isPlayerKilled() {
+        return playerKilled;
+    }
 }

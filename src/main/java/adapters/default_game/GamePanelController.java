@@ -12,14 +12,23 @@ import java.awt.event.KeyListener;
 public class GamePanelController implements KeyListener, Runnable {
     private final IGamePanelInputBoundary inputBoundary;
 
-    /** Number of times per second the inputBoundary update method is called. */
+    /**
+     * Number of times per second the inputBoundary update method is called.
+     */
     private final int updateFrequency = 4;
-    private final Thread updateThread;
+    private Thread updateThread;
 
     public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
         updateThread = new Thread(this);
         updateThread.start();
+    }
+
+    /**
+     * Stop updating the game.
+     */
+    public void stopGame() {
+        updateThread = null;
     }
 
     /**
