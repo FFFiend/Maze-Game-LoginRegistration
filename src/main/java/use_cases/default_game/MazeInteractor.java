@@ -10,7 +10,12 @@ import use_cases.items.MazeItems;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-/** Use case interactor for mazes */
+/**
+ * Use case interactor for mazes.
+ *
+ * All the methods in this class use the "synchronized" keyword. This prevents
+ * java.util.ConcurrentModificationException, because we are accessing this class in separate threads.
+ * */
 public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestModel {
     private final MazeHazards hazards;
     private final MazeItems items;
@@ -35,19 +40,19 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     }
 
     /** Load a maze from a file. */
-    public void load(String filename) {
+    public synchronized void load(String filename) {
         currentMaze = filename;
         new CustomAssetSetter(currentMaze, items, hazards);
     }
 
     @Override
-    public void reset() {
+    public synchronized void reset() {
         load(currentMaze);
         playerKilled = false;
     }
 
     /** Draw all maze components. */
-    public void draw(IDrawOutputBoundary d) {
+    public synchronized void draw(IDrawOutputBoundary d) {
         Graphics2D g2 = d.graphics();
         hazards.draw(d);
         items.draw(d);
@@ -64,7 +69,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      *
      * @param keycode the keyboard input
      */
-    public void movePlayer(int keycode) {
+    public synchronized void movePlayer(int keycode) {
         if (gameOver()) {
             // prevent player from moving after game is over.
             return;
@@ -91,27 +96,27 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     }
 
     /** Get the player's current x position */
-    public int getPlayerX() {
+    public synchronized int getPlayerX() {
         return player.getPlayerX();
     }
 
     /** Get the player's current y position */
-    public int getPlayerY() {
+    public synchronized int getPlayerY() {
         return player.getPlayerY();
     }
 
     @Override
-    public int mazeWidth() {
+    public synchronized int mazeWidth() {
         return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
     }
 
     @Override
-    public int mazeHeight() {
+    public synchronized int mazeHeight() {
         return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
     }
 
     @Override
-    public void update() {
+    public synchronized void update() {
         if (gameOver()) {
             // don't update after the game is over.
             return;
@@ -121,19 +126,19 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     }
 
     /** Check if the player has been killed by an enemy. */
-    private void checkPlayerKilled() {
+    private synchronized void checkPlayerKilled() {
         if (hazards.isPlayerKilled(this)) {
             playerKilled = true;
         }
     }
 
     /** Is the game over? */
-    public boolean gameOver() {
+    public synchronized boolean gameOver() {
         return isPlayerKilled();
     }
 
     /** Has the player been killed? */
-    public boolean isPlayerKilled() {
+    public synchronized boolean isPlayerKilled() {
         return playerKilled;
     }
 }
