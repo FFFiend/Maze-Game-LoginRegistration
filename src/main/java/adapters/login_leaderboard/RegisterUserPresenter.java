@@ -17,4 +17,5 @@ public class RegisterUserPresenter implements IRegisterUserOutputBoundary {
     public void PrepareView(String u) {
         JOptionPane.showMessageDialog(null, u);
     }
+
 }

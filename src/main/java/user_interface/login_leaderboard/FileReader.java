@@ -48,10 +48,16 @@ public class FileReader implements IFileInput {
         return arr;
     }
 
-    public UsersCreation create(){
+    /**
+     * Create User objects of previous users from the CSV file.
+     */
+    public static UsersCreation create(){
         UsersCreation update = new UsersCreation();
-        update.saveUsers(readFile());
+        FileReader read = new FileReader();
+        update.saveUsers(read.readFile());
 
         return update;
     }
+
+
 }

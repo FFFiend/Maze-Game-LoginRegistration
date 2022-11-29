@@ -30,7 +30,7 @@ public class LoginUser extends PreviousUsers implements ILoginUserInputBoundary 
             loginPresenter.PrepareView("Welcome, please continue to the game.");
         }
         else{
-            loginPresenter.PrepareView("Username password combination is invalid." +
+            loginPresenter.PrepareView("Username password combination is invalid. " +
                     "If you are a returning user, please enter the correct password.");
         }
     }

@@ -52,12 +52,11 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
             // TODO
             userPresenter.PrepareView("You have been registered.");
         }
-        else if(!isValid()){
-            userPresenter.PrepareView("Your password is not valid");
-
-        }
         else if(UserAlreadyExists()){
             userPresenter.PrepareView("This user already exists");
+        }
+        else if(!isValid()){
+            userPresenter.PrepareView("Your password is not valid");
         }
     }
 
