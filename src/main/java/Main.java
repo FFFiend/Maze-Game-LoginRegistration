@@ -11,6 +11,7 @@ import use_cases.items.MazeItems;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
+import user_interface.login_leaderboard.FileReader;
 import user_interface.login_leaderboard.LoginPanel;
 import user_interface.login_leaderboard.RegisterPanel;
 import user_interface.login_leaderboard.WelcomePanel;
@@ -44,7 +45,6 @@ public class Main {
         //setupLoginUseCase();
     }
 
-
     /**
      * Temporary acess to the Register User use case. Please uncomment from setupGame
      * method to use.
@@ -53,11 +53,10 @@ public class Main {
         GlobalFrame globalFrame = new GlobalFrame();
 
         IRegisterUserOutputBoundary output = new RegisterUserPresenter();
+        RegisterUser registerUseCase = new RegisterUser(output);
+        registerUseCase.setUsers(FileReader.create().PREV.getUsers());
 
-        IRegisterUserInputBoundary input = new RegisterUser(output);
-        // Register user class initialized.
-
-        RegisterUserController controller = new RegisterUserController(input);
+        RegisterUserController controller = new RegisterUserController(registerUseCase);
         RegisterPanel register = new RegisterPanel(controller);
         globalFrame.setPanel(register);
     }
@@ -67,22 +66,22 @@ public class Main {
      * to use.
      */
     private static void setupLoginUseCase(){
-
         GlobalFrame globalFrame = new GlobalFrame();
-        ILoginUserOutputBoundary output = new LoginUserPresenter();
-        ILoginUserInputBoundary input = new LoginUser(output);
 
-        LoginUserController controller = new LoginUserController(input);
+        ILoginUserOutputBoundary output = new LoginUserPresenter();
+        LoginUser loginUseCase = new LoginUser(output);
+        loginUseCase.setUsers(FileReader.create().PREV.getUsers());
+
+        LoginUserController controller = new LoginUserController(loginUseCase);
         LoginPanel login =  new LoginPanel(controller);
         globalFrame.setPanel(login);
-
-
     }
+
     /**
      * Temporary access to the custom maze main menu. Please uncomment from setupGame method
      * to use.
      **/
-    private static void setupCustomMazeMenu () {
+    private static void setupCustomMazeMenu() {
         CustomGamePresenter tempPresenter = new CustomGamePresenter();
         tempPresenter.callCustomGamePanel();
     }

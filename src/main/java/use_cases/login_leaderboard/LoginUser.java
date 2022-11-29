@@ -1,16 +1,17 @@
 package use_cases.login_leaderboard;
 
+import entities.login_leaderboard.User;
+
 /**
  * Checks whether the entered username and password combination entered
  * is valid. Furthermore, displays a popup message notifying the user of
  * what the result is.
  */
-public class LoginUser implements ILoginUserInputBoundary {
+public class LoginUser extends PreviousUsers implements ILoginUserInputBoundary {
 
     final ILoginUserOutputBoundary loginPresenter;
     private String username;
     private String password;
-
 
     public LoginUser(ILoginUserOutputBoundary loginPresenter){ this.loginPresenter = loginPresenter;}
 
@@ -29,7 +30,7 @@ public class LoginUser implements ILoginUserInputBoundary {
             loginPresenter.PrepareView("Welcome, please continue to the game.");
         }
         else{
-            loginPresenter.PrepareView("Username password combination is invalid." +
+            loginPresenter.PrepareView("Username password combination is invalid. " +
                     "If you are a returning user, please enter the correct password.");
         }
     }
@@ -39,8 +40,7 @@ public class LoginUser implements ILoginUserInputBoundary {
      * @return whether they exist.
      */
     public boolean userExists(){
-        // TODO
-        return false;
+        return getUsers().containsKey(username);
     }
 
     /**
@@ -49,10 +49,9 @@ public class LoginUser implements ILoginUserInputBoundary {
      * provided the user exists.
      */
     public boolean pwdMatch(){
-
         if (userExists()){
-            // TODO
-            return true;
+            User user = getUsers().get(username);
+            return user.getPassword().equals(password);
         }
         return false;
     }
