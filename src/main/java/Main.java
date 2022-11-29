@@ -1,8 +1,13 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
-import adapters.login_leaderboard.*;
-import entities.default_game.Player;
+import adapters.login_leaderboard.LoginUserController;
+import adapters.login_leaderboard.LoginUserPresenter;
+import adapters.login_leaderboard.RegisterUserController;
+import adapters.login_leaderboard.RegisterUserPresenter;
+import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.UpdatePlayer;
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
@@ -12,6 +17,7 @@ import user_interface.login_leaderboard.RegisterPanel;
 import user_interface.login_leaderboard.WelcomePanel;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Run the game
@@ -70,6 +76,7 @@ public class Main {
         LoginPanel login =  new LoginPanel(controller);
         globalFrame.setPanel(login);
     }
+
     /**
      * Temporary access to the custom maze main menu. Please uncomment from setupGame method
      * to use.
@@ -88,12 +95,13 @@ public class Main {
         window.setResizable(false);
         window.setTitle("AstroMaze");
 
-        Player player = new Player(0, 0);
-        GamePanelPresenter presenter = new GamePanelPresenter();
-        UpdatePlayer playerUpdater = new UpdatePlayer(player, presenter);
+        MazeItems items = new MazeItems();
+        MazeHazards hazards = new MazeHazards();
+        IGamePanelOutputBoundary presenter = new GamePanelPresenter(items, hazards);
+        UpdatePlayer playerUpdater = new UpdatePlayer(presenter, items, hazards);
         GamePanelController controller = new GamePanelController(playerUpdater);
 
-        window.add(presenter);
+        window.add((Component) presenter);
 
         window.pack();
         window.setLocationRelativeTo(null);
