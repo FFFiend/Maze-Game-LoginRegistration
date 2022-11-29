@@ -22,15 +22,21 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
     private int playerX;
     private int playerY;
+    private final MazeHazards hazards;
+    private final MazeItems items;
 
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
-    public GamePanelPresenter() {
+    public GamePanelPresenter(MazeItems items, MazeHazards hazards) {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
+        new CustomAssetSetter("mazes/maze02.txt", items, hazards);
+        this.items = items;
+        this.hazards = hazards;
     }
+
 
     /**
      * Update the player position and draw the maze accordingly.
@@ -69,9 +75,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
                 return g2;
             }
         };
-        MazeItems items = new MazeItems();
-        MazeHazards hazards = new MazeHazards();
-        new CustomAssetSetter("mazes/maze02.txt", items, hazards);
         hazards.draw(b);
         items.draw(b);
         g2.dispose();
