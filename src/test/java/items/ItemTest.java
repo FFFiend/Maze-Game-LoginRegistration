@@ -1,7 +1,7 @@
 package items;
 
 import entities.default_game.IDrawOutputBoundary;
-import entities.items.ICollisionRequestModel;
+import entities.hazards.IHazardRequestModel;
 import entities.items.Item;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -43,9 +43,9 @@ public class ItemTest {
     @Test
     public void ItemCollision() {
         Item item = new Item(100, 200);
-        ICollisionRequestModel player1 = new TestCollisionRequestModel(100, 200);
-        ICollisionRequestModel player2 = new TestCollisionRequestModel(300, 300);
-        ICollisionRequestModel player3 = new TestCollisionRequestModel(0, 0);
+        IHazardRequestModel player1 = new TestCollisionRequestModel(100, 200);
+        IHazardRequestModel player2 = new TestCollisionRequestModel(300, 300);
+        IHazardRequestModel player3 = new TestCollisionRequestModel(0, 0);
         Assertions.assertTrue(item.itemCollision(player1));
         Assertions.assertFalse(item.itemCollision(player2));
         Assertions.assertFalse(item.itemCollision(player3));

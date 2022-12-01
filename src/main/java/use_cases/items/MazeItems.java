@@ -1,7 +1,7 @@
 package use_cases.items;
 
 import entities.default_game.IDrawOutputBoundary;
-import entities.items.ICollisionRequestModel;
+import entities.hazards.IHazardRequestModel;
 import entities.items.Item;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ public class MazeItems {
     /**
      * Check whether the player collides with any item.
      */
-    public boolean anyItemCollision(ICollisionRequestModel request) {
+    public boolean anyItemCollision(IHazardRequestModel request) {
         for (Item item : items) {
             if (item.itemCollision(request))
                 return true;
@@ -69,5 +69,12 @@ public class MazeItems {
         for (Item item: items) {
             item.draw(d);
         }
+    }
+
+    /**
+     * Remove all items from the maze.
+     */
+    public void clear() {
+        items.clear();
     }
 }

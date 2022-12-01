@@ -1,5 +1,6 @@
 package use_cases.default_game;
 
+import entities.default_game.Maze;
 import entities.hazards.ChasingEnemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
@@ -16,10 +17,25 @@ import java.io.InputStreamReader;
 public class CustomAssetSetter {
 
     /**
+     * Maze HashMap with all the necessary global constants
+     */
+    private final Maze maze = new Maze();
+
+    /**
      * dimensions of the map
      */
-    final int MAX_PANEL_COL = 16;
-    final int MAX_PANEL_ROW = 12;
+    final int MAX_PANEL_COL = this.maze.getNum("MAX_PANEL_COL");
+    final int MAX_PANEL_ROW = this.maze.getNum("MAX_PANEL_ROW");
+
+    /**
+     * Num codes for the Assets
+     */
+    final int OBSTACLE_NUM_CODE = this.maze.getNum("OBSTACLE_NUM_CODE");
+    final int STATIONARY_ENEMY_NUM_CODE = this.maze.getNum("STATIONARY_ENEMY_NUM_CODE");
+    final int CHASING_ENEMY_NUM_CODE = this.maze.getNum("CHASING_ENEMY_NUM_CODE");
+    final int KEY_NUM_CODE = this.maze.getNum("KEY_NUM_CODE");
+    final int PHOTONS_NUM_CODE = this.maze.getNum("PHOTONS_NUM_CODE");
+    final int END_NUM_CODE = this.maze.getNum("END_NUM_CODE");
 
     /**
      * Matrix to store integers that correspond to various Assets in the maze.
@@ -36,6 +52,8 @@ public class CustomAssetSetter {
      * Constructs CustomAssetSetter to place assets on the maze.
      */
     public CustomAssetSetter(String filePath, MazeItems mazeItems, MazeHazards mazeHazards) {
+        mazeItems.clear();
+        mazeHazards.clear();
         this.mazeItems = mazeItems;
         this.mazeHazards = mazeHazards;
         this.mazeAssetNum = new int[MAX_PANEL_COL][MAX_PANEL_ROW];
@@ -84,33 +102,23 @@ public class CustomAssetSetter {
 
         while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
             int assetNum = mazeAssetNum[col][row];  // go through each element in matrix
-            switch (assetNum) {
-                case 0:
-                    // empty tile
-                    break;
-                case 1:
-                    // player?
-                case 2:
-                    mazeHazards.addObstacle(new Obstacle(row, col));
-                    break;
-                case 3:
-                    mazeHazards.addEnemy(new StationaryEnemy(row, col));
-                    break;
-                case 4:
-                    mazeHazards.addEnemy(new ChasingEnemy(row, col));
-                case 5:
-                    // blank
-                case 6:
-                    // blank
-                case 7:
-                    mazeItems.add(new ItemKey(row, col));
-                    break;
-                case 8:
-                    mazeItems.add(new ItemPhotons(row, col));
-                    break;
-                case 9:
-                    mazeItems.add(new ItemBlackhole(row, col));
-                    break;
+            if (assetNum == OBSTACLE_NUM_CODE) {
+                mazeHazards.addObstacle(new Obstacle(col, row));
+            }
+            if (assetNum == STATIONARY_ENEMY_NUM_CODE) {
+                mazeHazards.addEnemy(new StationaryEnemy(col, row));
+            }
+            if (assetNum == CHASING_ENEMY_NUM_CODE) {
+                mazeHazards.addEnemy(new ChasingEnemy(col, row));
+            }
+            if (assetNum == KEY_NUM_CODE) {
+                mazeItems.add(new ItemKey(col, row));
+            }
+            if (assetNum == PHOTONS_NUM_CODE) {
+                mazeItems.add(new ItemPhotons(col, row));
+            }
+            if (assetNum == END_NUM_CODE) {
+                mazeItems.add(new ItemBlackhole(col, row));
             }
             col++;
             if (col == MAX_PANEL_COL) {

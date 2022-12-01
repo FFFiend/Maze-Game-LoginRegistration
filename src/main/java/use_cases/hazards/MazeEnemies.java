@@ -89,4 +89,9 @@ public class MazeEnemies {
             enemy.draw(d);
         }
     }
+
+    /** Remove all enemies from the maze. */
+    public void clear() {
+        enemies.clear();
+    }
 }

@@ -1,7 +1,8 @@
 package items;
 
-import entities.items.ICollisionRequestModel;
+import entities.hazards.IHazardRequestModel;
 import entities.items.Item;
+import hazards.TestHazardRequestModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.items.MazeItems;
@@ -12,7 +13,7 @@ public class MazeItemsTest {
     @Test
     public void AnyItemCollisionNoItems() {
         MazeItems mazeItems = new MazeItems();
-        ICollisionRequestModel player = new TestCollisionRequestModel(0, 0);
+        IHazardRequestModel player = new TestHazardRequestModel(0, 0);
         Assertions.assertFalse(mazeItems.anyItemCollision(player));
     }
 
@@ -23,13 +24,13 @@ public class MazeItemsTest {
         mazeItems.add(new Item(5, 5));
         mazeItems.add(new Item(600, 250));
         mazeItems.add(new Item(1000, 800));
-        ICollisionRequestModel player1 = new TestCollisionRequestModel(100, 100);
+        IHazardRequestModel player1 = new TestCollisionRequestModel(100, 100);
         Assertions.assertFalse(mazeItems.anyItemCollision(player1));  // no collision
-        ICollisionRequestModel player2 = new TestCollisionRequestModel(5, 5);
+        IHazardRequestModel player2 = new TestCollisionRequestModel(5, 5);
         Assertions.assertTrue(mazeItems.anyItemCollision(player2)); // collision with 1st item
-        ICollisionRequestModel player3 = new TestCollisionRequestModel(600, 250);
+        IHazardRequestModel player3 = new TestCollisionRequestModel(600, 250);
         Assertions.assertTrue(mazeItems.anyItemCollision(player3)); // collision with 2nd item
-        ICollisionRequestModel player4 = new TestCollisionRequestModel(1000, 800);
+        IHazardRequestModel player4 = new TestCollisionRequestModel(1000, 800);
         Assertions.assertTrue(mazeItems.anyItemCollision(player4)); // collision with 3rd item
     }
 
