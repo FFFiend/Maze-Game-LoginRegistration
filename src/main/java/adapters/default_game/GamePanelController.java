@@ -27,8 +27,13 @@ public class GamePanelController implements KeyListener, Runnable {
     /**
      * Stop updating the game.
      */
-    public void stopGame() {
+    public synchronized void stopGame() {
         updateThread = null;
+    }
+
+    /** Check if the game has been stopped. */
+    private synchronized boolean wasGameStopped() {
+        return updateThread == null;
     }
 
     /**
@@ -69,7 +74,7 @@ public class GamePanelController implements KeyListener, Runnable {
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
-        while (updateThread != null) {
+        while (!wasGameStopped()) {
             long currentTime = System.currentTimeMillis();
             long sleepTime = lastTime + 1000 / updateFrequency - currentTime;
             if (sleepTime > 0) {
