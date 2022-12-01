@@ -1,5 +1,6 @@
 package user_interface.login_leaderboard;
 
+import adapters.login_leaderboard.UsersCreation;
 import use_cases.login_leaderboard.IFileInput;
 
 import java.io.*;
@@ -46,4 +47,17 @@ public class FileReader implements IFileInput {
         }
         return arr;
     }
+
+    /**
+     * Create User objects of previous users from the CSV file.
+     */
+    public static UsersCreation create(){
+        UsersCreation update = new UsersCreation();
+        FileReader read = new FileReader();
+        update.saveUsers(read.readFile());
+
+        return update;
+    }
+
+
 }

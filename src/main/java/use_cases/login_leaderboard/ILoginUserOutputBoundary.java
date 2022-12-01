@@ -5,6 +5,5 @@ package use_cases.login_leaderboard;
  */
 public interface ILoginUserOutputBoundary {
 
-
     void PrepareView(String j);
 }
