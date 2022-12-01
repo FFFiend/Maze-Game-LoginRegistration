@@ -1,8 +1,7 @@
 package adapters.default_game;
 
 import use_cases.default_game.IGamePanelInputBoundary;
-import use_cases.default_game.IMovePlayerRequest;
-import use_cases.default_game.UpdatePlayer;
+import use_cases.default_game.MazeInteractor;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -11,10 +10,12 @@ import java.awt.event.KeyListener;
  * User controller for the game.
  */
 public class GamePanelController implements KeyListener {
-    private IGamePanelInputBoundary inputBoundary;
-    public GamePanelController(IGamePanelInputBoundary inputBoundary){
+    private final IGamePanelInputBoundary inputBoundary;
+
+    public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
+
     /**
      * Invoked when a key has been typed.
      * See the class description for {@link KeyEvent} for a definition of
@@ -43,13 +44,6 @@ public class GamePanelController implements KeyListener {
         }
     }
 
-    /**
-     * Invoked when a key has been released.
-     * See the class description for {@link KeyEvent} for a definition of
-     * a key released event.
-     *
-     * @param e the event to be processed
-     */
     @Override
     public void keyReleased(KeyEvent e) {
 

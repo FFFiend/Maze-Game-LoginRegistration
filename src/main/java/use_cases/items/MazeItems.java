@@ -70,4 +70,11 @@ public class MazeItems {
             item.draw(d);
         }
     }
+
+    /**
+     * Remove all items from the maze.
+     */
+    public void clear() {
+        items.clear();
+    }
 }

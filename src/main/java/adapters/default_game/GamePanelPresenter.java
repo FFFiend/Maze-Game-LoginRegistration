@@ -3,6 +3,7 @@ package adapters.default_game;
 import entities.default_game.IDrawOutputBoundary;
 import use_cases.default_game.CustomAssetSetter;
 import use_cases.default_game.IGamePanelOutputBoundary;
+import use_cases.default_game.MazeInteractor;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
@@ -12,7 +13,7 @@ import java.awt.*;
 /**
  * A class responsible for what the GamePanel presents
  **/
-public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary {
+public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary, Runnable {
     final int SPRITE_TILE_SIZE = 16;
     final int SCALE = 3; // may be changed to an unfixed variable later
     final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
@@ -20,21 +21,24 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     final int MAX_PANEL_ROW = 12;
     final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
     final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
+    final int FPS = 20;
+
     private int playerX;
     private int playerY;
-    private final MazeHazards hazards;
-    private final MazeItems items;
+
+    private final MazeInteractor maze;
+    private final Thread gameThread;
 
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
-    public GamePanelPresenter(MazeItems items, MazeHazards hazards) {
+    public GamePanelPresenter(MazeInteractor maze) {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        new CustomAssetSetter("mazes/maze02.txt", items, hazards);
-        this.items = items;
-        this.hazards = hazards;
+        this.maze = maze;
+        gameThread = new Thread(this);
+        gameThread.start();
     }
 
 
@@ -75,8 +79,37 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
                 return g2;
             }
         };
-        hazards.draw(b);
-        items.draw(b);
+        maze.draw(b);
         g2.dispose();
     }
+
+    /**
+     * When an object implementing interface {@code Runnable} is used
+     * to create a thread, starting the thread causes the object's
+     * {@code run} method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method {@code run} is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+        long lastTime = System.currentTimeMillis();
+        while (gameThread != null) {
+            long currentTime = System.currentTimeMillis();
+            long sleepTime = lastTime + 1000 / FPS - currentTime;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            lastTime = currentTime;
+            updateMaze(maze.getPlayerX(), maze.getPlayerY());
+        }
+    }
+
 }
