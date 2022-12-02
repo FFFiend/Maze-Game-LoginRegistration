@@ -1,4 +1,9 @@
-package adapters.custom_game.custom_game_file_adapters;
+package use_cases.custom_game.custom_game_editor;
+
+import entities.custom_game.EditorTile;
+
+import javax.swing.*;
+import java.awt.*;
 
 /**
  * A place to store a custom maze while it is being edited and methods to convert it into a text file
@@ -28,6 +33,23 @@ public class TempMaze {
     public static void addTile(int x, int y, EditorTile tile) {
         //TODO check if x and y are within bounds first
         TempMaze.tileGrid[x][y] = tile;
+    }
+
+    public static void build(JPanel grid, int rows, int cols, int tileSize){
+        TempMaze.setGridSize(rows, cols);
+
+        grid.setLayout(new GridLayout(rows, cols, 0, 0));
+        Dimension tileDimensions = new Dimension(tileSize, tileSize);
+
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                EditorTile tile = new EditorTile(x, y);
+                TempMaze.addTile(x, y, tile);
+                tile.addMouseListener(new EditorOnClick(tile));
+                tile.setPreferredSize(tileDimensions);
+                grid.add(tile);
+            }
+        }
     }
 
     /**
@@ -75,7 +97,7 @@ public class TempMaze {
      * @param x the x position of the Tile to be retrieved
      * @param y the y position of the Tile to be retrieved
      * @return the number representing the EditorTile at position (x, y)
-     * */
+     */
     public static int getTileNum(int x, int y) {
         return tileGrid[x][y].getNumCode(); //TODO check if out of bounds
     }

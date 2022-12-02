@@ -1,5 +1,5 @@
-package adapters.custom_game.custom_game_UI_adapters;
-import adapters.custom_game.custom_game_file_adapters.EditorTile;
+package use_cases.custom_game.custom_game_editor;
+import entities.custom_game.EditorTile;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

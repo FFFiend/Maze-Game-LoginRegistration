@@ -1,6 +1,6 @@
 package use_cases.custom_game.custom_game_file_management;
 
-import adapters.custom_game.custom_game_file_adapters.EditorTile;
+import entities.custom_game.EditorTile;
 
 /**
  * Responsible for verifying input the user wants to store: maze names from the initializer panel and mazes from the

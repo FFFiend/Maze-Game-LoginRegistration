@@ -1,7 +1,8 @@
 package adapters.custom_game.custom_game_UI_adapters;
 
-import adapters.custom_game.custom_game_file_adapters.EditorTile;
-import adapters.custom_game.custom_game_file_adapters.TempMaze;
+import entities.custom_game.EditorTile;
+import entities.default_game.Maze;
+import use_cases.custom_game.custom_game_editor.TempMaze;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
 import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
@@ -17,6 +18,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     private final ICustomGamePresenter presenter;
     private ICustomInitializerInput initializer;
     private String NEW_PANEL;
+    private final Maze maze = new Maze();
 
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
@@ -115,16 +117,17 @@ public class CustomGameGeneralInputHandler implements ActionListener {
             presenter.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
         }
         else { //if more options are included in the initializer, more checks will be added
+            TempMazeAdapter.prepareTempMaze(mazeName, maze.getNum("MAX_PANEL_ROW"), maze.getNum("MAX_PANEL_COL"), maze.getNum("TILE_SIZE"));
             presenter.callCustomGamePanel("CustomGameEditorPanel");
-            prepareTempMaze(mazeName);
+            //sends in constants as parameters in case customizing grid sizes is a feature added in the future
         }
     }
 
-    /**
-     * Sends information from the initializer to TempMaze
-     */
-    public void prepareTempMaze(String mazeName) {
-        TempMaze.setMazeTitle(mazeName);
-        //TempMaze.setMazeCreator();
-    }
+//    /**
+//     * Sends information from the initializer to TempMaze
+//     */
+//    public void prepareTempMaze(String mazeName) {
+//        TempMaze.setMazeTitle(mazeName);
+//        //TempMaze.setMazeCreator();
+//    }
 }

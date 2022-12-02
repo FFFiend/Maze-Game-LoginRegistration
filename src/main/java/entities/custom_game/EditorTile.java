@@ -1,4 +1,4 @@
-package adapters.custom_game.custom_game_file_adapters;
+package entities.custom_game;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -120,7 +120,7 @@ public class EditorTile extends JLabel {
      * photons, start location etc.) it will now represent an empty tile
      */
     public void tileLeftClick() {
-        //use !equals so that other tile states can be converted to a obstacle or become empty
+        //use !equals so that other tile states can be converted to an obstacle or become empty
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";

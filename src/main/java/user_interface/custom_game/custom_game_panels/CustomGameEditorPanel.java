@@ -1,6 +1,7 @@
 package user_interface.custom_game.custom_game_panels;
 
 import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
+import adapters.custom_game.custom_game_UI_adapters.TempMazeAdapter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -44,8 +45,9 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
      * Add the editor to the panel
      */
     private void displayEditor() {
-        EditorGrid editorGrid = new EditorGrid(MAX_PANEL_ROW, MAX_PANEL_COL, TILE_SIZE);
-        editorFrame.add(editorGrid, BorderLayout.CENTER);
+        JPanel panel = new JPanel();
+        TempMazeAdapter.buildTempMaze(panel);
+        editorFrame.add(panel, BorderLayout.CENTER);
     }
 
     /**

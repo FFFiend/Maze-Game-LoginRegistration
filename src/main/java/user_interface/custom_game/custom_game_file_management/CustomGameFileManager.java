@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_file_management;
 
-import adapters.custom_game.custom_game_file_adapters.TempMaze;
+import use_cases.custom_game.custom_game_editor.TempMaze;
 import use_cases.custom_game.custom_game_file_management.ICustomGameFileManager;
 
 import java.io.File;
@@ -19,7 +19,6 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      */
     public void storeNewCustomMaze() {
         try {
-            //String mazeName = "customMazes/New Maze"; //Temporary line to make this runnable
             String mazeName = "customMazes/" + TempMaze.getMazeTitle();
             File mazeFile = new File(mazeName);
             FileWriter mazeWriter = new FileWriter(mazeFile);
