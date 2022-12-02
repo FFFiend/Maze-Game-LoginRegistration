@@ -44,10 +44,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     }
 
     /**
-     * Update the player position and draw the maze accordingly.
+     * Update player information and draw the maze accordingly.
      *
-     * @param playerX player position X
-     * @param playerY player position Y
+     * @param playerX       player position X
+     * @param playerY       player position Y
+     * @param playerStamina player stamina
      */
     public void updateMaze(int playerX, int playerY, int playerStamina) {
         this.playerX = playerX;
@@ -67,7 +68,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(Color.white);
-        g2.fillRect(playerX*TILE_SIZE, playerY*TILE_SIZE, TILE_SIZE, TILE_SIZE);
+        g2.fillRect(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
         // draw the maze
         IDrawOutputBoundary b = new IDrawOutputBoundary() {
@@ -82,7 +83,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
             }
         };
         maze.draw(b);
-        g2.drawString("Stamina: " + playerStamina, TILE_SIZE*12, TILE_SIZE);
+        g2.drawString("Stamina: " + playerStamina, TILE_SIZE * 12, TILE_SIZE);
         g2.dispose();
     }
 

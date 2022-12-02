@@ -7,7 +7,9 @@ import use_cases.items.MazeItems;
 
 import java.awt.event.KeyEvent;
 
-/** Use case interactor for mazes */
+/**
+ * Use case interactor for mazes
+ */
 public class MazeInteractor implements IGamePanelInputBoundary {
     private final MazeHazards hazards;
     private final MazeItems items;
@@ -24,12 +26,16 @@ public class MazeInteractor implements IGamePanelInputBoundary {
         player.setStamina(playerStamina);
     }
 
-    /** Load a maze from a file. */
+    /**
+     * Load a maze from a file.
+     */
     public void load(String filename) {
         new CustomAssetSetter(filename, items, hazards);
     }
 
-    /** Draw all maze components. */
+    /**
+     * Draw all maze components.
+     */
     public void draw(IDrawOutputBoundary d) {
         hazards.draw(d);
         items.draw(d);
@@ -44,29 +50,41 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     public void movePlayer(int keycode) {
         if (keycode == KeyEvent.VK_W) {
             if (cHandler.upPressed(player.getPlayerX(), player.getPlayerY())) {
-                player.movePlayerY(-playerSpeed);}
+                player.movePlayerY(-playerSpeed);
+            }
         }
         if (keycode == KeyEvent.VK_S) {
             if (cHandler.downPressed(player.getPlayerX(), player.getPlayerY())) {
-                player.movePlayerY(playerSpeed);}
+                player.movePlayerY(playerSpeed);
+            }
         }
         if (keycode == KeyEvent.VK_D) {
             if (cHandler.rightPressed(player.getPlayerX(), player.getPlayerY())) {
-                player.movePlayerX(playerSpeed);}
+                player.movePlayerX(playerSpeed);
+            }
         }
         if (keycode == KeyEvent.VK_A) {
             if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
-                player.movePlayerX(-playerSpeed);}
+                player.movePlayerX(-playerSpeed);
+            }
         }
         player.reduceStamina(playerSpeed);
     }
 
-    /** Get the player's current x position */
+    /**
+     * Get the player's current x-coordinate.
+     *
+     * @return the current x-coordinate
+     */
     public int getPlayerX() {
         return player.getPlayerX();
     }
 
-    /** Get the player's current y position */
+    /**
+     * Get the player's current y-coordinate.
+     *
+     * @return the current y-coordinate.
+     */
     public int getPlayerY() {
         return player.getPlayerY();
     }
@@ -76,7 +94,7 @@ public class MazeInteractor implements IGamePanelInputBoundary {
      *
      * @return player's current stamina
      **/
-    public int getPlayerStamina(){
+    public int getPlayerStamina() {
         return player.getPlayerStamina();
     }
 
