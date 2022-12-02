@@ -1,9 +1,6 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
-import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
-import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
+import adapters.login_leaderboard.*;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.UpdatePlayer;
 import use_cases.hazards.MazeHazards;
@@ -11,10 +8,7 @@ import use_cases.items.MazeItems;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
-import user_interface.login_leaderboard.FileReader;
-import user_interface.login_leaderboard.LoginPanel;
-import user_interface.login_leaderboard.RegisterPanel;
-import user_interface.login_leaderboard.WelcomePanel;
+import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -29,7 +23,8 @@ public class Main {
      * @param args for when we need some input
      */
     public static void main(String[] args) {
-        setupGame();
+        setupRegisterUseCase();
+//        setupGame();
     }
 
     /**
@@ -53,7 +48,9 @@ public class Main {
         GlobalFrame globalFrame = new GlobalFrame();
 
         IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-        RegisterUser registerUseCase = new RegisterUser(output);
+        IFileOutput p = new FileWriter();
+
+        RegisterUser registerUseCase = new RegisterUser(output, p);
         registerUseCase.setUsers(FileReader.create().PREV.getUsers());
 
         RegisterUserController controller = new RegisterUserController(registerUseCase);

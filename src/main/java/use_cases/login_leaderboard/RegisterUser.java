@@ -14,9 +14,11 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     private String username;
     private String email;
     private String password;
+    private final IFileOutput input;
 
-    public RegisterUser(IRegisterUserOutputBoundary userPresenter) {
+    public RegisterUser(IRegisterUserOutputBoundary userPresenter, IFileOutput input){
         this.userPresenter = userPresenter;
+        this.input = input;
     }
 
     /**
@@ -48,8 +50,7 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     public void createUser(){
         if (isValid() && !UserAlreadyExists()){
             User current_user =  new User(this.username, this.email, this.password);
-            // write to file
-            // TODO
+            input.updateNewUser(username, password, email);
             userPresenter.PrepareView("You have been registered.");
         }
         else if(UserAlreadyExists()){
