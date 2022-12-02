@@ -14,12 +14,14 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     private final CollisionHandler cHandler;
     private final Player player;
     private final int playerSpeed = 1;
+    private final int playerStamina = 100;
 
     public MazeInteractor() {
         hazards = new MazeHazards();
         items = new MazeItems();
         this.player = new Player(1, 1);
         cHandler = new CollisionHandler(items, hazards, player);
+        player.setStamina(playerStamina);
     }
 
     /** Load a maze from a file. */
@@ -56,6 +58,7 @@ public class MazeInteractor implements IGamePanelInputBoundary {
             if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerX(-playerSpeed);}
         }
+        player.reduceStamina(playerSpeed);
     }
 
     /** Get the player's current x position */
@@ -66,6 +69,15 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     /** Get the player's current y position */
     public int getPlayerY() {
         return player.getPlayerY();
+    }
+
+    /**
+     * Get the player's current stamina.
+     *
+     * @return player's current stamina
+     **/
+    public int getPlayerStamina(){
+        return player.getPlayerStamina();
     }
 
 }

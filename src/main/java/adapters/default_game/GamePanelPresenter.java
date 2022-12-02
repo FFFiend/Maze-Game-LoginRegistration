@@ -1,6 +1,7 @@
 package adapters.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
+import entities.default_game.Maze;
 import use_cases.default_game.CustomAssetSetter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
@@ -25,6 +26,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
 
     private int playerX;
     private int playerY;
+    private int playerStamina;
 
     private final MazeInteractor maze;
     private final Thread gameThread;
@@ -41,16 +43,16 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         gameThread.start();
     }
 
-
     /**
      * Update the player position and draw the maze accordingly.
      *
      * @param playerX player position X
      * @param playerY player position Y
      */
-    public void updateMaze(int playerX, int playerY) {
+    public void updateMaze(int playerX, int playerY, int playerStamina) {
         this.playerX = playerX;
         this.playerY = playerY;
+        this.playerStamina = playerStamina;
         repaint();
     }
 
@@ -80,6 +82,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
             }
         };
         maze.draw(b);
+        g2.drawString("Stamina: " + playerStamina, TILE_SIZE*12, TILE_SIZE);
         g2.dispose();
     }
 
@@ -108,7 +111,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
                 }
             }
             lastTime = currentTime;
-            updateMaze(maze.getPlayerX(), maze.getPlayerY());
+            updateMaze(maze.getPlayerX(), maze.getPlayerY(), maze.getPlayerStamina());
         }
     }
 

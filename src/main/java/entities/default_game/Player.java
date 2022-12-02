@@ -6,10 +6,10 @@ package entities.default_game;
 public class Player extends Entity {
 
     private static int playerX;
-
     private static int playerY;
+    private static int playerStamina;
 
-    public Player(int X, int Y){
+    public Player(int X, int Y) {
         setPlayerX(X);
         setPlayerY(Y);
     }
@@ -33,6 +33,15 @@ public class Player extends Entity {
     }
 
     /**
+     * Get the player's current stamina.
+     *
+     * @return player's current stamina
+     */
+    public int getPlayerStamina() {
+        return playerStamina;
+    }
+
+    /**
      * Set the player's x-coordinate.
      *
      * @param X x-coordinate to set the player to.
@@ -51,6 +60,15 @@ public class Player extends Entity {
     }
 
     /**
+     * Set the player's stamina.
+     *
+     * @param initialStamina stamina that the player initially has
+     */
+    public void setStamina(int initialStamina) {
+        playerStamina = initialStamina;
+    }
+
+    /**
      * Change the player's x-coordinate by moveByX.
      *
      * @param moveByX value to change the x-coordinate by.
@@ -66,5 +84,14 @@ public class Player extends Entity {
      */
     public void movePlayerY(int moveByY) {
         playerY += moveByY;
+    }
+
+    /**
+     * Reduce the player's stamina by reduceBy.
+     *
+     * @param reduceBy the amount to reduce the stamina by
+     */
+    public void reduceStamina(int reduceBy) {
+        playerStamina -= reduceBy;
     }
 }
