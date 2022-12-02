@@ -1,8 +1,6 @@
 package adapters.custom_game.custom_game_UI_adapters;
 
-import entities.custom_game.EditorTile;
 import entities.default_game.Maze;
-import use_cases.custom_game.custom_game_editor.TempMaze;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
 import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
@@ -68,7 +66,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(PANEL, "CustomGameEditorPanel")) {
-            verifyEditorInput(TempMaze.getMaze());
+            verifyEditorInput();
         }
         else if (Objects.equals(PANEL, "CustomGameMainPanel")) {
             presenter.callCustomGamePanel("CustomGameInitializerPanel");
@@ -90,13 +88,11 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     /**
      * Calls and sends a maze to the verifier. If it is valid, it calls the presenter to return the User to the custom
      * game main menu. If not, it shows the user a panel warning that their input was invalid.
-     *
-     * @param maze the maze just created in the editor
      */
-    public void verifyEditorInput(EditorTile[][] maze) {
+    public void verifyEditorInput() {
         CustomGameValidator validator = new CustomGameValidator();
 
-        if (validator.verifyMaze(maze, new CustomGameFileManager())) {
+        if (validator.verifyMaze(new CustomGameFileManager())) {
             presenter.callCustomGamePanel("CustomGameMainPanel");
             presenter.callCustomPopup("Maze stored successfully!");
         }

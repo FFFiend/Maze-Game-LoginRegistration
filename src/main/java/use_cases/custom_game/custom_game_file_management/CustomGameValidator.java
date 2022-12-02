@@ -1,7 +1,5 @@
 package use_cases.custom_game.custom_game_file_management;
 
-import entities.custom_game.EditorTile;
-
 /**
  * Responsible for verifying input the user wants to store: maze names from the initializer panel and mazes from the
  * editor panel
@@ -11,16 +9,13 @@ public class CustomGameValidator {
     /**
      * Checks if a new custom maze is valid
      *
-     * @param maze the maze to check
      * @return whether the maze is valid or not
      */
-    public boolean verifyMaze(EditorTile[][] maze, ICustomGameFileManager fileManager) {
-        //run tests and if they pass, call:
+    public boolean verifyMaze(ICustomGameFileManager fileManager) {
+        //run tests using TempMaze.getMaze(); and if they pass, call:
         fileManager.storeNewCustomMaze();
 
         return true;
-        //tests should include checking if TempMaze contains a maze that can be written (ex. exists, all rows/cols same
-        // len etc.)
     }
 
     /**
