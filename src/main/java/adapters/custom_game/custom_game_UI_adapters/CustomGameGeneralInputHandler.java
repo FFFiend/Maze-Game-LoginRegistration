@@ -3,6 +3,7 @@ package adapters.custom_game.custom_game_UI_adapters;
 import adapters.custom_game.custom_game_file_adapters.EditorTile;
 import adapters.custom_game.custom_game_file_adapters.TempMaze;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
+import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -91,7 +92,9 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * @param maze the maze just created in the editor
      */
     public void verifyEditorInput(EditorTile[][] maze) {
-        if (CustomGameValidator.verifyMaze(maze)) {
+        CustomGameValidator validator = new CustomGameValidator();
+
+        if (validator.verifyMaze(maze, new CustomGameFileManager())) {
             presenter.callCustomGamePanel("CustomGameMainPanel");
             presenter.callCustomPopup("Maze stored successfully!");
         }
@@ -106,7 +109,9 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      */
     public void verifyInitializerInput() {
         String mazeName = initializer.getMazeName();
-        if (!CustomGameValidator.verifyName(mazeName)) {
+        CustomGameValidator validator = new CustomGameValidator();
+
+        if (!validator.verifyName(mazeName, new CustomGameFileManager())) {
             presenter.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
         }
         else { //if more options are included in the initializer, more checks will be added
