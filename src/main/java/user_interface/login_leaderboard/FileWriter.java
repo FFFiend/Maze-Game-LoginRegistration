@@ -1,10 +1,8 @@
 package user_interface.login_leaderboard;
 
-import use_cases.login_leaderboard.IFileInput;
 import use_cases.login_leaderboard.IFileOutput;
 
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * FileWriter allows the leaderboard and regitser use cases to update the CSV file.
@@ -35,5 +33,4 @@ public class FileWriter implements IFileOutput {
         }
 
     }
-
 }

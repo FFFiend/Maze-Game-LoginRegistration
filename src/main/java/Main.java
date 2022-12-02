@@ -48,9 +48,9 @@ public class Main {
         GlobalFrame globalFrame = new GlobalFrame();
 
         IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-        IFileOutput p = new FileWriter();
+        IFileOutput updateCSV = new FileWriter();
 
-        RegisterUser registerUseCase = new RegisterUser(output, p);
+        RegisterUser registerUseCase = new RegisterUser(output, updateCSV);
         registerUseCase.setUsers(FileReader.create().PREV.getUsers());
 
         RegisterUserController controller = new RegisterUserController(registerUseCase);
