@@ -11,7 +11,6 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
-<<<<<<< HEAD
  * Use case interactor for mazes.
  *
  * All the methods in this class use the "synchronized" keyword. This prevents
@@ -21,7 +20,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final MazeHazards hazards;
     private final MazeItems items;
     private final CollisionHandler cHandler;
-    private final Player player;
+    private Player player;
     private final int playerSpeed = 1;
 
     private final Maze mazeInfo;
@@ -39,19 +38,22 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int HAZARD_UPDATE_FRAME_INTERVAL = 10;
 
     public MazeInteractor(IGamePanelOutputBoundary outputBoundary) {
+        player = new Player(1, 1);
         this.outputBoundary = outputBoundary;
 
         hazards = new MazeHazards();
         items = new MazeItems();
-        player = new Player(1, 1);
         cHandler = new CollisionHandler(items, hazards, player);
         mazeInfo = new Maze();
-        playerKilled = false;
-        player.setStamina(STARTING_STAMINA);
+        startGameThread();
     }
 
     @Override
     public synchronized void reset() {
+        if (player.getStageClear()) {
+            // don't reset if the level has been completed.
+            return;
+        }
         load(currentMaze);
         playerKilled = false;
     }
@@ -73,10 +75,18 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      *
      * @param filename the file to read the maze from
      */
-    public void load(String filename) {
+    public synchronized void load(String filename) {
+        player.setX(1);
+        player.setY(1);
+        player.setStamina(STARTING_STAMINA);
+        player.setHasKey(false);
+        player.setStageClear(false);
+
+        hazards.clear();
+        items.clear();
         new CustomAssetSetter(filename, items, hazards);
-        outputBoundary.changeState();
-        startGameThread();
+        outputBoundary.changeState(IGamePanelOutputBoundary.PLAY_STATE);
+        playerKilled = false;
         currentMaze = filename;
     }
 
@@ -135,30 +145,31 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             return;
         }
 
-        if (player.getStageClear()){
-            outputBoundary.changeState();
-            outputBoundary.recordStamina(player.getStamina());
-            return;
-        }
         else if (keycode == KeyEvent.VK_W) {
-            if (cHandler.upPressed(player.getPlayerX(), player.getPlayerY())) {
+            if (cHandler.upPressed(player.getX(), player.getY())) {
                 player.movePlayerY(-playerSpeed);
             }
         }
         else if (keycode == KeyEvent.VK_S) {
-            if (cHandler.downPressed(player.getPlayerX(), player.getPlayerY())) {
+            if (cHandler.downPressed(player.getX(), player.getY())) {
                 player.movePlayerY(playerSpeed);
             }
         }
         else if (keycode == KeyEvent.VK_D) {
-            if (cHandler.rightPressed(player.getPlayerX(), player.getPlayerY())) {
+            if (cHandler.rightPressed(player.getX(), player.getY())) {
                 player.movePlayerX(playerSpeed);
             }
         }
         else if (keycode == KeyEvent.VK_A) {
-            if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
+            if (cHandler.leftPressed(player.getX(), player.getY())) {
                 player.movePlayerX(-playerSpeed);
             }
+        }
+
+        if (player.getStageClear()) {
+            outputBoundary.changeState(IGamePanelOutputBoundary.LEVEL_CLEAR_STATE);
+            outputBoundary.recordStamina(player.getStamina());
+            return;
         }
 
         player.addStamina(-playerSpeed);
@@ -167,12 +178,12 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     /** Get the player's current x position */
     public synchronized int getPlayerX() {
-        return player.getPlayerX();
+        return player.getX();
     }
 
     /** Get the player's current y position */
     public synchronized int getPlayerY() {
-        return player.getPlayerY();
+        return player.getY();
     }
 
     /** Get the player's current stamina */
@@ -201,14 +212,14 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     /** Check if the player has been killed by an enemy. */
     private synchronized void checkPlayerKilled() {
-        if (hazards.isPlayerKilled(this)) {
+        if (hazards.isPlayerKilled(this) || player.getStamina() <= 0) {
             playerKilled = true;
         }
     }
 
     /** Is the game over? */
     public synchronized boolean gameOver() {
-        return isPlayerKilled();
+        return isPlayerKilled() || player.getStageClear();
     }
 
     /** Has the player been killed? */

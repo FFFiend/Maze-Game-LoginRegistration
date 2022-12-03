@@ -12,8 +12,8 @@ public class Player extends Entity {
     private boolean stageClear = false;
 
     public Player(int X, int Y) {
-        setPlayerX(X);
-        setPlayerY(Y);
+        setX(X);
+        setY(Y);
     }
 
     /**
@@ -21,7 +21,7 @@ public class Player extends Entity {
      *
      * @return the current x-coordinate
      */
-    public int getPlayerX() {
+    public int getX() {
         return playerX;
     }
 
@@ -30,7 +30,7 @@ public class Player extends Entity {
      *
      * @return the current y-coordinate.
      */
-    public int getPlayerY() {
+    public int getY() {
         return playerY;
     }
 
@@ -48,7 +48,7 @@ public class Player extends Entity {
      *
      * @param X x-coordinate to set the player to.
      */
-    private void setPlayerX(int X) {
+    public void setX(int X) {
         playerX = X;
     }
 
@@ -57,7 +57,7 @@ public class Player extends Entity {
      *
      * @param Y y-coordinate to set the player to.
      */
-    private void setPlayerY(int Y) {
+    public void setY(int Y) {
         playerY = Y;
     }
 
@@ -97,18 +97,22 @@ public class Player extends Entity {
         playerStamina += addBy;
     }
 
+    /** Set whether or not the player has picked up the key. */
     public void setHasKey(boolean b) {
         hasKey = b;
     }
 
+    /** Has the player picked up they key? */
     public boolean getHasKey(){
         return hasKey;
     }
 
+    /** Set whether or not the player has cleared the stage. */
     public void setStageClear(boolean b) {
         stageClear = b;
     }
 
+    /** Has the player cleared the stage? */
     public boolean getStageClear(){
         return stageClear;
     }

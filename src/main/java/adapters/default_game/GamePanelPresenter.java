@@ -27,9 +27,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     private int playerStamina;
 
     private int gameState;
-    private int titleState = 0;
-    private int playState = 1;
-    private int levelClearState = 2;
 
     private MazeInteractor maze;
 
@@ -41,7 +38,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
 
-        gameState = titleState;
+        gameState = IGamePanelOutputBoundary.TITLE_STATE;
     }
 
     /**
@@ -71,11 +68,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
-        if (gameState == titleState) {
+        if (gameState == IGamePanelOutputBoundary.TITLE_STATE) {
             drawTitleScreen(g2);
-        } else if (gameState == levelClearState) {
+        } else if (gameState == IGamePanelOutputBoundary.LEVEL_CLEAR_STATE) {
             drawLevelClearScreen(g2);
-        } else if (gameState == playState) {
+        } else if (gameState == IGamePanelOutputBoundary.PLAY_STATE) {
             g2.setColor(Color.white);
             g2.fillRect(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
@@ -100,8 +97,8 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         }
     }
 
-    public void changeState() {
-        gameState += 1;
+    public void changeState(int newState) {
+        gameState = newState;
     }
 
     public void recordStamina(int playerStamina){
