@@ -13,10 +13,10 @@ import java.util.Objects;
  */
 public class CustomGameGeneralInputHandler implements ActionListener {
     private final String PANEL;
-    private final ICustomGamePresenter presenter;
-    private ICustomInitializerInput initializer;
+    private final ICustomGamePresenter PRESENTER;
+    private final ICustomInitializerInput INITIALIZER;
     private String NEW_PANEL;
-    private final Maze maze = new Maze();
+    private final Maze MAZE = new Maze();
 
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
@@ -27,7 +27,8 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      */
     public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter) {
         this.PANEL = panel;
-        this.presenter = presenter;
+        this.PRESENTER = presenter;
+        this.INITIALIZER = null;
     }
 
     /**
@@ -40,13 +41,13 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      */
     public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter, ICustomInitializerInput initializer) {
         this.PANEL = panel;
-        this.presenter = presenter;
-        this.initializer = initializer;
+        this.PRESENTER = presenter;
+        this.INITIALIZER = initializer;
     }
 
     /**
-     * Listens for clicks to return button on popups, requires its own constructor because popups can be called on multiple
-     * panels and can take the user to different places based on where they were called
+     * Listens for clicks to return button on popups, requires its own constructor because popups can be called on
+     * multiple panels and can take the user to different places based on where they were called
      *
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
@@ -54,8 +55,9 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      */
     public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter, String newPanel) {
         this.PANEL = panel;
-        this.presenter = presenter;
+        this.PRESENTER = presenter;
         this.NEW_PANEL = newPanel;
+        this.INITIALIZER = null;
     }
 
     /**
@@ -69,13 +71,13 @@ public class CustomGameGeneralInputHandler implements ActionListener {
             verifyEditorInput();
         }
         else if (Objects.equals(PANEL, "CustomGameMainPanel")) {
-            presenter.callCustomGamePanel("CustomGameInitializerPanel");
+            PRESENTER.callCustomGamePanel("CustomGameInitializerPanel");
         }
         else if (Objects.equals(PANEL, "toCustomMain")) {
-            presenter.callCustomGamePanel("CustomGameMainPanel");
+            PRESENTER.callCustomGamePanel("CustomGameMainPanel");
         }
         else if (Objects.equals(PANEL, "CustomGamePopup")) {
-            presenter.callCustomGamePanel(NEW_PANEL);
+            PRESENTER.callCustomGamePanel(NEW_PANEL);
         }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")) {
             verifyInitializerInput();
@@ -93,11 +95,11 @@ public class CustomGameGeneralInputHandler implements ActionListener {
         CustomGameValidator validator = new CustomGameValidator();
 
         if (validator.verifyMaze(new CustomGameFileManager())) {
-            presenter.callCustomGamePanel("CustomGameMainPanel");
-            presenter.callCustomPopup("Maze stored successfully!");
+            PRESENTER.callCustomGamePanel("CustomGameMainPanel");
+            PRESENTER.callCustomPopup("Maze stored successfully!");
         }
         else {
-            presenter.callCustomPopup("This maze is not valid", "CustomGameInitializerPanel" );
+            PRESENTER.callCustomPopup("This maze is not valid", "CustomGameInitializerPanel" );
         }
     }
 
@@ -106,24 +108,17 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * User to the editor. If not, it shows the user a panel warning that their input was invalid.
      */
     public void verifyInitializerInput() {
-        String mazeName = initializer.getMazeName();
+        assert INITIALIZER != null;
+        String mazeName = INITIALIZER.getMazeName();
         CustomGameValidator validator = new CustomGameValidator();
 
         if (!validator.verifyName(mazeName, new CustomGameFileManager())) {
-            presenter.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
+            PRESENTER.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
         }
         else { //if more options are included in the initializer, more checks will be added
-            TempMazeAdapter.prepareTempMaze(mazeName, maze.getNum("MAX_PANEL_ROW"), maze.getNum("MAX_PANEL_COL"), maze.getNum("TILE_SIZE"));
-            presenter.callCustomGamePanel("CustomGameEditorPanel");
             //sends in constants as parameters in case customizing grid sizes is a feature added in the future
+            TempMazeAdapter.prepareTempMaze(mazeName, MAZE.getNum("MAX_PANEL_ROW"), MAZE.getNum("MAX_PANEL_COL"), MAZE.getNum("TILE_SIZE"));
+            PRESENTER.callCustomGamePanel("CustomGameEditorPanel");
         }
     }
-
-//    /**
-//     * Sends information from the initializer to TempMaze
-//     */
-//    public void prepareTempMaze(String mazeName) {
-//        TempMaze.setMazeTitle(mazeName);
-//        //TempMaze.setMazeCreator();
-//    }
 }

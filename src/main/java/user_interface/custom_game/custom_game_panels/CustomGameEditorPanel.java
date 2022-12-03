@@ -2,6 +2,7 @@ package user_interface.custom_game.custom_game_panels;
 
 import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
 import adapters.custom_game.custom_game_UI_adapters.TempMazeAdapter;
+import entities.default_game.Maze;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,35 +11,27 @@ import java.awt.*;
  * UI to allow the user to build their own maze
  */
 class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
-    private final JFrame editorFrame = new JFrame("Maze Editor");
-    private final int SPRITE_TILE_SIZE = 16;
-    private final int SCALE = 3; // may be changed to an unfixed variable later
-    private final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
-    private final int MAX_PANEL_COL= 16;
-    private final int MAX_PANEL_ROW = 12;
+    private final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
 
     /**
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
      * and returning to previous menus
      */
     protected CustomGameEditorPanel() {
-        final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
-        final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
-
-        //this will mostly be handled by Panel's methods later
-        editorFrame.setLayout(new BorderLayout());
-        editorFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        editorFrame.setResizable(false);
-        editorFrame.setLocationRelativeTo(null);
-        editorFrame.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
-        editorFrame.setBackground(Color.black);
+        EDITOR_FRAME.setLayout(new BorderLayout());
+        EDITOR_FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        EDITOR_FRAME.setResizable(false);
+        EDITOR_FRAME.setLocationRelativeTo(null);
+        Maze MAZE = new Maze();
+        EDITOR_FRAME.setPreferredSize(new Dimension(MAZE.getNum("FRAME_WIDTH"), MAZE.getNum("FRAME_HEIGHT")));
+        EDITOR_FRAME.setBackground(Color.black);
 
         displayEditor();
         displayButtons();
 
-        editorFrame.pack();
-        editorFrame.setLocationByPlatform(true);
-        editorFrame.setVisible(true);
+        EDITOR_FRAME.pack();
+        EDITOR_FRAME.setLocationByPlatform(true);
+        EDITOR_FRAME.setVisible(true);
     }
 
     /**
@@ -47,7 +40,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     private void displayEditor() {
         JPanel panel = new JPanel();
         TempMazeAdapter.buildTempMaze(panel);
-        editorFrame.add(panel, BorderLayout.CENTER);
+        EDITOR_FRAME.add(panel, BorderLayout.CENTER);
     }
 
     /**
@@ -61,6 +54,6 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
 
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);
-        editorFrame.add(bottomPanel, BorderLayout.PAGE_END);
+        EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

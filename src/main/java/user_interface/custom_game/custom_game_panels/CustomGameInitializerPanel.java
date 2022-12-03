@@ -12,7 +12,7 @@ import java.awt.*;
  * UI to collect necessary information for a user start building a custom maze
  */
 class CustomGameInitializerPanel extends Panel implements ICustomInitializerInput, ICustomGamePanel {
-    private final JTextField nameField = new JTextField("pick a unique name for your maze");
+    private final JTextField NAME_FIELD = new JTextField("pick a unique name for your maze");
     private static final JFrame FRAME = new JFrame("custom game initializer frame");
     private static final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
@@ -59,7 +59,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
 
         middlePanel.add(sizeField);
         middlePanel.add(styleField);
-        middlePanel.add(nameField);
+        middlePanel.add(NAME_FIELD);
 
         CONTENT.add(middlePanel, BorderLayout.CENTER);
     }
@@ -85,6 +85,6 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
      * @return what the user wants to name their maze
      */
     public String getMazeName() {
-        return nameField.getText();
+        return NAME_FIELD.getText();
     }
 }

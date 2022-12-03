@@ -1,4 +1,6 @@
 package entities.custom_game;
+import entities.default_game.Maze;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,33 +13,20 @@ import java.util.Objects;
  * EditorTiles are also stored in TempMaze for conversion to a text file (storage)
  */
 public class EditorTile extends JLabel {
-    private final int X;
-    private final int Y;
     private String name;
     private int numCode;
-
-    private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
+    private static final String[] secondaryMenuItems = {"photons", "key", "stationaryEnemy", "chasingEnemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
 
-    private final static int EMPTY_NUM_CODE = 0;
-    private final static int OBSTACLE_NUM_CODE = 1;
-    private final static int ENEMY_NUM_CODE = 2;
-    private final static int KEY_NUM_CODE = 3;
-    private final static int PHOTONS_NUM_CODE = 4;
-    private final static int END_NUM_CODE = 5;
-    private final static int START_NUM_CODE = 6;
+    private final Maze MAZE = new Maze();
+    private final static int START_NUM_CODE = 9;
 
     /**
      * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
-     *
-     * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
-     * @param y the y position of the Tile on the EditorGrid and position in the array TempMaze
      */
-    public EditorTile (int x, int y) {
-        this.X = x;
-        this.Y = y;
+    public EditorTile () {
         this.name = "empty";
-        this.numCode = EMPTY_NUM_CODE;
+        this.numCode = MAZE.getNum("EMPTY_NUM_CODE");
 
         setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
@@ -54,9 +43,9 @@ public class EditorTile extends JLabel {
     private void setTileImage(String name) {
         {
             try {
-                BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("custom/" + name));
+                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom/" + name)));
                 Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
-                // Credit to Seamus for the scaling lines
+                // credit to Seamus for the scaling lines
                 setIcon(new ImageIcon(scaledImage));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -91,23 +80,29 @@ public class EditorTile extends JLabel {
     public void changeState(String name) {
         if (Objects.equals(name, "photons")) {
             setTileImage("photons.png");
-            this.numCode = PHOTONS_NUM_CODE;
+            this.numCode = MAZE.getNum("PHOTONS_NUM_CODE");
         }
-        else if (Objects.equals(name, "enemy")) {
-            setTileImage("enemy.png");
-            this.numCode = ENEMY_NUM_CODE;
+        else if (Objects.equals(name, "stationaryEnemy")) {
+            setTileImage("stationaryEnemy.png");
+            this.numCode = MAZE.getNum("STATIONARY_ENEMY_NUM_CODE");
+        }
+        else if (Objects.equals(name, "chasingEnemy")) {
+            setTileImage("chasingEnemy.png");
+            this.numCode = MAZE.getNum("CHASING_ENEMY_NUM_CODE");
         }
         else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
-            this.numCode = KEY_NUM_CODE;
+            this.numCode = MAZE.getNum("KEY_NUM_CODE");
         }
         else if (Objects.equals(name, "start")) {
             setTileImage("start.png");
+            //this.numCode = MAZE.getNum("START_NUM_CODE");
+            //waiting for start location to be added to maze constants to uncomment above
             this.numCode = START_NUM_CODE;
         }
         else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");
-            this.numCode = END_NUM_CODE;
+            this.numCode = MAZE.getNum("END_NUM_CODE");
         }
         else {
             //TODO raise an error
@@ -124,11 +119,11 @@ public class EditorTile extends JLabel {
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
-            this.numCode = EMPTY_NUM_CODE;
+            this.numCode = MAZE.getNum("EMPTY_NUM_CODE");
         } else if (!Objects.equals(this.name, "obstacle")) {
             setTileImage("obstacle.png");
             this.name = "obstacle";
-            this.numCode = OBSTACLE_NUM_CODE;
+            this.numCode = MAZE.getNum("OBSTACLE_NUM_CODE");
         }
     }
 
