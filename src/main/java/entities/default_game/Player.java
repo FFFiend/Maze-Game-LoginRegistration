@@ -5,9 +5,9 @@ package entities.default_game;
  */
 public class Player extends Entity {
 
-    private static int playerX;
-    private static int playerY;
-    private static int playerStamina;
+    private int playerX;
+    private int playerY;
+    private int playerStamina;
     private boolean hasKey = false;
     private boolean stageClear = false;
 

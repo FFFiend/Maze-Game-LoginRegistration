@@ -30,7 +30,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     /** The file name of the maze which is currently loaded. */
     private String currentMaze;
 
-    private final int playerStamina = 100;
+    private final int STARTING_STAMINA = 100;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
     public Thread gameThread;
@@ -47,6 +47,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         cHandler = new CollisionHandler(items, hazards, player);
         mazeInfo = new Maze();
         playerKilled = false;
+        player.setStamina(STARTING_STAMINA);
     }
 
     @Override
@@ -65,7 +66,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             g2.setFont(new Font(null, Font.PLAIN, 48));
             g2.drawString("Game over", 270, 330);
         }
-        player.setStamina(playerStamina);
     }
 
     /**
