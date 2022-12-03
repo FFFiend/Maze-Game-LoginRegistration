@@ -8,6 +8,8 @@ public class Player extends Entity {
     private static int playerX;
     private static int playerY;
     private static int playerStamina;
+    private boolean hasKey = false;
+    private boolean stageClear = false;
 
     public Player(int X, int Y) {
         setPlayerX(X);
@@ -37,7 +39,7 @@ public class Player extends Entity {
      *
      * @return player's current stamina
      */
-    public int getPlayerStamina() {
+    public int getStamina() {
         return playerStamina;
     }
 
@@ -87,11 +89,27 @@ public class Player extends Entity {
     }
 
     /**
-     * Reduce the player's stamina by reduceBy.
+     * Add addBy to the player's current stamina.
      *
-     * @param reduceBy the amount to reduce the stamina by
+     * @param addBy the amount to change the stamina by
      */
-    public void reduceStamina(int reduceBy) {
-        playerStamina -= reduceBy;
+    public void addStamina(int addBy) {
+        playerStamina += addBy;
+    }
+
+    public void setHasKey(boolean b) {
+        hasKey = b;
+    }
+
+    public boolean getHasKey(){
+        return hasKey;
+    }
+
+    public void setStageClear(boolean b) {
+        stageClear = b;
+    }
+
+    public boolean getStageClear(){
+        return stageClear;
     }
 }

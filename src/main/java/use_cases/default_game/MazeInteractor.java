@@ -48,27 +48,30 @@ public class MazeInteractor implements IGamePanelInputBoundary {
      * @param keycode the keyboard input
      */
     public void movePlayer(int keycode) {
-        if (keycode == KeyEvent.VK_W) {
+        if (player.getStageClear()){
+            return;
+        }
+        else if (keycode == KeyEvent.VK_W) {
             if (cHandler.upPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerY(-playerSpeed);
             }
         }
-        if (keycode == KeyEvent.VK_S) {
+        else if (keycode == KeyEvent.VK_S) {
             if (cHandler.downPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerY(playerSpeed);
             }
         }
-        if (keycode == KeyEvent.VK_D) {
+        else if (keycode == KeyEvent.VK_D) {
             if (cHandler.rightPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerX(playerSpeed);
             }
         }
-        if (keycode == KeyEvent.VK_A) {
+        else if (keycode == KeyEvent.VK_A) {
             if (cHandler.leftPressed(player.getPlayerX(), player.getPlayerY())) {
                 player.movePlayerX(-playerSpeed);
             }
         }
-        player.reduceStamina(playerSpeed);
+        player.addStamina(-playerSpeed);
     }
 
     /**
@@ -95,7 +98,7 @@ public class MazeInteractor implements IGamePanelInputBoundary {
      * @return player's current stamina
      **/
     public int getPlayerStamina() {
-        return player.getPlayerStamina();
+        return player.getStamina();
     }
 
 }
