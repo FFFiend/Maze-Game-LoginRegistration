@@ -17,6 +17,7 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     private final Player player;
     private final int playerSpeed = 1;
     private final int playerStamina = 100;
+    private String mazeLevel;
 
     public MazeInteractor() {
         hazards = new MazeHazards();
@@ -75,6 +76,25 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     }
 
     /**
+     * @param keycode
+     */
+    @Override
+    public void selectLevel(int keycode) {
+        if(keycode == KeyEvent.VK_1){
+            load("mazes/EasyMaze.txt");
+            mazeLevel = "EASY";
+        }
+        else if(keycode == KeyEvent.VK_2){
+            load("mazes/MediumMaze.txt");
+            mazeLevel = "MEDIUM";
+        }
+        else if(keycode == KeyEvent.VK_3){
+            load("mazes/HardMaze.txt");
+            mazeLevel = "HARD";
+        }
+    }
+
+    /**
      * Get the player's current x-coordinate.
      *
      * @return the current x-coordinate
@@ -99,6 +119,10 @@ public class MazeInteractor implements IGamePanelInputBoundary {
      **/
     public int getPlayerStamina() {
         return player.getStamina();
+    }
+
+    public String getMazeLevel(){
+        return mazeLevel;
     }
 
 }

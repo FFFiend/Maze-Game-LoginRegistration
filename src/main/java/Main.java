@@ -94,7 +94,6 @@ public class Main {
         window.setTitle("AstroMaze");
 
         MazeInteractor maze = new MazeInteractor();
-        maze.load("mazes/maze02.txt");
 
         IGamePanelOutputBoundary presenter = new GamePanelPresenter(maze);
         GamePanelController controller = new GamePanelController(maze);
