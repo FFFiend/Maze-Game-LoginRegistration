@@ -1,5 +1,8 @@
 package use_cases.default_game;
 
+import use_cases.hazards.MazeHazards;
+import use_cases.items.MazeItems;
+
 /**
  * The output boundary implemented by GamePanelPresenter.
  */
@@ -12,5 +15,9 @@ public interface IGamePanelOutputBoundary {
      * @param playerY       player position Y
      * @param playerStamina player stamina
      */
-    void updateMaze(int playerX, int playerY, int playerStamina);
+    void updateMaze(int playerX, int playerY, int playerStamina, MazeHazards hazards, MazeItems items);
+
+    void changeState();
+
+    void recordStamina(int stamina);
 }

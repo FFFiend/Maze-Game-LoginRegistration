@@ -1,6 +1,5 @@
 package use_cases.default_game;
 
-import entities.default_game.IDrawOutputBoundary;
 import entities.default_game.Player;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
@@ -10,7 +9,7 @@ import java.awt.event.KeyEvent;
 /**
  * Use case interactor for mazes
  */
-public class MazeInteractor implements IGamePanelInputBoundary {
+public class MazeInteractor implements IGamePanelInputBoundary, Runnable {
     private final MazeHazards hazards;
     private final MazeItems items;
     private final CollisionHandler cHandler;
@@ -18,28 +17,75 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     private final int playerSpeed = 1;
     private final int playerStamina = 100;
     private String mazeLevel;
+    private final IGamePanelOutputBoundary outputBoundary;
+    public Thread gameThread;
+    int FPS = 20;
 
-    public MazeInteractor() {
+    public MazeInteractor(IGamePanelOutputBoundary outputBoundary) {
+        this.outputBoundary = outputBoundary;
+
         hazards = new MazeHazards();
         items = new MazeItems();
-        this.player = new Player(1, 1);
+        player = new Player(1, 1);
         cHandler = new CollisionHandler(items, hazards, player);
         player.setStamina(playerStamina);
     }
 
     /**
      * Load a maze from a file.
+     *
+     * @param filename the file to read the maze from
      */
     public void load(String filename) {
         new CustomAssetSetter(filename, items, hazards);
+        outputBoundary.changeState();
+        startGameThread();
     }
 
     /**
-     * Draw all maze components.
+     * Create a new game thread and run it.
      */
-    public void draw(IDrawOutputBoundary d) {
-        hazards.draw(d);
-        items.draw(d);
+    public void startGameThread() {
+        gameThread = new Thread(this);
+        gameThread.start(); // this calls run()
+    }
+
+    /**
+     * When an object implementing interface {@code Runnable} is used
+     * to create a thread, starting the thread causes the object's
+     * {@code run} method to be called in that separately executing
+     * thread.
+     * <p>
+     * The general contract of the method {@code run} is that it may
+     * take any action whatsoever.
+     *
+     * @see Thread#run()
+     */
+    @Override
+    public void run() {
+        long lastTime = System.currentTimeMillis();
+        while (gameThread != null) {
+            long currentTime = System.currentTimeMillis();
+            long sleepTime = lastTime + 1000 / FPS - currentTime;
+            if (sleepTime > 0) {
+                try {
+                    Thread.sleep(sleepTime);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+            lastTime = currentTime;
+
+            update();
+        }
+    }
+
+    /**
+     * Update all maze components.
+     */
+    public void update(){
+        outputBoundary.updateMaze(player.getPlayerX(), player.getPlayerY(), player.getStamina(),
+                hazards, items );
     }
 
     /**
@@ -50,6 +96,8 @@ public class MazeInteractor implements IGamePanelInputBoundary {
      */
     public void movePlayer(int keycode) {
         if (player.getStageClear()){
+            outputBoundary.changeState();
+            outputBoundary.recordStamina(player.getStamina());
             return;
         }
         else if (keycode == KeyEvent.VK_W) {
@@ -76,7 +124,9 @@ public class MazeInteractor implements IGamePanelInputBoundary {
     }
 
     /**
-     * @param keycode
+     * Select the difficulty of the maze.
+     *
+     * @param keycode the input received from user's keyboard
      */
     @Override
     public void selectLevel(int keycode) {
@@ -93,36 +143,4 @@ public class MazeInteractor implements IGamePanelInputBoundary {
             mazeLevel = "HARD";
         }
     }
-
-    /**
-     * Get the player's current x-coordinate.
-     *
-     * @return the current x-coordinate
-     */
-    public int getPlayerX() {
-        return player.getPlayerX();
-    }
-
-    /**
-     * Get the player's current y-coordinate.
-     *
-     * @return the current y-coordinate.
-     */
-    public int getPlayerY() {
-        return player.getPlayerY();
-    }
-
-    /**
-     * Get the player's current stamina.
-     *
-     * @return player's current stamina
-     **/
-    public int getPlayerStamina() {
-        return player.getStamina();
-    }
-
-    public String getMazeLevel(){
-        return mazeLevel;
-    }
-
 }
