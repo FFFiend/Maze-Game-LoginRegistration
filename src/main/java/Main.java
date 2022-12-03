@@ -2,9 +2,7 @@ import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.*;
 import use_cases.default_game.IGamePanelOutputBoundary;
-import use_cases.default_game.UpdatePlayer;
-import use_cases.hazards.MazeHazards;
-import use_cases.items.MazeItems;
+import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
@@ -92,11 +90,12 @@ public class Main {
         window.setResizable(false);
         window.setTitle("AstroMaze");
 
-        MazeItems items = new MazeItems();
-        MazeHazards hazards = new MazeHazards();
-        IGamePanelOutputBoundary presenter = new GamePanelPresenter(items, hazards);
-        UpdatePlayer playerUpdater = new UpdatePlayer(presenter, items, hazards);
-        GamePanelController controller = new GamePanelController(playerUpdater);
+        MazeInteractor maze = new MazeInteractor();
+        maze.load("mazes/maze02.txt");
+
+        IGamePanelOutputBoundary presenter = new GamePanelPresenter(maze);
+        GamePanelController controller = new GamePanelController(maze);
+
 
         window.add((Component) presenter);
 
@@ -104,7 +103,6 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
-        playerUpdater.startGameThread();
 
         window.addKeyListener(controller);
         window.setFocusable(true);

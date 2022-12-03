@@ -52,6 +52,8 @@ public class CustomAssetSetter {
      * Constructs CustomAssetSetter to place assets on the maze.
      */
     public CustomAssetSetter(String filePath, MazeItems mazeItems, MazeHazards mazeHazards) {
+        mazeItems.clear();
+        mazeHazards.clear();
         this.mazeItems = mazeItems;
         this.mazeHazards = mazeHazards;
         this.mazeAssetNum = new int[MAX_PANEL_COL][MAX_PANEL_ROW];

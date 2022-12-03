@@ -133,4 +133,12 @@ public class MazeHazards {
         obstacles.draw(d);
         enemies.draw(d);
     }
+
+    /**
+     * Remove all hazards.
+     */
+    public void clear() {
+        obstacles.clear();
+        enemies.clear();
+    }
 }
