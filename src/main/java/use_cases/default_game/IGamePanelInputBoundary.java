@@ -12,4 +12,6 @@ public interface IGamePanelInputBoundary {
      * @param keycode the keyboard input
      */
     void movePlayer(int keycode);
+
+    void selectLevel(int keycode);
 }
