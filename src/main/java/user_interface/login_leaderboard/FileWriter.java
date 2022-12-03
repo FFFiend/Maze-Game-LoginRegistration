@@ -55,12 +55,15 @@ public class FileWriter implements IFileOutput {
                 String[] values = currLine.split(",");
                 if (values[0].equals(username)){
                     switch (level) {
-                        case "Easy" -> newLine = values[0] + "," + values[1] + "," + values[2]
+                        case "Easy" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + score + "," + values[4] + "," + values[5];
-                        case "Medium" -> newLine = values[0] + "," + values[1] + "," + values[2]
+                        break;
+                        case "Medium" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + values[3] + "," + score + "," + values[5];
-                        case "Hard" -> newLine = values[0] + "," + values[1] + "," + values[2]
+                        break;
+                        case "Hard" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + values[3] + "," + values[4] + "," + score;
+                        break;
                     }
                     print.println(newLine);
                 }
