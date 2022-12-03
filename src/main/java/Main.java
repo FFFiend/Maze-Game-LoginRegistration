@@ -12,6 +12,7 @@ import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 /**
  * Run the game
@@ -22,9 +23,8 @@ public class Main {
      *
      * @param args for when we need some input
      */
-    public static void main(String[] args) {
-        setupRegisterUseCase();
-//        setupGame();
+    public static void main(String[] args) throws IOException {
+        setupGame();
     }
 
     /**
