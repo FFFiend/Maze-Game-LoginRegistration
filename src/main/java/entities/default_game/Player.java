@@ -6,10 +6,12 @@ package entities.default_game;
 public class Player extends Entity {
 
     private static int playerX;
-
     private static int playerY;
+    private static int playerStamina;
+    private boolean hasKey = false;
+    private boolean stageClear = false;
 
-    public Player(int X, int Y){
+    public Player(int X, int Y) {
         setPlayerX(X);
         setPlayerY(Y);
     }
@@ -33,6 +35,15 @@ public class Player extends Entity {
     }
 
     /**
+     * Get the player's current stamina.
+     *
+     * @return player's current stamina
+     */
+    public int getStamina() {
+        return playerStamina;
+    }
+
+    /**
      * Set the player's x-coordinate.
      *
      * @param X x-coordinate to set the player to.
@@ -51,6 +62,15 @@ public class Player extends Entity {
     }
 
     /**
+     * Set the player's stamina.
+     *
+     * @param initialStamina stamina that the player initially has
+     */
+    public void setStamina(int initialStamina) {
+        playerStamina = initialStamina;
+    }
+
+    /**
      * Change the player's x-coordinate by moveByX.
      *
      * @param moveByX value to change the x-coordinate by.
@@ -66,5 +86,30 @@ public class Player extends Entity {
      */
     public void movePlayerY(int moveByY) {
         playerY += moveByY;
+    }
+
+    /**
+     * Add addBy to the player's current stamina.
+     *
+     * @param addBy the amount to change the stamina by
+     */
+    public void addStamina(int addBy) {
+        playerStamina += addBy;
+    }
+
+    public void setHasKey(boolean b) {
+        hasKey = b;
+    }
+
+    public boolean getHasKey(){
+        return hasKey;
+    }
+
+    public void setStageClear(boolean b) {
+        stageClear = b;
+    }
+
+    public boolean getStageClear(){
+        return stageClear;
     }
 }

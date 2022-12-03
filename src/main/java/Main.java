@@ -93,19 +93,15 @@ public class Main {
         window.setResizable(false);
         window.setTitle("AstroMaze");
 
-        MazeInteractor maze = new MazeInteractor();
-        maze.load("mazes/maze02.txt");
-
-        IGamePanelOutputBoundary presenter = new GamePanelPresenter(maze);
+        IGamePanelOutputBoundary presenter = new GamePanelPresenter();
+        MazeInteractor maze = new MazeInteractor(presenter);
         GamePanelController controller = new GamePanelController(maze);
-
 
         window.add((Component) presenter);
 
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
 
         window.addKeyListener(controller);
         window.setFocusable(true);

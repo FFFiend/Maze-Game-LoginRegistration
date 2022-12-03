@@ -12,11 +12,7 @@ public interface IGamePanelInputBoundary {
      * @param keycode the keyboard input
      */
     void movePlayer(int keycode);
-    /**
-     * Update maze components.
-     * For example, moving enemies will move when this is called.
-     */
-    void update();
     /** Reset the state of the maze. */
     void reset();
+    void selectLevel(int keycode);
 }

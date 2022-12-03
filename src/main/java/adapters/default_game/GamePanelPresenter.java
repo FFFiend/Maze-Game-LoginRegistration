@@ -1,7 +1,6 @@
 package adapters.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
-import use_cases.default_game.CustomAssetSetter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
 import use_cases.hazards.MazeHazards;
@@ -13,7 +12,7 @@ import java.awt.*;
 /**
  * A class responsible for what the GamePanel presents
  **/
-public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary, Runnable {
+public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary {
     final int SPRITE_TILE_SIZE = 16;
     final int SCALE = 3; // may be changed to an unfixed variable later
     final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
@@ -25,32 +24,39 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
 
     private int playerX;
     private int playerY;
+    private int playerStamina;
 
-    private final MazeInteractor maze;
-    private final Thread gameThread;
+    private int gameState;
+    private int titleState = 0;
+    private int playState = 1;
+    private int levelClearState = 2;
+
+    private MazeInteractor maze;
 
     /**
      * Construct a new GamePanelPresenter with fixed settings.
      **/
-    public GamePanelPresenter(MazeInteractor maze) {
+    public GamePanelPresenter() {
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
-        this.maze = maze;
-        gameThread = new Thread(this);
-        gameThread.start();
+
+        gameState = titleState;
     }
 
-
     /**
-     * Update the player position and draw the maze accordingly.
+     * Update player information and draw the maze accordingly.
      *
-     * @param playerX player position X
-     * @param playerY player position Y
+     * @param playerX       player position X
+     * @param playerY       player position Y
+     * @param playerStamina player stamina
      */
-    public void updateMaze(int playerX, int playerY) {
-        this.playerX = playerX;
-        this.playerY = playerY;
+    public void redrawMaze(MazeInteractor maze) {
+        this.playerX = maze.getPlayerX();
+        this.playerY = maze.getPlayerY();
+        this.playerStamina = maze.getPlayerStamina();
+        this.maze = maze;
+
         repaint();
     }
 
@@ -64,52 +70,66 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.setColor(Color.white);
-        g2.fillRect(playerX*TILE_SIZE, playerY*TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-        // draw the maze
-        IDrawOutputBoundary b = new IDrawOutputBoundary() {
-            @Override
-            public int getTileSize() {
-                return TILE_SIZE;
-            }
+        if (gameState == titleState) {
+            drawTitleScreen(g2);
+        } else if (gameState == levelClearState) {
+            drawLevelClearScreen(g2);
+        } else if (gameState == playState) {
+            g2.setColor(Color.white);
+            g2.fillRect(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
-            @Override
-            public Graphics2D graphics() {
-                return g2;
-            }
-        };
-        maze.draw(b);
-        g2.dispose();
-    }
-
-    /**
-     * When an object implementing interface {@code Runnable} is used
-     * to create a thread, starting the thread causes the object's
-     * {@code run} method to be called in that separately executing
-     * thread.
-     * <p>
-     * The general contract of the method {@code run} is that it may
-     * take any action whatsoever.
-     *
-     * @see Thread#run()
-     */
-    @Override
-    public void run() {
-        long lastTime = System.currentTimeMillis();
-        while (gameThread != null) {
-            long currentTime = System.currentTimeMillis();
-            long sleepTime = lastTime + 1000 / FPS - currentTime;
-            if (sleepTime > 0) {
-                try {
-                    Thread.sleep(sleepTime);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
+            // draw the maze
+            IDrawOutputBoundary b = new IDrawOutputBoundary() {
+                @Override
+                public int getTileSize() {
+                    return TILE_SIZE;
                 }
-            }
-            lastTime = System.currentTimeMillis();
-            updateMaze(maze.getPlayerX(), maze.getPlayerY());
+
+                @Override
+                public Graphics2D graphics() {
+                    return g2;
+                }
+            };
+            maze.draw(b);
+
+            g2.setFont(new Font(null, Font.PLAIN, 28));
+            g2.setColor(Color.GREEN);
+            g2.drawString("Stamina: " + playerStamina, TILE_SIZE * 12, TILE_SIZE);
+            g2.dispose();
         }
     }
 
+    public void changeState() {
+        gameState += 1;
+    }
+
+    public void recordStamina(int playerStamina){
+        this.playerStamina = playerStamina;
+    }
+
+    public void drawTitleScreen(Graphics g2) {
+        // just to check the screen, design can be changed later
+        String text = "AstroMaze";
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
+        g2.setColor(Color.white);
+        g2.drawString(text, 100, 100);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
+        text = "Press 1 for easy level, 2 for medium level, 3 for hard level";
+
+        g2.drawString(text, 100, 200);
+    }
+
+    private void drawLevelClearScreen(Graphics2D g2) {
+        String text = "Level Clear!";
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
+        g2.setColor(Color.white);
+        g2.drawString(text, 100, 200);
+
+        text = "Stamina left:" + playerStamina;
+        g2.drawString(text, 100, 100);
+    }
 }
