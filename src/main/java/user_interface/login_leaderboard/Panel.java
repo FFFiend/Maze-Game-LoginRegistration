@@ -31,4 +31,8 @@ public class Panel extends JPanel {
             jLabel.setFont(this.TEXT_FONT);
         }
     }
+
+    public void delete(){
+        this.setVisible(false);
+    }
 }

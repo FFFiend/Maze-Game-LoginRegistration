@@ -24,10 +24,10 @@ public class CollisionHandlerTest {
         Player player1 = new Player(1, 1);
         CollisionHandler cHandler = new CollisionHandler(items, hazards, player1);
 
-        Assertions.assertFalse(cHandler.upPressed(player1.getPlayerX(), player1.getPlayerY()));
-        Assertions.assertTrue(cHandler.leftPressed(player1.getPlayerX(), player1.getPlayerY()));
-        Assertions.assertTrue(cHandler.rightPressed(player1.getPlayerX(), player1.getPlayerY()));
-        Assertions.assertTrue(cHandler.downPressed(player1.getPlayerX(), player1.getPlayerY()));
+        Assertions.assertFalse(cHandler.upPressed(player1.getX(), player1.getY()));
+        Assertions.assertTrue(cHandler.leftPressed(player1.getX(), player1.getY()));
+        Assertions.assertTrue(cHandler.rightPressed(player1.getX(), player1.getY()));
+        Assertions.assertTrue(cHandler.downPressed(player1.getX(), player1.getY()));
     }
 
 }
