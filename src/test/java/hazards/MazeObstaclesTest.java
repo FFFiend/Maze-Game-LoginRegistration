@@ -8,7 +8,7 @@ import use_cases.hazards.MazeObstacles;
 /**
  * Test the MazeObstacles class
  */
-public class MazeInfoObstaclesTest {
+public class MazeObstaclesTest {
     /**
      * Test isPlayerBlocked without any obstacles.
      */
