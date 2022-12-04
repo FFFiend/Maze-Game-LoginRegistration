@@ -7,7 +7,6 @@ import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 /**
@@ -17,9 +16,9 @@ import java.awt.event.KeyEvent;
  * java.util.ConcurrentModificationException, because we are accessing this class in separate threads.
  */
 public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestModel, Runnable {
-    private final MazeHazards hazards;
-    private final MazeItems items;
-    private final CollisionHandler cHandler;
+    private MazeHazards hazards;
+    private MazeItems items;
+    private CollisionHandler cHandler;
     private Player player;
     private final int playerSpeed = 1;
 
@@ -41,16 +40,12 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int HAZARD_UPDATE_FRAME_INTERVAL = 10;
 
     public MazeInteractor(IGamePanelOutputBoundary outputBoundary) {
-        player = new Player(1, 1);
         this.outputBoundary = outputBoundary;
-
-        hazards = new MazeHazards();
-        items = new MazeItems();
-        cHandler = new CollisionHandler(items, hazards, player);
-        startGameThread();
     }
 
-    @Override
+    /**
+     * Reset the state of the maze.
+     */
     public synchronized void reset() {
         if (player.getStageClear()) {
             // don't reset if the level has been completed.
@@ -74,11 +69,16 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      * @param filename the file to read the maze from
      */
     public synchronized void load(String filename) {
-        player.setX(1);
-        player.setY(1);
+        player = new Player(1, 1);
+        hazards = new MazeHazards();
+        items = new MazeItems();
+        cHandler = new CollisionHandler(items, hazards, player);
+
         player.setStamina(STARTING_STAMINA);
         player.setHasKey(false);
         player.setStageClear(false);
+
+        startGameThread();
 
         hazards.clear();
         items.clear();
@@ -123,6 +123,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
                 }
             }
             lastTime = currentTime;
+
             if (frameNumber % HAZARD_UPDATE_FRAME_INTERVAL == 0) {
                 updateHazards();
             }
@@ -132,10 +133,40 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     }
 
     /**
+     * Execute the given keycode.
+     *
+     * @param keycode user keyboard input
+     */
+    public void execute(int keycode){
+        currState = outputBoundary.getState();
+        if (keycode == KeyEvent.VK_1 || keycode == KeyEvent.VK_2 || keycode == KeyEvent.VK_3) {
+            if (currState == outputBoundary.TITLE_STATE){
+                displayLevel(keycode);
+            }
+        }
+        else if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
+                keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
+            if (currState == outputBoundary.PLAY_STATE){
+                movePlayer(keycode);
+            }
+        } else if (keycode == KeyEvent.VK_R) {
+            if (currState == outputBoundary.PLAY_STATE ||
+                    currState == outputBoundary.GAME_OVER_STATE){
+                reset();
+            }
+        } else if (keycode == KeyEvent.VK_ESCAPE){
+            if (currState == outputBoundary.GAME_OVER_STATE ||
+                    currState == outputBoundary.LEVEL_CLEAR_STATE){
+                outputBoundary.changeState(outputBoundary.TITLE_STATE);
+            }
+        }
+    }
+
+    /**
      * Moves the player to the direction specified by the user
      * input keycode.
      *
-     * @param keycode the keyboard input
+     * @param keycode user keyboard input
      */
     public synchronized void movePlayer(int keycode) {
         if (gameOver()) {
@@ -215,9 +246,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private void checkPlayerKilled() {
         if (hazards.isPlayerKilled(this) || player.getStamina() <= 0) {
             playerKilled = true;
-            if(currState == IGamePanelOutputBoundary.PLAY_STATE){
-                outputBoundary.changeState(IGamePanelOutputBoundary.GAME_OVER_STATE);
-            }
+            outputBoundary.changeState(IGamePanelOutputBoundary.GAME_OVER_STATE);
         }
     }
 
@@ -238,9 +267,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     /**
      * Display the maze level that the user selected
      *
-     * @param keycode the keyboard input 1,2,3
+     * @param keycode user keyboard input 1,2,3
      */
-    @Override
     public void displayLevel(int keycode) {
         if (keycode == KeyEvent.VK_1) {
             load("mazes/EasyMaze.txt");

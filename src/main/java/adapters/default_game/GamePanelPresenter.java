@@ -158,7 +158,12 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         g2.setFont(new Font(null, Font.PLAIN, 20));
 
         x = getCenteredTextX(g2, text);
-        y = y + 60;
+        y = y + 40;
+        g2.drawString(text, x, y);
+
+        text = "PRESS ESC TO GO BACK TO TITLE SCREEN";
+        x = getCenteredTextX(g2, text);
+        y = y + 40;
         g2.drawString(text, x, y);
     }
 
@@ -176,11 +181,13 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         g2.setFont(new Font(null, Font.PLAIN, 20));
 
         x = getCenteredTextX(g2, text);
-        g2.drawString(text, x, 360);
+        y = y + 40;
+        g2.drawString(text, x, y);
 
         text = "PRESS ESC TO GO BACK TO TITLE SCREEN";
         x = getCenteredTextX(g2, text);
-        g2.drawString(text, x, 400);
+        y = y + 40;
+        g2.drawString(text, x, y);
     }
 
     public int getCenteredTextX(Graphics2D g2, String text) {
