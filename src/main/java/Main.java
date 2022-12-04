@@ -9,10 +9,7 @@ import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
-import user_interface.login_leaderboard.FileReader;
-import user_interface.login_leaderboard.LoginPanel;
-import user_interface.login_leaderboard.RegisterPanel;
-import user_interface.login_leaderboard.WelcomePanel;
+import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,44 +32,11 @@ public class Main {
      * to observe functionality.
      **/
     private static void setupGame() {
-        GlobalFrame globalFrame = new GlobalFrame();
-        globalFrame.setPanel(new WelcomePanel());
+        IGlobalFrameOutputBoundary ob = new GlobalFrame();;
+        WelcomeGlobalFrame welcome  = new WelcomeGlobalFrame(ob);
+        ob.setPanel(welcome);
         //setupCustomMazeMenu();
         tempDefaultGameRunner();
-        //setupRegisterUseCase();
-        //setupLoginUseCase();
-    }
-
-    /**
-     * Temporary acess to the Register User use case. Please uncomment from setupGame
-     * method to use.
-     **/
-    private static void setupRegisterUseCase(){
-        GlobalFrame globalFrame = new GlobalFrame();
-
-        IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-        RegisterUser registerUseCase = new RegisterUser(output);
-        registerUseCase.setUsers(FileReader.create().PREV.getUsers());
-
-        RegisterUserController controller = new RegisterUserController(registerUseCase);
-        RegisterPanel register = new RegisterPanel(controller);
-        globalFrame.setPanel(register);
-    }
-
-    /**
-     * Access to the Login User use case. Please uncomment from setupGame method
-     * to use.
-     */
-    private static void setupLoginUseCase(){
-        GlobalFrame globalFrame = new GlobalFrame();
-
-        ILoginUserOutputBoundary output = new LoginUserPresenter();
-        LoginUser loginUseCase = new LoginUser(output);
-        loginUseCase.setUsers(FileReader.create().PREV.getUsers());
-
-        LoginUserController controller = new LoginUserController(loginUseCase);
-        LoginPanel login =  new LoginPanel(controller);
-        globalFrame.setPanel(login);
     }
 
     /**
