@@ -243,7 +243,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     }
 
     /**
-     * Check if the player has been killed by an enemy.
+     * Check if the player has been killed by an enemy or has run out of stamina.
      */
     private void checkPlayerKilled() {
         if (hazards.isPlayerKilled(this) || player.getStamina() <= 0) {
