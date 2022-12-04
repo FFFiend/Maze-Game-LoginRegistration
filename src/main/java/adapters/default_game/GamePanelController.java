@@ -13,9 +13,15 @@ public class GamePanelController implements KeyListener {
     private final IGamePanelInputBoundary inputBoundary;
     private boolean levelSelected = false;
 
+    /**
+     * Number of times per second the inputBoundary update method is called.
+     */
+    private final int updateFrequency = 4;
+
     public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
+
 
     /**
      * Invoked when a key has been typed.
@@ -49,6 +55,8 @@ public class GamePanelController implements KeyListener {
         else if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
                 keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
             inputBoundary.movePlayer(keycode);
+        } else if (keycode == KeyEvent.VK_R) {
+            inputBoundary.reset();
         }
 
     }
@@ -57,4 +65,5 @@ public class GamePanelController implements KeyListener {
     public void keyReleased(KeyEvent e) {
 
     }
+
 }

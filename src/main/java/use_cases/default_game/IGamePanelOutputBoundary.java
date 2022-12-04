@@ -9,15 +9,20 @@ import use_cases.items.MazeItems;
 public interface IGamePanelOutputBoundary {
 
     /**
-     * Update player information and draw the maze accordingly.
-     *
-     * @param playerX       player position X
-     * @param playerY       player position Y
-     * @param playerStamina player stamina
+     * Update maze information and draw it accordingly.
      */
-    void updateMaze(int playerX, int playerY, int playerStamina, MazeHazards hazards, MazeItems items);
+    void redrawMaze(MazeInteractor maze);
 
-    void changeState();
+    int TITLE_STATE = 0;
+    int PLAY_STATE = 1;
+    int LEVEL_CLEAR_STATE = 2;
+
+    /**
+     * Set the game state.
+     *
+     * @param newState The new game state. This must be one of the *_STATE constants defined above.
+     */
+    void changeState(int newState);
 
     void recordStamina(int stamina);
 }

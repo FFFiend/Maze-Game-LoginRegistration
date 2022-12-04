@@ -12,8 +12,8 @@ public class PlayerTest {
     public void SetGetPlayerXY() {
         Player player = new Player(2,1);
 
-        Assertions.assertEquals(2, player.getPlayerX());
-        Assertions.assertEquals(1, player.getPlayerY());
+        Assertions.assertEquals(2, player.getX());
+        Assertions.assertEquals(1, player.getY());
     }
 
     /**
@@ -24,8 +24,8 @@ public class PlayerTest {
         Player player = new Player(1,1);
 
         player.movePlayerY(-1);
-        Assertions.assertEquals(1, player.getPlayerX());
-        Assertions.assertEquals(0, player.getPlayerY());
+        Assertions.assertEquals(1, player.getX());
+        Assertions.assertEquals(0, player.getY());
     }
 
     @Test
@@ -33,8 +33,8 @@ public class PlayerTest {
         Player player = new Player(1,1);
 
         player.movePlayerY(1);
-        Assertions.assertEquals(1, player.getPlayerX());
-        Assertions.assertEquals(2, player.getPlayerY());
+        Assertions.assertEquals(1, player.getX());
+        Assertions.assertEquals(2, player.getY());
     }
 
     @Test
@@ -42,8 +42,8 @@ public class PlayerTest {
         Player player = new Player(1,1);
 
         player.movePlayerX(-1);
-        Assertions.assertEquals(0, player.getPlayerX());
-        Assertions.assertEquals(1, player.getPlayerY());
+        Assertions.assertEquals(0, player.getX());
+        Assertions.assertEquals(1, player.getY());
     }
 
     @Test
@@ -51,7 +51,7 @@ public class PlayerTest {
         Player player = new Player(1,1);
 
         player.movePlayerX(1);
-        Assertions.assertEquals(2, player.getPlayerX());
-        Assertions.assertEquals(1, player.getPlayerY());
+        Assertions.assertEquals(2, player.getX());
+        Assertions.assertEquals(1, player.getY());
     }
 }
