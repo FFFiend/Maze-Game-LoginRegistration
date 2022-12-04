@@ -1,8 +1,5 @@
 package use_cases.default_game;
 
-import use_cases.hazards.MazeHazards;
-import use_cases.items.MazeItems;
-
 /**
  * The output boundary implemented by GamePanelPresenter.
  */
@@ -20,9 +17,15 @@ public interface IGamePanelOutputBoundary {
     /**
      * Set the game state.
      *
-     * @param newState The new game state. This must be one of the *_STATE constants defined above.
+     * @param newState The new game state. This must be one of the *_STATE
+     *                 constants defined in IGameOutputBoundary.
      */
     void changeState(int newState);
 
+    /**
+     * Record the current stamina.
+     *
+     * @param stamina current stamina
+     */
     void recordStamina(int stamina);
 }

@@ -3,8 +3,6 @@ package adapters.default_game;
 import entities.default_game.IDrawOutputBoundary;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
-import use_cases.hazards.MazeHazards;
-import use_cases.items.MazeItems;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,11 +40,9 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     }
 
     /**
-     * Update player information and draw the maze accordingly.
+     * Update maze information and draw the maze accordingly.
      *
-     * @param playerX       player position X
-     * @param playerY       player position Y
-     * @param playerStamina player stamina
+     * @param maze the use case interactor for the maze
      */
     public void redrawMaze(MazeInteractor maze) {
         this.playerX = maze.getPlayerX();
@@ -97,14 +93,30 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         }
     }
 
+    /**
+     * Set the game state.
+     *
+     * @param newState The new game state. This must be one of the *_STATE
+     *                 constants defined in IGameOutputBoundary.
+     */
     public void changeState(int newState) {
         gameState = newState;
     }
 
-    public void recordStamina(int playerStamina){
+    /**
+     * Record the current stamina.
+     *
+     * @param playerStamina current stamina
+     */
+    public void recordStamina(int playerStamina) {
         this.playerStamina = playerStamina;
     }
 
+    /**
+     * Draw the title screen.
+     *
+     * @param g2 graphics
+     */
     public void drawTitleScreen(Graphics g2) {
         // just to check the screen, design can be changed later
         String text = "AstroMaze";
@@ -119,6 +131,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         g2.drawString(text, 100, 200);
     }
 
+    /**
+     * Draw clear level screen.
+     *
+     * @param g2 graphics
+     */
     private void drawLevelClearScreen(Graphics2D g2) {
         String text = "Level Clear!";
 
