@@ -13,8 +13,8 @@ public class CollisionHandler {
     private final MazeHazards hazards;
     private final MazeItems items;
     private final Player player;
-    int MAX_PANEL_COL = MazeInfo.getMaxPanelCol();
-    int MAX_PANEL_ROW = MazeInfo.getMaxPanelRow();
+    int MAX_MAZE_COL = MazeInfo.getMaxMazeCol();
+    int MAX_MAZE_ROW = MazeInfo.getMaxMazeRow();
     int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
 
     /**
@@ -141,12 +141,12 @@ public class CollisionHandler {
 
             @Override
             public int mazeWidth() {
-                return MAX_PANEL_COL;
+                return MAX_MAZE_COL;
             }
 
             @Override
             public int mazeHeight() {
-                return MAX_PANEL_ROW;
+                return MAX_MAZE_ROW;
             }
         };
     }

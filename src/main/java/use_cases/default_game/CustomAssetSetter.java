@@ -19,8 +19,8 @@ public class CustomAssetSetter {
     /**
      * dimensions of the map
      */
-    final int MAX_PANEL_COL = MazeInfo.getMaxPanelCol();
-    final int MAX_PANEL_ROW = MazeInfo.getMaxPanelRow();
+    final int MAX_MAZE_COL = MazeInfo.getMaxMazeCol();
+    final int MAX_MAZE_ROW = MazeInfo.getMaxMazeRow();
 
     /**
      * Num codes for the Assets
@@ -51,7 +51,7 @@ public class CustomAssetSetter {
         mazeHazards.clear();
         this.mazeItems = mazeItems;
         this.mazeHazards = mazeHazards;
-        this.mazeAssetNum = new int[MAX_PANEL_COL][MAX_PANEL_ROW];
+        this.mazeAssetNum = new int[MAX_MAZE_COL][MAX_MAZE_ROW];
         loadMaze(filePath);
         setAssets();
     }
@@ -67,16 +67,16 @@ public class CustomAssetSetter {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
-            while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
+            while (col < MAX_MAZE_COL && row < MAX_MAZE_ROW) {
                 String line = br.readLine();
-                while (col < MAX_PANEL_COL) {
+                while (col < MAX_MAZE_COL) {
                     String[] numbers = line.split(" ");  // remove whitespace
                     int num = Integer.parseInt(numbers[col]);  // change String -> int
 
                     mazeAssetNum[col][row] = num;
                     col++;
                 }
-                if (col == MAX_PANEL_COL) {
+                if (col == MAX_MAZE_COL) {
                     col = 0;
                     row++;
                 }
@@ -95,7 +95,7 @@ public class CustomAssetSetter {
         int col = 0;
         int row = 0;
 
-        while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
+        while (col < MAX_MAZE_COL && row < MAX_MAZE_ROW) {
             int assetNum = mazeAssetNum[col][row];  // go through each element in matrix
             if (assetNum == OBSTACLE_NUM_CODE) {
                 mazeHazards.addObstacle(new Obstacle(col, row));
@@ -116,7 +116,7 @@ public class CustomAssetSetter {
                 mazeItems.add(new ItemBlackhole(col, row));
             }
             col++;
-            if (col == MAX_PANEL_COL) {
+            if (col == MAX_MAZE_COL) {
                 col = 0;
                 row++;
             }

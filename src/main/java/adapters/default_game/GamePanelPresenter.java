@@ -1,6 +1,7 @@
 package adapters.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
+import entities.default_game.MazeInfo;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
 
@@ -11,21 +12,13 @@ import java.awt.*;
  * A class responsible for what the GamePanel presents
  **/
 public class GamePanelPresenter extends JPanel implements IGamePanelOutputBoundary {
-    final int SPRITE_TILE_SIZE = 16;
-    final int SCALE = 3; // may be changed to an unfixed variable later
-    final int TILE_SIZE = SPRITE_TILE_SIZE * SCALE;
-    final int MAX_PANEL_COL = 16;
-    final int MAX_PANEL_ROW = 12;
-    final int PANEL_WIDTH = TILE_SIZE * MAX_PANEL_COL;
-    final int PANEL_HEIGHT = TILE_SIZE * MAX_PANEL_ROW;
-    final int FPS = 20;
-
+    final int TILE_SIZE = MazeInfo.getTileSize();
+    final int PANEL_WIDTH = MazeInfo.getPanelWidth();
+    final int PANEL_HEIGHT = MazeInfo.getPanelHeight();
     private int playerX;
     private int playerY;
     private int playerStamina;
-
     private int gameState;
-
     private MazeInteractor maze;
 
     /**
@@ -105,6 +98,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         gameState = newState;
     }
 
+    /**
+     * Get the current game state.
+     *
+     * @return current game state
+     */
     public int getState() {
         return gameState;
     }
@@ -167,6 +165,11 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         g2.drawString(text, x, y);
     }
 
+    /**
+     * Draw game over screen.
+     *
+     * @param g2 graphics
+     */
     private void drawGameOverScreen(Graphics2D g2) {
         String text = "GAME OVER";
         g2.setColor(Color.RED);
@@ -190,17 +193,27 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         g2.drawString(text, x, y);
     }
 
+    /**
+     * Get the x position to center the text on the panel.
+     *
+     * @param g2 graphics
+     * @param text text to center
+     * @return x position to set the text to
+     */
     public int getCenteredTextX(Graphics2D g2, String text) {
         FontMetrics fm = g2.getFontMetrics();
         int x = (getWidth() - fm.stringWidth(text)) / 2;
         return x;
     }
 
+    /**
+     * Get the y position to center the text on the panel.
+     * @param g2 graphics
+     * @return y position to set the text to
+     */
     public int getCenteredTextY(Graphics2D g2) {
         FontMetrics fm = g2.getFontMetrics();
         int y = (getHeight() + fm.getAscent()) / 2;
         return y;
     }
-
-
 }
