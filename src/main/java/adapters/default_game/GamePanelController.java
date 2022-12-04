@@ -1,7 +1,6 @@
 package adapters.default_game;
 
 import use_cases.default_game.IGamePanelInputBoundary;
-import use_cases.default_game.MazeInteractor;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -45,20 +44,7 @@ public class GamePanelController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
-        if (!levelSelected) {
-            if (keycode == KeyEvent.VK_1 || keycode == KeyEvent.VK_2 ||
-                    keycode == KeyEvent.VK_3) {
-                inputBoundary.selectLevel(keycode);
-                levelSelected = true;
-            }
-        }
-        else if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
-                keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
-            inputBoundary.movePlayer(keycode);
-        } else if (keycode == KeyEvent.VK_R) {
-            inputBoundary.reset();
-        }
-
+        inputBoundary.execute(keycode);
     }
 
     @Override
