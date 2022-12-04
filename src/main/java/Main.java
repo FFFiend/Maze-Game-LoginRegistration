@@ -9,10 +9,7 @@ import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
-import user_interface.login_leaderboard.FileReader;
-import user_interface.login_leaderboard.LoginPanel;
-import user_interface.login_leaderboard.RegisterPanel;
-import user_interface.login_leaderboard.WelcomePanel;
+import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -35,8 +32,9 @@ public class Main {
      * to observe functionality.
      **/
     private static void setupGame() {
-        GlobalFrame globalFrame = new GlobalFrame();
-        globalFrame.setPanel(new WelcomePanel());
+        IPanelOutputBoundary ob = new GlobalFrame();;
+        WelcomePanel welcome  = new WelcomePanel(ob);
+        ob.setPanel(welcome);
         //setupCustomMazeMenu();
         tempDefaultGameRunner();
         //setupRegisterUseCase();
