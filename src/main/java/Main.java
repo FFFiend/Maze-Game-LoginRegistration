@@ -32,45 +32,11 @@ public class Main {
      * to observe functionality.
      **/
     private static void setupGame() {
-        IPanelOutputBoundary ob = new GlobalFrame();;
-        WelcomePanel welcome  = new WelcomePanel(ob);
+        IGlobalFrameOutputBoundary ob = new GlobalFrame();;
+        WelcomeGlobalFrame welcome  = new WelcomeGlobalFrame(ob);
         ob.setPanel(welcome);
         //setupCustomMazeMenu();
         tempDefaultGameRunner();
-        //setupRegisterUseCase();
-        //setupLoginUseCase();
-    }
-
-    /**
-     * Temporary acess to the Register User use case. Please uncomment from setupGame
-     * method to use.
-     **/
-    private static void setupRegisterUseCase(){
-        GlobalFrame globalFrame = new GlobalFrame();
-
-        IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-        RegisterUser registerUseCase = new RegisterUser(output);
-        registerUseCase.setUsers(FileReader.create().PREV.getUsers());
-
-        RegisterUserController controller = new RegisterUserController(registerUseCase);
-        RegisterPanel register = new RegisterPanel(controller);
-        globalFrame.setPanel(register);
-    }
-
-    /**
-     * Access to the Login User use case. Please uncomment from setupGame method
-     * to use.
-     */
-    private static void setupLoginUseCase(){
-        GlobalFrame globalFrame = new GlobalFrame();
-
-        ILoginUserOutputBoundary output = new LoginUserPresenter();
-        LoginUser loginUseCase = new LoginUser(output);
-        loginUseCase.setUsers(FileReader.create().PREV.getUsers());
-
-        LoginUserController controller = new LoginUserController(loginUseCase);
-        LoginPanel login =  new LoginPanel(controller);
-        globalFrame.setPanel(login);
     }
 
     /**

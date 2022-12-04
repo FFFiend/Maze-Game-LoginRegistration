@@ -1,9 +1,5 @@
 package user_interface.login_leaderboard;
 
-import use_cases.default_game.IGamePanelInputBoundary;
-import user_interface.default_game.GlobalFrame;
-
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -12,15 +8,15 @@ import javax.swing.*;
 /**
  * Allows the user to login, register, or view leaderboard.
  */
-public class WelcomePanel extends Panel implements ActionListener, IPanelInputBoundary {
+public class WelcomeGlobalFrame extends Panel implements ActionListener {
 
     public int state = 2;
-    IPanelOutputBoundary outputBoundary;
+    IGlobalFrameOutputBoundary outputBoundary;
 
     /**
      * Construct a new WelcomeScreen panel with fixed settings
      **/
-    public WelcomePanel(IPanelOutputBoundary ob) {
+    public WelcomeGlobalFrame(IGlobalFrameOutputBoundary ob) {
         outputBoundary = ob;
         this.build();
         JLabel welcomeMessage = new JLabel("Welcome to Astromaze!");
@@ -61,10 +57,11 @@ public class WelcomePanel extends Panel implements ActionListener, IPanelInputBo
         //this.setVisible(false);
         if (Objects.equals(e.getActionCommand(), "Sign up")) {
             state = 0;
-            outputBoundary.currPanel(this);
-            outputBoundary.changeState();
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         } else if (Objects.equals(e.getActionCommand(), "Log in")) {
-            outputBoundary.changeState();
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         }
     }
 }

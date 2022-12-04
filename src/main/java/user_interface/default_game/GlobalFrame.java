@@ -1,16 +1,15 @@
 package user_interface.default_game;
 
-import user_interface.login_leaderboard.IPanelOutputBoundary;
+import user_interface.login_leaderboard.IGlobalFrameOutputBoundary;
 import user_interface.login_leaderboard.Panel;
-import user_interface.login_leaderboard.StateManager;
+import user_interface.login_leaderboard.PanelManager;
 
 import javax.swing.*;
-import java.awt.*;
 
 
-public class GlobalFrame implements IPanelOutputBoundary {
+public class GlobalFrame implements IGlobalFrameOutputBoundary {
     public JFrame window = new JFrame();
-    private StateManager stateManager = new StateManager();
+    private PanelManager panelManager = new PanelManager();
     private Panel currPanel;
     /**
      * A frame that controls the whole project (not implemented yet).
@@ -41,21 +40,19 @@ public class GlobalFrame implements IPanelOutputBoundary {
         window.setVisible(true);
     }
 
-    public void currPanel(Panel panel) {
+    public void getCurrPanel(Panel panel) {
         currPanel = panel;
     }
-    public void changeState(){
+    public void changePanelTo(String nextPanel){
         currPanel.delete();
 
-        window.add(stateManager.getNextPanel(0));
+        window.add(panelManager.getNextPanel(nextPanel));
 
         window.revalidate();
         window.repaint();
         window.pack();
 
         window.setResizable(true);
-        //currPanel.setVisible(false);
-
 
         // add extra methods in welcomepanel to ensure this works
         // properly when needed. For now, testing whether panel
