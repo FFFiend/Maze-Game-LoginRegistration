@@ -84,7 +84,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         items.clear();
         new CustomAssetSetter(filename, items, hazards);
         outputBoundary.changeState(IGamePanelOutputBoundary.PLAY_STATE);
-        currState = outputBoundary.getState();
+
         playerKilled = false;
         currentMaze = filename;
     }
@@ -137,26 +137,25 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      *
      * @param keycode user keyboard input
      */
-    public void execute(int keycode){
+    public void execute(int keycode) {
         currState = outputBoundary.getState();
         if (keycode == KeyEvent.VK_1 || keycode == KeyEvent.VK_2 || keycode == KeyEvent.VK_3) {
-            if (currState == outputBoundary.TITLE_STATE){
+            if (currState == outputBoundary.TITLE_STATE) {
                 displayLevel(keycode);
             }
-        }
-        else if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
+        } else if (keycode == KeyEvent.VK_W || keycode == KeyEvent.VK_S ||
                 keycode == KeyEvent.VK_D || keycode == KeyEvent.VK_A) {
-            if (currState == outputBoundary.PLAY_STATE){
+            if (currState == outputBoundary.PLAY_STATE) {
                 movePlayer(keycode);
             }
         } else if (keycode == KeyEvent.VK_R) {
             if (currState == outputBoundary.PLAY_STATE ||
-                    currState == outputBoundary.GAME_OVER_STATE){
+                    currState == outputBoundary.GAME_OVER_STATE) {
                 reset();
             }
-        } else if (keycode == KeyEvent.VK_ESCAPE){
+        } else if (keycode == KeyEvent.VK_ESCAPE) {
             if (currState == outputBoundary.GAME_OVER_STATE ||
-                    currState == outputBoundary.LEVEL_CLEAR_STATE){
+                    currState == outputBoundary.LEVEL_CLEAR_STATE) {
                 outputBoundary.changeState(outputBoundary.TITLE_STATE);
             }
         }
@@ -175,18 +174,22 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         } else if (keycode == KeyEvent.VK_W) {
             if (cHandler.upPressed(player.getX(), player.getY())) {
                 player.movePlayerY(-playerSpeed);
+                player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_S) {
             if (cHandler.downPressed(player.getX(), player.getY())) {
                 player.movePlayerY(playerSpeed);
+                player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_D) {
             if (cHandler.rightPressed(player.getX(), player.getY())) {
                 player.movePlayerX(playerSpeed);
+                player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_A) {
             if (cHandler.leftPressed(player.getX(), player.getY())) {
                 player.movePlayerX(-playerSpeed);
+                player.addStamina(-playerSpeed);
             }
         }
 
@@ -196,7 +199,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             return;
         }
 
-        player.addStamina(-playerSpeed);
         checkPlayerKilled();
     }
 

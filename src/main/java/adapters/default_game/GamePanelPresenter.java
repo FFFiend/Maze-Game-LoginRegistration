@@ -196,9 +196,9 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         return x;
     }
 
-    public int getCenteredTextY(Graphics2D g2){
+    public int getCenteredTextY(Graphics2D g2) {
         FontMetrics fm = g2.getFontMetrics();
-        int y = (getHeight() + fm.getAscent())/2;
+        int y = (getHeight() + fm.getAscent()) / 2;
         return y;
     }
 
