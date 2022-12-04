@@ -13,6 +13,7 @@ public interface IGamePanelOutputBoundary {
     int TITLE_STATE = 0;
     int PLAY_STATE = 1;
     int LEVEL_CLEAR_STATE = 2;
+    int GAME_OVER_STATE = 3;
 
     /**
      * Set the game state.
@@ -28,4 +29,6 @@ public interface IGamePanelOutputBoundary {
      * @param stamina current stamina
      */
     void recordStamina(int stamina);
+
+    int getState();
 }

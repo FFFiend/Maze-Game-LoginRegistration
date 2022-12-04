@@ -68,6 +68,8 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
             drawTitleScreen(g2);
         } else if (gameState == IGamePanelOutputBoundary.LEVEL_CLEAR_STATE) {
             drawLevelClearScreen(g2);
+        } else if (gameState == IGamePanelOutputBoundary.GAME_OVER_STATE) {
+            drawGameOverScreen(g2);
         } else if (gameState == IGamePanelOutputBoundary.PLAY_STATE) {
             g2.setColor(Color.white);
             g2.fillRect(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
@@ -101,6 +103,10 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      */
     public void changeState(int newState) {
         gameState = newState;
+    }
+
+    public int getState() {
+        return gameState;
     }
 
     /**
@@ -137,13 +143,57 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      * @param g2 graphics
      */
     private void drawLevelClearScreen(Graphics2D g2) {
-        String text = "Level Clear!";
+        String text = "LEVEL CLEAR";
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
-        g2.setColor(Color.white);
-        g2.drawString(text, 100, 200);
+        g2.setColor(Color.green);
 
-        text = "Stamina left:" + playerStamina;
-        g2.drawString(text, 100, 100);
+        int x = getCenteredTextX(g2, text);
+        int y = getCenteredTextY(g2);
+        g2.drawString(text, x, y);
+
+        text = "STAMINA LEFT: " + playerStamina;
+
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font(null, Font.PLAIN, 20));
+
+        x = getCenteredTextX(g2, text);
+        y = y + 60;
+        g2.drawString(text, x, y);
     }
+
+    private void drawGameOverScreen(Graphics2D g2) {
+        String text = "GAME OVER";
+        g2.setColor(Color.RED);
+        g2.setFont(new Font(null, Font.PLAIN, 48));
+
+        int x = getCenteredTextX(g2, text);
+        int y = getCenteredTextY(g2);
+        g2.drawString(text, x, y);
+
+        text = "PRESS R TO RESTART LEVEL";
+        g2.setColor(Color.WHITE);
+        g2.setFont(new Font(null, Font.PLAIN, 20));
+
+        x = getCenteredTextX(g2, text);
+        g2.drawString(text, x, 360);
+
+        text = "PRESS ESC TO GO BACK TO TITLE SCREEN";
+        x = getCenteredTextX(g2, text);
+        g2.drawString(text, x, 400);
+    }
+
+    public int getCenteredTextX(Graphics2D g2, String text) {
+        FontMetrics fm = g2.getFontMetrics();
+        int x = (getWidth() - fm.stringWidth(text)) / 2;
+        return x;
+    }
+
+    public int getCenteredTextY(Graphics2D g2){
+        FontMetrics fm = g2.getFontMetrics();
+        int y = (getHeight() + fm.getAscent())/2;
+        return y;
+    }
+
+
 }

@@ -34,6 +34,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final IGamePanelOutputBoundary outputBoundary;
     public Thread gameThread;
     private final int FPS = 20;
+    private int currState;
     /**
      * Hazards will be updated every this many frames
      */
@@ -63,14 +64,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      * Draw all maze components.
      */
     public synchronized void draw(IDrawOutputBoundary d) {
-        Graphics2D g2 = d.graphics();
         hazards.draw(d);
         items.draw(d);
-        if (isPlayerKilled()) {
-            g2.setColor(Color.RED);
-            g2.setFont(new Font(null, Font.PLAIN, 48));
-            g2.drawString("Game over", 270, 330);
-        }
     }
 
     /**
@@ -89,6 +84,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         items.clear();
         new CustomAssetSetter(filename, items, hazards);
         outputBoundary.changeState(IGamePanelOutputBoundary.PLAY_STATE);
+        currState = outputBoundary.getState();
         playerKilled = false;
         currentMaze = filename;
     }
@@ -216,9 +212,12 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     /**
      * Check if the player has been killed by an enemy.
      */
-    private synchronized void checkPlayerKilled() {
+    private void checkPlayerKilled() {
         if (hazards.isPlayerKilled(this) || player.getStamina() <= 0) {
             playerKilled = true;
+            if(currState == IGamePanelOutputBoundary.PLAY_STATE){
+                outputBoundary.changeState(IGamePanelOutputBoundary.GAME_OVER_STATE);
+            }
         }
     }
 
