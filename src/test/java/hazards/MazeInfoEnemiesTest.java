@@ -10,7 +10,7 @@ import use_cases.hazards.MazeEnemies;
 /**
  * Test the MazeEnemies class.
  */
-public class MazeEnemiesTest {
+public class MazeInfoEnemiesTest {
     /**
      * Test isPlayerKilled with no enemies.
      */

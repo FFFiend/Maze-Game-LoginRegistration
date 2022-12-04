@@ -1,6 +1,6 @@
 package use_cases.default_game;
 
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import entities.hazards.ChasingEnemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
@@ -17,25 +17,20 @@ import java.io.InputStreamReader;
 public class CustomAssetSetter {
 
     /**
-     * Maze HashMap with all the necessary global constants
-     */
-    private final Maze maze = new Maze();
-
-    /**
      * dimensions of the map
      */
-    final int MAX_PANEL_COL = this.maze.getNum("MAX_PANEL_COL");
-    final int MAX_PANEL_ROW = this.maze.getNum("MAX_PANEL_ROW");
+    final int MAX_PANEL_COL = MazeInfo.getMaxPanelCol();
+    final int MAX_PANEL_ROW = MazeInfo.getMaxPanelRow();
 
     /**
      * Num codes for the Assets
      */
-    final int OBSTACLE_NUM_CODE = this.maze.getNum("OBSTACLE_NUM_CODE");
-    final int STATIONARY_ENEMY_NUM_CODE = this.maze.getNum("STATIONARY_ENEMY_NUM_CODE");
-    final int CHASING_ENEMY_NUM_CODE = this.maze.getNum("CHASING_ENEMY_NUM_CODE");
-    final int KEY_NUM_CODE = this.maze.getNum("KEY_NUM_CODE");
-    final int PHOTONS_NUM_CODE = this.maze.getNum("PHOTONS_NUM_CODE");
-    final int END_NUM_CODE = this.maze.getNum("END_NUM_CODE");
+    final int OBSTACLE_NUM_CODE = MazeInfo.getAssetCodeObstacle();
+    final int STATIONARY_ENEMY_NUM_CODE = MazeInfo.getAssetCodeStationaryEnemy();
+    final int CHASING_ENEMY_NUM_CODE = MazeInfo.getAssetCodeChasingEnemy();
+    final int KEY_NUM_CODE = MazeInfo.getAssetCodeKey();
+    final int PHOTONS_NUM_CODE = MazeInfo.getAssetCodePhotons();
+    final int GOAL_NUM_CODE = MazeInfo.getAssetCodeGoal();
 
     /**
      * Matrix to store integers that correspond to various Assets in the maze.
@@ -117,7 +112,7 @@ public class CustomAssetSetter {
             if (assetNum == PHOTONS_NUM_CODE) {
                 mazeItems.add(new ItemPhotons(col, row));
             }
-            if (assetNum == END_NUM_CODE) {
+            if (assetNum == GOAL_NUM_CODE) {
                 mazeItems.add(new ItemBlackhole(col, row));
             }
             col++;

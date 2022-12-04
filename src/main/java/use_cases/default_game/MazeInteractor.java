@@ -1,7 +1,7 @@
 package use_cases.default_game;
 
 import entities.default_game.IDrawOutputBoundary;
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import entities.default_game.Player;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
@@ -22,8 +22,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final CollisionHandler cHandler;
     private Player player;
     private final int playerSpeed = 1;
-
-    private final Maze mazeInfo;
 
     private boolean playerKilled;
     /**
@@ -48,7 +46,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         hazards = new MazeHazards();
         items = new MazeItems();
         cHandler = new CollisionHandler(items, hazards, player);
-        mazeInfo = new Maze();
         startGameThread();
     }
 
@@ -199,12 +196,12 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
     @Override
     public synchronized int mazeWidth() {
-        return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
+        return MazeInfo.getOriginalTileSize();
     }
 
     @Override
     public synchronized int mazeHeight() {
-        return mazeInfo.getNum("ORIGINAL_TILE_SIZE");
+        return MazeInfo.getOriginalTileSize();
     }
 
     private synchronized void updateHazards() {

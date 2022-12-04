@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import use_cases.items.MazeItems;
 
 /** Test the MazeItems class */
-public class MazeItemsTest {
+public class MazeInfoItemsTest {
     /** Test anyItemCollision without any items. */
     @Test
     public void AnyItemCollisionNoItems() {

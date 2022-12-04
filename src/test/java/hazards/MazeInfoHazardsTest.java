@@ -12,7 +12,7 @@ import use_cases.hazards.MazeHazards;
 /**
  * Test the MazeHazards class
  */
-public class MazeHazardsTest {
+public class MazeInfoHazardsTest {
 
     /**
      * test isPlayerBlocked with no hazards

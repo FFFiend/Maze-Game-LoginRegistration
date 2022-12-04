@@ -1,6 +1,6 @@
 package use_cases.default_game;
 
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import entities.default_game.Player;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
@@ -12,10 +12,9 @@ import use_cases.items.MazeItems;
 public class CollisionHandler {
     private final MazeHazards hazards;
     private final MazeItems items;
-    private final Maze maze = new Maze();
     private final Player player;
-    int MAX_PANEL_COL = maze.getNum("MAX_PANEL_COL");
-    int MAX_PANEL_ROW = maze.getNum("MAX_PANEL_ROW");
+    int MAX_PANEL_COL = MazeInfo.getMaxPanelCol();
+    int MAX_PANEL_ROW = MazeInfo.getMaxPanelRow();
     int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
 
     /**
