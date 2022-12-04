@@ -102,16 +102,16 @@ public class CollisionHandler {
         switch (itemName) {
             case "Photons":
                 items.delete(x, y);
-//                player.setStamina(getStamina() + 20);
+                player.addStamina(20);
                 break;
             case "Key":
                 items.delete(x, y);
-//                player.setHasKey(true);
+                player.setHasKey(true);
                 break;
             case "Blackhole":
-//                if (player.getHasKey()){
-//                    player.setStageClear(true);
-//                }
+                if (player.getHasKey()){
+                    player.setStageClear(true);
+                }
                 break;
         }
     }

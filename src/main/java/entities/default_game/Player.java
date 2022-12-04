@@ -5,13 +5,15 @@ package entities.default_game;
  */
 public class Player extends Entity {
 
-    private static int playerX;
+    private int playerX;
+    private int playerY;
+    private int playerStamina;
+    private boolean hasKey = false;
+    private boolean stageClear = false;
 
-    private static int playerY;
-
-    public Player(int X, int Y){
-        setPlayerX(X);
-        setPlayerY(Y);
+    public Player(int X, int Y) {
+        setX(X);
+        setY(Y);
     }
 
     /**
@@ -19,7 +21,7 @@ public class Player extends Entity {
      *
      * @return the current x-coordinate
      */
-    public int getPlayerX() {
+    public int getX() {
         return playerX;
     }
 
@@ -28,8 +30,17 @@ public class Player extends Entity {
      *
      * @return the current y-coordinate.
      */
-    public int getPlayerY() {
+    public int getY() {
         return playerY;
+    }
+
+    /**
+     * Get the player's current stamina.
+     *
+     * @return player's current stamina
+     */
+    public int getStamina() {
+        return playerStamina;
     }
 
     /**
@@ -37,7 +48,7 @@ public class Player extends Entity {
      *
      * @param X x-coordinate to set the player to.
      */
-    private void setPlayerX(int X) {
+    public void setX(int X) {
         playerX = X;
     }
 
@@ -46,8 +57,17 @@ public class Player extends Entity {
      *
      * @param Y y-coordinate to set the player to.
      */
-    private void setPlayerY(int Y) {
+    public void setY(int Y) {
         playerY = Y;
+    }
+
+    /**
+     * Set the player's stamina.
+     *
+     * @param initialStamina stamina that the player initially has
+     */
+    public void setStamina(int initialStamina) {
+        playerStamina = initialStamina;
     }
 
     /**
@@ -66,5 +86,34 @@ public class Player extends Entity {
      */
     public void movePlayerY(int moveByY) {
         playerY += moveByY;
+    }
+
+    /**
+     * Add addBy to the player's current stamina.
+     *
+     * @param addBy the amount to change the stamina by
+     */
+    public void addStamina(int addBy) {
+        playerStamina += addBy;
+    }
+
+    /** Set whether or not the player has picked up the key. */
+    public void setHasKey(boolean b) {
+        hasKey = b;
+    }
+
+    /** Has the player picked up they key? */
+    public boolean getHasKey(){
+        return hasKey;
+    }
+
+    /** Set whether or not the player has cleared the stage. */
+    public void setStageClear(boolean b) {
+        stageClear = b;
+    }
+
+    /** Has the player cleared the stage? */
+    public boolean getStageClear(){
+        return stageClear;
     }
 }
