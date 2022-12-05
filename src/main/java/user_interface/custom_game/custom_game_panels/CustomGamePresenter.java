@@ -23,8 +23,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
             new CustomGameEditorPanel();
         }
         else {
-            System.out.println("To do!");
-            //TODO throw an error
+            throw new RuntimeException("attempted to switch to an invalid panel");
         }
     }
 

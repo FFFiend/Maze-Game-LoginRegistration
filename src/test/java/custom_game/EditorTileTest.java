@@ -2,9 +2,13 @@ package custom_game;
 
 import entities.custom_game.EditorTile;
 import entities.default_game.Maze;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for EditorTile
+ */
 class EditorTileTest {
 
     private final Maze MAZE = new Maze();
@@ -85,7 +89,6 @@ class EditorTileTest {
     void changeStateEnd() {
         EditorTile tile = new EditorTile();
         tile.changeState("end");
-//        Assertions.assertEquals(MAZE.getNum("START_NUM_CODE"), tile.getNumCode());
         Assertions.assertEquals(MAZE.getNum("END_NUM_CODE"), tile.getNumCode());
     }
 

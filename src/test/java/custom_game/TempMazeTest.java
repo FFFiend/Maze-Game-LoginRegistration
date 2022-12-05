@@ -2,11 +2,15 @@ package custom_game;
 
 import entities.custom_game.EditorTile;
 import entities.default_game.Maze;
+import use_cases.custom_game.custom_game_editor.TempMaze;
+
+import javax.swing.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import use_cases.custom_game.custom_game_editor.TempMaze;
-import javax.swing.*;
 
+/**
+ * Tests for TempMaze
+ */
 class TempMazeTest {
 
     private final Maze MAZE = new Maze();

@@ -34,6 +34,7 @@ public class CustomGameFileManager implements ICustomGameFileManager{
             mazeWriter.close();
 
         } catch (IOException e) {
+            System.out.println("unable to store this custom maze");
             e.printStackTrace();
         }
     }
@@ -43,7 +44,7 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      *
      * @return the names in an ArrayList of Strings
      */
-    public ArrayList<String> listCustomMazes () {
+    public ArrayList<String> listCustomMazes() {
         File[] mazeFileList = new File("customMazes/").listFiles();
         ArrayList<String> mazeList = new ArrayList<>();
 

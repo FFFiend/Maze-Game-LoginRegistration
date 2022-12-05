@@ -87,7 +87,7 @@ public class TempMaze {
      * @param creator the username of the user creating this TempMaze
      */
     public static void setMazeCreator(String creator) {
-        TempMaze.mazeCreator= creator;
+        TempMaze.mazeCreator = creator;
     }
 
     /**
