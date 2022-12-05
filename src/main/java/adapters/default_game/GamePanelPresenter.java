@@ -83,7 +83,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
 
             g2.setFont(new Font(null, Font.PLAIN, 28));
             g2.setColor(Color.GREEN);
-            g2.drawString("Stamina: " + playerStamina, TILE_SIZE * 12, TILE_SIZE);
+            g2.drawString("Oxygen: " + playerStamina, TILE_SIZE * 12, TILE_SIZE);
             g2.dispose();
         }
     }
@@ -121,18 +121,24 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      *
      * @param g2 graphics
      */
-    public void drawTitleScreen(Graphics g2) {
+    public void drawTitleScreen(Graphics2D g2) {
         // just to check the screen, design can be changed later
         String text = "AstroMaze";
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));
+        g2.setColor(Color.gray);
+        g2.drawString(text, 273, 103);
         g2.setColor(Color.white);
-        g2.drawString(text, 100, 100);
+        g2.drawString(text, 270, 100);
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20F));
         text = "Press 1 for easy level, 2 for medium level, 3 for hard level";
-
         g2.drawString(text, 100, 200);
+
+        text = "Get on the Escape Pod and go through the Blackhole";
+        g2.drawString(text, 100, 300);
+        text = "before you run out of Oxygen!";
+        g2.drawString(text, 100, 350);
     }
 
     /**
@@ -150,7 +156,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         int y = getCenteredTextY(g2);
         g2.drawString(text, x, y);
 
-        text = "STAMINA LEFT: " + playerStamina;
+        text = "OXYGEN LEFT: " + playerStamina;
 
         g2.setColor(Color.WHITE);
         g2.setFont(new Font(null, Font.PLAIN, 20));
@@ -202,8 +208,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      */
     public int getCenteredTextX(Graphics2D g2, String text) {
         FontMetrics fm = g2.getFontMetrics();
-        int x = (getWidth() - fm.stringWidth(text)) / 2;
-        return x;
+        return (getWidth() - fm.stringWidth(text)) / 2;
     }
 
     /**
@@ -213,7 +218,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      */
     public int getCenteredTextY(Graphics2D g2) {
         FontMetrics fm = g2.getFontMetrics();
-        int y = (getHeight() + fm.getAscent()) / 2;
-        return y;
+        return (getHeight() + fm.getAscent()) / 2;
     }
 }
