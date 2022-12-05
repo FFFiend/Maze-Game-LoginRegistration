@@ -6,7 +6,7 @@ import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
 import entities.items.ItemBlackhole;
 import entities.items.ItemKey;
-import entities.items.ItemPhotons;
+import entities.items.ItemOxygen;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
@@ -29,7 +29,7 @@ public class CustomAssetSetter {
     final int STATIONARY_ENEMY_NUM_CODE = MazeInfo.getAssetCodeStationaryEnemy();
     final int CHASING_ENEMY_NUM_CODE = MazeInfo.getAssetCodeChasingEnemy();
     final int KEY_NUM_CODE = MazeInfo.getAssetCodeKey();
-    final int PHOTONS_NUM_CODE = MazeInfo.getAssetCodePhotons();
+    final int OXYGEN_NUM_CODE = MazeInfo.getAssetCodeOxygen();
     final int GOAL_NUM_CODE = MazeInfo.getAssetCodeGoal();
 
     /**
@@ -109,8 +109,8 @@ public class CustomAssetSetter {
             if (assetNum == KEY_NUM_CODE) {
                 mazeItems.add(new ItemKey(col, row));
             }
-            if (assetNum == PHOTONS_NUM_CODE) {
-                mazeItems.add(new ItemPhotons(col, row));
+            if (assetNum == OXYGEN_NUM_CODE) {
+                mazeItems.add(new ItemOxygen(col, row));
             }
             if (assetNum == GOAL_NUM_CODE) {
                 mazeItems.add(new ItemBlackhole(col, row));

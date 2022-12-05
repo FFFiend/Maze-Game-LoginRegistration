@@ -99,7 +99,7 @@ public class CollisionHandler {
         int y = request.getPlayerY();
         String itemName = items.get(x, y).getName();
         switch (itemName) {
-            case "Photons":
+            case "Oxygen":
                 items.delete(x, y);
                 player.addStamina(20);
                 break;
