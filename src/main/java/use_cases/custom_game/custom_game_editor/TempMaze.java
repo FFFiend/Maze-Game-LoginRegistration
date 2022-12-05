@@ -13,6 +13,10 @@ public class TempMaze {
     private static String mazeTitle;
     private static String mazeCreator;
 
+    // Note that for this class, rows and columns on the grid start at 1 and any use of an x or y starts at 0
+    private static int rows;
+    private static int cols;
+
     /**
      * Redefine tileGrid with dimensions
      *
@@ -21,20 +25,29 @@ public class TempMaze {
      */
     public static void setGridSize(int rows, int cols) {
         TempMaze.tileGrid = new EditorTile[rows][cols];
+        TempMaze.rows = rows;
+        TempMaze.cols = cols;
     }
 
     /**
-     * Add a new Tile object to tile Grid
+     * Add a new Tile object to tileGrid, helper method for build
      *
      * @param x the x position of the Tile to be added
      * @param y the y position of the Tile to be added
      * @param tile the Tile object to be added to tileGrid
      */
-    public static void addTile(int x, int y, EditorTile tile) {
-        //TODO check if x and y are within bounds first
+    private static void addTile(int x, int y, EditorTile tile) {
         TempMaze.tileGrid[x][y] = tile;
     }
 
+    /**
+     * Fill out tileGrid with EditorTiles, give each a mouse listener, and add allow the EditorPanel to display them
+     *
+     * @param grid the panel EditorPanel will display with representations of each EditorTile
+     * @param rows the number of rows in the grid (starts at 1)
+     * @param cols the number of columns in the grid (starts at 1)
+     * @param tileSize the space the tile will be allowed to take on the UI
+     */
     public static void build(JPanel grid, int rows, int cols, int tileSize){
         TempMaze.setGridSize(rows, cols);
 
@@ -99,7 +112,11 @@ public class TempMaze {
      * @return the number representing the EditorTile at position (x, y)
      */
     public static int getTileNum(int x, int y) {
-        return tileGrid[x][y].getNumCode(); //TODO check if out of bounds
+        if (x < rows && y < cols) {
+            return tileGrid[x][y].getNumCode();
+        } else {
+            throw new RuntimeException("Requested tile does not exist");
+        }
     }
 
     /**

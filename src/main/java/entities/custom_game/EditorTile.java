@@ -17,7 +17,6 @@ public class EditorTile extends JLabel {
     private int numCode;
     private static final String[] secondaryMenuItems = {"photons", "key", "stationaryEnemy", "chasingEnemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
-
     private final Maze MAZE = new Maze();
     private final static int START_NUM_CODE = 9;
 
@@ -105,22 +104,21 @@ public class EditorTile extends JLabel {
             this.numCode = MAZE.getNum("END_NUM_CODE");
         }
         else {
-            //TODO raise an error
+            throw new RuntimeException("invalid tile type given");
         }
         this.name = name;
     }
 
     /**
-     * Reaction to a left click on an EditorTile. If the tile was a obstacle or represented any secondary asset (enemy,
+     * Reaction to a left click on an EditorTile. If the tile was an obstacle or represented any secondary asset (enemy,
      * photons, start location etc.) it will now represent an empty tile
      */
     public void tileLeftClick() {
-        //use !equals so that other tile states can be converted to an obstacle or become empty
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
             this.numCode = MAZE.getNum("EMPTY_NUM_CODE");
-        } else if (!Objects.equals(this.name, "obstacle")) {
+        } else {
             setTileImage("obstacle.png");
             this.name = "obstacle";
             this.numCode = MAZE.getNum("OBSTACLE_NUM_CODE");
