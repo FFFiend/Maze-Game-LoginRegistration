@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
+import adapters.custom_game.CustomGameGeneralInputHandler;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

@@ -1,7 +1,7 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
-import adapters.custom_game.custom_game_UI_adapters.TempMazeAdapter;
+import adapters.custom_game.CustomGameGeneralInputHandler;
+import adapters.custom_game.TempMazeAdapter;
 import entities.default_game.Maze;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-package adapters.custom_game.custom_game_UI_adapters;
+package adapters.custom_game;
 
 import entities.default_game.Maze;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
@@ -83,7 +83,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
             verifyInitializerInput();
         }
         else {
-            //TODO raise an error
+            throw new RuntimeException("attempted to switch to an invalid panel");
         }
     }
 

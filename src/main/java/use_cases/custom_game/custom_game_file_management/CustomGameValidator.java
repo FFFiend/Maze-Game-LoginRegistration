@@ -12,7 +12,7 @@ public class CustomGameValidator {
      * @return whether the maze is valid or not
      */
     public boolean verifyMaze(ICustomGameFileManager fileManager) {
-        //run tests using TempMaze.getMaze(); and if they pass, call:
+        //TODO run tests using TempMaze.getMaze(); and if they pass, call:
         fileManager.storeNewCustomMaze();
 
         return true;

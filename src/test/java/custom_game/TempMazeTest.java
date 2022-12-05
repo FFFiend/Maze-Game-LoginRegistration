@@ -5,7 +5,6 @@ import entities.default_game.Maze;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.custom_game.custom_game_editor.TempMaze;
-
 import javax.swing.*;
 
 class TempMazeTest {

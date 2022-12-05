@@ -1,7 +1,7 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameGeneralInputHandler;
-import adapters.custom_game.custom_game_UI_adapters.ICustomInitializerInput;
+import adapters.custom_game.CustomGameGeneralInputHandler;
+import adapters.custom_game.ICustomInitializerInput;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
