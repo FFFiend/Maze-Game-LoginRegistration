@@ -64,8 +64,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
         } else if (gameState == IGamePanelOutputBoundary.GAME_OVER_STATE) {
             drawGameOverScreen(g2);
         } else if (gameState == IGamePanelOutputBoundary.PLAY_STATE) {
-            g2.setColor(Color.white);
-            g2.fillRect(playerX * TILE_SIZE, playerY * TILE_SIZE, TILE_SIZE, TILE_SIZE);
 
             // draw the maze
             IDrawOutputBoundary b = new IDrawOutputBoundary() {

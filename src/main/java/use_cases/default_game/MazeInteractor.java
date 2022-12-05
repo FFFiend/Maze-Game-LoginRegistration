@@ -61,6 +61,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     public synchronized void draw(IDrawOutputBoundary d) {
         hazards.draw(d);
         items.draw(d);
+        player.draw(d);
     }
 
     /**
@@ -126,6 +127,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
             if (frameNumber % HAZARD_UPDATE_FRAME_INTERVAL == 0) {
                 updateHazards();
+                System.out.println(frameNumber);
             }
             outputBoundary.redrawMaze(this);
             frameNumber++;
@@ -172,21 +174,25 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             // prevent player from moving after game is over.
             return;
         } else if (keycode == KeyEvent.VK_W) {
+            player.setDirection("up");
             if (cHandler.upPressed(player.getX(), player.getY())) {
                 player.movePlayerY(-playerSpeed);
                 player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_S) {
+            player.setDirection("down");
             if (cHandler.downPressed(player.getX(), player.getY())) {
                 player.movePlayerY(playerSpeed);
                 player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_D) {
+            player.setDirection("right");
             if (cHandler.rightPressed(player.getX(), player.getY())) {
                 player.movePlayerX(playerSpeed);
                 player.addStamina(-playerSpeed);
             }
         } else if (keycode == KeyEvent.VK_A) {
+            player.setDirection("left");
             if (cHandler.leftPressed(player.getX(), player.getY())) {
                 player.movePlayerX(-playerSpeed);
                 player.addStamina(-playerSpeed);
