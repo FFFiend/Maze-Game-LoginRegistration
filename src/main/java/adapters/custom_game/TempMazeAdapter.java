@@ -33,4 +33,43 @@ public class TempMazeAdapter {
     public static void buildTempMaze(JPanel grid){
         TempMaze.build(grid, rows, cols, tileSize);
     }
+
+    /**
+     * Gets the title of the TempMaze for storage in the custom maze text files
+     */
+    public static String getMazeTitle() {
+        return TempMaze.getMazeTitle();
+    }
+
+    /**
+     * Gets the username of the creator of the TempMaze for storage in the custom maze text files
+     */
+    public static String getMazeCreator() {
+        return TempMaze.getMazeCreator();
+    }
+
+    /**
+     * Get the number representing the Tile at (x, y) for storage in text files
+     *
+     * @param x the x position of the Tile to be retrieved
+     * @param y the y position of the Tile to be retrieved
+     * @return the number representing the EditorTile at position (x, y)
+     */
+    public static int getTileNum(int x, int y) {
+        return TempMaze.getTileNum(x, y);
+    }
+
+    /**
+     * @return the number of rows in the TempMaze
+     */
+    public static int getRowTotal() {
+        return TempMaze.getRowTotal();
+    }
+
+    /**
+     * @return the number of columns in the TempMaze
+     */
+    public static int getColumnTotal() {
+        return TempMaze.getColumnTotal();
+    }
 }

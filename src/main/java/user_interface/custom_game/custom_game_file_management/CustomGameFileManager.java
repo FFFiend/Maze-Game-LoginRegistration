@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_file_management;
 
-import use_cases.custom_game.custom_game_editor.TempMaze;
+import adapters.custom_game.TempMazeAdapter;
 import use_cases.custom_game.custom_game_file_management.ICustomGameFileManager;
 
 import java.io.File;
@@ -19,18 +19,18 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      */
     public void storeNewCustomMaze() {
         try {
-            String mazeName = "customMazes/" + TempMaze.getMazeTitle();
+            String mazeName = "customMazes/" + TempMazeAdapter.getMazeTitle();
             File mazeFile = new File(mazeName);
             FileWriter mazeWriter = new FileWriter(mazeFile);
 
-            for (int x = 0; x < TempMaze.getRowTotal(); x++) {
-                for (int y = 0; y < TempMaze.getColumnTotal(); y++) {
-                    mazeWriter.write(TempMaze.getTileNum(x, y) + " ");
+            for (int x = 0; x < TempMazeAdapter.getRowTotal(); x++) {
+                for (int y = 0; y < TempMazeAdapter.getColumnTotal(); y++) {
+                    mazeWriter.write(TempMazeAdapter.getTileNum(x, y) + " ");
                 }
                 mazeWriter.write(System.getProperty("line.separator"));
             }
 //            mazeWriter.write(System.getProperty("line.separator"));
-//            mazeWriter.write(TempMaze.getMazeCreator());
+//            mazeWriter.write(TempMazeAdapter.getMazeCreator());
             mazeWriter.close();
 
         } catch (IOException e) {
