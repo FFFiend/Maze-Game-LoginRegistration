@@ -157,15 +157,19 @@ public class Player extends Entity {
         switch (getDirection()) {
             case "up": {
                 image = imageUp;
+                break;
             }
             case "down": {
                 image = imageDown;
+                break;
             }
             case "left": {
                 image = imageLeft;
+                break;
             }
             case "right": {
                 image = imageRight;
+                break;
             }
         }
         if (image != null) {
