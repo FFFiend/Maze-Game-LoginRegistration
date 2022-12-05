@@ -155,16 +155,16 @@ public class Player extends Entity {
         int yPixels = getY() * tileSize;
         BufferedImage image = null;
         switch (getDirection()) {
-            case "up" -> {
+            case "up": {
                 image = imageUp;
             }
-            case "down" -> {
+            case "down": {
                 image = imageDown;
             }
-            case "left" -> {
+            case "left": {
                 image = imageLeft;
             }
-            case "right" -> {
+            case "right": {
                 image = imageRight;
             }
         }
