@@ -1,6 +1,8 @@
 package use_cases.login_leaderboard;
 import entities.login_leaderboard.User;
 
+import java.util.regex.Pattern;
+
 /**
  * Register the user by creating a user object of the user.
  * If the user password is invalid (PasswordStrengthChecker), allow user to try again with a new password.
@@ -47,18 +49,28 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
      * to the user data csv file.
      */
     @Override
-    public void createUser(){
-        if (isValid() && !UserAlreadyExists()){
+    public String createUser(){
+        if (isValid() && !UserAlreadyExists() && ValidEmail()){
             User current_user =  new User(this.username, this.email, this.password);
             UPDATECSV.updateNewUser(username, password, email);
             userPresenter.PrepareView("You have been registered.");
+            return "yes";
         }
+        if (isValid() && !UserAlreadyExists() && !ValidEmail()){
+            userPresenter.PrepareView("Enter a valid email.");
+            return "no";
+        }
+
         else if(UserAlreadyExists()){
-            userPresenter.PrepareView("This user already exists");
+            userPresenter.PrepareView("This user already exists. Please log in now.");
+            return "yes";
+
         }
         else if(!isValid()){
             userPresenter.PrepareView("Your password is not valid");
+            return "no";
         }
+        return null;
     }
 
     /***
@@ -68,5 +80,10 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
      */
     public boolean UserAlreadyExists(){
         return getUsers().containsKey(username);
+    }
+
+    public boolean ValidEmail(){
+        final Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
+        return EMAIL_REGEX.matcher(email).matches();
     }
 }

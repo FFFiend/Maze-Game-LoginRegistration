@@ -9,6 +9,7 @@ public class Panel extends JPanel {
     private final Font TEXT_FONT = new Font("Arial", Font.BOLD, 17);
     public ArrayList<JLabel> labelSet = new ArrayList<>();
 
+    public IGlobalFrameOutputBoundary outputBoundary;
     /**
      * A class that takes care of all commonalities between each panel
      * and implements them with its constructor.

@@ -2,9 +2,11 @@ package user_interface.login_leaderboard;
 
 import adapters.login_leaderboard.RegisterUserController;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * Allows the user to create a new account by choosing a username and password.
@@ -17,19 +19,14 @@ public class RegisterPanel extends Panel implements ActionListener {
     private String passedUsername;
     private String passedEmail;
     private String passedPassword;
+
     RegisterUserController registerUserController;
 
-    /**
-     * Get the username passed by the user to update score.
-     * @return : Username
-     */
-    public String getPassedUsername(){
-        return this.passedUsername;
-    }
-
-    public RegisterPanel(RegisterUserController registerUserController) {
+    public RegisterPanel(RegisterUserController registerUserController, IGlobalFrameOutputBoundary ob) {
+        this.outputBoundary = ob;
 
         this.registerUserController = registerUserController;
+
 
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
@@ -71,8 +68,11 @@ public class RegisterPanel extends Panel implements ActionListener {
         makeUser.setSize(245, 30);
         makeUser.addActionListener(this);
 
+        makeUser.setActionCommand("Reg Log in");
+
         this.add(makeUser);
     }
+
 
     /**
      * Upon pressing the sign up button, the temporary username, email and password
@@ -84,6 +84,19 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedUsername = username.getText();
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
-        registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "") && !Objects.equals(passedPassword, "")){
+            String s = registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+            if (Objects.equals(s,"yes")){
+                outputBoundary.getCurrPanel(this);
+                outputBoundary.changePanelTo(e.getActionCommand());
+            }
+
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
+                    "username and email before hitting register.");
+        }
+
     }
 }

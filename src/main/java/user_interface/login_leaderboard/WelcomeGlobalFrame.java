@@ -11,7 +11,6 @@ import javax.swing.*;
 public class WelcomeGlobalFrame extends Panel implements ActionListener {
 
     public int state = 2;
-    IGlobalFrameOutputBoundary outputBoundary;
 
     /**
      * Construct a new WelcomeScreen panel with fixed settings

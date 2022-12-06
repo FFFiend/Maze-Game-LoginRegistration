@@ -3,6 +3,7 @@ import adapters.login_leaderboard.LoginUserController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * Allows user to enter their username and password. If both are correct, take the user to
@@ -18,20 +19,14 @@ public class LoginPanel extends Panel implements ActionListener {
 
     LoginUserController loginUserController;
 
-    /**
-     * Get the username passed by the user to update score.
-     * @return : Username
-     */
-    public String getUsername(){
-        return this.username;
-    }
     /***
      * Constructs the login panel where the user can enter their username
      * and password.
      */
-    public LoginPanel(LoginUserController loginUserController) {
-
+    public LoginPanel(LoginUserController loginUserController, IGlobalFrameOutputBoundary ob) {
+        this.outputBoundary = ob;
         this.build();
+
         this.loginUserController = loginUserController;
         JLabel returnUserName = new JLabel("Please enter your username");
         returnUserName.setBounds(270, 100, 450, 40);
@@ -63,6 +58,7 @@ public class LoginPanel extends Panel implements ActionListener {
         this.add(passwordField);
         this.add(logIn);
 
+        logIn.setActionCommand("Home Panel Launch");
         logIn.addActionListener(this);
     }
 
@@ -77,6 +73,17 @@ public class LoginPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.username = userField.getText();
         this.password = String.valueOf(passwordField.getPassword());
-        this.loginUserController.performUseCase(username, password);
+        if(!Objects.equals(username, "") && !password.equals("")) {
+            String result = this.loginUserController.performUseCase(username, password);
+            if (Objects.equals(result, "yes")){
+                outputBoundary.getCurrPanel(this);
+                outputBoundary.changePanelTo(e.getActionCommand());
+            }
+
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Make sure you enter a valid" +
+                    "username and password before hitting login.");
+        }
     }
 }
