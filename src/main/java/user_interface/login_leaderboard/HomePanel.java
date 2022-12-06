@@ -45,6 +45,7 @@ public class HomePanel extends Panel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        outputBoundary.getCurrPanel(this);
+        outputBoundary.changePanelTo(e.getActionCommand());
     }
 }

@@ -22,7 +22,8 @@ public class RegisterPanel extends Panel implements ActionListener {
 
     RegisterUserController registerUserController;
 
-    public RegisterPanel(RegisterUserController registerUserController) {
+    public RegisterPanel(RegisterUserController registerUserController, IGlobalFrameOutputBoundary ob) {
+        this.outputBoundary = ob;
 
         this.registerUserController = registerUserController;
 
@@ -67,6 +68,8 @@ public class RegisterPanel extends Panel implements ActionListener {
         makeUser.setSize(245, 30);
         makeUser.addActionListener(this);
 
+        makeUser.setActionCommand("Reg Log in");
+
         this.add(makeUser);
     }
 
@@ -81,8 +84,12 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedUsername = username.getText();
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
-        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "")){
+        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "") && !Objects.equals(passedPassword, "")){
             registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+
+            // todo: if use case executed successfully, Prompt login panel.
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         }
         else{
             JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
