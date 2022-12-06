@@ -1,12 +1,12 @@
 package use_cases.default_game;
 
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import entities.hazards.ChasingEnemy;
 import entities.hazards.Obstacle;
 import entities.hazards.StationaryEnemy;
 import entities.items.ItemBlackhole;
 import entities.items.ItemKey;
-import entities.items.ItemPhotons;
+import entities.items.ItemOxygen;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
@@ -17,25 +17,20 @@ import java.io.InputStreamReader;
 public class CustomAssetSetter {
 
     /**
-     * Maze HashMap with all the necessary global constants
-     */
-    private final Maze maze = new Maze();
-
-    /**
      * dimensions of the map
      */
-    final int MAX_PANEL_COL = this.maze.getNum("MAX_PANEL_COL");
-    final int MAX_PANEL_ROW = this.maze.getNum("MAX_PANEL_ROW");
+    final int MAX_MAZE_COL = MazeInfo.getMaxMazeCol();
+    final int MAX_MAZE_ROW = MazeInfo.getMaxMazeRow();
 
     /**
      * Num codes for the Assets
      */
-    final int OBSTACLE_NUM_CODE = this.maze.getNum("OBSTACLE_NUM_CODE");
-    final int STATIONARY_ENEMY_NUM_CODE = this.maze.getNum("STATIONARY_ENEMY_NUM_CODE");
-    final int CHASING_ENEMY_NUM_CODE = this.maze.getNum("CHASING_ENEMY_NUM_CODE");
-    final int KEY_NUM_CODE = this.maze.getNum("KEY_NUM_CODE");
-    final int PHOTONS_NUM_CODE = this.maze.getNum("PHOTONS_NUM_CODE");
-    final int END_NUM_CODE = this.maze.getNum("END_NUM_CODE");
+    final int OBSTACLE_NUM_CODE = MazeInfo.getAssetCodeObstacle();
+    final int STATIONARY_ENEMY_NUM_CODE = MazeInfo.getAssetCodeStationaryEnemy();
+    final int CHASING_ENEMY_NUM_CODE = MazeInfo.getAssetCodeChasingEnemy();
+    final int KEY_NUM_CODE = MazeInfo.getAssetCodeKey();
+    final int OXYGEN_NUM_CODE = MazeInfo.getAssetCodeOxygen();
+    final int GOAL_NUM_CODE = MazeInfo.getAssetCodeGoal();
 
     /**
      * Matrix to store integers that correspond to various Assets in the maze.
@@ -56,7 +51,7 @@ public class CustomAssetSetter {
         mazeHazards.clear();
         this.mazeItems = mazeItems;
         this.mazeHazards = mazeHazards;
-        this.mazeAssetNum = new int[MAX_PANEL_COL][MAX_PANEL_ROW];
+        this.mazeAssetNum = new int[MAX_MAZE_COL][MAX_MAZE_ROW];
         loadMaze(filePath);
         setAssets();
     }
@@ -72,16 +67,16 @@ public class CustomAssetSetter {
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
-            while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
+            while (col < MAX_MAZE_COL && row < MAX_MAZE_ROW) {
                 String line = br.readLine();
-                while (col < MAX_PANEL_COL) {
+                while (col < MAX_MAZE_COL) {
                     String[] numbers = line.split(" ");  // remove whitespace
                     int num = Integer.parseInt(numbers[col]);  // change String -> int
 
                     mazeAssetNum[col][row] = num;
                     col++;
                 }
-                if (col == MAX_PANEL_COL) {
+                if (col == MAX_MAZE_COL) {
                     col = 0;
                     row++;
                 }
@@ -100,7 +95,7 @@ public class CustomAssetSetter {
         int col = 0;
         int row = 0;
 
-        while (col < MAX_PANEL_COL && row < MAX_PANEL_ROW) {
+        while (col < MAX_MAZE_COL && row < MAX_MAZE_ROW) {
             int assetNum = mazeAssetNum[col][row];  // go through each element in matrix
             if (assetNum == OBSTACLE_NUM_CODE) {
                 mazeHazards.addObstacle(new Obstacle(col, row));
@@ -114,14 +109,14 @@ public class CustomAssetSetter {
             if (assetNum == KEY_NUM_CODE) {
                 mazeItems.add(new ItemKey(col, row));
             }
-            if (assetNum == PHOTONS_NUM_CODE) {
-                mazeItems.add(new ItemPhotons(col, row));
+            if (assetNum == OXYGEN_NUM_CODE) {
+                mazeItems.add(new ItemOxygen(col, row));
             }
-            if (assetNum == END_NUM_CODE) {
+            if (assetNum == GOAL_NUM_CODE) {
                 mazeItems.add(new ItemBlackhole(col, row));
             }
             col++;
-            if (col == MAX_PANEL_COL) {
+            if (col == MAX_MAZE_COL) {
                 col = 0;
                 row++;
             }

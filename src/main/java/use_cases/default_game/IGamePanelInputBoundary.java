@@ -6,13 +6,9 @@ package use_cases.default_game;
 public interface IGamePanelInputBoundary {
 
     /**
-     * Moves the player to the direction specified by the user
-     * input keycode.
+     * Execute the given keycode.
      *
-     * @param keycode the keyboard input
+     * @param keycode user keyboard input
      */
-    void movePlayer(int keycode);
-    /** Reset the state of the maze. */
-    void reset();
-    void selectLevel(int keycode);
+    void execute(int keycode);
 }
