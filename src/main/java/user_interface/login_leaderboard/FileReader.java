@@ -18,8 +18,7 @@ public class FileReader implements IFileInput {
      */
     @Override
     public ArrayList<ArrayList<String>> readFile(){
-        String filePath = "C:\\Users\\renek\\IdeaProjects\\course-project-group-93\\src\\main\\java" +
-                "\\user_interface\\login_leaderboard\\data.csv";
+        String filePath = "/Users/owaiszahid/Desktop/finalstretch/src/main/java/user_interface/login_leaderboard/data.csv";
         String line = "";
 
         ArrayList<ArrayList<String>> arr = new ArrayList<>();

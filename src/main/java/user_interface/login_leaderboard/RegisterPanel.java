@@ -6,6 +6,7 @@ import adapters.login_leaderboard.RegisterUserController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * Allows the user to create a new account by choosing a username and password.
@@ -80,6 +81,13 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedUsername = username.getText();
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
-        registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "")){
+            registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
+                    "username and email before hitting register.");
+        }
+
     }
 }

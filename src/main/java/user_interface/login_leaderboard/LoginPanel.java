@@ -3,6 +3,7 @@ import adapters.login_leaderboard.LoginUserController;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 /**
  * Allows user to enter their username and password. If both are correct, take the user to
@@ -69,6 +70,12 @@ public class LoginPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.username = userField.getText();
         this.password = String.valueOf(passwordField.getPassword());
-        this.loginUserController.performUseCase(username, password);
+        if(!Objects.equals(username, "") && !password.equals("")) {
+            this.loginUserController.performUseCase(username, password);
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Make sure you enter a valid" +
+                    "username and password before hitting login.");
+        }
     }
 }

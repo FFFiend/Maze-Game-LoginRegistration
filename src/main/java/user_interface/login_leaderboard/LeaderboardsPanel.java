@@ -5,7 +5,12 @@ package user_interface.login_leaderboard;
  */
 public class LeaderboardsPanel extends Panel {
 
+    /**
+     * pulls directly from filereader.
+     */
     public LeaderboardsPanel() {
+
+
 
     }
 }
