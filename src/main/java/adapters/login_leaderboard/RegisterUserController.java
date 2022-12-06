@@ -2,6 +2,8 @@ package adapters.login_leaderboard;
 
 import use_cases.login_leaderboard.IRegisterUserInputBoundary;
 
+import java.util.Objects;
+
 /**
  * Transforms the information from RegisterScreen to be accessible for RegisterUser.
  * Passes username, password, and email address.
@@ -26,8 +28,13 @@ public class RegisterUserController {
      * @param email entered email
      * @param password entered password.
      */
-    public void performUseCase(String username, String email, String password) {
+    public String performUseCase(String username, String email, String password) {
         this.useCaseInteractor.UserSetter(username, email, password);
-        this.useCaseInteractor.createUser();
+        String result = this.useCaseInteractor.createUser();
+        if (Objects.equals(result, "yes")){
+            return "yes";
+
+        }
+        return "no";
     }
 }

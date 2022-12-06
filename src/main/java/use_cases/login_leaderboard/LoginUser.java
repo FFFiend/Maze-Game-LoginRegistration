@@ -2,6 +2,8 @@ package use_cases.login_leaderboard;
 
 import entities.login_leaderboard.User;
 
+import javax.swing.*;
+
 /**
  * Checks whether the entered username and password combination entered
  * is valid. Furthermore, displays a popup message notifying the user of
@@ -22,16 +24,24 @@ public class LoginUser extends PreviousUsers implements ILoginUserInputBoundary 
      * @param password entered password.
      */
     @Override
-    public void detailChecker(String username, String password) {
+    public String detailChecker(String username, String password) {
         this.username = username;
         this.password = password;
-        // TODO
         if (userExists() && pwdMatch()){
             loginPresenter.PrepareView("Welcome, please continue to the game.");
+            return "yes";
         }
-        else{
+        else if(userExists() && !pwdMatch()){
             loginPresenter.PrepareView("Username password combination is invalid. " +
                     "If you are a returning user, please enter the correct password.");
+
+            return "no";
+
+        }
+        else{
+            loginPresenter.PrepareView("User doesn't exist. Please register");
+            return "no";
+
         }
     }
 
