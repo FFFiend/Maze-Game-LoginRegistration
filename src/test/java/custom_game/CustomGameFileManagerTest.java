@@ -28,7 +28,6 @@ class CustomGameFileManagerTest {
         TempMaze.build(new JPanel(), 4, 4, 10);
         TempMaze.setMazeTitle(MAZE_NAME);
         EditorTile[][] maze = TempMaze.getMaze();
-        maze[1][1].tileRightClick(4);
         maze[3][3].tileRightClick(5);
         maze[1][2].tileLeftClick();
         maze[0][3].tileLeftClick();

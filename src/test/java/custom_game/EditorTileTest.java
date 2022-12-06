@@ -30,6 +30,28 @@ class EditorTileTest {
     }
 
     /**
+     * Check that a tile can be properly converted to a start tile
+     */
+    @Test
+    void setStartTile() {
+        EditorTile tile = new EditorTile();
+        tile.setStartTile();
+        Assertions.assertEquals(9, tile.getNumCode());
+    }
+
+    /**
+     * Check that a start tile is not modified when clicked
+     */
+    @Test
+    void StartTileRemainsConstant() {
+        EditorTile tile = new EditorTile();
+        tile.setStartTile();
+        tile.tileRightClick(1);
+        tile.tileLeftClick();
+        Assertions.assertEquals(9, tile.getNumCode());
+    }
+
+    /**
      * Check that changeState converts a tile to an oxygen tank
      */
     @Test

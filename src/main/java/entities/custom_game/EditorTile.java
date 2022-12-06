@@ -15,14 +15,14 @@ import java.util.Objects;
 public class EditorTile extends JLabel {
     private String name;
     private int numCode;
-    private static final String[] secondaryMenuItems = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "start", "end"};
+    private static final String[] secondaryMenuItems = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
     private final static int START_NUM_CODE = 9;
 
     /**
      * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
      */
-    public EditorTile () {
+    public EditorTile() {
         this.name = "empty";
         this.numCode = MazeInfo.getAssetCodeEmpty();
 
@@ -31,6 +31,15 @@ public class EditorTile extends JLabel {
         setOpaque(true);
         setBackground(Color.BLACK);
         setTileImage("emptyTile.png");
+    }
+
+    /**
+     * Make the current tile a start tile (in the editor, start tiles cannot be modified)
+     */
+    public void setStartTile() {
+        this.name = "start";
+        this.numCode = START_NUM_CODE;
+        setTileImage("start.png");
     }
 
     /**
@@ -91,12 +100,6 @@ public class EditorTile extends JLabel {
         else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
             this.numCode = MazeInfo.getAssetCodeKey();
-        }
-        else if (Objects.equals(name, "start")) {
-            setTileImage("start.png");
-            //this.numCode = MazeInfo.getAssetCodeStart();
-            //waiting for start location to be added to maze constants to uncomment above
-            this.numCode = START_NUM_CODE;
         }
         else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");

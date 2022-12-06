@@ -1,12 +1,7 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
-import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
-import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
-import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 import user_interface.login_leaderboard.*;
@@ -32,10 +27,10 @@ public class Main {
      * to observe functionality.
      **/
     private static void setupGame() {
-        IGlobalFrameOutputBoundary ob = new GlobalFrame();;
+        IGlobalFrameOutputBoundary ob = new GlobalFrame();
         WelcomeGlobalFrame welcome  = new WelcomeGlobalFrame(ob);
         ob.setPanel(welcome);
-        //setupCustomMazeMenu();
+        setupCustomMazeMenu();
         tempDefaultGameRunner();
     }
 

@@ -57,8 +57,12 @@ public class TempMaze {
         for (int x = 0; x < rows; x++) {
             for (int y = 0; y < cols; y++) {
                 EditorTile tile = new EditorTile();
+                if (x == 1 && y == 1) { //the start location is position (1, 1) and it cannot be changed
+                    tile.setStartTile();
+                } else {
+                    tile.addMouseListener(new EditorOnClick(tile));
+                }
                 TempMaze.addTile(x, y, tile);
-                tile.addMouseListener(new EditorOnClick(tile));
                 tile.setPreferredSize(tileDimensions);
                 grid.add(tile);
             }
