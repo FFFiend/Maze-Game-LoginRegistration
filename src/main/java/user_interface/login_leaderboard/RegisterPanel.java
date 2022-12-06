@@ -85,11 +85,13 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
         if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "") && !Objects.equals(passedPassword, "")){
-            registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+            String s = registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
+            if (Objects.equals(s,"yes")){
+                outputBoundary.getCurrPanel(this);
+                outputBoundary.changePanelTo(e.getActionCommand());
+            }
 
-            // todo: if use case executed successfully, Prompt login panel.
-            outputBoundary.getCurrPanel(this);
-            outputBoundary.changePanelTo(e.getActionCommand());
+
         }
         else{
             JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
