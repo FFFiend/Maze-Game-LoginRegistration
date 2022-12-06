@@ -18,7 +18,7 @@ public class MazeInfo {
     private static final int STATIONARY_ENEMY_NUM_CODE = 2;
     private static final int CHASING_ENEMY_NUM_CODE = 3;
     private static final int KEY_NUM_CODE = 4;
-    private static final int PHOTONS_NUM_CODE = 5;
+    private static final int OXYGEN_NUM_CODE = 5;
     private static final int GOAL_NUM_CODE = 6;
 
     public static int getOriginalTileSize(){
@@ -68,8 +68,8 @@ public class MazeInfo {
         return KEY_NUM_CODE;
     }
 
-    public static int getAssetCodePhotons(){
-        return PHOTONS_NUM_CODE;
+    public static int getAssetCodeOxygen(){
+        return OXYGEN_NUM_CODE;
     }
 
     public static int getAssetCodeGoal(){

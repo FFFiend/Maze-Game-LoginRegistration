@@ -16,14 +16,14 @@ public class EditorTile extends JLabel {
     private String name;
     private int numCode;
 
-    private static final String[] secondaryMenuItems = {"photons", "key", "enemy", "start", "end"};
+    private static final String[] secondaryMenuItems = {"oxygen", "key", "enemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
 
     private final static int EMPTY_NUM_CODE = 0;
     private final static int OBSTACLE_NUM_CODE = 1;
     private final static int ENEMY_NUM_CODE = 2;
     private final static int KEY_NUM_CODE = 3;
-    private final static int PHOTONS_NUM_CODE = 4;
+    private final static int OXYGEN_NUM_CODE = 4;
     private final static int END_NUM_CODE = 5;
     private final static int START_NUM_CODE = 6;
 
@@ -88,9 +88,9 @@ public class EditorTile extends JLabel {
      * @param name the new state an EditorTile is in
      */
     public void changeState(String name) {
-        if (Objects.equals(name, "photons")) {
-            setTileImage("photons.png");
-            this.numCode = PHOTONS_NUM_CODE;
+        if (Objects.equals(name, "oxygen")) {
+            setTileImage("oxygen.png");
+            this.numCode = OXYGEN_NUM_CODE;
         }
         else if (Objects.equals(name, "enemy")) {
             setTileImage("enemy.png");
@@ -116,7 +116,7 @@ public class EditorTile extends JLabel {
 
     /**
      * Reaction to a left click on an EditorTile. If the tile was a obstacle or represented any secondary asset (enemy,
-     * photons, start location etc.) it will now represent an empty tile
+     * oxygen, start location etc.) it will now represent an empty tile
      */
     public void tileLeftClick(){
         //use !equals so that other tile states can be converted to a obstacle or become empty
