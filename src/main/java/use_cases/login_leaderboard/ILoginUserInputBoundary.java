@@ -10,5 +10,5 @@ public interface ILoginUserInputBoundary {
      * @param username entered username.
      * @param password entered password.
      */
-    void detailChecker(String username, String password);
+    String detailChecker(String username, String password);
 }

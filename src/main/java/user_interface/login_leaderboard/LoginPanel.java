@@ -74,12 +74,12 @@ public class LoginPanel extends Panel implements ActionListener {
         this.username = userField.getText();
         this.password = String.valueOf(passwordField.getPassword());
         if(!Objects.equals(username, "") && !password.equals("")) {
-            this.loginUserController.performUseCase(username, password);
+            String result = this.loginUserController.performUseCase(username, password);
+            if (Objects.equals(result, "yes")){
+                outputBoundary.getCurrPanel(this);
+                outputBoundary.changePanelTo(e.getActionCommand());
+            }
 
-
-            // todo: if user logged in successfully, prompt register panel.
-            outputBoundary.getCurrPanel(this);
-            outputBoundary.changePanelTo(e.getActionCommand());
         }
         else{
             JOptionPane.showMessageDialog(null,"Make sure you enter a valid" +
