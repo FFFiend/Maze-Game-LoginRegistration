@@ -16,7 +16,7 @@ public class FileWriter implements IFileOutput {
 
     @Override
     public String getUsername() {
-        return PanelManager.username;
+        return "" ;
     }
 
     /**

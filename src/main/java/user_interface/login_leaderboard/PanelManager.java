@@ -25,9 +25,10 @@ public class PanelManager {
         public Panel getNextPanel(String nextPanel,Panel currPanel) {
             if (Objects.equals(nextPanel, "Sign up")) {
                 IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-                RegisterUser registerUseCase = new RegisterUser(output);
-                registerUseCase.setUsers(FileReader.create().PREV.getUsers());
+                IFileOutput updateCSV = new FileWriter();
 
+                RegisterUser registerUseCase = new RegisterUser(output, updateCSV);
+                registerUseCase.setUsers(FileReader.create().PREV.getUsers());
                 RegisterUserController controller = new RegisterUserController(registerUseCase);
 
                 return new RegisterPanel(controller, currPanel.outputBoundary);
