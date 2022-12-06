@@ -40,18 +40,6 @@ class EditorTileTest {
     }
 
     /**
-     * Check that a start tile is not modified when clicked
-     */
-    @Test
-    void StartTileRemainsConstant() {
-        EditorTile tile = new EditorTile();
-        tile.setStartTile();
-        tile.tileRightClick(1);
-        tile.tileLeftClick();
-        Assertions.assertEquals(9, tile.getNumCode());
-    }
-
-    /**
      * Check that changeState converts a tile to an oxygen tank
      */
     @Test
@@ -89,17 +77,6 @@ class EditorTileTest {
         EditorTile tile = new EditorTile();
         tile.changeState("key");
         Assertions.assertEquals(MazeInfo.getAssetCodeKey(), tile.getNumCode());
-    }
-
-    /**
-     * Check that changeState converts a tile to a start location
-     */
-    @Test
-    void changeStateStart() {
-        EditorTile tile = new EditorTile();
-        tile.changeState("start");
-//        Assertions.assertEquals(MazeInfo.getAssetCodeStart(), tile.getNumCode());
-        Assertions.assertEquals(9, tile.getNumCode());
     }
 
     /**

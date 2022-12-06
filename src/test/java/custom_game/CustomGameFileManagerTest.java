@@ -28,7 +28,7 @@ class CustomGameFileManagerTest {
         TempMaze.build(new JPanel(), 4, 4, 10);
         TempMaze.setMazeTitle(MAZE_NAME);
         EditorTile[][] maze = TempMaze.getMaze();
-        maze[3][3].tileRightClick(5);
+        maze[3][3].tileRightClick(4);
         maze[1][2].tileLeftClick();
         maze[0][3].tileLeftClick();
         FILE_MANAGER.storeNewCustomMaze();
@@ -36,11 +36,7 @@ class CustomGameFileManagerTest {
     }
 
     /**
-     * Create a temp maze and attempt to store it. Check if it contains the information it should then delete it
-     * Check that a file with the correct name exists in the correct directory
-     * Check that the number of lines is correct
-     * Check that the
-     * Check
+     * Check that the correct title was assigned
      */
     @Test
     void checkMazeTitle() {
