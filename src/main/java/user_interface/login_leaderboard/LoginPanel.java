@@ -18,13 +18,15 @@ public class LoginPanel extends Panel implements ActionListener {
     private JPasswordField passwordField;
 
     LoginUserController loginUserController;
+
     /***
      * Constructs the login panel where the user can enter their username
      * and password.
      */
-    public LoginPanel(LoginUserController loginUserController) {
-
+    public LoginPanel(LoginUserController loginUserController, IGlobalFrameOutputBoundary ob) {
+        this.outputBoundary = ob;
         this.build();
+
         this.loginUserController = loginUserController;
         JLabel returnUserName = new JLabel("Please enter your username");
         returnUserName.setBounds(270, 100, 450, 40);
@@ -56,6 +58,7 @@ public class LoginPanel extends Panel implements ActionListener {
         this.add(passwordField);
         this.add(logIn);
 
+        logIn.setActionCommand("Home Panel Launch");
         logIn.addActionListener(this);
     }
 
@@ -72,6 +75,9 @@ public class LoginPanel extends Panel implements ActionListener {
         this.password = String.valueOf(passwordField.getPassword());
         if(!Objects.equals(username, "") && !password.equals("")) {
             this.loginUserController.performUseCase(username, password);
+
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         }
         else{
             JOptionPane.showMessageDialog(null,"Make sure you enter a valid" +
