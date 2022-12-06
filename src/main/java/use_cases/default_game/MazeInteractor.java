@@ -80,9 +80,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         player.setHasKey(false);
         player.setStageClear(false);
 
-        Thread gameThread = new Thread(this);
-        gameThread.start(); // this calls run()
-
         hazards.clear();
         items.clear();
         new CustomAssetSetter(filename, items, hazards);
@@ -90,6 +87,12 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
         playerKilled = false;
         currentMaze = filename;
+    }
+
+    /** Start the game update thread. */
+    public void startGameThread() {
+        Thread gameThread = new Thread(this);
+        gameThread.start(); // this calls run()
     }
 
 
@@ -287,5 +290,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             load("mazes/HardMaze.txt");
             mazeLevel = "HARD";
         }
+        startGameThread();
     }
 }
