@@ -1,7 +1,7 @@
 package custom_game;
 
 import entities.custom_game.EditorTile;
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import use_cases.custom_game.custom_game_editor.TempMaze;
 
 import javax.swing.*;
@@ -12,8 +12,6 @@ import org.junit.jupiter.api.Test;
  * Tests for TempMaze
  */
 class TempMazeTest {
-
-    private final Maze MAZE = new Maze();
 
     /**
      * Check that TempMaze can store and retrieve mazes properly
@@ -69,7 +67,7 @@ class TempMazeTest {
     @Test
     void getTileNumValid() {
         TempMaze.build(new JPanel(), 10, 10, 10);
-        Assertions.assertEquals(MAZE.getNum("EMPTY_NUM_CODE"), TempMaze.getTileNum(0, 0));
+        Assertions.assertEquals(MazeInfo.getAssetCodeEmpty(), TempMaze.getTileNum(0, 0));
     }
 
     /**

@@ -1,5 +1,5 @@
 package entities.custom_game;
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,9 +15,8 @@ import java.util.Objects;
 public class EditorTile extends JLabel {
     private String name;
     private int numCode;
-    private static final String[] secondaryMenuItems = {"photons", "key", "stationaryEnemy", "chasingEnemy", "start", "end"};
+    private static final String[] secondaryMenuItems = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "start", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
-    private final Maze MAZE = new Maze();
     private final static int START_NUM_CODE = 9;
 
     /**
@@ -25,7 +24,7 @@ public class EditorTile extends JLabel {
      */
     public EditorTile () {
         this.name = "empty";
-        this.numCode = MAZE.getNum("EMPTY_NUM_CODE");
+        this.numCode = MazeInfo.getAssetCodeEmpty();
 
         setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
@@ -77,31 +76,31 @@ public class EditorTile extends JLabel {
      * @param name the new state an EditorTile is in
      */
     public void changeState(String name) {
-        if (Objects.equals(name, "photons")) {
-            setTileImage("photons.png");
-            this.numCode = MAZE.getNum("PHOTONS_NUM_CODE");
+        if (Objects.equals(name, "oxygen")) {
+            setTileImage("oxygen.png");
+            this.numCode = MazeInfo.getAssetCodeOxygen();
         }
         else if (Objects.equals(name, "stationaryEnemy")) {
             setTileImage("stationaryEnemy.png");
-            this.numCode = MAZE.getNum("STATIONARY_ENEMY_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeStationaryEnemy();
         }
         else if (Objects.equals(name, "chasingEnemy")) {
             setTileImage("chasingEnemy.png");
-            this.numCode = MAZE.getNum("CHASING_ENEMY_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeChasingEnemy();
         }
         else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
-            this.numCode = MAZE.getNum("KEY_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeKey();
         }
         else if (Objects.equals(name, "start")) {
             setTileImage("start.png");
-            //this.numCode = MAZE.getNum("START_NUM_CODE");
+            //this.numCode = MazeInfo.getAssetCodeStart();
             //waiting for start location to be added to maze constants to uncomment above
             this.numCode = START_NUM_CODE;
         }
         else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");
-            this.numCode = MAZE.getNum("END_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeGoal();
         }
         else {
             throw new RuntimeException("invalid tile type given");
@@ -111,17 +110,17 @@ public class EditorTile extends JLabel {
 
     /**
      * Reaction to a left click on an EditorTile. If the tile was an obstacle or represented any secondary asset (enemy,
-     * photons, start location etc.) it will now represent an empty tile
+     * oxygen, start location etc.) it will now represent an empty tile
      */
     public void tileLeftClick() {
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
-            this.numCode = MAZE.getNum("EMPTY_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeEmpty();
         } else {
             setTileImage("obstacle.png");
             this.name = "obstacle";
-            this.numCode = MAZE.getNum("OBSTACLE_NUM_CODE");
+            this.numCode = MazeInfo.getAssetCodeObstacle();
         }
     }
 

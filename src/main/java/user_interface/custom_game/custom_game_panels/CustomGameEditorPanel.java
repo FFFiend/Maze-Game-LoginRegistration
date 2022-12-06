@@ -2,7 +2,7 @@ package user_interface.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 import adapters.custom_game.TempMazeAdapter;
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,8 +22,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         EDITOR_FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         EDITOR_FRAME.setResizable(false);
         EDITOR_FRAME.setLocationRelativeTo(null);
-        Maze MAZE = new Maze();
-        EDITOR_FRAME.setPreferredSize(new Dimension(MAZE.getNum("FRAME_WIDTH"), MAZE.getNum("FRAME_HEIGHT")));
+        EDITOR_FRAME.setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight()));
         EDITOR_FRAME.setBackground(Color.black);
 
         displayEditor();

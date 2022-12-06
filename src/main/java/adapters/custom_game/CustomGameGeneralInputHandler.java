@@ -1,6 +1,6 @@
 package adapters.custom_game;
 
-import entities.default_game.Maze;
+import entities.default_game.MazeInfo;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
 import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
@@ -16,7 +16,6 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     private final ICustomGamePresenter PRESENTER;
     private final ICustomInitializerInput INITIALIZER;
     private String NEW_PANEL;
-    private final Maze MAZE = new Maze();
 
     /**
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
@@ -117,7 +116,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
         }
         else { //if more options are included in the initializer, more checks will be added
             //sends in constants as parameters in case customizing grid sizes is a feature added in the future
-            TempMazeAdapter.prepareTempMaze(mazeName, MAZE.getNum("MAX_PANEL_ROW"), MAZE.getNum("MAX_PANEL_COL"), MAZE.getNum("TILE_SIZE"));
+            TempMazeAdapter.prepareTempMaze(mazeName, MazeInfo.getMaxMazeRow(), MazeInfo.getMaxMazeCol(), MazeInfo.getTileSize());
             PRESENTER.callCustomGamePanel("CustomGameEditorPanel");
         }
     }
