@@ -19,5 +19,5 @@ public interface IRegisterUserInputBoundary {
     /**
      * Abstract createUser method that will later be overriden in the Register Use Case.
      */
-    void createUser();
+    String createUser();
 }
