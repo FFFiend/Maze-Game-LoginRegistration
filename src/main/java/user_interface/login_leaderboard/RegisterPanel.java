@@ -2,7 +2,6 @@ package user_interface.login_leaderboard;
 
 import adapters.login_leaderboard.RegisterUserController;
 
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,16 +14,22 @@ public class RegisterPanel extends Panel implements ActionListener {
     private final JTextField username;
     private final JPasswordField password;
     private final JTextField email;
-    public String passedUsername;
+    private String passedUsername;
     private String passedEmail;
     private String passedPassword;
-
     RegisterUserController registerUserController;
+
+    /**
+     * Get the username passed by the user to update score.
+     * @return : Username
+     */
+    public String getPassedUsername(){
+        return this.passedUsername;
+    }
 
     public RegisterPanel(RegisterUserController registerUserController) {
 
         this.registerUserController = registerUserController;
-
 
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
@@ -68,7 +73,6 @@ public class RegisterPanel extends Panel implements ActionListener {
 
         this.add(makeUser);
     }
-
 
     /**
      * Upon pressing the sign up button, the temporary username, email and password

@@ -23,7 +23,7 @@ public class PanelManager {
 
             RegisterPanel register = new RegisterPanel(controller);
 
-            username = register.passedUsername;
+            username = register.getPassedUsername();
 
             return register;
         }
@@ -35,7 +35,7 @@ public class PanelManager {
             LoginUserController controller = new LoginUserController(loginUseCase);
 
             LoginPanel login = new LoginPanel(controller);
-            username = login.username;
+            username = login.getUsername();
 
             return login;
         }

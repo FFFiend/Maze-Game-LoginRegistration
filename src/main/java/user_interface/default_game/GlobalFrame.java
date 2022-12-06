@@ -9,7 +9,7 @@ import javax.swing.*;
 
 public class GlobalFrame implements IGlobalFrameOutputBoundary {
     public JFrame window = new JFrame();
-    private PanelManager panelManager = new PanelManager();
+    private final PanelManager panelManager = new PanelManager();
     private Panel currPanel;
     /**
      * A frame that controls the whole project (not implemented yet).

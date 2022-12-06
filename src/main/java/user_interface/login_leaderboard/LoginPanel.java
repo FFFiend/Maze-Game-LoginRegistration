@@ -10,13 +10,21 @@ import java.awt.event.ActionListener;
  */
 public class LoginPanel extends Panel implements ActionListener {
 
-    public String username;
+    private String username;
     private String password;
 
     private JTextField userField;
     private JPasswordField passwordField;
 
     LoginUserController loginUserController;
+
+    /**
+     * Get the username passed by the user to update score.
+     * @return : Username
+     */
+    public String getUsername(){
+        return this.username;
+    }
     /***
      * Constructs the login panel where the user can enter their username
      * and password.
