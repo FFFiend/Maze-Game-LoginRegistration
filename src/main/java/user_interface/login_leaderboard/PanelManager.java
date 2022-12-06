@@ -70,6 +70,12 @@ public class PanelManager {
                 return new LeaderboardsPanel(currPanel.outputBoundary);
 
             }
+
+            else if(Objects.equals(nextPanel,"wipe out")){
+                return new WelcomeGlobalFrame(currPanel.outputBoundary);
+
+
+            }
             return null;
         }
 }
