@@ -15,7 +15,7 @@ public class RegisterPanel extends Panel implements ActionListener {
     private final JTextField username;
     private final JPasswordField password;
     private final JTextField email;
-    private String passedUsername;
+    public String passedUsername;
     private String passedEmail;
     private String passedPassword;
 

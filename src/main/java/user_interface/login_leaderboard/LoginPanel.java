@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
  */
 public class LoginPanel extends Panel implements ActionListener {
 
-    private String username;
+    public String username;
     private String password;
 
     private JTextField userField;

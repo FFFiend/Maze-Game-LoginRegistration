@@ -15,6 +15,17 @@ public class FileWriter implements IFileOutput {
             "src\\main\\java\\user_interface\\login_leaderboard\\data.csv";
 
     @Override
+    public String getUsername() {
+        return PanelManager.username;
+    }
+
+    /**
+     * Update data.csv to include a new row with the given information.
+     * @param name : username
+     * @param password : user password
+     * @param email : user email
+     */
+    @Override
     public void updateNewUser(String name, String password, String email){
 
         try {
@@ -36,7 +47,7 @@ public class FileWriter implements IFileOutput {
     }
 
     @Override
-    public void updateScore(String score, String level, String username) throws IOException {
+    public void updateScore(int score, String level, String username) throws IOException {
         File tmp = File.createTempFile("tmp", "");
 
         try {
@@ -55,13 +66,13 @@ public class FileWriter implements IFileOutput {
                 String[] values = currLine.split(",");
                 if (values[0].equals(username)){
                     switch (level) {
-                        case "Easy" : newLine = values[0] + "," + values[1] + "," + values[2]
+                        case "EASY" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + score + "," + values[4] + "," + values[5];
                         break;
-                        case "Medium" : newLine = values[0] + "," + values[1] + "," + values[2]
+                        case "MEDIUM" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + values[3] + "," + score + "," + values[5];
                         break;
-                        case "Hard" : newLine = values[0] + "," + values[1] + "," + values[2]
+                        case "HARD" : newLine = values[0] + "," + values[1] + "," + values[2]
                                 + "," + values[3] + "," + values[4] + "," + score;
                         break;
                     }

@@ -6,8 +6,10 @@ import entities.default_game.Player;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
+import use_cases.login_leaderboard.IFileOutput;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 /**
  * Use case interactor for mazes.
@@ -31,6 +33,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int STARTING_STAMINA = 100;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
+
+    private final IFileOutput updateScore;
     public Thread gameThread;
     private final int FPS = 20;
     private int currState;
@@ -39,8 +43,9 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      */
     private final int HAZARD_UPDATE_FRAME_INTERVAL = 10;
 
-    public MazeInteractor(IGamePanelOutputBoundary outputBoundary) {
+    public MazeInteractor(IGamePanelOutputBoundary outputBoundary, IFileOutput updateScore) {
         this.outputBoundary = outputBoundary;
+        this.updateScore = updateScore;
     }
 
     /**
@@ -139,7 +144,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      *
      * @param keycode user keyboard input
      */
-    public void execute(int keycode) {
+    public void execute(int keycode) throws IOException {
         currState = outputBoundary.getState();
         if (keycode == KeyEvent.VK_1 || keycode == KeyEvent.VK_2 || keycode == KeyEvent.VK_3) {
             if (currState == outputBoundary.TITLE_STATE) {
@@ -169,7 +174,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      *
      * @param keycode user keyboard input
      */
-    public synchronized void movePlayer(int keycode) {
+    public synchronized void movePlayer(int keycode) throws IOException {
         if (gameOver()) {
             // prevent player from moving after game is over.
             return;
@@ -202,6 +207,9 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         if (player.getStageClear()) {
             outputBoundary.changeState(IGamePanelOutputBoundary.LEVEL_CLEAR_STATE);
             outputBoundary.recordStamina(player.getStamina());
+
+            updateScore.updateScore(player.getStamina(), mazeLevel, updateScore.getUsername());
+
             return;
         }
 

@@ -10,14 +10,20 @@ import java.util.Objects;
 
 public class PanelManager {
 
+    public static String username;
+
         public Panel getNextPanel(String nextPanel) {
         if (Objects.equals(nextPanel, "Sign up")) {
             IRegisterUserOutputBoundary output = new RegisterUserPresenter();
-            RegisterUser registerUseCase = new RegisterUser(output);
-            registerUseCase.setUsers(FileReader.create().PREV.getUsers());
+            IFileOutput updateCSV = new FileWriter();
 
+            RegisterUser registerUseCase = new RegisterUser(output, updateCSV);
+            registerUseCase.setUsers(FileReader.create().PREV.getUsers());
             RegisterUserController controller = new RegisterUserController(registerUseCase);
+
             RegisterPanel register = new RegisterPanel(controller);
+
+            username = register.passedUsername;
 
             return register;
         }
@@ -27,7 +33,9 @@ public class PanelManager {
             loginUseCase.setUsers(FileReader.create().PREV.getUsers());
 
             LoginUserController controller = new LoginUserController(loginUseCase);
-            LoginPanel login =  new LoginPanel(controller);
+
+            LoginPanel login = new LoginPanel(controller);
+            username = login.username;
 
             return login;
         }
