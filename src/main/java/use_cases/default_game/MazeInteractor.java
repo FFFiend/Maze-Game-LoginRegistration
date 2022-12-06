@@ -31,7 +31,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int STARTING_STAMINA = 100;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
-    public Thread gameThread;
+    /** This is set to true when the game has been stopped. */
+    private boolean stop;
     private final int FPS = 20;
     private int currState;
     /**
@@ -79,7 +80,8 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         player.setHasKey(false);
         player.setStageClear(false);
 
-        startGameThread();
+        Thread gameThread = new Thread(this);
+        gameThread.start(); // this calls run()
 
         hazards.clear();
         items.clear();
@@ -90,13 +92,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         currentMaze = filename;
     }
 
-    /**
-     * Create a new game thread and run it.
-     */
-    public void startGameThread() {
-        gameThread = new Thread(this);
-        gameThread.start(); // this calls run()
-    }
 
     /**
      * When an object implementing interface {@code Runnable} is used
@@ -113,7 +108,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     public void run() {
         long lastTime = System.currentTimeMillis();
         long frameNumber = 0;
-        while (gameThread != null) {
+        while (!stop) {
             long currentTime = System.currentTimeMillis();
             long sleepTime = lastTime + 1000 / FPS - currentTime;
             if (sleepTime > 0) {
@@ -132,6 +127,9 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             outputBoundary.redrawMaze(this);
             frameNumber++;
         }
+        // Reset stop to false, so that the next time this is called,
+        // it doesn't stop immediately.
+        stop = false;
     }
 
     /**
@@ -158,6 +156,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         } else if (keycode == KeyEvent.VK_ESCAPE) {
             if (currState == outputBoundary.GAME_OVER_STATE ||
                     currState == outputBoundary.LEVEL_CLEAR_STATE) {
+                stop = true;
                 outputBoundary.changeState(outputBoundary.TITLE_STATE);
             }
         }
