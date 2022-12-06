@@ -208,7 +208,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
             outputBoundary.changeState(IGamePanelOutputBoundary.LEVEL_CLEAR_STATE);
             outputBoundary.recordStamina(player.getStamina());
 
-            updateScore.updateScore(player.getStamina(), mazeLevel, updateScore.getUsername());
+            updateScore.updateScore(player.getStamina(), mazeLevel, "arifa");
 
             return;
         }
