@@ -41,7 +41,6 @@ public class LoginUser extends PreviousUsers implements ILoginUserInputBoundary 
         else{
             loginPresenter.PrepareView("User doesn't exist. Please register");
             return "no";
-
         }
     }
 
