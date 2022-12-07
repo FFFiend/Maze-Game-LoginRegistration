@@ -50,7 +50,7 @@ public class EditorTile extends JLabel {
     private void setTileImage(String name) {
         {
             try {
-                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom/" + name)));
+                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom_game_images/" + name)));
                 Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
                 // credit to Seamus for the scaling lines
                 setIcon(new ImageIcon(scaledImage));
