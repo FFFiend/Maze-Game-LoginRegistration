@@ -16,7 +16,7 @@ import java.awt.*;
 
 /**
  * Run the game
- **/
+ */
 public class Main {
     /**
      * Run this method to run the game panel
@@ -30,13 +30,13 @@ public class Main {
     /**
      * Build the Game Panel. Comment out the appropriate use case method
      * to observe functionality.
-     **/
+     */
     private static void setupGame() {
         IGlobalFrameOutputBoundary ob = new GlobalFrame();
         WelcomeGlobalFrame welcome  = new WelcomeGlobalFrame(ob);
         ob.setPanel(welcome);
-        //setupCustomMazeMenu();
-        // tempDefaultGameRunner();
+        setupCustomMazeMenu();
+        tempDefaultGameRunner();
         setupPanels();
     }
 
@@ -45,9 +45,9 @@ public class Main {
      * PanelManager. Panels are created in PanelManager.
      */
     private static void setupPanels() {
-        setupRegisterPanel();
+//        setupRegisterPanel();
 
-        setupLoginPanel();
+//        setupLoginPanel();
 
         setupGamePanel();
     }
@@ -122,5 +122,4 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
     }
-
 }
