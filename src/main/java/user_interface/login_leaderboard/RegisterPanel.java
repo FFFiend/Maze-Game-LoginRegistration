@@ -109,7 +109,7 @@ public class RegisterPanel extends Panel implements ActionListener {
                 || Objects.equals(passedPassword, "")) && Objects.equals(e.getActionCommand(),"Reg Log in")){
 
                 JOptionPane.showMessageDialog(null, "Make sure to enter both a " +
-                    "username and email before hitting register.");
+                    "valid username and email before hitting register.");
         }
         if(Objects.equals(e.getActionCommand(),"wipe out")){
             outputBoundary.getCurrPanel(this);
