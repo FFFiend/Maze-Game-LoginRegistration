@@ -27,7 +27,6 @@ public class FileWriter implements IFileOutput {
      */
     @Override
     public void updateNewUser(String name, String password, String email){
-
         try {
             BufferedWriter output;
             output = new BufferedWriter(new java.io.FileWriter(filePath, true));
@@ -46,6 +45,15 @@ public class FileWriter implements IFileOutput {
         }
     }
 
+    /**
+     * Replace the users score in the CSV file if the current stamina is greator
+     * than the given one.
+     *
+     * @param score : Player stamina
+     * @param level : Easy, medium, or hard
+     * @param username : The current user's username
+     * @throws IOException : Data csv file
+     */
     @Override
     public void updateScore(int score, String level, String username) throws IOException {
         File tmp = File.createTempFile("tmp", "");
@@ -57,26 +65,14 @@ public class FileWriter implements IFileOutput {
             output = new BufferedWriter(new java.io.FileWriter(tmp, true));
             PrintWriter print = new PrintWriter(output);
 
-            print.println(reader.readLine());
-
+            print.println(reader.readLine()); //header
             String currLine;
             String newLine = "";
 
             while((currLine = reader.readLine()) != null) {
                 String[] values = currLine.split(",");
                 if (values[0].equals(username)){
-                    switch (level) {
-                        case "EASY" : newLine = values[0] + "," + values[1] + "," + values[2]
-                                + "," + score + "," + values[4] + "," + values[5];
-                        break;
-                        case "MEDIUM" : newLine = values[0] + "," + values[1] + "," + values[2]
-                                + "," + values[3] + "," + score + "," + values[5];
-                        break;
-                        case "HARD" : newLine = values[0] + "," + values[1] + "," + values[2]
-                                + "," + values[3] + "," + values[4] + "," + score;
-                        break;
-                    }
-                    print.println(newLine);
+                    print.println(updateScoreHelper(score, level, newLine, values));
                 }
                 else {
                     print.println(currLine);
@@ -94,5 +90,38 @@ public class FileWriter implements IFileOutput {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    /**
+     * Helper method for updating score.
+     */
+    public String updateScoreHelper(int score, String level, String newLine, String[] values){
+        switch (level) {
+            case "EASY" :
+                if (score > (Integer.parseInt(values[3]))){
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + score + "," + values[4] + "," + values[5]; }
+                else {
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + values[3] + "," + values[4] + "," + values[5]; }
+                break;
+            case "MEDIUM" :
+                if (score > (Integer.parseInt(values[4]))){
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + values[3] + "," + score + "," + values[5]; }
+                else {
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + values[3] + "," + values[4] + "," + values[5]; }
+                break;
+            case "HARD" :
+                if (score > (Integer.parseInt(values[5]))){
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + values[3] + "," + values[4] + "," + score; }
+                else {
+                    newLine = values[0] + "," + values[1] + "," + values[2]
+                            + "," + values[3] + "," + values[4] + "," + values[5]; }
+                break;
+        }
+        return newLine;
     }
 }

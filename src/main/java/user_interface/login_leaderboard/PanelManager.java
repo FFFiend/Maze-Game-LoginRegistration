@@ -13,7 +13,7 @@ import java.util.Objects;
  * A class that manages panel switching within the Global Frame.
  */
 public class PanelManager {
-
+    public String username;
     /**
      * This method implements the panel switching and incorporates the Clean Architecture
      * program flow into it.
@@ -30,6 +30,7 @@ public class PanelManager {
                 RegisterUser registerUseCase = new RegisterUser(output, updateCSV);
                 registerUseCase.setUsers(FileReader.create().PREV.getUsers());
                 RegisterUserController controller = new RegisterUserController(registerUseCase);
+
 
                 return new RegisterPanel(controller, currPanel.outputBoundary);
             }

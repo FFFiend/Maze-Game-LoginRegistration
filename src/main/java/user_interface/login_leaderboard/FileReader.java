@@ -58,6 +58,4 @@ public class FileReader implements IFileInput {
 
         return update;
     }
-
-
 }

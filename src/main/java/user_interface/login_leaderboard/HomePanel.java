@@ -13,16 +13,16 @@ public class HomePanel extends Panel implements ActionListener {
         this.outputBoundary = ob;
         this.build();
 
-        JButton playGame = new JButton("Click to play the game");
+        JButton playGame = new JButton("Play");
         playGame.setBounds(250,100,50,50);
         playGame.setSize(245,30);
 
-        JButton playCustom = new JButton("Click to play custom games");
+        JButton playCustom = new JButton("Custom Game");
         playCustom.setBounds(250,300,600,50);
         playCustom.setSize(245,30);
 
 
-        JButton viewLeaderboard = new JButton("Click here to view the leaderboard");
+        JButton viewLeaderboard = new JButton("Leaderboard");
         viewLeaderboard.setBounds(250,500,50,50);
         viewLeaderboard.setSize(245,30);
 

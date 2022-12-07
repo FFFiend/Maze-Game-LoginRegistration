@@ -94,9 +94,8 @@ public class RegisterPanel extends Panel implements ActionListener {
 
         }
         else{
-            JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
-                    "username and email before hitting register.");
+            JOptionPane.showMessageDialog(null,"Please enter " +
+                    "username, password, and email to register.");
         }
-
     }
 }
