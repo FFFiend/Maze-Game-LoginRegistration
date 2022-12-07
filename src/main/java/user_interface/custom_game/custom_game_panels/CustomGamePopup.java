@@ -1,6 +1,6 @@
 package user_interface.custom_game.custom_game_panels;
 
-import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
+import adapters.custom_game.CustomGameGeneralInputHandler;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -21,7 +21,7 @@ public class CustomGamePopup implements ICustomGamePanel{
      * @param message the message to display
      * @param panel the panel to go back to if the user decides to fix the invalid input
      */
-    public CustomGamePopup(String message, String panel){
+    public CustomGamePopup(String message, String panel) {
         this.MESSAGE = message + " Would you like to change it or go back?";
         this.panel = panel;
 
@@ -35,7 +35,7 @@ public class CustomGamePopup implements ICustomGamePanel{
      *
      * @param message the message to display
      */
-    public CustomGamePopup(String message){
+    public CustomGamePopup(String message) {
         this.MESSAGE = message;
 
         drawWindow();
@@ -45,7 +45,7 @@ public class CustomGamePopup implements ICustomGamePanel{
     /**
      * Draw the popup window
      */
-    private void drawWindow(){
+    private void drawWindow() {
         FRAME.setSize(300, 200);
         FRAME.setVisible(true);
         FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -58,7 +58,7 @@ public class CustomGamePopup implements ICustomGamePanel{
     /**
      * Add the message to the popup window and style it
      */
-    private void popupMessage(){
+    private void popupMessage() {
         JTextArea message = new JTextArea(this.MESSAGE);
         message.setWrapStyleWord(true);
         message.setLineWrap(true);
@@ -71,11 +71,11 @@ public class CustomGamePopup implements ICustomGamePanel{
     /**
      * Allows the user to choose to fix the invalid input or return to the Custom Game's main menu
      */
-    private void popupOptions(){
+    private void popupOptions() {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JButton returnButton = new JButton("change it");
-        returnButton.addActionListener(new CustomGameSubmissionManager("CustomGamePopup", new CustomGamePresenter(), panel));
+        returnButton.addActionListener(new CustomGameGeneralInputHandler("CustomGamePopup", new CustomGamePresenter(), panel));
 
         bottomPanel.add(returnButton);
         returnToCustomMainButton(bottomPanel);

@@ -1,4 +1,4 @@
-package adapters.custom_game.custom_game_UI_adapters;
+package adapters.custom_game;
 
 /**
  * Includes methods that are required to send information from the UI to the submission manager
