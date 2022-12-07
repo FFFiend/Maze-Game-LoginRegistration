@@ -2,6 +2,7 @@ package use_cases.default_game;
 
 import entities.default_game.MazeInfo;
 import entities.default_game.Player;
+import entities.default_game.Sound;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
@@ -13,6 +14,7 @@ public class CollisionHandler {
     private final MazeHazards hazards;
     private final MazeItems items;
     private final Player player;
+    private final Sound sound;
     int MAX_MAZE_COL = MazeInfo.getMaxMazeCol();
     int MAX_MAZE_ROW = MazeInfo.getMaxMazeRow();
     int playerSpeed = 1;  // this should also be in Maze (HashMap) ?
@@ -24,6 +26,7 @@ public class CollisionHandler {
         this.hazards = hazards;
         this.items = items;
         this.player = player;
+        this.sound = new Sound();
     }
 
     /**
@@ -79,13 +82,9 @@ public class CollisionHandler {
     }
 
     /**
-     * If the Player collides with an item or an enemy, call methods to handle them
+     * If the Player collides with an item, call methods to handle it
      **/
     private void handleEvent(IHazardRequestModel hazardModel) {
-        if (hazards.isPlayerKilled(hazardModel)) {
-            // collide with enemy, Player dies or takes damage;
-            enemyContact();
-        }
         if (items.anyItemCollision(hazardModel)) {
             pickUpItem(hazardModel);
         }
@@ -102,26 +101,20 @@ public class CollisionHandler {
             case "Oxygen":
                 items.delete(x, y);
                 player.addStamina(20);
+                sound.playSE(0);
                 break;
             case "Key":
                 items.delete(x, y);
                 player.setHasKey(true);
+                sound.playSE(1);
                 break;
             case "Blackhole":
                 if (player.getHasKey()){
                     player.setStageClear(true);
+                    sound.playSE(2);
                 }
                 break;
         }
-    }
-
-    /**
-     * Handle Player interaction with an enemy
-     **/
-    public void enemyContact() {
-//        if (player.getStamina() > 0){
-//            player.setStamina(getStamina() - 10);
-//        }
     }
 
     /**

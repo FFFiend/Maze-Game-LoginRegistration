@@ -1,5 +1,5 @@
 package user_interface.custom_game.custom_game_panels;
-import adapters.custom_game.custom_game_UI_adapters.CustomGameSubmissionManager;
+import adapters.custom_game.CustomGameGeneralInputHandler;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
@@ -18,7 +18,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
      * The first panel to be displayed on entering the custom maze section. Shows a list of custom mazes and a button
      * to take the user to the maze editor
      */
-    protected CustomGameMainPanel (){
+    protected CustomGameMainPanel() {
         // this.build();
 
         // this will change once custom mazes are linked to the main game and GlobalFrame is done
@@ -36,11 +36,10 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         displayCustomOptions();
     }
 
-
     /**
      * Display the custom maze section title
      */
-    private void displayTitle(){
+    private void displayTitle() {
         JLabel header = new JLabel("Custom Mazes", SwingConstants.CENTER);
         labelSet.add(header);
         labelFormat(labelSet);
@@ -51,7 +50,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     /**
      * Display a selection of custom mazes
      */
-    private void listCustomMazes(){
+    private void listCustomMazes() {
         JList<String> mazeListElement = new JList<>(getMazes());
         mazeListElement.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         mazeListElement.setLayoutOrientation(JList.VERTICAL_WRAP);
@@ -67,12 +66,13 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
      *
      * @return an ArrayList of all the stored custom mazes
      */
-    private String[] getMazes(){
+    private String[] getMazes() {
         File mazeFolder = new File("customMazes/");
         File[] mazeFileList = mazeFolder.listFiles();
         ArrayList<String> mazeList = new ArrayList<>();
 
-        assert mazeFileList != null;
+        if (mazeFileList == null)
+            throw new RuntimeException("customMazes folder does not exist.");
         for (File file : mazeFileList) {
             mazeList.add(file.getName());
         }
@@ -85,9 +85,9 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     /**
      * Display all the actions a user can take involving custom mazes. Currently, this is only creating them
      */
-    private void displayCustomOptions(){
+    private void displayCustomOptions() {
         JButton editMazeButton = new JButton("create a new maze");
-        editMazeButton.addActionListener(new CustomGameSubmissionManager("CustomGameMainPanel", new CustomGamePresenter()));
+        editMazeButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameMainPanel", new CustomGamePresenter()));
         this.CONTENT.add(editMazeButton, BorderLayout.PAGE_END);
     }
 }
