@@ -60,6 +60,15 @@ public class LoginPanel extends Panel implements ActionListener {
 
         logIn.setActionCommand("Home Panel Launch");
         logIn.addActionListener(this);
+
+        JButton re = new JButton("return to the welcome screen");
+        re.setBounds(485,505,300,30);
+        re.setSize(245,30);
+
+        re.addActionListener(this);
+        re.setActionCommand("wipe out");
+
+        this.add(re);
     }
 
 
@@ -73,7 +82,8 @@ public class LoginPanel extends Panel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         this.username = userField.getText();
         this.password = String.valueOf(passwordField.getPassword());
-        if(!Objects.equals(username, "") && !password.equals("")) {
+        if(!Objects.equals(username, "") && !password.equals("") &&
+                Objects.equals(e.getActionCommand(),"Home Panel Launch")) {
             String result = this.loginUserController.performUseCase(username, password);
             if (Objects.equals(result, "yes")){
                 outputBoundary.getCurrPanel(this);
@@ -81,9 +91,16 @@ public class LoginPanel extends Panel implements ActionListener {
             }
 
         }
-        else{
-            JOptionPane.showMessageDialog(null,"Make sure you enter a valid" +
+        if((Objects.equals(username, "") || password.equals("")) &&
+                Objects.equals(e.getActionCommand(),"Home Panel Launch")) {
+
+                JOptionPane.showMessageDialog(null, "Make sure you enter a valid" +
                     "username and password before hitting login.");
+        }
+
+        if(Objects.equals(e.getActionCommand(),"wipe out")){
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         }
     }
 }

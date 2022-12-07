@@ -71,6 +71,15 @@ public class RegisterPanel extends Panel implements ActionListener {
         makeUser.setActionCommand("Reg Log in");
 
         this.add(makeUser);
+
+        JButton re = new JButton("return to the welcome screen");
+        re.setBounds(485,505,300,30);
+        re.setSize(245,30);
+
+        re.addActionListener(this);
+        re.setActionCommand("wipe out");
+
+        this.add(re);
     }
 
 
@@ -84,18 +93,24 @@ public class RegisterPanel extends Panel implements ActionListener {
         this.passedUsername = username.getText();
         this.passedEmail = email.getText();
         this.passedPassword = String.valueOf(password.getPassword());
-        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "") && !Objects.equals(passedPassword, "")){
+        if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "")
+                && !Objects.equals(passedPassword, "") && Objects.equals(e.getActionCommand(),"Reg Log in")){
             String s = registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
             if (Objects.equals(s,"yes")){
                 outputBoundary.getCurrPanel(this);
                 outputBoundary.changePanelTo(e.getActionCommand());
             }
 
-
         }
-        else{
-            JOptionPane.showMessageDialog(null,"Make sure to enter both a " +
+        if ((Objects.equals(passedUsername, "") || Objects.equals(passedEmail, "")
+                || Objects.equals(passedPassword, "")) && Objects.equals(e.getActionCommand(),"Reg Log in")){
+
+                JOptionPane.showMessageDialog(null, "Make sure to enter both a " +
                     "username and email before hitting register.");
+        }
+        if(Objects.equals(e.getActionCommand(),"wipe out")){
+            outputBoundary.getCurrPanel(this);
+            outputBoundary.changePanelTo(e.getActionCommand());
         }
 
     }
