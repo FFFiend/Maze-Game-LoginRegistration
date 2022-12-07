@@ -1,4 +1,6 @@
-package adapters.custom_game.custom_game_file_adapters;
+package entities.custom_game;
+import entities.default_game.MazeInfo;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -11,33 +13,18 @@ import java.util.Objects;
  * EditorTiles are also stored in TempMaze for conversion to a text file (storage)
  */
 public class EditorTile extends JLabel {
-    private final int X;
-    private final int Y;
     private String name;
     private int numCode;
-
-    private static final String[] secondaryMenuItems = {"oxygen", "key", "enemy", "start", "end"};
+    private static final String[] secondaryMenuItems = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "end"};
     public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
-
-    private final static int EMPTY_NUM_CODE = 0;
-    private final static int OBSTACLE_NUM_CODE = 1;
-    private final static int ENEMY_NUM_CODE = 2;
-    private final static int KEY_NUM_CODE = 3;
-    private final static int OXYGEN_NUM_CODE = 4;
-    private final static int END_NUM_CODE = 5;
-    private final static int START_NUM_CODE = 6;
+    private final static int START_NUM_CODE = 9;
 
     /**
      * Creates a tile for the custom maze editor, sets its state to empty and sets its image to reflect that
-     *
-     * @param x the x position of the Tile on the EditorGrid and position in the array TempMaze
-     * @param y the y position of the Tile on the EditorGrid and position in the array TempMaze
      */
-    public EditorTile (int x, int y){
-        this.X = x;
-        this.Y = y;
+    public EditorTile() {
         this.name = "empty";
-        this.numCode = EMPTY_NUM_CODE;
+        this.numCode = MazeInfo.getAssetCodeEmpty();
 
         setHorizontalAlignment(JLabel.CENTER);
         setVerticalAlignment(JLabel.CENTER);
@@ -47,15 +34,25 @@ public class EditorTile extends JLabel {
     }
 
     /**
+     * Make the current tile a start tile (in the editor, start tiles cannot be modified)
+     */
+    public void setStartTile() {
+        this.name = "start";
+        this.numCode = START_NUM_CODE;
+        setTileImage("start.png");
+    }
+
+    /**
      * Helper method to replace the image of a tile with a new one
      *
      * @param name The name of the image
      */
-    private void setTileImage(String name){
+    private void setTileImage(String name) {
         {
             try {
-                BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("custom/" + name));
+                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom/" + name)));
                 Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
+                // credit to Seamus for the scaling lines
                 setIcon(new ImageIcon(scaledImage));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -68,7 +65,7 @@ public class EditorTile extends JLabel {
      *
      * @return the name (state) of an EditorTile
      */
-    public String toString(){
+    public String toString() {
         return this.name;
     }
 
@@ -78,7 +75,7 @@ public class EditorTile extends JLabel {
      *
      * @return the number representing a tile state
      */
-    public int getNumCode(){
+    public int getNumCode() {
         return this.numCode;
     }
 
@@ -90,44 +87,43 @@ public class EditorTile extends JLabel {
     public void changeState(String name) {
         if (Objects.equals(name, "oxygen")) {
             setTileImage("oxygen.png");
-            this.numCode = OXYGEN_NUM_CODE;
+            this.numCode = MazeInfo.getAssetCodeOxygen();
         }
-        else if (Objects.equals(name, "enemy")) {
-            setTileImage("enemy.png");
-            this.numCode = ENEMY_NUM_CODE;
+        else if (Objects.equals(name, "stationaryEnemy")) {
+            setTileImage("stationaryEnemy.png");
+            this.numCode = MazeInfo.getAssetCodeStationaryEnemy();
+        }
+        else if (Objects.equals(name, "chasingEnemy")) {
+            setTileImage("chasingEnemy.png");
+            this.numCode = MazeInfo.getAssetCodeChasingEnemy();
         }
         else if (Objects.equals(name, "key")) {
             setTileImage("key.png");
-            this.numCode = KEY_NUM_CODE;
-        }
-        else if (Objects.equals(name, "start")) {
-            setTileImage("start.png");
-            this.numCode = START_NUM_CODE;
+            this.numCode = MazeInfo.getAssetCodeKey();
         }
         else if (Objects.equals(name, "end")) {
             setTileImage("blackhole.png");
-            this.numCode = END_NUM_CODE;
+            this.numCode = MazeInfo.getAssetCodeGoal();
         }
         else {
-            //TODO raise an error
+            throw new RuntimeException("invalid tile type given");
         }
         this.name = name;
     }
 
     /**
-     * Reaction to a left click on an EditorTile. If the tile was a obstacle or represented any secondary asset (enemy,
+     * Reaction to a left click on an EditorTile. If the tile was an obstacle or represented any secondary asset (enemy,
      * oxygen, start location etc.) it will now represent an empty tile
      */
-    public void tileLeftClick(){
-        //use !equals so that other tile states can be converted to a obstacle or become empty
+    public void tileLeftClick() {
         if (!Objects.equals(this.name, "empty")) {
             setTileImage("emptyTile.png");
             this.name = "empty";
-            this.numCode = EMPTY_NUM_CODE;
-        } else if (!Objects.equals(this.name, "obstacle")){
+            this.numCode = MazeInfo.getAssetCodeEmpty();
+        } else {
             setTileImage("obstacle.png");
             this.name = "obstacle";
-            this.numCode = OBSTACLE_NUM_CODE;
+            this.numCode = MazeInfo.getAssetCodeObstacle();
         }
     }
 
@@ -137,7 +133,7 @@ public class EditorTile extends JLabel {
      *
      * @param index the index of secondaryMenuItems, should be incremented by one on each call
      */
-    public void tileRightClick(int index){
+    public void tileRightClick(int index) {
         changeState(EditorTile.secondaryMenuItems[index]);
     }
 }

@@ -1,11 +1,5 @@
 package use_cases.custom_game.custom_game_file_management;
 
-import adapters.custom_game.custom_game_file_adapters.EditorTile;
-import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
-
-import java.io.File;
-import java.util.ArrayList;
-
 /**
  * Responsible for verifying input the user wants to store: maze names from the initializer panel and mazes from the
  * editor panel
@@ -15,17 +9,13 @@ public class CustomGameValidator {
     /**
      * Checks if a new custom maze is valid
      *
-     * @param maze the maze to check
      * @return whether the maze is valid or not
      */
-    public static boolean verifyMaze(EditorTile[][] maze){
-        //run tests and if they pass, call:
-        CustomGameFileManager fileManager = new CustomGameFileManager();
+    public boolean verifyMaze(ICustomGameFileManager fileManager) {
+        //TODO run tests using TempMaze.getMaze(); and if they pass, call:
         fileManager.storeNewCustomMaze();
 
         return true;
-        //tests should include checking if TempMaze contains a maze that can be written (ex. exists, all rows/cols same
-        // len etc.)
     }
 
     /**
@@ -34,14 +24,7 @@ public class CustomGameValidator {
      * @param name the maze name to check
      * @return whether the name is unique or not
      */
-    public static boolean verifyName(String name){
-        File[] mazeFileList = new File("customMazes/").listFiles();
-        ArrayList<String> mazeList = new ArrayList<>();
-
-        assert mazeFileList != null;
-        for (File file : mazeFileList) {
-            mazeList.add(file.getName());
-        }
-        return !(mazeList.contains(name));
+    public boolean verifyName(String name, ICustomGameFileManager fileManager) {
+        return !(fileManager.listCustomMazes().contains(name));
     }
 }
