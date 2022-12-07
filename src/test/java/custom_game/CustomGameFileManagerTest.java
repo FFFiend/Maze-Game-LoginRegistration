@@ -32,7 +32,7 @@ class CustomGameFileManagerTest {
         maze[1][2].tileLeftClick();
         maze[0][3].tileLeftClick();
         FILE_MANAGER.storeNewCustomMaze();
-        mazeFile = new File("customMazes/" + MAZE_NAME);
+        mazeFile = new File("custom_mazes/" + MAZE_NAME);
     }
 
     /**

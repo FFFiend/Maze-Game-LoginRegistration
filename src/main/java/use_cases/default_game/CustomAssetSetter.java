@@ -11,6 +11,7 @@ import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
 
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
@@ -62,8 +63,14 @@ public class CustomAssetSetter {
      * @param filePath the filePath to the txt. file to get the integers from
      */
     public void loadMaze(String filePath) {
+        InputStream is;
         try {
-            InputStream is = getClass().getClassLoader().getResourceAsStream(filePath);
+            if (filePath.startsWith("custom_mazes/")) {
+                is = new FileInputStream(filePath);
+            } else {
+                is = getClass().getClassLoader().getResourceAsStream(filePath);
+            }
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             int col = 0;
             int row = 0;
@@ -82,7 +89,6 @@ public class CustomAssetSetter {
                 }
             }
             br.close();
-
         } catch (Exception e) {
             throw new NullPointerException();
         }

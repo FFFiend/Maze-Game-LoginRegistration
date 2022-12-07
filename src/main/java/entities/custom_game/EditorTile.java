@@ -15,8 +15,8 @@ import java.util.Objects;
 public class EditorTile extends JLabel {
     private String name;
     private int numCode;
-    private static final String[] secondaryMenuItems = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "end"};
-    public static final int secondaryMenuItemsLen = EditorTile.secondaryMenuItems.length;
+    private static final String[] SECONDARY_MENU_ITEMS = {"oxygen", "key", "stationaryEnemy", "chasingEnemy", "end"};
+    public static final int secondaryMenuItemsLen = EditorTile.SECONDARY_MENU_ITEMS.length;
     private final static int START_NUM_CODE = 9;
 
     /**
@@ -50,7 +50,7 @@ public class EditorTile extends JLabel {
     private void setTileImage(String name) {
         {
             try {
-                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom/" + name)));
+                BufferedImage image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("custom_game_images/" + name)));
                 Image scaledImage = image.getScaledInstance(48, 48, Image.SCALE_DEFAULT);
                 // credit to Seamus for the scaling lines
                 setIcon(new ImageIcon(scaledImage));
@@ -134,6 +134,6 @@ public class EditorTile extends JLabel {
      * @param index the index of secondaryMenuItems, should be incremented by one on each call
      */
     public void tileRightClick(int index) {
-        changeState(EditorTile.secondaryMenuItems[index]);
+        changeState(EditorTile.SECONDARY_MENU_ITEMS[index]);
     }
 }
