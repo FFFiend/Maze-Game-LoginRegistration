@@ -1,17 +1,19 @@
 package user_interface.custom_game.custom_game_panels;
 import adapters.custom_game.CustomGameGeneralInputHandler;
+import adapters.custom_game.PlayCustom;
+import entities.default_game.MazeInfo;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.io.File;
-import java.util.ArrayList;
 
 /**
  * Displays the game customization main menu. Allows the user to select a custom maze to play or build a new one
  */
 class CustomGameMainPanel extends Panel implements ICustomGamePanel {
+
     private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
     /**
@@ -19,11 +21,8 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
      * to take the user to the maze editor
      */
     protected CustomGameMainPanel() {
-        // this.build();
-
-        // this will change once custom mazes are linked to the main game and GlobalFrame is done
         JFrame FRAME = new JFrame("custom game main frame");
-        FRAME.setSize(768, 576);
+        FRAME.setSize(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight());
         FRAME.setResizable(false);
         FRAME.setVisible(true);
         FRAME.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -43,6 +42,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         JLabel header = new JLabel("Custom Mazes", SwingConstants.CENTER);
         labelSet.add(header);
         labelFormat(labelSet);
+        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
 
         this.CONTENT.add(header, BorderLayout.PAGE_START);
     }
@@ -51,35 +51,22 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
      * Display a selection of custom mazes
      */
     private void listCustomMazes() {
-        JList<String> mazeListElement = new JList<>(getMazes());
-        mazeListElement.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        mazeListElement.setLayoutOrientation(JList.VERTICAL_WRAP);
-        mazeListElement.setVisibleRowCount(-1);
-
-        JScrollPane mazeListScroller = new JScrollPane(mazeListElement);
-        mazeListScroller.setPreferredSize(new Dimension(250, 80));
-        this.CONTENT.add(mazeListElement, BorderLayout.CENTER);
-    }
-
-    /**
-     * Retrieve all stored custom mazes and sort them alphabetically
-     *
-     * @return an ArrayList of all the stored custom mazes
-     */
-    private String[] getMazes() {
-        File mazeFolder = new File("customMazes/");
+        JPanel mazeList = new JPanel();
+        File mazeFolder = new File("custom_mazes/");
         File[] mazeFileList = mazeFolder.listFiles();
-        ArrayList<String> mazeList = new ArrayList<>();
-
-        if (mazeFileList == null)
-            throw new RuntimeException("customMazes folder does not exist.");
-        for (File file : mazeFileList) {
-            mazeList.add(file.getName());
+        if (mazeFileList == null) {
+            throw new RuntimeException("custom_mazes folder does not exist.");
+        } else {
+            for (File file : mazeFileList) {
+                String name = file.getName();
+                JButton mazeButton = new JButton(name);
+                mazeButton.addActionListener(new PlayCustom(name));
+                mazeList.add(mazeButton);
+            }
         }
-        mazeList.sort(String.CASE_INSENSITIVE_ORDER);
-        String[] mazeArray = new String[mazeList.size()];
-        mazeArray = mazeList.toArray(mazeArray);
-        return mazeArray;
+        JScrollPane mazeListContainer = new JScrollPane(mazeList);
+        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight() - 60));
+        this.CONTENT.add(mazeListContainer, BorderLayout.CENTER);
     }
 
     /**
@@ -88,6 +75,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     private void displayCustomOptions() {
         JButton editMazeButton = new JButton("create a new maze");
         editMazeButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameMainPanel", new CustomGamePresenter()));
+        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
         this.CONTENT.add(editMazeButton, BorderLayout.PAGE_END);
     }
 }

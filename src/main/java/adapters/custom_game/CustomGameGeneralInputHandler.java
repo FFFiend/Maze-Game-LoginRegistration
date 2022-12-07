@@ -24,7 +24,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
      * @param presenter an instance of the presenter interface to display a new panel after verification
      */
-    public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter) {
+    public CustomGameGeneralInputHandler(String panel, ICustomGamePresenter presenter) {
         this.PANEL = panel;
         this.PRESENTER = presenter;
         this.INITIALIZER = null;
@@ -38,7 +38,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * @param presenter an instance of the presenter interface to display a new panel after verification
      * @param initializer an instance of the initializer interface to allow retrieving of information on its text fields
      */
-    public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter, ICustomInitializerInput initializer) {
+    public CustomGameGeneralInputHandler(String panel, ICustomGamePresenter presenter, ICustomInitializerInput initializer) {
         this.PANEL = panel;
         this.PRESENTER = presenter;
         this.INITIALIZER = initializer;
@@ -52,7 +52,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * @param presenter an instance of the presenter interface to display a new panel after verification
      * @param newPanel the panel to go to
      */
-    public CustomGameGeneralInputHandler (String panel, ICustomGamePresenter presenter, String newPanel) {
+    public CustomGameGeneralInputHandler(String panel, ICustomGamePresenter presenter, String newPanel) {
         this.PANEL = panel;
         this.PRESENTER = presenter;
         this.NEW_PANEL = newPanel;

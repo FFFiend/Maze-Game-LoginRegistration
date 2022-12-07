@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class CustomGameFileManager implements ICustomGameFileManager{
 
     /**
-     * Store a custom maze in customMazes.txt
+     * Store a custom maze in the custom_mazes folder
      * (assumes the maze has already been verified to be both writable and solvable)
      */
     public void storeNewCustomMaze() {
         try {
-            String mazeName = "customMazes/" + TempMazeAdapter.getMazeTitle();
+            String mazeName = "custom_mazes/" + TempMazeAdapter.getMazeTitle();
             File mazeFile = new File(mazeName);
             FileWriter mazeWriter = new FileWriter(mazeFile);
 
@@ -45,7 +45,7 @@ public class CustomGameFileManager implements ICustomGameFileManager{
      * @return the names in an ArrayList of Strings
      */
     public ArrayList<String> listCustomMazes() {
-        File[] mazeFileList = new File("customMazes/").listFiles();
+        File[] mazeFileList = new File("custom_mazes/").listFiles();
         ArrayList<String> mazeList = new ArrayList<>();
 
         assert mazeFileList != null;
