@@ -6,13 +6,16 @@ import user_interface.login_leaderboard.PanelManager;
 
 import javax.swing.*;
 
-
+/**
+ * A frame that controls the whole project.
+ **/
 public class GlobalFrame implements IGlobalFrameOutputBoundary {
     public JFrame window = new JFrame();
     private PanelManager panelManager = new PanelManager();
     private Panel currPanel;
+
     /**
-     * A frame that controls the whole project (not implemented yet).
+     * Set up the frame.
      **/
     public GlobalFrame() {
 
@@ -40,19 +43,26 @@ public class GlobalFrame implements IGlobalFrameOutputBoundary {
         window.setVisible(true);
     }
 
+    /**
+     * Get the current panel
+     *
+     * @param panel current panel the frame is displaying
+     */
     public void getCurrPanel(Panel panel) {
         currPanel = panel;
     }
-    public void changePanelTo(String nextPanel){
+
+    /**
+     * Change the panel that the frame is displaying.
+     *
+     * @param nextPanel panel to switch to
+     */
+    public void changePanelTo(String nextPanel) {
         currPanel.delete();
 
-        window.add(panelManager.getNextPanel(nextPanel,currPanel));
+        window.add(panelManager.getNextPanel(nextPanel, currPanel));
 
-        window.revalidate();
-        window.repaint();
         window.pack();
-
-        window.setResizable(true);
 
         // add extra methods in welcomepanel to ensure this works
         // properly when needed. For now, testing whether panel
