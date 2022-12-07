@@ -30,7 +30,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      */
     private String currentMaze;
 
-    private final int STARTING_STAMINA = 100;
+    private final int STARTING_STAMINA = 50;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
     private final IFileOutput updateScore;
@@ -129,7 +129,6 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
 
             if (frameNumber % HAZARD_UPDATE_FRAME_INTERVAL == 0) {
                 updateHazards();
-                System.out.println(frameNumber);
             }
             outputBoundary.redrawMaze(this);
             frameNumber++;

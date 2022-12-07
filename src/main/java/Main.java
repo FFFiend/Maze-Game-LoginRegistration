@@ -1,7 +1,12 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
+import adapters.login_leaderboard.LoginUserController;
+import adapters.login_leaderboard.LoginUserPresenter;
+import adapters.login_leaderboard.RegisterUserController;
+import adapters.login_leaderboard.RegisterUserPresenter;
+import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
-import use_cases.login_leaderboard.IFileOutput;
+import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 import user_interface.default_game.GlobalFrame;
 import user_interface.login_leaderboard.*;
@@ -31,7 +36,58 @@ public class Main {
         WelcomeGlobalFrame welcome  = new WelcomeGlobalFrame(ob);
         ob.setPanel(welcome);
         //setupCustomMazeMenu();
-        tempDefaultGameRunner();
+        // tempDefaultGameRunner();
+        setupPanels();
+    }
+
+    /**
+     * Set up the panels by creating the use cases and adapters and store it in
+     * PanelManager. Panels are created in PanelManager.
+     */
+    private static void setupPanels() {
+        setupRegisterPanel();
+
+        setupLoginPanel();
+
+        setupGamePanel();
+    }
+
+    /**
+     * Set up a game panel.
+     */
+    private static void setupGamePanel() {
+        GamePanelPresenter presenter = new GamePanelPresenter();
+        MazeInteractor maze = new MazeInteractor(presenter);
+        GamePanelController controller = new GamePanelController(maze);
+
+        presenter.addKeyListener(controller);
+        presenter.setFocusable(true);
+
+        PanelManager.assign("GamePanelPresenter", presenter);
+    }
+
+    /**
+     * Set up a login panel.
+     */
+    private static void setupLoginPanel() {
+        ILoginUserOutputBoundary loginOb = new LoginUserPresenter();
+        LoginUser loginUseCase = new LoginUser(loginOb);
+        loginUseCase.setUsers(FileReader.create().PREV.getUsers());
+
+        LoginUserController loginController = new LoginUserController(loginUseCase);
+        PanelManager.assign("LoginUserController", loginController);
+    }
+
+    /**
+     * Set up a register panel.
+     */
+    private static void setupRegisterPanel() {
+        IRegisterUserOutputBoundary registerOb = new RegisterUserPresenter();
+        RegisterUser registerUseCase = new RegisterUser(registerOb);
+        registerUseCase.setUsers(FileReader.create().PREV.getUsers());
+
+        RegisterUserController registerController = new RegisterUserController(registerUseCase);
+        PanelManager.assign("RegisterUserController", registerController);
     }
 
     /**
@@ -44,7 +100,7 @@ public class Main {
     }
 
     /**
-     * Temporary access to the default game. Please uncomment from setupGame method to use.
+     * Temporary access to the default game. Will be kept for easy access to the maze for dev.
      **/
     private static void tempDefaultGameRunner() {
         JFrame window = new JFrame();
@@ -53,18 +109,18 @@ public class Main {
         window.setTitle("AstroMaze");
 
         GamePanelPresenter presenter = new GamePanelPresenter();
-        IFileOutput output = new FileWriter();
-
-        MazeInteractor maze = new MazeInteractor(presenter, output);
+        MazeInteractor maze = new MazeInteractor(presenter);
         GamePanelController controller = new GamePanelController(maze);
 
-        window.add((Component) presenter);
+        presenter.addKeyListener(controller);
+        presenter.setFocusable(true);
+        presenter.requestFocusInWindow();
+
+        window.add(presenter);
 
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
-        window.addKeyListener(controller);
-        window.setFocusable(true);
     }
+
 }

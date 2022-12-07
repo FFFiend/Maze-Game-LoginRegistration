@@ -54,6 +54,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      *          the paint code from irrevocable changes.
      */
     public void paintComponent(Graphics g) {
+        requestFocus();
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
 
