@@ -31,8 +31,8 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         FRAME.setContentPane(this.CONTENT);
 
         displayTitle();
-        listCustomMazes();
         displayCustomOptions();
+        listCustomMazes();
     }
 
     /**
@@ -42,7 +42,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         JLabel header = new JLabel("Custom Mazes", SwingConstants.CENTER);
         labelSet.add(header);
         labelFormat(labelSet);
-        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
+//        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
 
         this.CONTENT.add(header, BorderLayout.PAGE_START);
     }
@@ -65,7 +65,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
             }
         }
         JScrollPane mazeListContainer = new JScrollPane(mazeList);
-        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight() - 60));
+//        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight() - 60));
         this.CONTENT.add(mazeListContainer, BorderLayout.CENTER);
     }
 
@@ -75,7 +75,7 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
     private void displayCustomOptions() {
         JButton editMazeButton = new JButton("create a new maze");
         editMazeButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameMainPanel", new CustomGamePresenter()));
-        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
+//        setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), 30));
         this.CONTENT.add(editMazeButton, BorderLayout.PAGE_END);
     }
 }
