@@ -2,6 +2,8 @@ package user_interface.login_leaderboard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class Panel extends JPanel {
@@ -25,6 +27,9 @@ public class Panel extends JPanel {
         this.setLayout(null);
 
         this.setVisible(true);
+
+
+
     }
     public void labelFormat(ArrayList<JLabel> label){
         for (JLabel jLabel : label) {
@@ -36,4 +41,5 @@ public class Panel extends JPanel {
     public void delete(){
         this.setVisible(false);
     }
+
 }
