@@ -16,10 +16,10 @@ public class Sound {
      * Create Sound class with .wav files from resources
      */
     public Sound() {
-        soundURL[0] = getClass().getResource("/music/pickup_1.wav");
-        soundURL[1] = getClass().getResource("/music/pickup_2.wav");
-        soundURL[2] = getClass().getResource("/music/stageClear.wav");
-        soundURL[3] = getClass().getResource("/music/gameOver.wav");
+        soundURL[0] = this.getClass().getResource("/music/pickup_1.wav");
+        soundURL[1] = this.getClass().getResource("/music/pickup_2.wav");
+        soundURL[2] = this.getClass().getResource("/music/stageClear.wav");
+        soundURL[3] = this.getClass().getResource("/music/gameOver.wav");
     }
 
     /**

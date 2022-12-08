@@ -18,17 +18,16 @@ public class WelcomeGlobalFrame extends Panel implements ActionListener {
     public WelcomeGlobalFrame(IGlobalFrameOutputBoundary ob) {
         outputBoundary = ob;
         this.build();
-        JLabel welcomeMessage = new JLabel("Welcome to Astromaze!");
-        welcomeMessage.setBounds(300, 150, 350, 70);
 
+        JLabel welcomeMessage = new JLabel("Welcome to Astromaze!");
+        welcomeMessage.setBounds(250, 150, 350, 70);
 
         JButton userSignUp = new JButton("Sign Up");
-        userSignUp.setBounds(270, 270, 70, 70);
+        userSignUp.setBounds(255, 270, 70, 70);
         userSignUp.setSize(245, 30);
 
-
         JButton userLogIn = new JButton("Log In");
-        userLogIn.setBounds(270, 360, 50, 50);
+        userLogIn.setBounds(255, 360, 50, 50);
         userLogIn.setSize(245, 30);
 
 

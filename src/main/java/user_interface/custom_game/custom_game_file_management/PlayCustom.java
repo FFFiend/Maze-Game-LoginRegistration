@@ -1,9 +1,9 @@
 package user_interface.custom_game.custom_game_file_management;
 
-import adapters.custom_game.IPLayCustom;
+import adapters.custom_game.IPlayCustom;
 import java.awt.event.ActionEvent;
 
-public class PlayCustom implements IPLayCustom {
+public class PlayCustom implements IPlayCustom {
     private final String MAZE_NAME;
 
     /**

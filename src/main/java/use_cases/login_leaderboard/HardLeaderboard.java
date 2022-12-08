@@ -16,6 +16,6 @@ public class HardLeaderboard implements Comparator<User> {
      */
     public int compare(User a, User b)
     {
-        return a.getHardScore() - b.getHardScore();
+        return b.getHardScore() - a.getHardScore();
     }
 }

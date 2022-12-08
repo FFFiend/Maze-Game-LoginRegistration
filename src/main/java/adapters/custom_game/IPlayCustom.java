@@ -4,13 +4,15 @@ import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
+import use_cases.login_leaderboard.IFileOutputBoundary;
+import user_interface.login_leaderboard.FileWriter;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public interface IPLayCustom extends ActionListener {
+public interface IPlayCustom extends ActionListener {
 
     /**
      * Invoked when a button representing a maze in the custom_mazes folder is clicked
@@ -33,7 +35,8 @@ public interface IPLayCustom extends ActionListener {
         window.setTitle(file);
 
         IGamePanelOutputBoundary presenter = new GamePanelPresenter();
-        MazeInteractor maze = new MazeInteractor(presenter);
+        IFileOutputBoundary output = new FileWriter();
+        MazeInteractor maze = new MazeInteractor(presenter, output);
         maze.load("custom_mazes/" + file);
         maze.startGameThread();
         GamePanelController controller = new GamePanelController(maze);
