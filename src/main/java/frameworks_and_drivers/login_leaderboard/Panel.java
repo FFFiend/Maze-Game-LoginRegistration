@@ -8,6 +8,7 @@ import java.util.ArrayList;
  * A class that takes care of all the design commonalities between each panel.
  */
 
+
 public class Panel extends JPanel {
     private final Color TEXT_COLOR = new Color(239, 235, 230);
     private final Font TEXT_FONT = new Font("Arial", Font.ITALIC, 24);
@@ -37,6 +38,9 @@ public class Panel extends JPanel {
         }
     }
 
+    /**
+     * Panel delete method that hides the current panel from the view.
+     */
     public void delete(){
         this.setVisible(false);
     }
