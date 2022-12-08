@@ -4,6 +4,8 @@ import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
+import use_cases.login_leaderboard.IFileOutput;
+import user_interface.login_leaderboard.FileWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,7 +33,8 @@ public class PlayCustom implements ActionListener {
         window.setTitle(MAZE_NAME);
 
         IGamePanelOutputBoundary presenter = new GamePanelPresenter();
-        MazeInteractor maze = new MazeInteractor(presenter);
+        IFileOutput output = new FileWriter();
+        MazeInteractor maze = new MazeInteractor(presenter, output);
         maze.load("custom_mazes/" + MAZE_NAME);
         maze.startGameThread();
         GamePanelController controller = new GamePanelController(maze);

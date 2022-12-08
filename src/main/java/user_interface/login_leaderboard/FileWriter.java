@@ -6,19 +6,21 @@ import java.io.*;
 import java.io.FileReader;
 
 /**
- * FileWriter allows the leaderboard and regitser use cases to update the CSV file.
+ * FileWriter allows the leaderboard and register use cases to update the CSV file.
  * When a new user is registered, file writer will add the user information.
  * When a new score is set by user, file writer will update the score.
  */
 public class FileWriter implements IFileOutput {
-    private final String filePath = "C:\\Users\\arifa\\IdeaProjects\\course-project-group-93\\" +
-            "src\\main\\java\\user_interface\\login_leaderboard\\data.csv";
+    private final String filePath = "src/main/java/user_interface/login_leaderboard/data.csv";
+    public static String username;
 
+    /**
+     * The current user playing the game, used to update the appropriate score.
+     */
     @Override
-    public String getUsername() {
-        return "" ;
+    public String getUsername(){
+        return username;
     }
-
     /**
      * Update data.csv to include a new row with the given information.
      * @param name : username
@@ -46,7 +48,7 @@ public class FileWriter implements IFileOutput {
     }
 
     /**
-     * Replace the users score in the CSV file if the current stamina is greator
+     * Replace the users score in the CSV file if the current stamina is lower
      * than the given one.
      *
      * @param score : Player stamina
@@ -95,7 +97,7 @@ public class FileWriter implements IFileOutput {
     /**
      * Helper method for updating score.
      */
-    public String updateScoreHelper(int score, String level, String newLine, String[] values){
+    private String updateScoreHelper(int score, String level, String newLine, String[] values){
         switch (level) {
             case "EASY" :
                 if (score > (Integer.parseInt(values[3]))){

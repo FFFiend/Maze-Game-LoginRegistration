@@ -1,10 +1,6 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
-import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
-import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
-import use_cases.default_game.IGamePanelOutputBoundary;
+import adapters.login_leaderboard.*;
 import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
@@ -12,18 +8,22 @@ import user_interface.default_game.GlobalFrame;
 import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Run the game
  **/
 public class Main {
+
     /**
      * Run this method to run the game panel
      *
      * @param args for when we need some input
      */
     public static void main(String[] args) {
+//        LeaderboardGenerator g = new LeaderboardGenerator();
+//        g.setUsers(FileReader.create().PREV.getUsers());
+//
+//        System.out.println(g.sortMedium());
         setupGame();
     }
 
@@ -57,7 +57,9 @@ public class Main {
      */
     private static void setupGamePanel() {
         GamePanelPresenter presenter = new GamePanelPresenter();
-        MazeInteractor maze = new MazeInteractor(presenter);
+        IFileOutput output = new FileWriter();
+
+        MazeInteractor maze = new MazeInteractor(presenter, output);
         GamePanelController controller = new GamePanelController(maze);
 
         presenter.addKeyListener(controller);
@@ -72,6 +74,7 @@ public class Main {
     private static void setupLoginPanel() {
         ILoginUserOutputBoundary loginOb = new LoginUserPresenter();
         LoginUser loginUseCase = new LoginUser(loginOb);
+
         loginUseCase.setUsers(FileReader.create().PREV.getUsers());
 
         LoginUserController loginController = new LoginUserController(loginUseCase);
@@ -83,7 +86,9 @@ public class Main {
      */
     private static void setupRegisterPanel() {
         IRegisterUserOutputBoundary registerOb = new RegisterUserPresenter();
-        RegisterUser registerUseCase = new RegisterUser(registerOb);
+        IFileOutput output = new FileWriter();
+
+        RegisterUser registerUseCase = new RegisterUser(registerOb, output);
         registerUseCase.setUsers(FileReader.create().PREV.getUsers());
 
         RegisterUserController registerController = new RegisterUserController(registerUseCase);
@@ -109,7 +114,8 @@ public class Main {
         window.setTitle("AstroMaze");
 
         GamePanelPresenter presenter = new GamePanelPresenter();
-        MazeInteractor maze = new MazeInteractor(presenter);
+        IFileOutput output = new FileWriter();
+        MazeInteractor maze = new MazeInteractor(presenter, output);
         GamePanelController controller = new GamePanelController(maze);
 
         presenter.addKeyListener(controller);
