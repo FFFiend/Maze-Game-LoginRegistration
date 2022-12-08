@@ -5,39 +5,31 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Panel parent class that is responsible for designing and formatting
- * the panels.
+ * A class that takes care of all the design commonalities between each panel.
  */
-public class Panel extends JPanel {
-    private final Color TEXT_COLOR = new Color(255, 140, 0);
-    private final Font TEXT_FONT = new Font("Arial", Font.BOLD, 17);
-    public ArrayList<JLabel> labelSet = new ArrayList<>();
 
+
+public class Panel extends JPanel {
+    private final Color TEXT_COLOR = new Color(239, 235, 230);
+    private final Font TEXT_FONT = new Font("Arial", Font.ITALIC, 24);
+    public ArrayList<JLabel> labelSet = new ArrayList<>();
     public IGlobalFrameOutputBoundary outputBoundary;
+
     /**
-     * A class that takes care of all commonalities between each panel
-     * and implements them with its constructor.
+     * General Panel formatting.
      */
     public void build() {
-
         int PANEL_WIDTH = 768;
         int PANEL_HEIGHT = 576;
         this.setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
 
-        this.setBackground(new Color(0, 35, 102));
-
+        this.setBackground(new Color(0, 0, 0));
         this.setLayout(null);
-
         this.setVisible(true);
-
-
-
     }
 
     /**
-     * Method that formats a label in accordance with the theme
-     * of the game.
-     * @param label the JLabel to be formatted.
+     * General label formatting.
      */
     public void labelFormat(ArrayList<JLabel> label){
         for (JLabel jLabel : label) {
@@ -52,5 +44,4 @@ public class Panel extends JPanel {
     public void delete(){
         this.setVisible(false);
     }
-
 }

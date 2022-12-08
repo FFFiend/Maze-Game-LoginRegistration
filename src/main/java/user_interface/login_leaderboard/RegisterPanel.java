@@ -10,49 +10,49 @@ import java.util.Objects;
 
 /**
  * Allows the user to create a new account by choosing a username and password.
- * Passes the username, password, and email to the register user controller.
  */
 public class RegisterPanel extends Panel implements ActionListener {
     private final JTextField username;
     private final JPasswordField password;
     private final JTextField email;
     private String passedUsername;
-    private String passedEmail;
-    private String passedPassword;
-
-    RegisterUserController registerUserController;
 
     /**
-     * The register panel class.
-     * @param registerUserController takes in a controller so that the use case can be initiated upo
-     *                               receiving input.
-     * @param ob The output boundary that helps this class communicate with Panel Manager on what
-     *           panel is appropriate to switch to.
+     * Return the username entered by the user. This is used to keep track of the current user
+     * playing the game.
+     */
+    public String getUsername(){
+        return passedUsername;
+    }
+    RegisterUserController registerUserController;
+
+
+    /**
+     * Constructs the register panel where the user can register their username, email,
+     * and password.
      */
     public RegisterPanel(RegisterUserController registerUserController, IGlobalFrameOutputBoundary ob) {
         this.outputBoundary = ob;
 
         this.registerUserController = registerUserController;
 
-
         this.build();
         JLabel askUserName = new JLabel("Please enter your username");
-        // check if user already exists, if not continue
-        askUserName.setBounds(270, 30, 450, 40);
 
+        askUserName.setBounds(250, 30, 450, 40);
 
         this.username = new JTextField(50);
         username.setBounds(160, 90, 450, 30);
 
         JLabel askEmail = new JLabel("Please enter your email");
-        askEmail.setBounds(270, 140, 450, 40);
+        askEmail.setBounds(250, 140, 450, 40);
 
 
         this.email = new JTextField(50);
         email.setBounds(160, 200, 450, 30);
 
         JLabel askPassword = new JLabel("Please enter your password.");
-        askPassword.setBounds(270,250,450,40);
+        askPassword.setBounds(250,250,450,40);
 
         this.password = new JPasswordField(50);
         password.setBounds(160, 310, 450, 30);
@@ -79,7 +79,7 @@ public class RegisterPanel extends Panel implements ActionListener {
 
         this.add(makeUser);
 
-        JButton re = new JButton("return to the welcome screen");
+        JButton re = new JButton("Welcome Screen");
         re.setBounds(485,505,300,30);
         re.setSize(245,30);
 
@@ -87,7 +87,7 @@ public class RegisterPanel extends Panel implements ActionListener {
         re.setActionCommand("wipe out");
 
         JOptionPane.showMessageDialog(null,"Your username must have at least" +
-                "8 letters, one capital letter, one number and one special character.");
+                " 8 letters, one capital letter, one number and one special character.");
 
         this.add(re);
     }
@@ -103,23 +103,29 @@ public class RegisterPanel extends Panel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.passedUsername = username.getText();
-        this.passedEmail = email.getText();
-        this.passedPassword = String.valueOf(password.getPassword());
+        String passedEmail = email.getText();
+        String passedPassword = String.valueOf(password.getPassword());
+
         if (!Objects.equals(passedUsername, "") && !Objects.equals(passedEmail, "")
                 && !Objects.equals(passedPassword, "") && Objects.equals(e.getActionCommand(),"Reg Log in")){
             String s = registerUserController.performUseCase(passedUsername, passedEmail, passedPassword);
             if (Objects.equals(s,"yes")){
                 outputBoundary.getCurrPanel(this);
+                outputBoundary.changePanelTo("Registered");
+            }
+            else if (Objects.equals(s,"user exists")) {
+                outputBoundary.getCurrPanel(this);
                 outputBoundary.changePanelTo(e.getActionCommand());
             }
-
         }
+
         if ((Objects.equals(passedUsername, "") || Objects.equals(passedEmail, "")
                 || Objects.equals(passedPassword, "")) && Objects.equals(e.getActionCommand(),"Reg Log in")){
 
                 JOptionPane.showMessageDialog(null, "Make sure to enter both a " +
                     "valid username and email before hitting register.");
         }
+
         if(Objects.equals(e.getActionCommand(),"wipe out")){
             outputBoundary.getCurrPanel(this);
             outputBoundary.changePanelTo(e.getActionCommand());

@@ -35,6 +35,9 @@ public class RegisterUserController {
             return "yes";
 
         }
+        else if (Objects.equals(result, "user exists")){
+            return "user exists";
+        }
         return "no";
     }
 }

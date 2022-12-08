@@ -29,5 +29,4 @@ public class CollisionHandlerTest {
         Assertions.assertTrue(cHandler.rightPressed(player1.getX(), player1.getY()));
         Assertions.assertTrue(cHandler.downPressed(player1.getX(), player1.getY()));
     }
-
 }

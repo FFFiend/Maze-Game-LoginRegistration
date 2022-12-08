@@ -67,7 +67,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(PANEL, "CustomGameEditorPanel")) {
-            verifyEditorInput();
+            verifyEditorInput(new CustomGameValidator());
         }
         else if (Objects.equals(PANEL, "CustomGameMainPanel")) {
             PRESENTER.callCustomGamePanel("CustomGameInitializerPanel");
@@ -90,15 +90,13 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * Calls and sends a maze to the verifier. If it is valid, it calls the presenter to return the User to the custom
      * game main menu. If not, it shows the user a panel warning that their input was invalid.
      */
-    public void verifyEditorInput() {
-        CustomGameValidator validator = new CustomGameValidator();
-
+    public void verifyEditorInput(CustomGameValidator validator) {
         if (validator.verifyMaze(new CustomGameFileManager())) {
             PRESENTER.callCustomGamePanel("CustomGameMainPanel");
             PRESENTER.callCustomPopup("Maze stored successfully!");
         }
         else {
-            PRESENTER.callCustomPopup("This maze is not valid", "CustomGameInitializerPanel" );
+            PRESENTER.callCustomPopup("This maze needs at least one black hole and at least one key to be solvable.", "CustomGameEditorPanel" );
         }
     }
 

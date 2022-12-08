@@ -16,13 +16,13 @@ public class FileUser {
     /**
      *  Create the IFileInput interface to use the readFile method
      */
-    private final IFileInput FILE;
+    private final IFileInputtBoundary FILE;
 
     /**
      * Interface constructor
      * @param file : IFileInput Interface
      */
-    public FileUser(IFileInput file) {
+    public FileUser(IFileInputtBoundary file) {
         this.FILE = file;
     }
 

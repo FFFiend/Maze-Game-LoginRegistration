@@ -6,6 +6,5 @@ package use_cases.login_leaderboard;
  * the registration was successful or not.
  */
 public interface IRegisterUserOutputBoundary {
-
     void PrepareView(String u);
 }
