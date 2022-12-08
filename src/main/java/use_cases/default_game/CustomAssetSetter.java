@@ -15,6 +15,9 @@ import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+/**
+ * Use case which reads the maze data from a file.
+ */
 public class CustomAssetSetter {
 
     /**
@@ -136,10 +139,12 @@ public class CustomAssetSetter {
         return this.mazeAssetNum;
     }
 
+    /** Get the items in this maze. */
     public MazeItems getMazeItems() {
         return this.mazeItems;
     }
 
+    /** Get the hazards in this maze. */
     public MazeHazards getMazeHazards() {
         return this.mazeHazards;
     }

@@ -18,6 +18,10 @@ public class GamePanelController implements KeyListener {
      */
     private final int updateFrequency = 4;
 
+    /**
+     * Create the controller for the game.
+     * @param inputBoundary The input boundary, which will be invoked any time a key is pressed.
+     */
     public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
