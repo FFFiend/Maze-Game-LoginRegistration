@@ -19,11 +19,4 @@ interface ICustomGamePanel {
         backButton.setPreferredSize(new Dimension(50, 30));
         component.add(backButton);
     }
-
-    /**
-     * Draws a button on the panel that will return the user to the game's main menu
-     */
-    default void returnToMainButton() {
-        //TODO - default implementation
-    }
 }
