@@ -4,8 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
+import use_cases.login_leaderboard.IFileOutputBoundary;
 
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 /**
  * Test the MazeInteractor class
@@ -15,9 +17,10 @@ public class MazeInteractorTest {
      * Test that the gameOver is true after Player collides with StationaryEnemy
      */
     @Test
-    public void TestDeath() {
+    public void TestDeath() throws IOException {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
-        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary);
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.load("maze04.txt");
         mazeInteractor.startGameThread();
         mazeInteractor.execute(KeyEvent.VK_A);
@@ -28,9 +31,10 @@ public class MazeInteractorTest {
      * Test resetting the game after dying from collision with ChasingEnemy
      */
     @Test
-    public void TestReset() {
+    public void TestReset() throws IOException {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
-        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary);
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.load("maze04.txt");
         mazeInteractor.startGameThread();
         mazeInteractor.execute(KeyEvent.VK_S);
@@ -43,9 +47,10 @@ public class MazeInteractorTest {
      * Test that gameOver is true when Player is out of Stamina
      */
     @Test
-    public void TestStaminaOut() {
+    public void TestStaminaOut() throws IOException {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
-        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary);
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.load("maze04.txt");
         mazeInteractor.startGameThread();
         mazeInteractor.execute(KeyEvent.VK_D);
@@ -68,7 +73,8 @@ public class MazeInteractorTest {
     @Test
     public void DisplayLevel() {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
-        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary);
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.displayLevel(KeyEvent.VK_1);
         Assertions.assertEquals(50, mazeInteractor.getPlayerStamina());
     }
