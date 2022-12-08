@@ -17,7 +17,7 @@ public class ControllersTest {
      * is being displayed for each.
      */
     @Test
-    public void LoginUserControllerTest(){
+    public void LoginUserControllerTest() {
         // Set up the framework for login
         ILoginUserOutputBoundary output = new LoginUserPresenter();
         LoginUser loginUseCase = new LoginUser(output);
@@ -26,10 +26,13 @@ public class ControllersTest {
         loginUseCase.setUsers(FileReader.create().PREV.getUsers());
 
         // Assertions
-        Assertions.assertEquals("yes",logincontroller.performUseCase("Owais","Owais.93"));
-        Assertions.assertEquals("no",logincontroller.performUseCase("abc","hello"));
-        Assertions.assertEquals("no",logincontroller.performUseCase("Sean","hello"));
+        Assertions.assertEquals("yes", logincontroller.performUseCase("Owais", "Owais.93"));
+        Assertions.assertEquals("no", logincontroller.performUseCase("abc", "hello"));
+        Assertions.assertEquals("no", logincontroller.performUseCase("Sean", "hello"));
+    }
 
+    @Test
+    public void RegisterUserControllerTest() {
         // Set up the framework for register
         IRegisterUserOutputBoundary regoutput = new RegisterUserPresenter();
         IFileOutput dataOutput = new FileWriter();
@@ -39,10 +42,10 @@ public class ControllersTest {
         RegisterUserController regcontroller = new RegisterUserController(registerUseCase);
 
         // Assertions
-        Assertions.assertEquals("no",regcontroller.performUseCase("Rob","a@gmail.com",
+        Assertions.assertEquals("no", regcontroller.performUseCase("Rob","a@gmail.com",
                 "abc"));
 
-        Assertions.assertEquals("user exists",regcontroller.performUseCase("abc","a@gmail.com",
+        Assertions.assertEquals("yes", regcontroller.performUseCase("abc","a@gmail.com",
                 "Owais.93"));
 
         Assertions.assertEquals("user exists",regcontroller.performUseCase("Owais","a@gmail.com",
