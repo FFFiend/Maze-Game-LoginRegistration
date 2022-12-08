@@ -83,7 +83,12 @@ public class CustomGameGeneralInputHandler implements ActionListener {
         }
         else if (Objects.equals(PANEL, "CustomGamePopup")) {
             closePanel(e);
-            PRESENTER.callCustomGamePanel(NEW_PANEL);
+            if (Objects.equals(NEW_PANEL, "CustomGameEditorPanel")) {
+                PRESENTER.refocusEditor();
+                System.out.println("refocusing!");
+            } else {
+                PRESENTER.callCustomGamePanel(NEW_PANEL);
+            }
         }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")) {
             if (verifyInitializerInput()) {

@@ -12,4 +12,6 @@ public interface ICustomGamePresenter {
     void callCustomPopup(String message, String panel);
 
     void callCustomPopup(String message);
+
+    void refocusEditor();
 }

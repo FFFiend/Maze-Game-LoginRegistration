@@ -20,9 +20,6 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
      * Displays the panel just before the editor to initialize the editing process
      */
     protected CustomGameInitializerPanel() {
-        // this.build();
-
-        // this will change once custom mazes are linked to the main game and GlobalFrame is done
         FRAME.setSize(768, 576);
         FRAME.setResizable(false);
         FRAME.setVisible(true);

@@ -27,6 +27,10 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
         }
     }
 
+    public void refocusEditor(){
+        CustomGameEditorPanel.toFront();
+    }
+
     /**
      * Overloaded version of the above method allowing the main custom game panel to be the default should no parameter
      * be provided

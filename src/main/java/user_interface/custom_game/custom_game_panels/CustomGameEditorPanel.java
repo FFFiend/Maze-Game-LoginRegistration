@@ -29,8 +29,8 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         displayButtons();
 
         EDITOR_FRAME.pack();
-        EDITOR_FRAME.setLocationByPlatform(true);
         EDITOR_FRAME.setVisible(true);
+        EDITOR_FRAME.setFocusable(true);
     }
 
     /**
@@ -54,5 +54,9 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         bottomPanel.add(submissionButton);
         ICustomGamePanel.returnToCustomMainButtonStatic(bottomPanel);
         EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
+    }
+
+    protected static void toFront () {
+        EDITOR_FRAME.requestFocus();
     }
 }
