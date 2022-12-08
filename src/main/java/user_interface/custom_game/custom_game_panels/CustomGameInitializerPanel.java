@@ -27,6 +27,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
 
         CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
         FRAME.setContentPane(CONTENT);
+        FRAME.setFocusable(true);
 
         displayHeader();
         displayInitializerSelectors();
@@ -84,4 +85,12 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     public String getMazeName() {
         return NAME_FIELD.getText();
     }
+
+    /**
+     * Bring the initializer in front of other windows
+     */
+    protected static void toFront () {
+        FRAME.requestFocus();
+    }
+
 }

@@ -4,8 +4,6 @@ import entities.custom_game.EditorTile;
 import entities.default_game.MazeInfo;
 import use_cases.custom_game.custom_game_editor.TempMaze;
 
-import java.util.Arrays;
-
 /**
  * Responsible for verifying input the user wants to store: maze names from the initializer panel and mazes from the
  * editor panel
@@ -45,10 +43,8 @@ public class CustomGameValidator {
      * @return whether that asset can be found in TempMaze
      */
     private boolean verifyMazeComponents(int component){
-        System.out.println("verifying component " + component);
         EditorTile[][] maze = TempMaze.getMaze();
         for (EditorTile[] row:maze){
-            System.out.println(Arrays.toString(row));
             for (EditorTile tile:row){
                 if (tile.getNumCode() == component) {
                     return true;

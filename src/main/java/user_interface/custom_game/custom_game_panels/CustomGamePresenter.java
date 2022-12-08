@@ -27,8 +27,18 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
         }
     }
 
+    /**
+     * Bring the editor in front of other windows
+     */
     public void refocusEditor(){
         CustomGameEditorPanel.toFront();
+    }
+
+    /**
+     * Bring the initializer in front of other windows
+     */
+    public void refocusInitializer () {
+        CustomGameInitializerPanel.toFront();
     }
 
     /**

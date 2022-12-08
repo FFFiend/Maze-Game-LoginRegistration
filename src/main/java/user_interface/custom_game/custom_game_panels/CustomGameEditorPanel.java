@@ -56,6 +56,9 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
     }
 
+    /**
+     * Bring the editor in front of other windows
+     */
     protected static void toFront () {
         EDITOR_FRAME.requestFocus();
     }
