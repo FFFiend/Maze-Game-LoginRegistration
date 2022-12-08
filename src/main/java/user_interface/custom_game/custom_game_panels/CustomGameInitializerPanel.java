@@ -13,7 +13,7 @@ import java.awt.*;
  */
 class CustomGameInitializerPanel extends Panel implements ICustomInitializerInput, ICustomGamePanel {
     private final JTextField NAME_FIELD = new JTextField("pick a unique name for your maze");
-    private static final JFrame FRAME = new JFrame("custom game initializer frame");
+    private final JFrame FRAME = new JFrame("custom game initializer frame");
     private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
     /**
@@ -89,7 +89,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     /**
      * Bring the initializer in front of other windows
      */
-    protected static void toFront () {
+    protected void toFront () {
         FRAME.requestFocus();
     }
 }

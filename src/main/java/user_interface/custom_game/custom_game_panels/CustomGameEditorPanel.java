@@ -11,7 +11,8 @@ import java.awt.*;
  * UI to allow the user to build their own maze
  */
 class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
-    private static final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
+
+    private final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
 
     /**
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
@@ -59,7 +60,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     /**
      * Bring the editor in front of other windows
      */
-    protected static void toFront () {
+    protected void toFront () {
         EDITOR_FRAME.requestFocus();
     }
 }

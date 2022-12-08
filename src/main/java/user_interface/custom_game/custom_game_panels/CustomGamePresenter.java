@@ -9,6 +9,9 @@ import java.util.Objects;
  */
 public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePanel {
 
+    private CustomGameEditorPanel editorPanel;
+    private CustomGameInitializerPanel initializerPanel;
+
     /**
      * Call the constructors of one of the custom game panels
      */
@@ -17,10 +20,10 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
             new CustomGameMainPanel();
         }
         else if (Objects.equals(panelName, "CustomGameInitializerPanel")) {
-            new CustomGameInitializerPanel();
+            initializerPanel = new CustomGameInitializerPanel();
         }
         else if (Objects.equals(panelName, "CustomGameEditorPanel")) {
-            new CustomGameEditorPanel();
+            editorPanel = new CustomGameEditorPanel();
         }
         else {
             throw new RuntimeException("attempted to switch to an invalid panel");
@@ -31,14 +34,14 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
      * Bring the editor in front of other windows
      */
     public void refocusEditor(){
-        CustomGameEditorPanel.toFront();
+        editorPanel.toFront();
     }
 
     /**
      * Bring the initializer in front of other windows
      */
     public void refocusInitializer () {
-        CustomGameInitializerPanel.toFront();
+        initializerPanel.toFront();
     }
 
     /**
