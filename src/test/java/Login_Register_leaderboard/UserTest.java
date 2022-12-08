@@ -1,4 +1,4 @@
-package leaderboard;
+package Login_Register_leaderboard;
 
 import entities.login_leaderboard.User;
 import org.junit.jupiter.api.Assertions;

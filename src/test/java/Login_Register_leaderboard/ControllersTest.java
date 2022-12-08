@@ -1,4 +1,4 @@
-package leaderboard;
+package Login_Register_leaderboard;
 import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
