@@ -1,5 +1,4 @@
 package use_cases.login_leaderboard;
-import entities.login_leaderboard.User;
 
 import java.util.regex.Pattern;
 
@@ -16,9 +15,11 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     private String username;
     private String email;
     private String password;
+    private final IFileOutputBoundary UPDATECSV;
 
-    public RegisterUser(IRegisterUserOutputBoundary userPresenter) {
+    public RegisterUser(IRegisterUserOutputBoundary userPresenter, IFileOutputBoundary input){
         this.userPresenter = userPresenter;
+        this.UPDATECSV = input;
     }
 
     /**
@@ -49,9 +50,7 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     @Override
     public String createUser(){
         if (isValid() && !UserAlreadyExists() && ValidEmail()){
-            User current_user =  new User(this.username, this.email, this.password);
-            // write to file
-            // TODO
+            UPDATECSV.updateNewUser(username, password, email);
             userPresenter.PrepareView("You have been registered.");
             return "yes";
         }
@@ -62,7 +61,7 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
 
         else if(UserAlreadyExists()){
             userPresenter.PrepareView("This user already exists. Please log in now.");
-            return "yes";
+            return "user exists";
 
         }
         else if(!isValid()){

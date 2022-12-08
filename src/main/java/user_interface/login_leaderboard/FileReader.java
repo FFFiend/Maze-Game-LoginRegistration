@@ -1,7 +1,7 @@
 package user_interface.login_leaderboard;
 
 import adapters.login_leaderboard.UsersCreation;
-import use_cases.login_leaderboard.IFileInput;
+import use_cases.login_leaderboard.IFileInputtBoundary;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * FileReader transforms the data in the CSV file into a readable format for the use cases.
  */
-public class FileReader implements IFileInput {
+public class FileReader implements IFileInputtBoundary {
 
     /**
      * Create a nested array list of the data stored in the CSV file. Each row/user is saved
@@ -18,8 +18,8 @@ public class FileReader implements IFileInput {
      */
     @Override
     public ArrayList<ArrayList<String>> readFile(){
-        String filePath = "/Users/owaiszahid/Desktop/finalstretch/src/main/java/user_interface/login_leaderboard/data.csv";
-        String line = "";
+        String filePath = "src/main/java/user_interface/login_leaderboard/data.csv";
+        String line;
 
         ArrayList<ArrayList<String>> arr = new ArrayList<>();
 
@@ -57,6 +57,4 @@ public class FileReader implements IFileInput {
 
         return update;
     }
-
-
 }

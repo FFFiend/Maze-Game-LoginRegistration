@@ -2,10 +2,7 @@ package user_interface.login_leaderboard;
 
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
-import use_cases.login_leaderboard.*;
 
 import javax.swing.*;
 import java.util.Dictionary;
@@ -17,10 +14,17 @@ import java.util.Objects;
  */
 public class PanelManager {
     static Dictionary dict = new Hashtable();
+    private LoginPanel login;
+    private RegisterPanel register;
+
 
     public static void assign(String panelName, Object controller) {
         dict.put(panelName, controller);
     }
+
+//    public static FileWriter getWriter(){
+//        return  writer;
+//    }
 
     /**
      * This method implements the panel switching and incorporates the Clean Architecture
@@ -35,30 +39,25 @@ public class PanelManager {
         if (Objects.equals(nextPanel, "Sign up")) {
             RegisterUserController controller = (RegisterUserController) dict.get(
                     "RegisterUserController");
-            return new RegisterPanel(controller, currPanel.outputBoundary);
-        }
-        // sign up is a dead end, user must restart and log in to play the game.
+            register = new RegisterPanel(controller, currPanel.outputBoundary);
+            return register;
 
-        else if (Objects.equals(nextPanel, "Log in") || Objects.equals(nextPanel, "Reg Log in")) {
+        } else if (Objects.equals(nextPanel, "Log in") || Objects.equals(nextPanel, "Reg Log in")) {
             LoginUserController controller = (LoginUserController) dict.get("LoginUserController");
-            return new LoginPanel(controller, currPanel.outputBoundary);
-        } else if (Objects.equals(nextPanel, "Home Panel Launch")) {
+            login = new LoginPanel(controller, currPanel.outputBoundary);
+            return login;
+
+        } else if (Objects.equals(nextPanel, "Home Panel Launch") || Objects.equals(nextPanel, "Registered")) {
+            if (Objects.equals(nextPanel, "Registered")){
+                FileWriter.username = register.getUsername();
+            }
+            else {
+                FileWriter.username = login.getUsername();
+            }
             return new HomePanel(currPanel.outputBoundary);
 
-        }
-        // General Instructions to Incorporate your respective UI's:
-        // Have your panels extend the Panels class IF POSSIBLE, and pass in an
-        // IGlobalFrameOutputBoundary object into the constructor, and set the
-        // attribute to the same.
-        // Otherwise, just declare the attribute IGlobalFrameOutputBoundary ob within your
-        // respective classes, and set it within the constructor.
-
-        // Next, migrate the UI initialization part of your use cases into your
-        // respective else-if case blocks below, and simply return the Presenter/Panel
-        // like above on line 47.
-        else if (Objects.equals(nextPanel, "MAIN GAME")) {
+        } else if (Objects.equals(nextPanel, "MAIN GAME")) {
             // return game panel;
-
             return (GamePanelPresenter) dict.get("GamePanelPresenter");
 
         } else if (Objects.equals(nextPanel, "CUSTOM GAME")) {
@@ -68,13 +67,10 @@ public class PanelManager {
             // return leaderboard screen
             return new LeaderboardsPanel(currPanel.outputBoundary);
 
-            }
+        } else if(Objects.equals(nextPanel,"wipe out")){
+            return new WelcomeGlobalFrame(currPanel.outputBoundary);
+        }
 
-            else if(Objects.equals(nextPanel,"wipe out")){
-                return new WelcomeGlobalFrame(currPanel.outputBoundary);
-
-
-            }
-            return null;
+        return null;
         }
 }
