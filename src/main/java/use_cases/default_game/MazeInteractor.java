@@ -6,7 +6,7 @@ import entities.default_game.Player;
 import entities.hazards.IHazardRequestModel;
 import use_cases.hazards.MazeHazards;
 import use_cases.items.MazeItems;
-import use_cases.login_leaderboard.IFileOutput;
+import use_cases.login_leaderboard.IFileOutputBoundary;
 
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -33,7 +33,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private final int STARTING_STAMINA = 50;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
-    private final IFileOutput updateScore;
+    private final IFileOutputBoundary updateScore;
     /** This is set to true when the game has been stopped. */
     private boolean stop;
     private final int FPS = 20;
@@ -43,7 +43,7 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
      */
     private final int HAZARD_UPDATE_FRAME_INTERVAL = 10;
 
-    public MazeInteractor(IGamePanelOutputBoundary outputBoundary, IFileOutput updateScore) {
+    public MazeInteractor(IGamePanelOutputBoundary outputBoundary, IFileOutputBoundary updateScore) {
         this.outputBoundary = outputBoundary;
         this.updateScore = updateScore;
     }

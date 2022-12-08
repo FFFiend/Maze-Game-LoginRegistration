@@ -15,9 +15,9 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     private String username;
     private String email;
     private String password;
-    private final IFileOutput UPDATECSV;
+    private final IFileOutputBoundary UPDATECSV;
 
-    public RegisterUser(IRegisterUserOutputBoundary userPresenter, IFileOutput input){
+    public RegisterUser(IRegisterUserOutputBoundary userPresenter, IFileOutputBoundary input){
         this.userPresenter = userPresenter;
         this.UPDATECSV = input;
     }

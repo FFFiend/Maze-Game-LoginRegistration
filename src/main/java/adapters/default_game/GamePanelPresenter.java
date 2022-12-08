@@ -17,7 +17,7 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
     final int PANEL_HEIGHT = MazeInfo.getPanelHeight();
     private int playerX;
     private int playerY;
-    public int playerStamina;
+    private int playerStamina;
     private int gameState;
     private MazeInteractor maze;
 

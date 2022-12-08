@@ -41,7 +41,6 @@ public class LeaderboardsPanel extends Panel {
         add(sp3);
         sp3.setVisible(true);
         this.add(sp3);
-
     }
 
     /**

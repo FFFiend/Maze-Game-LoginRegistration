@@ -1,6 +1,6 @@
 package user_interface.login_leaderboard;
 
-import use_cases.login_leaderboard.IFileOutput;
+import use_cases.login_leaderboard.IFileOutputBoundary;
 
 import java.io.*;
 import java.io.FileReader;
@@ -10,7 +10,7 @@ import java.io.FileReader;
  * When a new user is registered, file writer will add the user information.
  * When a new score is set by user, file writer will update the score.
  */
-public class FileWriter implements IFileOutput {
+public class FileWriter implements IFileOutputBoundary {
     private final String filePath = "src/main/java/user_interface/login_leaderboard/data.csv";
     public static String username;
 

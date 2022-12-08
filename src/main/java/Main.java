@@ -20,10 +20,6 @@ public class Main {
      * @param args for when we need some input
      */
     public static void main(String[] args) {
-//        LeaderboardGenerator g = new LeaderboardGenerator();
-//        g.setUsers(FileReader.create().PREV.getUsers());
-//
-//        System.out.println(g.sortMedium());
         setupGame();
     }
 
@@ -57,7 +53,7 @@ public class Main {
      */
     private static void setupGamePanel() {
         GamePanelPresenter presenter = new GamePanelPresenter();
-        IFileOutput output = new FileWriter();
+        IFileOutputBoundary output = new FileWriter();
 
         MazeInteractor maze = new MazeInteractor(presenter, output);
         GamePanelController controller = new GamePanelController(maze);
@@ -86,7 +82,7 @@ public class Main {
      */
     private static void setupRegisterPanel() {
         IRegisterUserOutputBoundary registerOb = new RegisterUserPresenter();
-        IFileOutput output = new FileWriter();
+        IFileOutputBoundary output = new FileWriter();
 
         RegisterUser registerUseCase = new RegisterUser(registerOb, output);
         registerUseCase.setUsers(FileReader.create().PREV.getUsers());
@@ -114,7 +110,7 @@ public class Main {
         window.setTitle("AstroMaze");
 
         GamePanelPresenter presenter = new GamePanelPresenter();
-        IFileOutput output = new FileWriter();
+        IFileOutputBoundary output = new FileWriter();
         MazeInteractor maze = new MazeInteractor(presenter, output);
         GamePanelController controller = new GamePanelController(maze);
 
