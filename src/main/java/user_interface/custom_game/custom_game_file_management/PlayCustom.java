@@ -1,16 +1,16 @@
-package adapters.custom_game;
+package user_interface.custom_game.custom_game_file_management;
 
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
+import use_cases.custom_game.custom_game_file_management.IPLayCustom;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class PlayCustom implements ActionListener {
+public class PlayCustom implements IPLayCustom {
     private final String MAZE_NAME;
 
     public PlayCustom(String mazeName) {
