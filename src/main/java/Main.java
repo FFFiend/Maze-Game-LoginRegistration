@@ -43,9 +43,9 @@ public class Main {
      * PanelManager. Panels are created in PanelManager.
      */
     private static void setupPanels() {
-//        setupRegisterPanel();
+        setupRegisterPanel();
 
-//        setupLoginPanel();
+        setupLoginPanel();
 
         setupGamePanel();
     }

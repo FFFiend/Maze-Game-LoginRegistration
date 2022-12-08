@@ -6,6 +6,7 @@ import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
 import adapters.login_leaderboard.RegisterUserPresenter;
 import use_cases.login_leaderboard.*;
+import user_interface.custom_game.custom_game_panels.CustomGameMainPanel;
 
 import javax.swing.*;
 import java.util.Dictionary;
@@ -38,7 +39,6 @@ public class PanelManager {
             return new RegisterPanel(controller, currPanel.outputBoundary);
         }
         // sign up is a dead end, user must restart and log in to play the game.
-
         else if (Objects.equals(nextPanel, "Log in") || Objects.equals(nextPanel, "Reg Log in")) {
             LoginUserController controller = (LoginUserController) dict.get("LoginUserController");
             return new LoginPanel(controller, currPanel.outputBoundary);
@@ -58,23 +58,21 @@ public class PanelManager {
         // like above on line 47.
         else if (Objects.equals(nextPanel, "MAIN GAME")) {
             // return game panel;
-
             return (GamePanelPresenter) dict.get("GamePanelPresenter");
 
         } else if (Objects.equals(nextPanel, "CUSTOM GAME")) {
             // return custom game panel
+            return new CustomGameMainPanel(currPanel.outputBoundary);
 
         } else if (Objects.equals(nextPanel, "VIEW LEADERBOARD")) {
             // return leaderboard screen
             return new LeaderboardsPanel(currPanel.outputBoundary);
-
             }
 
-            else if(Objects.equals(nextPanel,"wipe out")){
-                return new WelcomeGlobalFrame(currPanel.outputBoundary);
-
-
+        else if(Objects.equals(nextPanel,"wipe out")){
+            return new WelcomeGlobalFrame(currPanel.outputBoundary);
             }
-            return null;
-        }
+
+        return null;
+    }
 }

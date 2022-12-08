@@ -2,6 +2,7 @@ package user_interface.custom_game.custom_game_panels;
 import adapters.custom_game.CustomGameGeneralInputHandler;
 import user_interface.custom_game.custom_game_file_management.PlayCustom;
 import entities.default_game.MazeInfo;
+import user_interface.login_leaderboard.IGlobalFrameOutputBoundary;
 import user_interface.login_leaderboard.Panel;
 
 import javax.swing.*;
@@ -12,7 +13,7 @@ import java.io.File;
 /**
  * Displays the game customization main menu. Allows the user to select a custom maze to play or build a new one
  */
-class CustomGameMainPanel extends Panel implements ICustomGamePanel {
+public class CustomGameMainPanel extends Panel implements ICustomGamePanel {
 
     private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
@@ -33,6 +34,22 @@ class CustomGameMainPanel extends Panel implements ICustomGamePanel {
         displayTitle();
         displayCustomOptions();
         listCustomMazes();
+    }
+
+    /**
+     * Overloaded constructor for use in PanelManager
+     *
+     * @param ob the output boundary PanelManager needs for panel switching
+     */
+    public CustomGameMainPanel(IGlobalFrameOutputBoundary ob) {
+        this.build();
+        this.outputBoundary = ob;
+
+        displayTitle();
+        displayCustomOptions();
+        listCustomMazes();
+
+        this.add(CONTENT);
     }
 
     /**
