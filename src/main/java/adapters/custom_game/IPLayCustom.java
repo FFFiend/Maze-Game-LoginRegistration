@@ -12,9 +12,20 @@ import java.awt.event.ActionListener;
 
 public interface IPLayCustom extends ActionListener {
 
+    /**
+     * Invoked when a button representing a maze in the custom_mazes folder is clicked
+     * Sends the name of the maze to the MazeInteractor for playing
+     *
+     * @param e the event to be processed
+     */
     @Override
     void actionPerformed(ActionEvent e);
 
+    /**
+     * Create a new MazeInteractor and classes it depends on, send a custom maze and run it
+     *
+     * @param file the name of the custom maze to send to MazeInteractor
+     */
     default void getMazeInteractor(String file) {
         JFrame window = new JFrame();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

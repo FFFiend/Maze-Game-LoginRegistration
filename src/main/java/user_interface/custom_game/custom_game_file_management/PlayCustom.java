@@ -6,6 +6,11 @@ import java.awt.event.ActionEvent;
 public class PlayCustom implements IPLayCustom {
     private final String MAZE_NAME;
 
+    /**
+     * Generate a new action listener for buttons listing mazes on CustomGameMainPanel
+     *
+     * @param mazeName the file name of the maze the button is representing
+     */
     public PlayCustom(String mazeName) {
         MAZE_NAME = mazeName;
     }
