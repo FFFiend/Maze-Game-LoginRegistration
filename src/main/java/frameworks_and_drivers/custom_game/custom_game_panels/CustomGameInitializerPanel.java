@@ -1,8 +1,8 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 import adapters.custom_game.ICustomInitializerInput;
-import user_interface.login_leaderboard.Panel;
+import frameworks_and_drivers.login_leaderboard.Panel;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

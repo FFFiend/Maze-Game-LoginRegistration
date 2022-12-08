@@ -3,11 +3,10 @@ import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
 import adapters.login_leaderboard.RegisterUserPresenter;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.login_leaderboard.*;
-import user_interface.login_leaderboard.FileReader;
-import user_interface.login_leaderboard.FileWriter;
+import frameworks_and_drivers.login_leaderboard.FileReader;
+import frameworks_and_drivers.login_leaderboard.FileWriter;
 
 public class ControllersTest {
 

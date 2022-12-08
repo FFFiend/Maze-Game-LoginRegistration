@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import use_cases.custom_game.custom_game_editor.TempMaze;
 
 import org.junit.jupiter.api.Test;
-import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
+import frameworks_and_drivers.custom_game.custom_game_file_management.CustomGameFileManager;
 
 import javax.swing.*;
 import java.io.File;

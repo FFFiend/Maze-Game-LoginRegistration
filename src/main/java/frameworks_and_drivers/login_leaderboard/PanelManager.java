@@ -1,9 +1,9 @@
-package user_interface.login_leaderboard;
+package frameworks_and_drivers.login_leaderboard;
 
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.RegisterUserController;
-import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
+import frameworks_and_drivers.custom_game.custom_game_panels.CustomGamePresenter;
 
 import javax.swing.*;
 import java.util.Dictionary;

@@ -5,7 +5,7 @@ import adapters.default_game.GamePanelPresenter;
 import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.IFileOutputBoundary;
-import user_interface.login_leaderboard.FileWriter;
+import frameworks_and_drivers.login_leaderboard.FileWriter;
 
 import javax.swing.*;
 import java.awt.*;

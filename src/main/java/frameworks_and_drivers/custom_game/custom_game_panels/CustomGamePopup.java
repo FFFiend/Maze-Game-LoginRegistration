@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 
