@@ -2,10 +2,12 @@ package user_interface.login_leaderboard;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
+/**
+ * Panel parent class that is responsible for designing and formatting
+ * the panels.
+ */
 public class Panel extends JPanel {
     private final Color TEXT_COLOR = new Color(255, 140, 0);
     private final Font TEXT_FONT = new Font("Arial", Font.BOLD, 17);
@@ -31,6 +33,12 @@ public class Panel extends JPanel {
 
 
     }
+
+    /**
+     * Method that formats a label in accordance with the theme
+     * of the game.
+     * @param label the JLabel to be formatted.
+     */
     public void labelFormat(ArrayList<JLabel> label){
         for (JLabel jLabel : label) {
             jLabel.setForeground(this.TEXT_COLOR);
@@ -38,6 +46,9 @@ public class Panel extends JPanel {
         }
     }
 
+    /**
+     * Panel delete method that hides the current panel from the view.
+     */
     public void delete(){
         this.setVisible(false);
     }

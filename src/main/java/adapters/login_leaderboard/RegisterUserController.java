@@ -16,7 +16,7 @@ public class RegisterUserController {
     private final IRegisterUserInputBoundary useCaseInteractor;
 
     /**
-     * Constructor for the class. Self explanatory.
+     * Constructor for the class. Self-explanatory.
      * @param useCaseInteractor the current use case to be performed.
      */
     public RegisterUserController(IRegisterUserInputBoundary useCaseInteractor) {

@@ -43,6 +43,12 @@ public class HomePanel extends Panel implements ActionListener {
 
     }
 
+
+    /**
+     * Passes in what button was pressed into the output boundary which is then
+     * handled by the Panel Manager class.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         outputBoundary.getCurrPanel(this);

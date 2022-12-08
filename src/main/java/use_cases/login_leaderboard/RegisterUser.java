@@ -16,6 +16,10 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
     private String username;
     private String email;
     private String password;
+    final Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+" +
+            "(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+" +
+            "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
+
 
     public RegisterUser(IRegisterUserOutputBoundary userPresenter) {
         this.userPresenter = userPresenter;
@@ -72,7 +76,7 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
         return null;
     }
 
-    /***
+    /**
      * Checks if the user already exists by calling on the hashmap
      * of users created by the FileUser class.
      * @return boolean depending on whether user exists or not.
@@ -81,10 +85,13 @@ public class RegisterUser extends PreviousUsers implements IRegisterUserInputBou
         return getUsers().containsKey(username);
     }
 
+
+    /**
+     * Checks whether the given email is valid by using a Regular Expression.
+     * @return true or false depending on the validity of the input email.
+     */
     public boolean ValidEmail(){
-        final Pattern EMAIL_REGEX = Pattern.compile("[a-z0-9!#$%&'*+/=?^_`{|}~-]+" +
-                "(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+" +
-                "[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", Pattern.CASE_INSENSITIVE);
+
         return EMAIL_REGEX.matcher(email).matches();
     }
 }

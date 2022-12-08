@@ -2,10 +2,7 @@ package user_interface.login_leaderboard;
 
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
-import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
-import adapters.login_leaderboard.RegisterUserPresenter;
-import use_cases.login_leaderboard.*;
 
 import javax.swing.*;
 import java.util.Dictionary;

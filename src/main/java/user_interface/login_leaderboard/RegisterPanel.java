@@ -22,6 +22,13 @@ public class RegisterPanel extends Panel implements ActionListener {
 
     RegisterUserController registerUserController;
 
+    /**
+     * The register panel class.
+     * @param registerUserController takes in a controller so that the use case can be initiated upo
+     *                               receiving input.
+     * @param ob The output boundary that helps this class communicate with Panel Manager on what
+     *           panel is appropriate to switch to.
+     */
     public RegisterPanel(RegisterUserController registerUserController, IGlobalFrameOutputBoundary ob) {
         this.outputBoundary = ob;
 
@@ -88,7 +95,9 @@ public class RegisterPanel extends Panel implements ActionListener {
 
     /**
      * Upon pressing the sign up button, the temporary username, email and password
-     * are initialized for the current application user.
+     * are initialized for the current application user, and the use Register User use case is called upon.
+     * Furthermore, the UI handles cases where any/all fields are left blank, and displays appropriate
+     * popups to the user using JOptionPane.
      * @param e the event to be processed
      */
     @Override
