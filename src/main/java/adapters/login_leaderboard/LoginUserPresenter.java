@@ -8,7 +8,7 @@ import javax.swing.*;
  */
 public class LoginUserPresenter implements ILoginUserOutputBoundary {
 
-    public boolean check;
+
     /**
      * Displays a simple message of whether the user succeeded in
      * logging in or not.
