@@ -20,7 +20,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
             new CustomGameInitializerPanel();
         }
         else if (Objects.equals(panelName, "CustomGameEditorPanel")) {
-            CustomGameEditorPanel.drawCustomGameEditorPanel();
+            new CustomGameEditorPanel();
         }
         else {
             throw new RuntimeException("attempted to switch to an invalid panel");

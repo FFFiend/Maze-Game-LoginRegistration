@@ -14,7 +14,7 @@ import java.awt.*;
 class CustomGameInitializerPanel extends Panel implements ICustomInitializerInput, ICustomGamePanel {
     private final JTextField NAME_FIELD = new JTextField("pick a unique name for your maze");
     private static final JFrame FRAME = new JFrame("custom game initializer frame");
-    private static final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
+    private final JPanel CONTENT = new JPanel(new BorderLayout(10, 10));
 
     /**
      * Displays the panel just before the editor to initialize the editing process
@@ -92,5 +92,4 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
     protected static void toFront () {
         FRAME.requestFocus();
     }
-
 }
