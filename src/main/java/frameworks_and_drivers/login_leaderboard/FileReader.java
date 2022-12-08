@@ -1,7 +1,7 @@
 package frameworks_and_drivers.login_leaderboard;
 
 import adapters.login_leaderboard.UsersCreation;
-import use_cases.login_leaderboard.IFileInputtBoundary;
+import use_cases.login_leaderboard.IFileInputBoundary;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 /**
  * FileReader transforms the data in the CSV file into a readable format for the use cases.
  */
-public class FileReader implements IFileInputtBoundary {
+public class FileReader implements IFileInputBoundary {
 
     /**
      * Create a nested array list of the data stored in the CSV file. Each row/user is saved
