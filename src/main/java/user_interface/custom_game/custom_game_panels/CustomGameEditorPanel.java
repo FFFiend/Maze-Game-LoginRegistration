@@ -24,7 +24,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         EDITOR_FRAME.setResizable(false);
         EDITOR_FRAME.setLocationRelativeTo(null);
         EDITOR_FRAME.setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight()));
-        EDITOR_FRAME.setBackground(Color.black);
+        EDITOR_FRAME.setBackground(getBackgroundColor());
 
         displayEditor();
         displayButtons();

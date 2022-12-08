@@ -30,6 +30,7 @@ public class CustomGameMainPanel extends Panel implements ICustomGamePanel {
 
         this.CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
         FRAME.setContentPane(this.CONTENT);
+        CONTENT.setBackground(getBackgroundColor());
 
         displayTitle();
         displayCustomOptions();

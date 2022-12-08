@@ -123,7 +123,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
             return true;
         }
         else {
-            PRESENTER.callCustomPopup("This maze needs at least one black hole and at least one key to be solvable.", "CustomGameEditorPanel" );
+            PRESENTER.callCustomPopup("This maze needs at least one black hole and at least one escape pod to be solvable. ", "CustomGameEditorPanel" );
             return false;
         }
     }

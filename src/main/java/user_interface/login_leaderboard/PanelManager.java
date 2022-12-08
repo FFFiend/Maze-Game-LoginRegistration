@@ -3,6 +3,7 @@ package user_interface.login_leaderboard;
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.RegisterUserController;
+import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
 
 import javax.swing.*;
 import java.util.Dictionary;
@@ -62,6 +63,9 @@ public class PanelManager {
 
         } else if (Objects.equals(nextPanel, "CUSTOM GAME")) {
             // return custom game panel
+//            return new CustomGameMainPanel(currPanel.outputBoundary);
+            CustomGamePresenter tempPresenter = new CustomGamePresenter();
+            tempPresenter.callCustomGamePanel();
 
         } else if (Objects.equals(nextPanel, "VIEW LEADERBOARD")) {
             // return leaderboard screen

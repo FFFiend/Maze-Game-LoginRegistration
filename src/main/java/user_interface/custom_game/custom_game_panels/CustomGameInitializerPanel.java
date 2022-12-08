@@ -26,6 +26,7 @@ class CustomGameInitializerPanel extends Panel implements ICustomInitializerInpu
         FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
         CONTENT.setBorder(new EmptyBorder(10, 10, 10, 10));
+        CONTENT.setBackground(getBackgroundColor());
         FRAME.setContentPane(CONTENT);
         FRAME.setFocusable(true);
 

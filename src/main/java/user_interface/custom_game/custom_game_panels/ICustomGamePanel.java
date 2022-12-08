@@ -19,4 +19,11 @@ interface ICustomGamePanel {
         backButton.setPreferredSize(new Dimension(50, 30));
         component.add(backButton);
     }
+
+    /**
+     * @return the background colour for the custom maze section
+     */
+    default Color getBackgroundColor() {
+        return new Color(0, 0, 0);
+    }
 }
