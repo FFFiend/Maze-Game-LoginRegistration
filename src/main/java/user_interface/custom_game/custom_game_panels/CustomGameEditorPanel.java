@@ -11,13 +11,13 @@ import java.awt.*;
  * UI to allow the user to build their own maze
  */
 class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
-    private final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
+    private static final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
 
     /**
      * Displays the custom maze editor: a grid to build the maze, a bar to input stamina and a few buttons for saving,
      * and returning to previous menus
      */
-    protected CustomGameEditorPanel() {
+    protected static void drawCustomGameEditorPanel() {
         EDITOR_FRAME.setLayout(new BorderLayout());
         EDITOR_FRAME.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         EDITOR_FRAME.setResizable(false);
@@ -36,7 +36,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     /**
      * Add the editor to the panel
      */
-    private void displayEditor() {
+    private static void displayEditor() {
         JPanel panel = new JPanel();
         TempMazeAdapter.buildTempMaze(panel);
         EDITOR_FRAME.add(panel, BorderLayout.CENTER);
@@ -45,14 +45,14 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
     /**
      * Add the submission and back buttons to the panel
      */
-    private void displayButtons() {
+    private static void displayButtons() {
         JPanel bottomPanel = new JPanel(new GridLayout(1, 2));
 
         JButton submissionButton = new JButton("submit");
         submissionButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameEditorPanel", new CustomGamePresenter()));
 
         bottomPanel.add(submissionButton);
-        returnToCustomMainButton(bottomPanel);
+        ICustomGamePanel.returnToCustomMainButtonStatic(bottomPanel);
         EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

@@ -19,4 +19,14 @@ interface ICustomGamePanel {
         backButton.setPreferredSize(new Dimension(50, 30));
         component.add(backButton);
     }
+
+    /**
+     * Static version of the above method for static panels
+     */
+    static void returnToCustomMainButtonStatic(JComponent component) {
+        JButton backButton = new JButton("go back to main");
+        backButton.addActionListener(new CustomGameGeneralInputHandler("toCustomMain", new CustomGamePresenter()));
+        backButton.setPreferredSize(new Dimension(50, 30));
+        component.add(backButton);
+    }
 }

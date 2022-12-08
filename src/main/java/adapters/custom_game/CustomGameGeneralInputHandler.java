@@ -4,6 +4,8 @@ import entities.default_game.MazeInfo;
 import use_cases.custom_game.custom_game_file_management.CustomGameValidator;
 import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Objects;
@@ -21,7 +23,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * Listens for clicks to buttons on the custom maze panels, calls the verifier if necessary and calls the
      * appropriate panels in response.
      *
-     * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
+     * @param panel the current panel of the button
      * @param presenter an instance of the presenter interface to display a new panel after verification
      */
     public CustomGameGeneralInputHandler(String panel, ICustomGamePresenter presenter) {
@@ -34,7 +36,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * Listens for clicks to buttons on the initializer panel, calls the verifier if necessary and calls the
      * appropriate panels in response
      *
-     * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
+     * @param panel the current panel of the button
      * @param presenter an instance of the presenter interface to display a new panel after verification
      * @param initializer an instance of the initializer interface to allow retrieving of information on its text fields
      */
@@ -48,7 +50,7 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * Listens for clicks to return button on popups, requires its own constructor because popups can be called on
      * multiple panels and can take the user to different places based on where they were called
      *
-     * @param panel the current panel of the submission button (CustomGameInitializerPanel or CustomGameEditorPanel)
+     * @param panel the current panel of the button
      * @param presenter an instance of the presenter interface to display a new panel after verification
      * @param newPanel the panel to go to
      */
@@ -67,19 +69,26 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (Objects.equals(PANEL, "CustomGameEditorPanel")) {
-            verifyEditorInput(new CustomGameValidator());
+            if (verifyEditorInput(new CustomGameValidator())){
+                closePanel(e);
+            }
         }
         else if (Objects.equals(PANEL, "CustomGameMainPanel")) {
             PRESENTER.callCustomGamePanel("CustomGameInitializerPanel");
+            closePanel(e);
         }
         else if (Objects.equals(PANEL, "toCustomMain")) {
+            closePanel(e);
             PRESENTER.callCustomGamePanel("CustomGameMainPanel");
         }
         else if (Objects.equals(PANEL, "CustomGamePopup")) {
+            closePanel(e);
             PRESENTER.callCustomGamePanel(NEW_PANEL);
         }
         else if (Objects.equals(PANEL, "CustomGameInitializerPanel")) {
-            verifyInitializerInput();
+            if (verifyInitializerInput()) {
+                closePanel(e);
+            }
         }
         else {
             throw new RuntimeException("attempted to switch to an invalid panel");
@@ -87,16 +96,29 @@ public class CustomGameGeneralInputHandler implements ActionListener {
     }
 
     /**
+     * Close the panel with a button that has just been clicked
+     *
+     * @param e the button click that called the input handler
+     */
+    private void closePanel(ActionEvent e){
+        JComponent component = (JComponent) e.getSource();
+        Window window = SwingUtilities.getWindowAncestor(component);
+        window.dispose();
+    }
+
+    /**
      * Calls and sends a maze to the verifier. If it is valid, it calls the presenter to return the User to the custom
      * game main menu. If not, it shows the user a panel warning that their input was invalid.
      */
-    public void verifyEditorInput(CustomGameValidator validator) {
+    public boolean verifyEditorInput(CustomGameValidator validator) {
         if (validator.verifyMaze(new CustomGameFileManager())) {
             PRESENTER.callCustomGamePanel("CustomGameMainPanel");
             PRESENTER.callCustomPopup("Maze stored successfully!");
+            return true;
         }
         else {
             PRESENTER.callCustomPopup("This maze needs at least one black hole and at least one key to be solvable.", "CustomGameEditorPanel" );
+            return false;
         }
     }
 
@@ -104,18 +126,20 @@ public class CustomGameGeneralInputHandler implements ActionListener {
      * Calls and sends maze initializer values to the verifier. If it is valid, it calls the presenter to take the
      * User to the editor. If not, it shows the user a panel warning that their input was invalid.
      */
-    public void verifyInitializerInput() {
+    public boolean verifyInitializerInput() {
         assert INITIALIZER != null;
         String mazeName = INITIALIZER.getMazeName();
         CustomGameValidator validator = new CustomGameValidator();
 
         if (!validator.verifyName(mazeName, new CustomGameFileManager())) {
             PRESENTER.callCustomPopup("That name is already taken!", "CustomGameInitializerPanel" );
+            return false;
         }
         else { //if more options are included in the initializer, more checks will be added
             //sends in constants as parameters in case customizing grid sizes is a feature added in the future
             TempMazeAdapter.prepareTempMaze(mazeName, MazeInfo.getMaxMazeRow(), MazeInfo.getMaxMazeCol(), MazeInfo.getTileSize());
             PRESENTER.callCustomGamePanel("CustomGameEditorPanel");
+            return true;
         }
     }
 }
