@@ -25,7 +25,7 @@ public class ControllersTest {
         LoginUserController logincontroller = new LoginUserController(loginUseCase);
 
 
-        Assertions.assertEquals("yes",logincontroller.performUseCase("abc","hello"));
+        Assertions.assertEquals("no",logincontroller.performUseCase("abc","hello"));
         Assertions.assertEquals("no",logincontroller.performUseCase("abc","ha"));
         Assertions.assertEquals("no",logincontroller.performUseCase("Sean","hello"));
     }
@@ -40,17 +40,16 @@ public class ControllersTest {
         registerUseCase.setUsers(FileReader.create().PREV.getUsers());
         RegisterUserController regcontroller = new RegisterUserController(registerUseCase);
 
-        // Assertions
-//        Assertions.assertEquals("no", regcontroller.performUseCase("Rob","a@gmail.com",
-//                "abc"));
-//
-//        Assertions.assertEquals("yes", regcontroller.performUseCase("abc","a@gmail.com",
-//                "Owais.93"));
-//
-//        Assertions.assertEquals("user exists", regcontroller.performUseCase("Owais","a@gmail.com",
-//                "Owais.93"));
-//
-//        Assertions.assertEquals("yes", regcontroller.performUseCase("Bob","bob@gmail.com",
-//                "Bob.1234"));
+       Assertions.assertEquals("no", regcontroller.performUseCase("Rob","a@gmail.com",
+                "abc"));
+
+       Assertions.assertEquals("user exists", regcontroller.performUseCase("abc","a@gmail.com",
+                "Owais.93"));
+
+       Assertions.assertEquals("user exists", regcontroller.performUseCase("Owais","a@gmail.com",
+                "Owais.93"));
+
+        Assertions.assertEquals("user exists", regcontroller.performUseCase("Bob","bob@gmail.com",
+                "Bob.1234"));
     }
 }
