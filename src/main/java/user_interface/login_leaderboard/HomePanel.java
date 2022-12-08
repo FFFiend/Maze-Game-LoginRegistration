@@ -1,6 +1,7 @@
 package user_interface.login_leaderboard;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,23 +10,27 @@ import java.awt.event.ActionListener;
  */
 public class HomePanel extends Panel implements ActionListener {
 
+    /***
+     * Constructs the home panel.
+     */
     public HomePanel(IGlobalFrameOutputBoundary ob) {
         this.outputBoundary = ob;
         this.build();
 
-        JButton playGame = new JButton("Click to play the game");
-        playGame.setBounds(250,100,50,50);
-        playGame.setSize(245,30);
+        JButton playGame = new JButton("Play");
+        playGame.setBounds(240,100,50,50);
+        playGame.setSize(300,50);
+        playGame.setFont(new Font("Arial", Font.BOLD, 23));
 
-        JButton playCustom = new JButton("Click to play custom games");
-        playCustom.setBounds(250,300,600,50);
-        playCustom.setSize(245,30);
+        JButton playCustom = new JButton("Custom Game");
+        playCustom.setBounds(240,250,50,50);
+        playCustom.setSize(300,50);
+        playCustom.setFont(new Font("Arial", Font.BOLD, 23));
 
-
-        JButton viewLeaderboard = new JButton("Click here to view the leaderboard");
-        viewLeaderboard.setBounds(250,500,50,50);
-        viewLeaderboard.setSize(245,30);
-
+        JButton viewLeaderboard = new JButton("Leaderboard");
+        viewLeaderboard.setBounds(240,400,50,50);
+        viewLeaderboard.setSize(300,50);
+        viewLeaderboard.setFont(new Font("Arial", Font.BOLD, 23));
 
         this.add(playGame);
         this.add(playCustom);
@@ -39,10 +44,13 @@ public class HomePanel extends Panel implements ActionListener {
 
         viewLeaderboard.setActionCommand("VIEW LEADERBOARD");
         viewLeaderboard.addActionListener(this);
-
-
     }
 
+    /**
+     * Upon pressing the play, custom game, or leaderboard button, the user is directed
+     * to its specific screen.
+     * @param e the event to be processed
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         outputBoundary.getCurrPanel(this);

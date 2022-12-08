@@ -10,11 +10,11 @@ public class MediumLeaderboard implements Comparator<User> {
 
     /**
      * Compare the medium-level scores of the two users.
-     * @param c : User c
-     * @param d : User d
+     * @param a : User a
+     * @param b : User b
      */
-    public int compare(User c, User d)
+    public int compare(User a, User b)
     {
-        return c.getMediumScore() - d.getMediumScore();
+        return b.getMediumScore() - a.getMediumScore();
     }
 }

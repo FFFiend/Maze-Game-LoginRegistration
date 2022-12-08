@@ -13,8 +13,7 @@ public class EasyLeaderboard implements Comparator<User> {
      * @param a : User a
      * @param b : User b
      */
-    public int compare(User a, User b)
-    {
-        return a.getEasyScore() - b.getEasyScore();
+    public int compare(User a, User b) {
+        return b.getEasyScore() - a.getEasyScore();
     }
 }

@@ -4,6 +4,7 @@ import use_cases.default_game.IGamePanelInputBoundary;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
 
 /**
  * User controller for the game.
@@ -44,12 +45,15 @@ public class GamePanelController implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         int keycode = e.getKeyCode();
-        inputBoundary.execute(keycode);
+        try {
+            inputBoundary.execute(keycode);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
     }
 
 }
