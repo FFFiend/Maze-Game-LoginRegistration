@@ -1,4 +1,4 @@
-package tutorial;
+package leaderboard;
 
 import entities.login_leaderboard.User;
 import org.junit.jupiter.api.Assertions;
