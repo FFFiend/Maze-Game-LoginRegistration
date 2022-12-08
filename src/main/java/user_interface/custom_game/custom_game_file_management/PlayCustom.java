@@ -1,10 +1,6 @@
 package user_interface.custom_game.custom_game_file_management;
 
-import adapters.default_game.GamePanelController;
-import adapters.default_game.GamePanelPresenter;
-import use_cases.custom_game.custom_game_file_management.IPLayCustom;
-
-import javax.swing.*;
+import adapters.custom_game.IPLayCustom;
 import java.awt.event.ActionEvent;
 
 public class PlayCustom implements IPLayCustom {
@@ -22,20 +18,25 @@ public class PlayCustom implements IPLayCustom {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        JFrame window = new JFrame();
-        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        window.setResizable(false);
-        window.setTitle(MAZE_NAME);
-
-        GamePanelPresenter presenter = new GamePanelPresenter();
-        GamePanelController controller = new GamePanelController(this.getMazeInteractor(presenter, "custom_mazes/" + MAZE_NAME));
-
-        window.add(presenter);
-        window.pack();
-        window.setLocationRelativeTo(null);
-        window.setVisible(true);
-
-        window.addKeyListener(controller);
-        window.setFocusable(true);
+        this.getMazeInteractor(MAZE_NAME);
+//        String file = "custom_mazes/" + MAZE_NAME;
+//        JFrame window = new JFrame();
+//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        window.setResizable(false);
+//        window.setTitle(file);
+//
+//        IGamePanelOutputBoundary presenter = new GamePanelPresenter();
+//        MazeInteractor maze = new MazeInteractor(presenter);
+//        maze.load(file);
+//        maze.startGameThread();
+//        GamePanelController controller = new GamePanelController(maze);
+//
+//        window.add((Component) presenter);
+//        window.pack();
+//        window.setLocationRelativeTo(null);
+//        window.setVisible(true);
+//
+//        window.addKeyListener(controller);
+//        window.setFocusable(true);
     }
 }

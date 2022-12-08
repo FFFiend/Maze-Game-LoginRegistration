@@ -4,7 +4,6 @@ import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.LoginUserPresenter;
 import adapters.login_leaderboard.RegisterUserController;
 import adapters.login_leaderboard.RegisterUserPresenter;
-import use_cases.default_game.IGamePanelOutputBoundary;
 import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import user_interface.custom_game.custom_game_panels.CustomGamePresenter;
@@ -12,7 +11,6 @@ import user_interface.default_game.GlobalFrame;
 import user_interface.login_leaderboard.*;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Run the game
