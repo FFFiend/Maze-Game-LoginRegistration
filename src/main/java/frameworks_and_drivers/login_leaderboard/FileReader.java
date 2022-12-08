@@ -1,4 +1,4 @@
-package user_interface.login_leaderboard;
+package frameworks_and_drivers.login_leaderboard;
 
 import adapters.login_leaderboard.UsersCreation;
 import use_cases.login_leaderboard.IFileInputtBoundary;
@@ -18,7 +18,7 @@ public class FileReader implements IFileInputtBoundary {
      */
     @Override
     public ArrayList<ArrayList<String>> readFile(){
-        String filePath = "src/main/java/user_interface/login_leaderboard/data.csv";
+        String filePath = "src/main/java/frameworks_and_drivers/login_leaderboard/data.csv";
         String line;
 
         ArrayList<ArrayList<String>> arr = new ArrayList<>();

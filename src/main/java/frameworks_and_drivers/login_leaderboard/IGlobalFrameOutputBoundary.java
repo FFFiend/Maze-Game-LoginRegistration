@@ -1,4 +1,4 @@
-package user_interface.login_leaderboard;
+package frameworks_and_drivers.login_leaderboard;
 
 public interface IGlobalFrameOutputBoundary {
 

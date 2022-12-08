@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 
@@ -78,7 +78,6 @@ public class CustomGamePopup implements ICustomGamePanel{
         returnButton.addActionListener(new CustomGameGeneralInputHandler("CustomGamePopup", new CustomGamePresenter(), panel));
 
         bottomPanel.add(returnButton);
-        returnToCustomMainButton(bottomPanel);
         CONTENT.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

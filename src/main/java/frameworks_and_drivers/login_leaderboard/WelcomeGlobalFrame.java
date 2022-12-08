@@ -1,4 +1,4 @@
-package user_interface.login_leaderboard;
+package frameworks_and_drivers.login_leaderboard;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

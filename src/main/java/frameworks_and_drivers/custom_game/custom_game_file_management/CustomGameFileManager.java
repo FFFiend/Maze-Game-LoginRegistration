@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_file_management;
+package frameworks_and_drivers.custom_game.custom_game_file_management;
 
 import adapters.custom_game.TempMazeAdapter;
 import use_cases.custom_game.custom_game_file_management.ICustomGameFileManager;
@@ -29,8 +29,6 @@ public class CustomGameFileManager implements ICustomGameFileManager{
                 }
                 mazeWriter.write(System.getProperty("line.separator"));
             }
-//            mazeWriter.write(System.getProperty("line.separator"));
-//            mazeWriter.write(TempMazeAdapter.getMazeCreator());
             mazeWriter.close();
 
         } catch (IOException e) {

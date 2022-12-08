@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 import adapters.custom_game.TempMazeAdapter;
@@ -11,6 +11,7 @@ import java.awt.*;
  * UI to allow the user to build their own maze
  */
 class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
+
     private final JFrame EDITOR_FRAME = new JFrame("Maze Editor");
 
     /**
@@ -23,14 +24,14 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         EDITOR_FRAME.setResizable(false);
         EDITOR_FRAME.setLocationRelativeTo(null);
         EDITOR_FRAME.setPreferredSize(new Dimension(MazeInfo.getPanelWidth(), MazeInfo.getPanelHeight()));
-        EDITOR_FRAME.setBackground(Color.black);
+        EDITOR_FRAME.setBackground(getBackgroundColor());
 
         displayEditor();
         displayButtons();
 
         EDITOR_FRAME.pack();
-        EDITOR_FRAME.setLocationByPlatform(true);
         EDITOR_FRAME.setVisible(true);
+        EDITOR_FRAME.setFocusable(true);
     }
 
     /**
@@ -54,5 +55,12 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         bottomPanel.add(submissionButton);
         returnToCustomMainButton(bottomPanel);
         EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
+    }
+
+    /**
+     * Bring the editor in front of other windows
+     */
+    protected void toFront () {
+        EDITOR_FRAME.requestFocus();
     }
 }

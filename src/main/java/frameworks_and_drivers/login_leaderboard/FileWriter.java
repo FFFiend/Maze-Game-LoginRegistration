@@ -1,4 +1,4 @@
-package user_interface.login_leaderboard;
+package frameworks_and_drivers.login_leaderboard;
 
 import use_cases.login_leaderboard.IFileOutputBoundary;
 
@@ -11,7 +11,7 @@ import java.io.FileReader;
  * When a new score is set by user, file writer will update the score.
  */
 public class FileWriter implements IFileOutputBoundary {
-    private final String filePath = "src/main/java/user_interface/login_leaderboard/data.csv";
+    private final String filePath = "src/main/java/frameworks_and_drivers/login_leaderboard/data.csv";
     public static String username;
 
     /**
