@@ -34,19 +34,19 @@ public interface IPlayCustom extends ActionListener {
         window.setResizable(false);
         window.setTitle(file);
 
-        IGamePanelOutputBoundary presenter = new GamePanelPresenter();
+        GamePanelPresenter presenter = new GamePanelPresenter();
         IFileOutputBoundary output = new FileWriter();
         MazeInteractor maze = new MazeInteractor(presenter, output);
         maze.load("custom_mazes/" + file);
         maze.startGameThread();
         GamePanelController controller = new GamePanelController(maze);
 
-        window.add((Component) presenter);
+        presenter.addKeyListener(controller);
+        presenter.setFocusable(true);
+
+        window.add(presenter);
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
-
-        window.addKeyListener(controller);
-        window.setFocusable(true);
     }
 }
