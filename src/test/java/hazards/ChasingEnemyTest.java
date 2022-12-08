@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.hazards.MazeHazards;
 
+/** Test that the ChasingEnemy class is correct. */
 public class ChasingEnemyTest {
     /** Check that a chasing enemy moves towards the player. */
     @Test

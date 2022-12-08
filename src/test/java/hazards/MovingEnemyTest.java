@@ -7,8 +7,13 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.hazards.MazeHazards;
 
+/**
+ * Tests for the MovingEnemy abstract class.
+ */
 public class MovingEnemyTest {
-    /** Test that resetting a moving enemy returns it to its starting position. */
+    /**
+     * Test that resetting a moving enemy returns it to its starting position.
+     */
     @Test
     public void Reset() {
         MazeHazards hazards = new MazeHazards();

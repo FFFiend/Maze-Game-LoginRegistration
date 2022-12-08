@@ -85,7 +85,7 @@ public class RegisterPanel extends Panel implements ActionListener {
         re.addActionListener(this);
         re.setActionCommand("wipe out");
 
-        JOptionPane.showMessageDialog(null,"Your username must have at least" +
+        JOptionPane.showMessageDialog(null,"Your password must have at least" +
                 " 8 letters, one capital letter, one number and one special character.");
 
         this.add(re);

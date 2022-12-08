@@ -5,6 +5,6 @@ import java.util.ArrayList;
 /**
  * Note: FileUser can access the items of the CSV file due to dependency inversion.
  */
-public interface IFileInputtBoundary {
+public interface IFileInputBoundary {
     ArrayList<ArrayList<String>> readFile();
 }
