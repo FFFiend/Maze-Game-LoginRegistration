@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.CustomGameGeneralInputHandler;
 
@@ -18,5 +18,12 @@ interface ICustomGamePanel {
         backButton.addActionListener(new CustomGameGeneralInputHandler("toCustomMain", new CustomGamePresenter()));
         backButton.setPreferredSize(new Dimension(50, 30));
         component.add(backButton);
+    }
+
+    /**
+     * @return the background colour for the custom maze section
+     */
+    default Color getBackgroundColor() {
+        return new Color(0, 0, 0);
     }
 }

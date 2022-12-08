@@ -1,4 +1,4 @@
-package user_interface.custom_game.custom_game_panels;
+package frameworks_and_drivers.custom_game.custom_game_panels;
 
 import adapters.custom_game.ICustomGamePresenter;
 
@@ -9,6 +9,9 @@ import java.util.Objects;
  */
 public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePanel {
 
+    private static CustomGameEditorPanel editorPanel;
+    private static CustomGameInitializerPanel initializerPanel;
+
     /**
      * Call the constructors of one of the custom game panels
      */
@@ -17,14 +20,28 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
             new CustomGameMainPanel();
         }
         else if (Objects.equals(panelName, "CustomGameInitializerPanel")) {
-            new CustomGameInitializerPanel();
+            initializerPanel = new CustomGameInitializerPanel();
         }
         else if (Objects.equals(panelName, "CustomGameEditorPanel")) {
-            new CustomGameEditorPanel();
+            editorPanel = new CustomGameEditorPanel();
         }
         else {
             throw new RuntimeException("attempted to switch to an invalid panel");
         }
+    }
+
+    /**
+     * Bring the editor in front of other windows
+     */
+    public void refocusEditor(){
+        editorPanel.toFront();
+    }
+
+    /**
+     * Bring the initializer in front of other windows
+     */
+    public void refocusInitializer() {
+        initializerPanel.toFront();
     }
 
     /**

@@ -17,9 +17,11 @@ public class CustomGameValidator {
      */
     public boolean verifyMaze(ICustomGameFileManager fileManager) {
         //Check that the maze contains at least one key and at least one goal
-        if (verifyMazeComponents(MazeInfo.getAssetCodeGoal()) && verifyMazeComponents(MazeInfo.getAssetCodeKey())){
-            fileManager.storeNewCustomMaze();
-            return true;
+        if (verifyMazeComponents(MazeInfo.getAssetCodeGoal())) {
+            if (verifyMazeComponents(MazeInfo.getAssetCodeKey())) {
+                fileManager.storeNewCustomMaze();
+                return true;
+            }
         }
         return false;
     }

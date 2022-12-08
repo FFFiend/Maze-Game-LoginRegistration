@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions;
 import use_cases.custom_game.custom_game_editor.TempMaze;
 
 import org.junit.jupiter.api.Test;
-import user_interface.custom_game.custom_game_file_management.CustomGameFileManager;
+import frameworks_and_drivers.custom_game.custom_game_file_management.CustomGameFileManager;
 
 import javax.swing.*;
 import java.io.File;
@@ -19,7 +19,7 @@ import java.util.Scanner;
 class CustomGameFileManagerTest {
     private final CustomGameFileManager FILE_MANAGER = new CustomGameFileManager();
     private final String MAZE_NAME = "testingMaze";
-    File mazeFile;
+    private final File MAZE_FILE;
 
     /**
      * Create a TempMaze for testing, add some items and store it
@@ -32,7 +32,7 @@ class CustomGameFileManagerTest {
         maze[1][2].tileLeftClick();
         maze[0][3].tileLeftClick();
         FILE_MANAGER.storeNewCustomMaze();
-        mazeFile = new File("custom_mazes/" + MAZE_NAME);
+        MAZE_FILE = new File("custom_mazes/" + MAZE_NAME);
     }
 
     /**
@@ -40,7 +40,7 @@ class CustomGameFileManagerTest {
      */
     @Test
     void checkMazeTitle() {
-        Assertions.assertEquals(MAZE_NAME, mazeFile.getName());
+        Assertions.assertEquals(MAZE_NAME, MAZE_FILE.getName());
     }
 
     /**
@@ -59,7 +59,7 @@ class CustomGameFileManagerTest {
         String thirdLine = "0 0 0 0 ";
         String fourthLine = "0 0 0 6 ";
         try {
-            Scanner fileReader = new Scanner(mazeFile);
+            Scanner fileReader = new Scanner(MAZE_FILE);
             Assertions.assertEquals(firstLine, fileReader.nextLine());
             Assertions.assertEquals(secondLine, fileReader.nextLine());
             Assertions.assertEquals(thirdLine, fileReader.nextLine());
@@ -78,6 +78,6 @@ class CustomGameFileManagerTest {
      * Delete the maze created for testing, to be called in the last test method
      */
     private boolean deleteTestingMaze() {
-        return mazeFile.delete();
+        return MAZE_FILE.delete();
     }
 }

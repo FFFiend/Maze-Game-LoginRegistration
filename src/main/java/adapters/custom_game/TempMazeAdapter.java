@@ -23,7 +23,6 @@ public class TempMazeAdapter {
         TempMazeAdapter.tileSize = tileSize;
 
         TempMaze.setMazeTitle(mazeName);
-        //TempMaze.setMazeCreator();
     }
 
     /**
@@ -39,13 +38,6 @@ public class TempMazeAdapter {
      */
     public static String getMazeTitle() {
         return TempMaze.getMazeTitle();
-    }
-
-    /**
-     * Gets the username of the creator of the TempMaze for storage in the custom maze text files
-     */
-    public static String getMazeCreator() {
-        return TempMaze.getMazeCreator();
     }
 
     /**

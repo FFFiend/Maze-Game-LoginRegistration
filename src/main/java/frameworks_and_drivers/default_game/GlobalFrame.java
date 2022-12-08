@@ -1,8 +1,8 @@
-package user_interface.default_game;
+package frameworks_and_drivers.default_game;
 
-import user_interface.login_leaderboard.IGlobalFrameOutputBoundary;
-import user_interface.login_leaderboard.Panel;
-import user_interface.login_leaderboard.PanelManager;
+import frameworks_and_drivers.login_leaderboard.IGlobalFrameOutputBoundary;
+import frameworks_and_drivers.login_leaderboard.Panel;
+import frameworks_and_drivers.login_leaderboard.PanelManager;
 
 import javax.swing.*;
 
