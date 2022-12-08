@@ -3,6 +3,9 @@ package items;
 import entities.default_game.IDrawOutputBoundary;
 import entities.hazards.IHazardRequestModel;
 import entities.items.Item;
+import entities.items.ItemBlackhole;
+import entities.items.ItemKey;
+import entities.items.ItemOxygen;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -56,7 +59,7 @@ public class ItemTest {
      */
     @Test
     public void SetGetName() {
-        Item item = new Item(1, 1);
+        Item item = new ItemKey(1, 1);
         item.setName("Potion");
         Assertions.assertEquals(item.getName(), "Potion");
     }
@@ -66,7 +69,7 @@ public class ItemTest {
      */
     @Test
     public void SetGetLocked() {
-        Item item = new Item(1, 1);
+        Item item = new ItemBlackhole(1, 1);
         item.setLockedTrue();
         Assertions.assertTrue(item.getLocked());
     }
@@ -76,7 +79,7 @@ public class ItemTest {
      */
     @Test
     public void SetGetImage() throws IOException {
-        Item item = new Item(1, 1);
+        Item item = new ItemOxygen(1, 1);
         BufferedImage image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("stars.png"));
         item.setImage(image);
         Assertions.assertNotNull(item.getImage());
@@ -87,10 +90,9 @@ public class ItemTest {
      */
     @Test
     public void DrawItem() {
-        Item item = new Item(100, 200);
-        IDrawOutputBoundary draw48 = new TestDrawRequestModel();
-        Assertions.assertEquals(48, draw48.getTileSize());
-        item.draw(draw48);
-        Assertions.assertEquals(Color.WHITE, draw48.graphics().getColor());
+        Item item = new Item(0, 0);
+        IDrawOutputBoundary model = new TestDrawRequestModel();
+        item.draw(model);
+        Assertions.assertEquals(Color.WHITE, model.graphics().getColor());
     }
 }
