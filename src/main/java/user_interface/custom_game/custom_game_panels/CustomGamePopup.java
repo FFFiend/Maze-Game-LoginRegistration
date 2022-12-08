@@ -78,7 +78,6 @@ public class CustomGamePopup implements ICustomGamePanel{
         returnButton.addActionListener(new CustomGameGeneralInputHandler("CustomGamePopup", new CustomGamePresenter(), panel));
 
         bottomPanel.add(returnButton);
-        returnToCustomMainButton(bottomPanel);
         CONTENT.add(bottomPanel, BorderLayout.PAGE_END);
     }
 }

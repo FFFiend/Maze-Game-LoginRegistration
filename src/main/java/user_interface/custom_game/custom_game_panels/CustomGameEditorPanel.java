@@ -53,7 +53,7 @@ class CustomGameEditorPanel extends Panel implements ICustomGamePanel{
         submissionButton.addActionListener(new CustomGameGeneralInputHandler("CustomGameEditorPanel", new CustomGamePresenter()));
 
         bottomPanel.add(submissionButton);
-        ICustomGamePanel.returnToCustomMainButtonStatic(bottomPanel);
+        returnToCustomMainButton(bottomPanel);
         EDITOR_FRAME.add(bottomPanel, BorderLayout.PAGE_END);
     }
 

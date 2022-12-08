@@ -9,8 +9,8 @@ import java.util.Objects;
  */
 public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePanel {
 
-    private CustomGameEditorPanel editorPanel;
-    private CustomGameInitializerPanel initializerPanel;
+    private static CustomGameEditorPanel editorPanel;
+    private static CustomGameInitializerPanel initializerPanel;
 
     /**
      * Call the constructors of one of the custom game panels
@@ -40,7 +40,7 @@ public class CustomGamePresenter implements ICustomGamePresenter, ICustomGamePan
     /**
      * Bring the initializer in front of other windows
      */
-    public void refocusInitializer () {
+    public void refocusInitializer() {
         initializerPanel.toFront();
     }
 
