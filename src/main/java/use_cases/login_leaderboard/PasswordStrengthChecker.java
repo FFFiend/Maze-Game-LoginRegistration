@@ -28,6 +28,6 @@ public class PasswordStrengthChecker {
                 nums += 1;
             }
         }
-        return pwd.length() > 8 && (caps > 0 && nums > 0 && special_chars > 0);
+        return pwd.length() >= 8 && (caps > 0 && nums > 0 && special_chars > 0);
     }
 }
