@@ -19,24 +19,5 @@ public class PlayCustom implements IPLayCustom {
     @Override
     public void actionPerformed(ActionEvent e) {
         this.getMazeInteractor(MAZE_NAME);
-//        String file = "custom_mazes/" + MAZE_NAME;
-//        JFrame window = new JFrame();
-//        window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        window.setResizable(false);
-//        window.setTitle(file);
-//
-//        IGamePanelOutputBoundary presenter = new GamePanelPresenter();
-//        MazeInteractor maze = new MazeInteractor(presenter);
-//        maze.load(file);
-//        maze.startGameThread();
-//        GamePanelController controller = new GamePanelController(maze);
-//
-//        window.add((Component) presenter);
-//        window.pack();
-//        window.setLocationRelativeTo(null);
-//        window.setVisible(true);
-//
-//        window.addKeyListener(controller);
-//        window.setFocusable(true);
     }
 }
