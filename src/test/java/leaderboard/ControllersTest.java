@@ -25,8 +25,8 @@ public class ControllersTest {
         LoginUserController logincontroller = new LoginUserController(loginUseCase);
         loginUseCase.setUsers(FileReader.create().PREV.getUsers());
 
-        Assertions.assertEquals("yes",logincontroller.performUseCase("abc","hello4$A"));
-        Assertions.assertEquals("no",logincontroller.performUseCase("abc","hello"));
+        Assertions.assertEquals("yes",logincontroller.performUseCase("abc","hello"));
+        Assertions.assertEquals("no",logincontroller.performUseCase("abc","ha"));
         Assertions.assertEquals("no",logincontroller.performUseCase("Sean","hello"));
 
 
