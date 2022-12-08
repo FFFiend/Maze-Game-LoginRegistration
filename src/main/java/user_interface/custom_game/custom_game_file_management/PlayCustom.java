@@ -3,11 +3,8 @@ package user_interface.custom_game.custom_game_file_management;
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
 import use_cases.custom_game.custom_game_file_management.IPLayCustom;
-import use_cases.default_game.IGamePanelOutputBoundary;
-import use_cases.default_game.MazeInteractor;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 
 public class PlayCustom implements IPLayCustom {
@@ -30,13 +27,10 @@ public class PlayCustom implements IPLayCustom {
         window.setResizable(false);
         window.setTitle(MAZE_NAME);
 
-        IGamePanelOutputBoundary presenter = new GamePanelPresenter();
-        MazeInteractor maze = new MazeInteractor(presenter);
-        maze.load("custom_mazes/" + MAZE_NAME);
-        maze.startGameThread();
-        GamePanelController controller = new GamePanelController(maze);
+        GamePanelPresenter presenter = new GamePanelPresenter();
+        GamePanelController controller = new GamePanelController(this.getMazeInteractor(presenter, "custom_mazes/" + MAZE_NAME));
 
-        window.add((Component) presenter);
+        window.add(presenter);
         window.pack();
         window.setLocationRelativeTo(null);
         window.setVisible(true);
