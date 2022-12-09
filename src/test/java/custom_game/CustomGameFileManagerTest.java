@@ -77,7 +77,7 @@ class CustomGameFileManagerTest {
     /**
      * Delete the maze created for testing, to be called in the last test method
      */
-    private boolean deleteTestingMaze() {
+    public boolean deleteTestingMaze() {
         return MAZE_FILE.delete();
     }
 }

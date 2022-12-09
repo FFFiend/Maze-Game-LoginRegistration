@@ -1,6 +1,5 @@
 package frameworks_and_drivers.custom_game.custom_game_panels;
 
-import adapters.custom_game.CustomGameGeneralInputHandler;
 import adapters.custom_game.ICustomInitializerInput;
 import frameworks_and_drivers.login_leaderboard.Panel;
 
