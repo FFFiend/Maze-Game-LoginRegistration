@@ -4,14 +4,12 @@ import adapters.login_leaderboard.LeaderboardPresenter;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
  * Allows user to view the easy, medium, and hard leaderboard.
  */
-public class LeaderboardsPanel extends Panel implements ActionListener {
+public class LeaderboardsPanel extends Panel {
     JTable EasyTable;
     JTable MedTable;
     JTable HardTable;
@@ -43,13 +41,6 @@ public class LeaderboardsPanel extends Panel implements ActionListener {
         add(sp3);
         sp3.setVisible(true);
         this.add(sp3);
-
-        JButton re = new JButton("Welcome Screen");
-        re.setBounds(485,505,300,30);
-        re.setSize(245,30);
-        re.addActionListener(this);
-        re.setActionCommand("wipe out");
-        this.add(re);
     }
 
     /**
@@ -152,11 +143,5 @@ public class LeaderboardsPanel extends Panel implements ActionListener {
         HardTable.setFont(new Font("Arial", Font.BOLD, 16));
 
         HardTable.setShowGrid(false);
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        outputBoundary.getCurrPanel(this);
-        outputBoundary.changePanelTo(e.getActionCommand());
     }
 }
