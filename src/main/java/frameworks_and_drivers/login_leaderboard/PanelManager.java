@@ -18,7 +18,6 @@ public class PanelManager {
     private LoginPanel login;
     private RegisterPanel register;
 
-
     public static void assign(String panelName, Object controller) {
         dict.put(panelName, controller);
     }
