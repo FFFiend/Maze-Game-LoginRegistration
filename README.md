@@ -40,6 +40,8 @@ Such cases, among others can be freely tested by cloning/forking the repo and la
 - Updated test coverage
 ![package](images/test_coverage.png)
 - GamePanelController and GamePanelPresenter in the adapters layer heavily rely on user input and graphics, so we were not able to test everything.
+- UI testing leads to HeadlessExceptions on GitHub. We opted not to test UI, because it involves creating and interacting with windows.
+
 
 # Code Style and Documentation
 - Javadocs for classes & methods
