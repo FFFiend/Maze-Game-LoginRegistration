@@ -60,7 +60,10 @@ public class GlobalFrame implements IGlobalFrameOutputBoundary {
     public void changePanelTo(String nextPanel) {
         currPanel.delete();
 
-        window.add(panelManager.getNextPanel(nextPanel, currPanel));
+        JPanel panel = panelManager.getNextPanel(nextPanel, currPanel);
+        if (panel != null) {
+            window.add(panel);
+        }
 
         window.pack();
 

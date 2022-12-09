@@ -1,44 +1,88 @@
-# Test coverage
+# Functionality
+## Default Game - AstroMaze
+You are an astronaut who got lost while studying blackhole physics in a distant solar system. Your spaceship is gone. Oxygen is running low. Floating space rocks block your path. There’s no one else around, and yet you feel an ominous presence… Wait, is that an escape pod? Maybe you can use that to pass the event horizon of the blackhole. Fingers crossed, maybe there’s another universe on the other side…
 
-![test coverage](images/Test%20coverage.PNG)
+- Easy / Medium / Hard levels available as default.
+- Press W/A/S/D to move around. 
+- Get on the Escape Pod and go through the Blackhole before you run out of Oxygen!
+
+## Maze customization
+- Main panel - List of stored custom mazes option to play one or make a new one from the list
+- Initializer - choose a unique name for your maze
+- Editor - build your maze
+  - Left click to place an obstacle or empty a tile	
+  - Right click to cycle through secondary assets (oxygen tank, key (space pod), enemies, goal (black hole)
+
+## Login and Registration
+- Users are able to Register (if they are new) or Log in and can ONLY enter the main game menu if and only if they make a successful login attempt.
+- All other edge cases are handled as shown in the demonstration. 
+- Minor features: Email RegEx to make sure entered email is correct in the Register User use case, as well as a PasswordStrengthChecker class that makes sure a user enters a sufficiently strong password on registration.
+Edge cases such as Users being unable to register or login when leaving one/all fields blank are also covered as shown below:
 
 
-# Project Template
 
-This is a template repository for CSC 207 projects. 
-This repository contains starter code for a gradle project.
-It also contains workflow documents that give instructions on how to manage your Github repository and how to use Github Projects for efficient collaboration.
+Such cases, among others can be freely tested by cloning/forking the repo and launching the game on your local machine :D.
 
-## Checklist For Your Project
-- [ ] Verify the correct settings for your project repository
-- [ ] Set up Github Projects
-- [ ] Create the implementation plan using issues and Github Projects
-- [ ] Create deveopment branches for your features
-- [ ] Use pull requests to merge finished features into main branch
-- [ ] Conduct code reviews
+## Leaderboards
+- A user is able to view the leaderboards after they login or register
+- The three leaderboards display the top 10 scores from each level
+- Each users top scores are stored in a data.csv file
+- The user score is updated if a user creates a personal highscore. All the scores are then compared to generate the top 10 scores.
+- Updated leaderboards are generated every time a user clicks on the leaderboard button. 
 
-**If your team has trouble with any of these steps, please ask on Piazza. For example, with how GitHub Classroom works, your team *may* not have permissions to do some of the first few steps, in which case we'll post alternative instructions as needed.**
+# Code Organization
+- Organized by features & clean architecture layers
 
-## Workflow Documents
 
-* Github Workflow: Please refer to the workflow that was introduced in the first lab. You should follow this when working on your code. The following document provides additional details too.
+# Testing
+- Updated test coverage
 
-* [Project Planning and Development Guide](project_plan_dev.md): This document helps you to understand how to create and maintain a project plan for your class project. **This document helps you to complete the Implementation Plan Milestone.**
 
-## Gradle Project
-Import this project into your Intellij editor. It should automatically recognise this as a gradle repository.
-The starter code was built using SDK version 11.0.1. Ensure that you are using this version for this project. (You can, of course, change the SDK version as per your requirement if your team has all agreed to use a different version)
+# Code Style and Documentation
+- Javadocs for classes & methods
+- Reformat code to have consistent code style
 
-You have been provided with two starter files for demonstration: HelloWorld and HelloWorldTest.
+# Use of GitHub Features
+- Require at least one approval to be merged to main
+- PR must pass GitHub Autograding to me merged
+- Tried to have incremental PRs  
 
-You will find HelloWorld in `src/main/java/tutorial` directory. Right click on the HelloWorld file and click on `Run HelloWorld.main()`.
-This should run the program and print on your console.
+# Design Patterns
+- Observer
+  - IGlobalFrameOutputBoundary, GlobalFrame and PanelManager and Panel classes.
+  - EditorTile
+- Façade
+  - combine MazeEnemies and MazeObstacles into a single class “MazeHazards”
+- Simple factory
+  - CustomAssetSetter uses its method setAssets() to create multiple entities based on the input .txt file
 
-You will find HelloWorldTest in `src/test/java/tutorial` directory. Right click on the HelloWorldTest file and click on `Run HelloWorldTest`.
-All tests should pass. Your team can remove this sample of how testing works once you start adding your project code to the repo.
+# Clean Architecture
+- Use of interfaces for dependency inversion
+- No instance of inner layers dependent on outer ones. (i.e. a class in the Use Case layer being dependent on one in the adapters layer.)
 
-Moving forward, we expect you to maintain this project structure. You *should* use Gradle as the build environment, but it is fine if your team prefers to use something else -- just remove the gradle files and push your preferred project setup. Assuming you stick with Gradle, your source code should go into `src/main/java` (you can keep creating more subdirectories as per your project requirement). Every source class can auto-generate a test file for you. For example, open HelloWorld.java file and click on the `HelloWorld` variable as shown in the image below. You should see an option `Generate` and on clicking this your should see an option `Test`. Clicking on this will generate a JUnit test file for `HelloWorld` class. This was used to generate the `HelloWorldTest`.
 
-![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
+# Data Persistence 
+- All users' information, username, email, password, and the scores from the levels are stored in data.csv
+If a user wants to login, 
 
-You can create another simple class and try generating a test for this class.
+- Custom mazes
+  - Stored in text files under custom_mazes, each with a unique name ensured by the verifier 
+  - Retrieved by the file manager and sent to PlayCustom > IPlayCustom > MazeInteractor (default game runner)
+
+
+# SOLID
+- Single Responsibility: each class / interface has one responsibility 
+- Open / Closed: leave room for extension (e.g. Façade design pattern to let the entities deal with specific implementation - allows new types of Items & Hazards to be added!)
+- Liskov Substitution: subclasses only extend the parent class, not modify it
+- Interface Segregation: all interfaces are small (a few methods max)
+- Dependency Inversion: use of interfaces to follow (“no outward dependency” and “no-more-than-one-layer-deep” rules of Clean Architecture)
+
+
+# Possible Improvements
+Login / Leaderboard
+- Email authentication as well as password hashing could be added to the project to increase user security. Right now, the project sports a modular structure thanks to Clean Architecture principles to make these use cases possible. Email authentication can also be used if a user forgot their password, as we currently have not implemented this bonus feature but it is very much possible to do so following the prior two additions.
+
+Customization 
+- Editing custom mazes that have already been stored
+- Additional colours & images for assets 
+- Customization of size 
