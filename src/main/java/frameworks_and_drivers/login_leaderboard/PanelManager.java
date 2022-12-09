@@ -14,7 +14,7 @@ import java.util.Objects;
  * A class that manages panel switching within the Global Frame.
  */
 public class PanelManager {
-    static Dictionary dict = new Hashtable();
+    private static final Dictionary<String, Object> dict = new Hashtable<>();
     private LoginPanel login;
     private RegisterPanel register;
 

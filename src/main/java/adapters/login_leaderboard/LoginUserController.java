@@ -15,10 +15,22 @@ public class LoginUserController {
      */
     public final ILoginUserInputBoundary useCaseInteractor;
 
+
+    /**
+     * Class constructor.
+     * @param useCaseInteractor the Login Use Case to be passed into the Controller.
+     */
     public LoginUserController(ILoginUserInputBoundary useCaseInteractor){
         this.useCaseInteractor = useCaseInteractor;
     }
 
+    /**
+     * Executes the login use case.
+     * @param username passed in username.
+     * @param password passed in password.
+     * @return returns whether the login was successful or not, acts as a
+     * mini-presenter on its own.
+     */
     public String performUseCase(String username, String password){
         String result = this.useCaseInteractor.detailChecker(username, password);
         if(Objects.equals(result,"yes")){

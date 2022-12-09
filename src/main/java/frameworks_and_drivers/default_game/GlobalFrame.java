@@ -10,7 +10,7 @@ import javax.swing.*;
  * A frame that controls the whole project.
  **/
 public class GlobalFrame implements IGlobalFrameOutputBoundary {
-    public JFrame window = new JFrame();
+    private final JFrame window = new JFrame();
     private final PanelManager panelManager = new PanelManager();
     private Panel currPanel;
 

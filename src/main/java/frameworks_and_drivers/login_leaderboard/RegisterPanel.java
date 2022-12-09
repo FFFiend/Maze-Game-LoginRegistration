@@ -26,7 +26,8 @@ public class RegisterPanel extends Panel implements ActionListener {
     }
     RegisterUserController registerUserController;
 
-    /***
+
+    /**
      * Constructs the register panel where the user can register their username, email,
      * and password.
      */
@@ -85,7 +86,7 @@ public class RegisterPanel extends Panel implements ActionListener {
         re.addActionListener(this);
         re.setActionCommand("wipe out");
 
-        JOptionPane.showMessageDialog(null,"Your username must have at least" +
+        JOptionPane.showMessageDialog(null,"Your password must have at least" +
                 " 8 letters, one capital letter, one number and one special character.");
 
         this.add(re);
@@ -94,7 +95,9 @@ public class RegisterPanel extends Panel implements ActionListener {
 
     /**
      * Upon pressing the sign up button, the temporary username, email and password
-     * are initialized for the current application user.
+     * are initialized for the current application user, and the use Register User use case is called upon.
+     * Furthermore, the UI handles cases where any/all fields are left blank, and displays appropriate
+     * popups to the user using JOptionPane.
      * @param e the event to be processed
      */
     @Override

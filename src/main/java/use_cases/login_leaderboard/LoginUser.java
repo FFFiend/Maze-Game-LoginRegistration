@@ -2,8 +2,6 @@ package use_cases.login_leaderboard;
 
 import entities.login_leaderboard.User;
 
-import javax.swing.*;
-
 /**
  * Checks whether the entered username and password combination entered
  * is valid. Furthermore, displays a popup message notifying the user of
