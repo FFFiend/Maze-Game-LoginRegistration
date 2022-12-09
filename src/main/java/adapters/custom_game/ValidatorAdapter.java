@@ -30,7 +30,6 @@ public class ValidatorAdapter {
         }
     }
 
-
     /**
      * Calls and sends maze initializer values to the verifier. If it is valid, it calls the presenter to take the
      * User to the editor. If not, it shows the user a panel warning that their input was invalid.
