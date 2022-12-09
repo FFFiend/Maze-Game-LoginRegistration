@@ -44,7 +44,7 @@ public class LeaderboardsPanel extends Panel implements ActionListener {
         sp3.setVisible(true);
         this.add(sp3);
 
-        JButton re = new JButton("Welcome Screen");
+        JButton re = new JButton("Main Menu");
         re.setBounds(485,505,300,30);
         re.setSize(245,30);
 
