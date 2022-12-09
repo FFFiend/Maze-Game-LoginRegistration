@@ -1,5 +1,6 @@
 package default_game;
 
+import adapters.default_game.GamePanelPresenter;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import use_cases.default_game.IGamePanelOutputBoundary;
@@ -14,16 +15,17 @@ import java.io.IOException;
  */
 public class MazeInteractorTest {
     /**
-     * Test that the gameOver is true after Player collides with StationaryEnemy
+     * Test that the gameOver and playerKilled is true after Player collides with StationaryEnemy
      */
     @Test
-    public void TestDeath() throws IOException {
+    public void TestPlayerDeath() throws IOException {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
         IFileOutputBoundary updateScore = new TestFileOutputBoundary();
         MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.load("maze04.txt");
         mazeInteractor.startGameThread();
         mazeInteractor.execute(KeyEvent.VK_A);
+        Assertions.assertTrue(mazeInteractor.isPlayerKilled());
         Assertions.assertTrue(mazeInteractor.gameOver());
     }
 
@@ -71,11 +73,85 @@ public class MazeInteractorTest {
      * Test that displayLevel loads the maze
      */
     @Test
-    public void DisplayLevel() {
+    public void TestDisplayLevel() {
         IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
         IFileOutputBoundary updateScore = new TestFileOutputBoundary();
         MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
         mazeInteractor.displayLevel(KeyEvent.VK_1);
         Assertions.assertEquals(50, mazeInteractor.getPlayerStamina());
+    }
+
+    /**
+     * Test the player position after key input W is passed as a parameter of
+     * the execute method.
+     *
+     * @throws IOException
+     */
+    @Test
+    public void TestExecuteWPlayerPos() throws IOException {
+        IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
+        mazeInteractor.load("maze01.txt");
+        int initialX = mazeInteractor.getPlayerX();
+        int initialY = mazeInteractor.getPlayerX();
+        mazeInteractor.execute(KeyEvent.VK_W);
+        Assertions.assertEquals(initialX, mazeInteractor.getPlayerX());
+        Assertions.assertEquals(initialY - 1, mazeInteractor.getPlayerY());
+    }
+
+    /**
+     * Test the player position after key input S is passed as a parameter of
+     * the execute method.
+     *
+     * @throws IOException
+     */
+    @Test
+    public void TestExecuteSPlayerPos() throws IOException {
+        IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
+        mazeInteractor.load("maze01.txt");
+        int initialX = mazeInteractor.getPlayerX();
+        int initialY = mazeInteractor.getPlayerX();
+        mazeInteractor.execute(KeyEvent.VK_S);
+        Assertions.assertEquals(initialX, mazeInteractor.getPlayerX());
+        Assertions.assertEquals(initialY + 1, mazeInteractor.getPlayerY());
+    }
+
+    /**
+     * Test the move function for keyboard input A.
+     *
+     * @throws IOException
+     */
+    @Test
+    public void TestMovePlayerLeft() throws IOException {
+        IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
+        mazeInteractor.load("maze01.txt");
+        int initialX = mazeInteractor.getPlayerX();
+        int initialY = mazeInteractor.getPlayerX();
+        mazeInteractor.movePlayer(KeyEvent.VK_A);
+        Assertions.assertEquals(initialX - 1, mazeInteractor.getPlayerX());
+        Assertions.assertEquals(initialY, mazeInteractor.getPlayerY());
+    }
+
+    /**
+     * Test the move function for keyboard input D.
+     *
+     * @throws IOException
+     */
+    @Test
+    public void TestMovePlayerRight() throws IOException {
+        IGamePanelOutputBoundary outputBoundary = new TestGamePanelOutputBoundaryModel();
+        IFileOutputBoundary updateScore = new TestFileOutputBoundary();
+        MazeInteractor mazeInteractor = new MazeInteractor(outputBoundary, updateScore);
+        mazeInteractor.load("maze01.txt");
+        int initialX = mazeInteractor.getPlayerX();
+        int initialY = mazeInteractor.getPlayerX();
+        mazeInteractor.movePlayer(KeyEvent.VK_D);
+        Assertions.assertEquals(initialX + 1, mazeInteractor.getPlayerX());
+        Assertions.assertEquals(initialY, mazeInteractor.getPlayerY());
     }
 }

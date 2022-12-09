@@ -11,21 +11,15 @@ import java.io.IOException;
  */
 public class GamePanelController implements KeyListener {
     private final IGamePanelInputBoundary inputBoundary;
-    private boolean levelSelected = false;
-
-    /**
-     * Number of times per second the inputBoundary update method is called.
-     */
-    private final int updateFrequency = 4;
 
     /**
      * Create the controller for the game.
+     *
      * @param inputBoundary The input boundary, which will be invoked any time a key is pressed.
      */
     public GamePanelController(IGamePanelInputBoundary inputBoundary) {
         this.inputBoundary = inputBoundary;
     }
-
 
     /**
      * Invoked when a key has been typed.
@@ -58,6 +52,6 @@ public class GamePanelController implements KeyListener {
 
     @Override
     public void keyReleased(KeyEvent e) {
-    }
 
+    }
 }

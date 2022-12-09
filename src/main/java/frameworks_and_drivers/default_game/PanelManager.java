@@ -1,9 +1,10 @@
-package frameworks_and_drivers.login_leaderboard;
+package frameworks_and_drivers.default_game;
 
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.RegisterUserController;
 import frameworks_and_drivers.custom_game.custom_game_panels.CustomGamePresenter;
+import frameworks_and_drivers.login_leaderboard.*;
 
 import javax.swing.*;
 import java.util.Dictionary;
@@ -18,8 +19,14 @@ public class PanelManager {
     private LoginPanel login;
     private RegisterPanel register;
 
-    public static void assign(String panelName, Object controller) {
-        dict.put(panelName, controller);
+    /**
+     * Assign the given object to the string.
+     *
+     * @param objectName name of the given Class
+     * @param object class
+     */
+    public static void assign(String objectName, Object object) {
+        dict.put(objectName, object);
     }
 
 //    public static FileWriter getWriter(){
