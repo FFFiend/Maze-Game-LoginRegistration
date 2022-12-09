@@ -103,7 +103,12 @@ public class LeaderboardTest {
         LeaderboardPresenter presenter = new LeaderboardPresenter();
         presenter.setScores(FileReader.create());
 
-        Object[] userInfo = presenter.getTop10Easy().get(0).split(" ");
-        Assertions.assertEquals(2, userInfo.length);
+        Object[] userInfoEasy = presenter.getTop10Easy().get(0).split(" ");
+        Object[] userInfoMed = presenter.getTop10Easy().get(0).split(" ");
+        Object[] userInfoHard = presenter.getTop10Easy().get(0).split(" ");
+
+        Assertions.assertEquals(2, userInfoEasy.length);
+        Assertions.assertEquals(2, userInfoMed.length);
+        Assertions.assertEquals(2, userInfoHard.length);
     }
 }
