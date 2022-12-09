@@ -39,6 +39,7 @@ Such cases, among others can be freely tested by cloning/forking the repo and la
 # Testing
 - Updated test coverage
 ![package](images/test_coverage.png)
+- GamePanelController and GamePanelPresenter in the adapters layer heavily rely on user input and graphics, so we were not able to test everything.
 
 # Code Style and Documentation
 - Javadocs for classes & methods
@@ -92,3 +93,8 @@ Customization
 - Editing custom mazes that have already been stored
 - Additional colours & images for assets 
 - Customization of size 
+
+Others
+- Adding a go back to home screen option from the game screen
+- Changing the implementation of the redrawMaze method in GamePanelPresenter so that it does not rely on MazeInteractor
+
