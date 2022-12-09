@@ -1,6 +1,7 @@
 import adapters.default_game.GamePanelController;
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.*;
+import frameworks_and_drivers.default_game.PanelManager;
 import use_cases.default_game.MazeInteractor;
 import use_cases.login_leaderboard.*;
 import frameworks_and_drivers.default_game.GlobalFrame;

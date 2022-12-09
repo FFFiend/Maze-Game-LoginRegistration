@@ -1,9 +1,10 @@
-package frameworks_and_drivers.login_leaderboard;
+package frameworks_and_drivers.default_game;
 
 import adapters.default_game.GamePanelPresenter;
 import adapters.login_leaderboard.LoginUserController;
 import adapters.login_leaderboard.RegisterUserController;
 import frameworks_and_drivers.custom_game.custom_game_panels.CustomGamePresenter;
+import frameworks_and_drivers.login_leaderboard.*;
 
 import javax.swing.*;
 import java.util.Dictionary;
@@ -18,14 +19,15 @@ public class PanelManager {
     private LoginPanel login;
     private RegisterPanel register;
 
-
-    public static void assign(String panelName, Object controller) {
-        dict.put(panelName, controller);
+    /**
+     * Assign the given object to the string.
+     *
+     * @param objectName name of the given Class
+     * @param object class
+     */
+    public static void assign(String objectName, Object object) {
+        dict.put(objectName, object);
     }
-
-//    public static FileWriter getWriter(){
-//        return  writer;
-//    }
 
     /**
      * This method implements the panel switching and incorporates the Clean Architecture
@@ -49,21 +51,18 @@ public class PanelManager {
             return login;
 
         } else if (Objects.equals(nextPanel, "Home Panel Launch") || Objects.equals(nextPanel, "Registered")) {
-            if (Objects.equals(nextPanel, "Registered")){
+            if (Objects.equals(nextPanel, "Registered")) {
                 FileWriter.username = register.getUsername();
-            }
-            else {
+            } else {
                 FileWriter.username = login.getUsername();
             }
             return new HomePanel(currPanel.outputBoundary);
 
         } else if (Objects.equals(nextPanel, "MAIN GAME")) {
-            // return game panel;
             return (GamePanelPresenter) dict.get("GamePanelPresenter");
 
         } else if (Objects.equals(nextPanel, "CUSTOM GAME")) {
-            // return custom game panel
-//            return new CustomGameMainPanel(currPanel.outputBoundary);
+
             CustomGamePresenter tempPresenter = new CustomGamePresenter();
             tempPresenter.callCustomGamePanel();
 
@@ -71,10 +70,10 @@ public class PanelManager {
             // return leaderboard screen
             return new LeaderboardsPanel(currPanel.outputBoundary);
 
-        } else if(Objects.equals(nextPanel,"wipe out")){
+        } else if (Objects.equals(nextPanel, "wipe out")) {
             return new WelcomeGlobalFrame(currPanel.outputBoundary);
         }
 
         return null;
-        }
+    }
 }

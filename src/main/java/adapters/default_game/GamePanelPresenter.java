@@ -121,7 +121,6 @@ public class GamePanelPresenter extends JPanel implements IGamePanelOutputBounda
      * @param g2 graphics
      */
     public void drawTitleScreen(Graphics2D g2) {
-        // just to check the screen, design can be changed later
         String text = "AstroMaze";
 
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40F));

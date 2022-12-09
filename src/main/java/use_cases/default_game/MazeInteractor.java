@@ -23,18 +23,18 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
     private CollisionHandler cHandler;
     private Player player;
     private final int playerSpeed = 1;
-
     private boolean playerKilled;
     /**
      * The file name of the maze which is currently loaded.
      */
     private String currentMaze;
-
     private final int STARTING_STAMINA = 50;
     private String mazeLevel;
     private final IGamePanelOutputBoundary outputBoundary;
     private final IFileOutputBoundary updateScore;
-    /** This is set to true when the game has been stopped. */
+    /**
+     * This is set to true when the game has been stopped.
+     */
     private boolean stop;
     private final int FPS = 20;
     private int currState;
@@ -93,7 +93,9 @@ public class MazeInteractor implements IGamePanelInputBoundary, IHazardRequestMo
         currentMaze = filename;
     }
 
-    /** Start the game update thread. */
+    /**
+     * Start the game update thread.
+     */
     public void startGameThread() {
         Thread gameThread = new Thread(this);
         gameThread.start(); // this calls run()

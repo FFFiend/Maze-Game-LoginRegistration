@@ -2,7 +2,6 @@ package frameworks_and_drivers.default_game;
 
 import frameworks_and_drivers.login_leaderboard.IGlobalFrameOutputBoundary;
 import frameworks_and_drivers.login_leaderboard.Panel;
-import frameworks_and_drivers.login_leaderboard.PanelManager;
 
 import javax.swing.*;
 
@@ -34,12 +33,7 @@ public class GlobalFrame implements IGlobalFrameOutputBoundary {
     public void setPanel(Panel panel) {
 
         window.add(panel);
-
-        // add extra methods in welcomepanel to ensure this works
-        // properly when needed. For now, testing whether panel
-        // changing actually works.
         window.setLocationRelativeTo(null);
-        // centers the window..got it..
         window.setVisible(true);
     }
 
@@ -66,12 +60,7 @@ public class GlobalFrame implements IGlobalFrameOutputBoundary {
         }
 
         window.pack();
-
-        // add extra methods in welcomepanel to ensure this works
-        // properly when needed. For now, testing whether panel
-        // changing actually works.
         window.setLocationRelativeTo(null);
-        // centers the window..got it..
         window.setVisible(true);
     }
 }
