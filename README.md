@@ -1,6 +1,7 @@
 # Functionality
 ## Default Game - AstroMaze
 You are an astronaut who got lost while studying blackhole physics in a distant solar system. Your spaceship is gone. Oxygen is running low. Floating space rocks block your path. There’s no one else around, and yet you feel an ominous presence… Wait, is that an escape pod? Maybe you can use that to pass the event horizon of the blackhole. Fingers crossed, maybe there’s another universe on the other side…
+![package](images/game.png)
 
 - Easy / Medium / Hard levels available as default.
 - Press W/A/S/D to move around. 
@@ -18,7 +19,7 @@ You are an astronaut who got lost while studying blackhole physics in a distant 
 - All other edge cases are handled as shown in the demonstration. 
 - Minor features: Email RegEx to make sure entered email is correct in the Register User use case, as well as a PasswordStrengthChecker class that makes sure a user enters a sufficiently strong password on registration.
 Edge cases such as Users being unable to register or login when leaving one/all fields blank are also covered as shown below:
-
+![package](images/login.png)
 
 
 Such cases, among others can be freely tested by cloning/forking the repo and launching the game on your local machine :D.
@@ -26,17 +27,18 @@ Such cases, among others can be freely tested by cloning/forking the repo and la
 ## Leaderboards
 - A user is able to view the leaderboards after they login or register
 - The three leaderboards display the top 10 scores from each level
-- Each users top scores are stored in a data.csv file
+- Each user's top scores are stored in a data.csv file
 - The user score is updated if a user creates a personal highscore. All the scores are then compared to generate the top 10 scores.
-- Updated leaderboards are generated every time a user clicks on the leaderboard button. 
+- Updated leaderboards are generated every time a user clicks on the leaderboard button.
+![package](images/leaderboard.png)
 
 # Code Organization
 - Organized by features & clean architecture layers
-
+![package](images/package.png)
 
 # Testing
 - Updated test coverage
-
+![package](images/test_coverage.png)
 
 # Code Style and Documentation
 - Javadocs for classes & methods
@@ -59,16 +61,20 @@ Such cases, among others can be freely tested by cloning/forking the repo and la
 # Clean Architecture
 - Use of interfaces for dependency inversion
 - No instance of inner layers dependent on outer ones. (i.e. a class in the Use Case layer being dependent on one in the adapters layer.)
+![package](images/ca.png)
 
 
 # Data Persistence 
-- All users' information, username, email, password, and the scores from the levels are stored in data.csv
-If a user wants to login, 
+- Login, Leaderboard, and Register
+  - All users' information, username, email, password, and the scores from the levels are stored in data.csv
+  - FileReader and FileWriter are implemented in the UI to update and read the data
+  - IFileInputBoundary and IFileOutputBondary interfaces allow the use cases to call on the update/read methods through dependency inversion.
+![package](images/dp1.png)
 
 - Custom mazes
   - Stored in text files under custom_mazes, each with a unique name ensured by the verifier 
   - Retrieved by the file manager and sent to PlayCustom > IPlayCustom > MazeInteractor (default game runner)
-
+![package](images/dp2.png)
 
 # SOLID
 - Single Responsibility: each class / interface has one responsibility 
