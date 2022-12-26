@@ -101,3 +101,5 @@ Others
 - Adding a go back to home screen option from the game screen
 - Changing the implementation of the redrawMaze method in GamePanelPresenter so that it does not rely on MazeInteractor
 
+
+# So what are you waiting for? Clone the repo and run Main!
