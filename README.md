@@ -1,4 +1,4 @@
-# While this is my fork of the project, all contributors can be viewed by visiting the original repository.
+# While this is my fork of the project, all other contributors can be viewed by visiting the original repository.
 # Functionality
 ## Default Game - AstroMaze
 You are an astronaut who got lost while studying blackhole physics in a distant solar system. Your spaceship is gone. Oxygen is running low. Floating space rocks block your path. There’s no one else around, and yet you feel an ominous presence… Wait, is that an escape pod? Maybe you can use that to pass the event horizon of the blackhole. Fingers crossed, maybe there’s another universe on the other side…
